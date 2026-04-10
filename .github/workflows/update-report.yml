@@ -6,6 +6,11 @@ on:
     - cron: '0 11 * * 1-5'
   # Allow manual trigger from GitHub UI
   workflow_dispatch:
+    inputs:
+      refresh_reference:
+        description: 'Also refresh Congress reference data'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -33,7 +38,35 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4 openpyxl anthropic
+          pip install -r requirements.txt
+
+      - name: Check if reference data refresh is due
+        id: ref_check
+        run: |
+          # Refresh every 2 weeks, or if manually requested
+          MANUAL="${{ github.event.inputs.refresh_reference }}"
+          if [ "$MANUAL" = "true" ]; then
+            echo "refresh=true" >> "$GITHUB_OUTPUT"
+          else
+            # Check age of member_bioguide.json
+            if [ -f member_bioguide.json ]; then
+              AGE_DAYS=$(( ($(date +%s) - $(date -r member_bioguide.json +%s)) / 86400 ))
+              echo "Reference data is $AGE_DAYS days old"
+              if [ "$AGE_DAYS" -ge 14 ]; then
+                echo "refresh=true" >> "$GITHUB_OUTPUT"
+              else
+                echo "refresh=false" >> "$GITHUB_OUTPUT"
+              fi
+            else
+              echo "refresh=true" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Refresh Congress reference data
+        if: steps.ref_check.outputs.refresh == 'true'
+        run: |
+          python3 update_reference_data.py
+          echo "Reference data refreshed."
 
       - name: Run pipeline (fetch → compute → skeleton)
         id: pipeline
@@ -94,7 +127,15 @@ jobs:
             python3 generate_report.py "analysis/analysis_${SLUG}.json"
           fi
 
-      - name: Build site index
+      - name: Build leaderboard page (if data exists)
+        run: |
+          if ls scoring/output/leaderboard_*.xlsx 1>/dev/null 2>&1; then
+            python3 build_leaderboard.py --out site
+          else
+            echo "No leaderboard data — skipping."
+          fi
+
+      - name: Build site index and RSS feed
         run: |
           python3 build_site.py --out site
 

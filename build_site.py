@@ -2,10 +2,11 @@
 """
 build_site.py — Generate a static landing page for the congressional trading
 reports site.  Scans reports/ for HTML files, builds an index with the latest
-report prominently featured and an archive of past reports.
+report prominently featured and an archive of past reports.  Also generates
+an RSS feed (rss.xml) for subscribers.
 
 Usage:
-    python3 build_site.py                    # writes site/index.html
+    python3 build_site.py                    # writes site/index.html + site/rss.xml
     python3 build_site.py --out docs/        # custom output dir (for GH Pages)
 
 Output goes to site/ by default (or docs/ if your GH Pages is configured for
@@ -18,10 +19,12 @@ import re
 import shutil
 from datetime import datetime
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 
 PROJ = Path(__file__).resolve().parent
 REPORTS_DIR = PROJ / "reports"
+SITE_URL = os.environ.get("SITE_URL", "https://holmes1371.github.io/congress-trades")
 
 
 def find_reports():
@@ -72,6 +75,41 @@ def build_archive_rows(reports):
     return "\n            ".join(rows)
 
 
+def build_rss(reports, out_dir, max_items=20):
+    """Generate an RSS 2.0 feed from the report list."""
+    items = []
+    for r in reports[:max_items]:
+        url = f"{SITE_URL}/{r['path']}"
+        pub_date = r["dt"].strftime("%a, %d %b %Y %H:%M:%S +0000")
+        items.append(
+            f"    <item>\n"
+            f"      <title>{escape(r['pretty_lineage'])} — {escape(r['date_display'])}</title>\n"
+            f"      <link>{escape(url)}</link>\n"
+            f"      <guid>{escape(url)}</guid>\n"
+            f"      <pubDate>{pub_date}</pubDate>\n"
+            f"      <description>Congressional trade intelligence report for {escape(r['date_display'])} ({escape(r['pretty_lineage'])})</description>\n"
+            f"    </item>"
+        )
+
+    rss = f"""\
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Congressional Trade Intelligence</title>
+    <link>{SITE_URL}</link>
+    <description>Automated tracking and analysis of stock trades disclosed by members of Congress.</description>
+    <language>en-us</language>
+    <lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S +0000")}</lastBuildDate>
+    <atom:link href="{SITE_URL}/rss.xml" rel="self" type="application/rss+xml"/>
+{chr(10).join(items)}
+  </channel>
+</rss>
+"""
+    rss_path = out_dir / "rss.xml"
+    rss_path.write_text(rss)
+    print(f"Built {rss_path} ({len(items)} items)")
+
+
 INDEX_HTML = """\
 <!DOCTYPE html>
 <html lang="en">
@@ -79,6 +117,7 @@ INDEX_HTML = """\
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Congressional Trade Intelligence</title>
+<link rel="alternate" type="application/rss+xml" title="Congressional Trade Intelligence" href="rss.xml">
 <style>
   :root {{
     --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
@@ -171,6 +210,8 @@ INDEX_HTML = """\
   Automated tracking and analysis of stock trades disclosed by members of
   Congress. Reports are generated from public filings on Capitol Trades and
   updated automatically.
+  &nbsp;&middot;&nbsp; <a href="leaderboard.html">Member Leaderboard</a>
+  &nbsp;&middot;&nbsp; <a href="rss.xml" style="color:var(--accent);">RSS Feed</a>
 </p>
 
 <div class="latest-card">
@@ -241,6 +282,9 @@ def main():
     index_path = out_dir / "index.html"
     index_path.write_text(html)
     print(f"Built {index_path} ({len(reports)} reports indexed)")
+
+    # Generate RSS feed
+    build_rss(reports, out_dir)
 
 
 if __name__ == "__main__":

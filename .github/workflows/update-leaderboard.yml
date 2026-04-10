@@ -1,0 +1,89 @@
+name: Update Member Leaderboard (Monthly)
+
+on:
+  # Run on the 1st of every month at 8 AM Eastern (12:00 UTC)
+  schedule:
+    - cron: '0 12 1 * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  score-members:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install yfinance
+
+      - name: Restore scoring cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            scoring/cache/trades
+            scoring/cache/prices
+          key: scoring-cache-${{ github.run_id }}
+          restore-keys: |
+            scoring-cache-
+
+      - name: Run scoring pipeline (pass 1 — fetch trades)
+        id: pass1
+        continue-on-error: true
+        timeout-minutes: 12
+        run: |
+          python3 scoring/score_members.py --top-n 20 2>&1 | tail -20
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Run scoring pipeline (pass 2 — score from cache)
+        if: steps.pass1.outcome != 'success'
+        timeout-minutes: 10
+        run: |
+          echo "Pass 1 timed out or failed — resuming from cache..."
+          CACHED=$(ls scoring/cache/trades/*.json 2>/dev/null | wc -l)
+          echo "$CACHED members cached so far"
+          python3 scoring/score_members.py --top-n 20 2>&1 | tail -20
+
+      - name: Build leaderboard page
+        run: |
+          python3 build_leaderboard.py --out site
+
+      - name: Build site index and RSS feed
+        run: |
+          python3 build_site.py --out site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: score-members
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
