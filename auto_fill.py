@@ -41,8 +41,13 @@ CRITICAL RULES:
 - You MUST use every key listed in REQUIRED_ALERT_IDS for summary_alerts.
 - You MUST use every key listed in REQUIRED_IDEA_IDS for ranked_ideas.
 - You MUST include an entry for every name in REQUIRED_MEMBERS.
-- Every ticker embedded in a key (e.g. GOOGL in consensus_buy_GOOGL) MUST \
-  appear in that key's prose string.
+- TICKER MENTION RULE (THIS IS VALIDATED AND WILL REJECT YOUR OUTPUT IF \
+  VIOLATED): Every ticker symbol embedded in a key MUST appear LITERALLY as \
+  the ticker symbol in the prose. For example, if the key is \
+  "consensus_buy_HD", the prose MUST contain the string "HD" (not just \
+  "Home Depot"). If the key is "consensus_sell_AAPL", the prose MUST contain \
+  "AAPL" (not just "Apple"). Always write the ticker symbol in parentheses \
+  after the company name, e.g. "Home Depot (HD)" or "Alphabet (GOOGL)".
 - Keep tone academically neutral. No investment advice or recommendations.
 - Lean on context the scripts can't know: committee jurisdictions, member \
   backgrounds, sector implications of policy exposure.
