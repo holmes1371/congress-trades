@@ -52,10 +52,48 @@ import argparse
 import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).parent
 PY = sys.executable
+
+REFERENCE_FILE = ROOT / "member_bioguide.json"
+REFERENCE_MAX_AGE_DAYS = 14
+
+
+def _check_reference_staleness() -> None:
+    """Auto-refresh reference data if older than REFERENCE_MAX_AGE_DAYS."""
+    if not REFERENCE_FILE.exists():
+        print("Reference data missing — downloading now...")
+        _run_reference_update()
+        return
+
+    age_days = (time.time() - REFERENCE_FILE.stat().st_mtime) / 86400
+    if age_days > REFERENCE_MAX_AGE_DAYS:
+        print(f"Reference data is {age_days:.0f} days old (>{REFERENCE_MAX_AGE_DAYS}) — refreshing...")
+        _run_reference_update()
+    else:
+        print(f"Reference data is {age_days:.0f} days old — still fresh.")
+
+
+def _run_reference_update() -> None:
+    """Run update_reference_data.py. Non-fatal on failure."""
+    try:
+        result = subprocess.run(
+            [PY, str(ROOT / "update_reference_data.py")],
+            cwd=str(ROOT),
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        if result.returncode == 0:
+            print("Reference data refreshed successfully.\n")
+        else:
+            print(f"WARNING: Reference refresh failed (exit {result.returncode}). "
+                  f"Continuing with existing data.\n{result.stderr[:500]}")
+    except Exception as e:
+        print(f"WARNING: Reference refresh error: {e}. Continuing with existing data.\n")
 
 
 class PipelineError(RuntimeError):
@@ -197,6 +235,8 @@ def main() -> int:
     if args.committee and args.members:
         print("error: --committee and --members are mutually exclusive", file=sys.stderr)
         return 1
+
+    _check_reference_staleness()
 
     pipeline = CongressTradesPipeline(
         committee=args.committee,
