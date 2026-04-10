@@ -1,0 +1,5888 @@
+{
+  "computed_at": "2026-04-10T08:11:57",
+  "source_metadata": {
+    "generated": "2026-04-10",
+    "window_days": 60,
+    "cutoff_date": "2026-02-09",
+    "source": "capitoltrades.com",
+    "members_tracked": 20,
+    "committee": null
+  },
+  "summary": {
+    "members": 20,
+    "total_trades": 806,
+    "total_buy_volume": 5595500,
+    "total_sell_volume": 6379000,
+    "total_buy_vol_fmt": "~$5.60M",
+    "total_sell_vol_fmt": "~$6.38M",
+    "consensus_buy_signals": 16,
+    "cross_party_buys": 16,
+    "consensus_sell_signals": 22,
+    "cross_party_sells": 16,
+    "conviction_patterns": 48
+  },
+  "member_stats": {
+    "Shelley Moore Capito": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "WV",
+      "bioguideId": "C001047",
+      "total_trades": 11,
+      "equity_trades": 11,
+      "buys": 4,
+      "sells": 7,
+      "buy_vol": 32000,
+      "sell_vol": 56000,
+      "buy_vol_fmt": "~$32K",
+      "sell_vol_fmt": "~$56K",
+      "pct_buys": 36.4,
+      "bias": "Bearish",
+      "avg_filing_lag": 16,
+      "most_recent_trade": "2026-03-31",
+      "top_buy_tickers": [
+        {
+          "ticker": "PNC",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "AXP",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-11"
+          ]
+        },
+        {
+          "ticker": "AVGO",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-09"
+          ]
+        },
+        {
+          "ticker": "GOOGL",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-09"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "FDS",
+          "count": 3,
+          "value": 24000,
+          "dates": [
+            "2026-03-31",
+            "2026-03-26",
+            "2026-03-25"
+          ]
+        },
+        {
+          "ticker": "ITW",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "PAYX",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-20"
+          ]
+        },
+        {
+          "ticker": "BLK",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "ADI",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-10"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "financials",
+          "buy": 16000,
+          "sell": 32000
+        },
+        {
+          "sector": "information-technology",
+          "buy": 8000,
+          "sell": 8000
+        },
+        {
+          "sector": "communication-services",
+          "buy": 8000,
+          "sell": 0
+        },
+        {
+          "sector": "industrials",
+          "buy": 0,
+          "sell": 16000
+        }
+      ]
+    },
+    "Richard Larsen": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "WA",
+      "bioguideId": "L000560",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "John Fetterman": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "PA",
+      "bioguideId": "F000479",
+      "total_trades": 10,
+      "equity_trades": 9,
+      "buys": 7,
+      "sells": 2,
+      "buy_vol": 56000,
+      "sell_vol": 16000,
+      "buy_vol_fmt": "~$56K",
+      "sell_vol_fmt": "~$16K",
+      "pct_buys": 77.8,
+      "bias": "Bullish",
+      "avg_filing_lag": 8,
+      "most_recent_trade": "2026-03-30",
+      "top_buy_tickers": [
+        {
+          "ticker": "MSFT",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-27"
+          ]
+        },
+        {
+          "ticker": "ERIE",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-27"
+          ]
+        },
+        {
+          "ticker": "MU",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-30"
+          ]
+        },
+        {
+          "ticker": "GOOGL",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-30"
+          ]
+        },
+        {
+          "ticker": "AMZN",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-30"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "T",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-27"
+          ]
+        },
+        {
+          "ticker": "CNXC",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-11"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "information-technology",
+          "buy": 24000,
+          "sell": 0
+        },
+        {
+          "sector": "financials",
+          "buy": 16000,
+          "sell": 0
+        },
+        {
+          "sector": "communication-services",
+          "buy": 8000,
+          "sell": 8000
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 8000,
+          "sell": 0
+        },
+        {
+          "sector": "industrials",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "David Taylor": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "OH",
+      "bioguideId": "T000490",
+      "total_trades": 49,
+      "equity_trades": 49,
+      "buys": 21,
+      "sells": 28,
+      "buy_vol": 168000,
+      "sell_vol": 273000,
+      "buy_vol_fmt": "~$168K",
+      "sell_vol_fmt": "~$273K",
+      "pct_buys": 42.9,
+      "bias": "Mixed",
+      "avg_filing_lag": 9,
+      "most_recent_trade": "2026-03-24",
+      "top_buy_tickers": [
+        {
+          "ticker": "IBP",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-24",
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "RPM",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-12",
+            "2026-03-11"
+          ]
+        },
+        {
+          "ticker": "AMZN",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-26",
+            "2026-02-09"
+          ]
+        },
+        {
+          "ticker": "MSFT",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-26",
+            "2026-02-09"
+          ]
+        },
+        {
+          "ticker": "V",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-26",
+            "2026-02-09"
+          ]
+        },
+        {
+          "ticker": "HD",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "LRCX",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "PH",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "FITB",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-11"
+          ]
+        },
+        {
+          "ticker": "GOOGL",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "AVGO",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "LLY",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-26"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "CVX",
+          "count": 3,
+          "value": 24000,
+          "dates": [
+            "2026-03-12",
+            "2026-03-11",
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "MPC",
+          "count": 3,
+          "value": 24000,
+          "dates": [
+            "2026-03-11",
+            "2026-03-11",
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "PH",
+          "count": 3,
+          "value": 24000,
+          "dates": [
+            "2026-02-26",
+            "2026-02-26",
+            "2026-02-09"
+          ]
+        },
+        {
+          "ticker": "IBM",
+          "count": 2,
+          "value": 40500,
+          "dates": [
+            "2026-02-26",
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "CRM",
+          "count": 2,
+          "value": 40500,
+          "dates": [
+            "2026-02-26",
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "KR",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-24",
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "LRCX",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-26",
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "AEP",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-26"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "consumer-discretionary",
+          "buy": 40000,
+          "sell": 8000
+        },
+        {
+          "sector": "information-technology",
+          "buy": 40000,
+          "sell": 105000
+        },
+        {
+          "sector": "financials",
+          "buy": 32000,
+          "sell": 8000
+        },
+        {
+          "sector": "materials",
+          "buy": 16000,
+          "sell": 8000
+        },
+        {
+          "sector": "health-care",
+          "buy": 16000,
+          "sell": 16000
+        },
+        {
+          "sector": "consumer-staples",
+          "buy": 8000,
+          "sell": 24000
+        },
+        {
+          "sector": "industrials",
+          "buy": 8000,
+          "sell": 32000
+        },
+        {
+          "sector": "communication-services",
+          "buy": 8000,
+          "sell": 8000
+        },
+        {
+          "sector": "energy",
+          "buy": 0,
+          "sell": 48000
+        },
+        {
+          "sector": "utilities",
+          "buy": 0,
+          "sell": 8000
+        },
+        {
+          "sector": "real-estate",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Timothy Moore": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "NC",
+      "bioguideId": "M001236",
+      "total_trades": 12,
+      "equity_trades": 9,
+      "buys": 7,
+      "sells": 2,
+      "buy_vol": 245500,
+      "sell_vol": 40500,
+      "buy_vol_fmt": "~$246K",
+      "sell_vol_fmt": "~$40K",
+      "pct_buys": 77.8,
+      "bias": "Bullish",
+      "avg_filing_lag": 7,
+      "most_recent_trade": "2026-03-23",
+      "top_buy_tickers": [
+        {
+          "ticker": "LGIH",
+          "count": 4,
+          "value": 172500,
+          "dates": [
+            "2026-03-20",
+            "2026-03-19",
+            "2026-03-18",
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "CBRL",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-03-23"
+          ]
+        },
+        {
+          "ticker": "HOG",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "DNUT",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-12"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "DNUT",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-03-17"
+          ]
+        },
+        {
+          "ticker": "COIN",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-18"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "consumer-discretionary",
+          "buy": 245500,
+          "sell": 32500
+        },
+        {
+          "sector": "financials",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Richard McCormick": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "GA",
+      "bioguideId": "M001218",
+      "total_trades": 19,
+      "equity_trades": 19,
+      "buys": 11,
+      "sells": 8,
+      "buy_vol": 88000,
+      "sell_vol": 64000,
+      "buy_vol_fmt": "~$88K",
+      "sell_vol_fmt": "~$64K",
+      "pct_buys": 57.9,
+      "bias": "Mixed",
+      "avg_filing_lag": 19,
+      "most_recent_trade": "2026-03-19",
+      "top_buy_tickers": [
+        {
+          "ticker": "HD",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-19",
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "MSFT",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-19",
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "UNH",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-19",
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "MGK",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-19",
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "ABT",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "ADP",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "BLK",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-19"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "ADI",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-19",
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "JNJ",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-19",
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "LHX",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-19",
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "ADP",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-19"
+          ]
+        },
+        {
+          "ticker": "NEE",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-19"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "health-care",
+          "buy": 24000,
+          "sell": 16000
+        },
+        {
+          "sector": "information-technology",
+          "buy": 16000,
+          "sell": 16000
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 16000,
+          "sell": 0
+        },
+        {
+          "sector": "unknown",
+          "buy": 16000,
+          "sell": 0
+        },
+        {
+          "sector": "industrials",
+          "buy": 8000,
+          "sell": 24000
+        },
+        {
+          "sector": "financials",
+          "buy": 8000,
+          "sell": 0
+        },
+        {
+          "sector": "utilities",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Robert Bresnahan": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "PA",
+      "bioguideId": "B001327",
+      "total_trades": 2,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 19,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Max Miller": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "OH",
+      "bioguideId": "M001222",
+      "total_trades": 6,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 25,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Jefferson Shreve": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "IN",
+      "bioguideId": "S001229",
+      "total_trades": 5,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 28,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Thomas Suozzi": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "NY",
+      "bioguideId": "S001201",
+      "total_trades": 6,
+      "equity_trades": 4,
+      "buys": 0,
+      "sells": 4,
+      "buy_vol": 0,
+      "sell_vol": 105500,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$106K",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 27,
+      "most_recent_trade": "2026-02-18",
+      "top_buy_tickers": [],
+      "top_sell_tickers": [
+        {
+          "ticker": "AAPL",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-18"
+          ]
+        },
+        {
+          "ticker": "PLTR",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-18"
+          ]
+        },
+        {
+          "ticker": "URI",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-18"
+          ]
+        },
+        {
+          "ticker": "AMD",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-18"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "information-technology",
+          "buy": 0,
+          "sell": 73000
+        },
+        {
+          "sector": "industrials",
+          "buy": 0,
+          "sell": 32500
+        }
+      ]
+    },
+    "Rohit Khanna": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "CA",
+      "bioguideId": "K000389",
+      "total_trades": 656,
+      "equity_trades": 616,
+      "buys": 297,
+      "sells": 319,
+      "buy_vol": 4990000,
+      "sell_vol": 3940500,
+      "buy_vol_fmt": "~$4.99M",
+      "sell_vol_fmt": "~$3.94M",
+      "pct_buys": 48.2,
+      "bias": "Mixed",
+      "avg_filing_lag": 17,
+      "most_recent_trade": "2026-03-30",
+      "top_buy_tickers": [
+        {
+          "ticker": "AJG",
+          "count": 4,
+          "value": 81000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-10",
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "WFC",
+          "count": 4,
+          "value": 56500,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-11",
+            "2026-03-11"
+          ]
+        },
+        {
+          "ticker": "ACI",
+          "count": 4,
+          "value": 32000,
+          "dates": [
+            "2026-03-12",
+            "2026-03-10",
+            "2026-03-04",
+            "2026-02-12"
+          ]
+        },
+        {
+          "ticker": "JPM",
+          "count": 3,
+          "value": 215500,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-02-19"
+          ]
+        },
+        {
+          "ticker": "BMO",
+          "count": 3,
+          "value": 115500,
+          "dates": [
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-09"
+          ]
+        },
+        {
+          "ticker": "KO",
+          "count": 3,
+          "value": 97500,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-10"
+          ]
+        },
+        {
+          "ticker": "MCD",
+          "count": 3,
+          "value": 73000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-10"
+          ]
+        },
+        {
+          "ticker": "UNH",
+          "count": 3,
+          "value": 73000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-10"
+          ]
+        },
+        {
+          "ticker": "AMZN",
+          "count": 3,
+          "value": 73000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-10"
+          ]
+        },
+        {
+          "ticker": "CRM",
+          "count": 3,
+          "value": 73000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-10"
+          ]
+        },
+        {
+          "ticker": "ABT",
+          "count": 3,
+          "value": 73000,
+          "dates": [
+            "2026-03-23",
+            "2026-03-10",
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "COF",
+          "count": 3,
+          "value": 48500,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-02"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "PLTR",
+          "count": 7,
+          "value": 56000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "NVDA",
+          "count": 6,
+          "value": 48000,
+          "dates": [
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "AVGO",
+          "count": 6,
+          "value": 48000,
+          "dates": [
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "AMD",
+          "count": 6,
+          "value": 48000,
+          "dates": [
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "MSFT",
+          "count": 6,
+          "value": 48000,
+          "dates": [
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16",
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "MA",
+          "count": 5,
+          "value": 89000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-23",
+            "2026-03-20",
+            "2026-03-20",
+            "2026-03-20"
+          ]
+        },
+        {
+          "ticker": "NDAQ",
+          "count": 5,
+          "value": 40000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-25",
+            "2026-03-24",
+            "2026-03-24",
+            "2026-02-11"
+          ]
+        },
+        {
+          "ticker": "HD",
+          "count": 4,
+          "value": 56500,
+          "dates": [
+            "2026-03-20",
+            "2026-03-20",
+            "2026-03-20",
+            "2026-03-10"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "financials",
+          "buy": 1795000,
+          "sell": 975500
+        },
+        {
+          "sector": "information-technology",
+          "buy": 840500,
+          "sell": 946000
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 568000,
+          "sell": 449500
+        },
+        {
+          "sector": "health-care",
+          "buy": 525500,
+          "sell": 572500
+        },
+        {
+          "sector": "industrials",
+          "buy": 290000,
+          "sell": 378500
+        },
+        {
+          "sector": "consumer-staples",
+          "buy": 274500,
+          "sell": 241500
+        },
+        {
+          "sector": "communication-services",
+          "buy": 201500,
+          "sell": 64000
+        },
+        {
+          "sector": "unknown",
+          "buy": 166000,
+          "sell": 24000
+        },
+        {
+          "sector": "real-estate",
+          "buy": 144500,
+          "sell": 161000
+        },
+        {
+          "sector": "materials",
+          "buy": 112500,
+          "sell": 112000
+        },
+        {
+          "sector": "utilities",
+          "buy": 48000,
+          "sell": 16000
+        },
+        {
+          "sector": "energy",
+          "buy": 24000,
+          "sell": 0
+        }
+      ]
+    },
+    "Donald Beyer": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "VA",
+      "bioguideId": "B001292",
+      "total_trades": 1,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 10,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Thomas Tuberville": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "AL",
+      "bioguideId": "T000278",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Deborah Dingell": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MI",
+      "bioguideId": "D000624",
+      "total_trades": 1,
+      "equity_trades": 1,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 13,
+      "most_recent_trade": "2026-02-10",
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": [
+        {
+          "sector": "health-care",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Sheldon Whitehouse": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "RI",
+      "bioguideId": "W000802",
+      "total_trades": 6,
+      "equity_trades": 6,
+      "buys": 0,
+      "sells": 6,
+      "buy_vol": 0,
+      "sell_vol": 48000,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$48K",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 11,
+      "most_recent_trade": "2026-03-30",
+      "top_buy_tickers": [],
+      "top_sell_tickers": [
+        {
+          "ticker": "PEP",
+          "count": 3,
+          "value": 24000,
+          "dates": [
+            "2026-03-30",
+            "2026-02-23",
+            "2026-02-23"
+          ]
+        },
+        {
+          "ticker": "HD",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-23"
+          ]
+        },
+        {
+          "ticker": "VZ",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-23"
+          ]
+        },
+        {
+          "ticker": "MA",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-23"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "consumer-staples",
+          "buy": 0,
+          "sell": 24000
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 0,
+          "sell": 8000
+        },
+        {
+          "sector": "communication-services",
+          "buy": 0,
+          "sell": 8000
+        },
+        {
+          "sector": "financials",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Stephen Cohen": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "TN",
+      "bioguideId": "C001068",
+      "total_trades": 2,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 22,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "James Hill": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "AR",
+      "bioguideId": "H001072",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Michael Collins": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "GA",
+      "bioguideId": "C001129",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Kevin Hern": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "OK",
+      "bioguideId": "H001082",
+      "total_trades": 17,
+      "equity_trades": 16,
+      "buys": 0,
+      "sells": 15,
+      "buy_vol": 0,
+      "sell_vol": 1835500,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$1.84M",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 17,
+      "most_recent_trade": "2026-03-24",
+      "top_buy_tickers": [],
+      "top_sell_tickers": [
+        {
+          "ticker": "TXN",
+          "count": 1,
+          "value": 750000,
+          "dates": [
+            "2026-03-18"
+          ]
+        },
+        {
+          "ticker": "ACN",
+          "count": 1,
+          "value": 375000,
+          "dates": [
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "ICLR",
+          "count": 1,
+          "value": 175000,
+          "dates": [
+            "2026-03-05"
+          ]
+        },
+        {
+          "ticker": "PLD",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-03-20"
+          ]
+        },
+        {
+          "ticker": "MUA",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-03-17"
+          ]
+        },
+        {
+          "ticker": "IQV",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "PRGS",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "MDT",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-03-20"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "health-care",
+          "buy": 0,
+          "sell": 331000
+        },
+        {
+          "sector": "real-estate",
+          "buy": 0,
+          "sell": 75000
+        },
+        {
+          "sector": "financials",
+          "buy": 0,
+          "sell": 65000
+        },
+        {
+          "sector": "information-technology",
+          "buy": 0,
+          "sell": 1232500
+        },
+        {
+          "sector": "unknown",
+          "buy": 0,
+          "sell": 75000
+        },
+        {
+          "sector": "communication-services",
+          "buy": 0,
+          "sell": 32500
+        },
+        {
+          "sector": "consumer-staples",
+          "buy": 0,
+          "sell": 32500
+        }
+      ]
+    },
+    "William Keating": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MA",
+      "bioguideId": "K000375",
+      "total_trades": 3,
+      "equity_trades": 2,
+      "buys": 2,
+      "sells": 0,
+      "buy_vol": 16000,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$16K",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 100.0,
+      "bias": "Strongly Bullish",
+      "avg_filing_lag": 24,
+      "most_recent_trade": "2026-02-20",
+      "top_buy_tickers": [
+        {
+          "ticker": "GOOGL",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-20"
+          ]
+        },
+        {
+          "ticker": "CB",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-20"
+          ]
+        }
+      ],
+      "top_sell_tickers": [],
+      "sector_breakdown": [
+        {
+          "sector": "communication-services",
+          "buy": 8000,
+          "sell": 0
+        },
+        {
+          "sector": "financials",
+          "buy": 8000,
+          "sell": 0
+        }
+      ]
+    }
+  },
+  "consensus": {
+    "buys": [
+      {
+        "ticker": "GOOGL",
+        "cross_party": true,
+        "member_count": 5,
+        "total_count": 6,
+        "total_value": 72500,
+        "total_value_fmt": "~$72K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 40500,
+            "dates": [
+              "2026-03-30",
+              "2026-03-06"
+            ]
+          },
+          {
+            "name": "Shelley Moore Capito",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-09"
+            ]
+          },
+          {
+            "name": "John Fetterman",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-30"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-26"
+            ]
+          },
+          {
+            "name": "William Keating",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-20"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "HD",
+        "cross_party": true,
+        "member_count": 3,
+        "total_count": 5,
+        "total_value": 131500,
+        "total_value_fmt": "~$132K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 107500,
+            "dates": [
+              "2026-03-23",
+              "2026-02-24"
+            ]
+          },
+          {
+            "name": "Richard McCormick",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-03-19",
+              "2026-03-19"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-12"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "AMZN",
+        "cross_party": true,
+        "member_count": 3,
+        "total_count": 6,
+        "total_value": 97000,
+        "total_value_fmt": "~$97K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 3,
+            "value": 73000,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23",
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-02-26",
+              "2026-02-09"
+            ]
+          },
+          {
+            "name": "John Fetterman",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-30"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "MSFT",
+        "cross_party": true,
+        "member_count": 3,
+        "total_count": 6,
+        "total_value": 48000,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "John Fetterman",
+            "party": "Democrat",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-03-30",
+              "2026-03-27"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-02-26",
+              "2026-02-09"
+            ]
+          },
+          {
+            "name": "Richard McCormick",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-03-19",
+              "2026-03-19"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "AVGO",
+        "cross_party": true,
+        "member_count": 3,
+        "total_count": 3,
+        "total_value": 24000,
+        "total_value_fmt": "~$24K",
+        "members": [
+          {
+            "name": "Shelley Moore Capito",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-09"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-26"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-06"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "UNH",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 5,
+        "total_value": 89000,
+        "total_value_fmt": "~$89K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 3,
+            "value": 73000,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23",
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "Richard McCormick",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-03-19",
+              "2026-03-19"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "CRM",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 4,
+        "total_value": 81000,
+        "total_value_fmt": "~$81K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 3,
+            "value": 73000,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23",
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-09"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "ABT",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 4,
+        "total_value": 81000,
+        "total_value_fmt": "~$81K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 3,
+            "value": 73000,
+            "dates": [
+              "2026-03-23",
+              "2026-03-10",
+              "2026-02-24"
+            ]
+          },
+          {
+            "name": "Richard McCormick",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-19"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "ADP",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 73000,
+        "total_value_fmt": "~$73K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 65000,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23"
+            ]
+          },
+          {
+            "name": "Richard McCormick",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-19"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "AXP",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 48500,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 40500,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23"
+            ]
+          },
+          {
+            "name": "Shelley Moore Capito",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-11"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "V",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 48500,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-02-26",
+              "2026-02-09"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "PGR",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 48500,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 40500,
+            "dates": [
+              "2026-03-30",
+              "2026-02-24"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-10"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "PG",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 48500,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 40500,
+            "dates": [
+              "2026-03-30",
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-09"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "BLK",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 40500,
+        "total_value_fmt": "~$40K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-02-24"
+            ]
+          },
+          {
+            "name": "Richard McCormick",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-19"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "LRCX",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 16000,
+        "total_value_fmt": "~$16K",
+        "members": [
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-12"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-30"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "PH",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 16000,
+        "total_value_fmt": "~$16K",
+        "members": [
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-12"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-24"
+            ]
+          }
+        ]
+      }
+    ],
+    "sells": [
+      {
+        "ticker": "AAPL",
+        "cross_party": true,
+        "member_count": 3,
+        "total_count": 3,
+        "total_value": 48500,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "Thomas Suozzi",
+            "party": "Democrat",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-02-18"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-26"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-06"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "WAT",
+        "cross_party": true,
+        "member_count": 3,
+        "total_count": 3,
+        "total_value": 48500,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "Deborah Dingell",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-10"
+            ]
+          },
+          {
+            "name": "Kevin Hern",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-09"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "T",
+        "cross_party": true,
+        "member_count": 3,
+        "total_count": 3,
+        "total_value": 24000,
+        "total_value_fmt": "~$24K",
+        "members": [
+          {
+            "name": "John Fetterman",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-27"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-26"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-23"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "IBM",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 4,
+        "total_value": 81000,
+        "total_value_fmt": "~$81K",
+        "members": [
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 2,
+            "value": 40500,
+            "dates": [
+              "2026-02-26",
+              "2026-02-26"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 40500,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "MDT",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 4,
+        "total_value": 81000,
+        "total_value_fmt": "~$81K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 3,
+            "value": 48500,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23",
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "Kevin Hern",
+            "party": "Republican",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-03-20"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "PAYX",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 73000,
+        "total_value_fmt": "~$73K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 65000,
+            "dates": [
+              "2026-03-23",
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "Shelley Moore Capito",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-20"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "CRM",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 4,
+        "total_value": 56500,
+        "total_value_fmt": "~$56K",
+        "members": [
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 2,
+            "value": 40500,
+            "dates": [
+              "2026-02-26",
+              "2026-02-26"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-03-20",
+              "2026-03-20"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "TROW",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 48500,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "Kevin Hern",
+            "party": "Republican",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-03-20"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "AMGN",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 40500,
+        "total_value_fmt": "~$40K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-03-30"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-26"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "CTSH",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 40500,
+        "total_value_fmt": "~$40K",
+        "members": [
+          {
+            "name": "Kevin Hern",
+            "party": "Republican",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-03-17"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-30"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "KVUE",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 40500,
+        "total_value_fmt": "~$40K",
+        "members": [
+          {
+            "name": "Kevin Hern",
+            "party": "Republican",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-03-17"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-10"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "PG",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 5,
+        "total_value": 40000,
+        "total_value_fmt": "~$40K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 4,
+            "value": 32000,
+            "dates": [
+              "2026-03-23",
+              "2026-03-20",
+              "2026-03-20",
+              "2026-03-20"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-26"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "PH",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 4,
+        "total_value": 32000,
+        "total_value_fmt": "~$32K",
+        "members": [
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 3,
+            "value": 24000,
+            "dates": [
+              "2026-02-26",
+              "2026-02-26",
+              "2026-02-09"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-30"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "JNJ",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 24000,
+        "total_value_fmt": "~$24K",
+        "members": [
+          {
+            "name": "Richard McCormick",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-03-19",
+              "2026-03-19"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-06"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "ETN",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 16000,
+        "total_value_fmt": "~$16K",
+        "members": [
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-26"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-06"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "COIN",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 16000,
+        "total_value_fmt": "~$16K",
+        "members": [
+          {
+            "name": "Timothy Moore",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-18"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-23"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "MA",
+        "cross_party": false,
+        "member_count": 2,
+        "total_count": 6,
+        "total_value": 97000,
+        "total_value_fmt": "~$97K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 5,
+            "value": 89000,
+            "dates": [
+              "2026-03-30",
+              "2026-03-23",
+              "2026-03-20",
+              "2026-03-20",
+              "2026-03-20"
+            ]
+          },
+          {
+            "name": "Sheldon Whitehouse",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-23"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "PLTR",
+        "cross_party": false,
+        "member_count": 2,
+        "total_count": 8,
+        "total_value": 88500,
+        "total_value_fmt": "~$88K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 7,
+            "value": 56000,
+            "dates": [
+              "2026-03-30",
+              "2026-03-16",
+              "2026-03-16",
+              "2026-03-16",
+              "2026-03-16",
+              "2026-03-16",
+              "2026-03-16"
+            ]
+          },
+          {
+            "name": "Thomas Suozzi",
+            "party": "Democrat",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-02-18"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "PLD",
+        "cross_party": false,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 83000,
+        "total_value_fmt": "~$83K",
+        "members": [
+          {
+            "name": "Kevin Hern",
+            "party": "Republican",
+            "count": 1,
+            "value": 75000,
+            "dates": [
+              "2026-03-20"
+            ]
+          },
+          {
+            "name": "David Taylor",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-26"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "HD",
+        "cross_party": false,
+        "member_count": 2,
+        "total_count": 5,
+        "total_value": 64500,
+        "total_value_fmt": "~$64K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 4,
+            "value": 56500,
+            "dates": [
+              "2026-03-20",
+              "2026-03-20",
+              "2026-03-20",
+              "2026-03-10"
+            ]
+          },
+          {
+            "name": "Sheldon Whitehouse",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-23"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "AMD",
+        "cross_party": false,
+        "member_count": 2,
+        "total_count": 7,
+        "total_value": 56000,
+        "total_value_fmt": "~$56K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 6,
+            "value": 48000,
+            "dates": [
+              "2026-03-16",
+              "2026-03-16",
+              "2026-03-16",
+              "2026-03-16",
+              "2026-03-16",
+              "2026-03-16"
+            ]
+          },
+          {
+            "name": "Thomas Suozzi",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-18"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "ADI",
+        "cross_party": false,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 24000,
+        "total_value_fmt": "~$24K",
+        "members": [
+          {
+            "name": "Richard McCormick",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-03-19",
+              "2026-03-19"
+            ]
+          },
+          {
+            "name": "Shelley Moore Capito",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-10"
+            ]
+          }
+        ]
+      }
+    ],
+    "mixed": [
+      {
+        "ticker": "A",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ABNB",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ABT",
+        "buyers": [
+          "McCormick",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ACN",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Hern"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "ADBE",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ADP",
+        "buyers": [
+          "McCormick",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "McCormick"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "AMGN",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "AMP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "AMT",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "APD",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "APO",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "APP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ARE",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "AVGO",
+        "buyers": [
+          "Capito",
+          "Taylor",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "AXP",
+        "buyers": [
+          "Capito",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "AZO",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "BAC",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "BDX",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Hern"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "BKNG",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "BLDR",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "BLK",
+        "buyers": [
+          "McCormick",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Capito"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "BRK/B",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "BSX",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "BXP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "CDNS",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "CI",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "COF",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "COIN",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Moore",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "CPRT",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "CRM",
+        "buyers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "CSCO",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "CSGP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "CTSH",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna",
+          "Hern"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "CVNA",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "DDOG",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "DHI",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "DHR",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "DIS",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "DNUT",
+        "buyers": [
+          "Moore"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "Moore"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ECL",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ELV",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ERIE",
+        "buyers": [
+          "Fetterman"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "EW",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "FDS",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Capito"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "FISV",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "FITB",
+        "buyers": [
+          "Taylor"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "Taylor"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "FLT",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "FTV",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "GDDY",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "GPN",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "HD",
+        "buyers": [
+          "Taylor",
+          "McCormick",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Khanna",
+          "Whitehouse"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "HOOD",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "IBM",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "IBP",
+        "buyers": [
+          "Taylor"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "Taylor"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ICE",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "INCY",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "INTU",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "IP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "IQV",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Hern"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "J",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "JNJ",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "McCormick",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "JPM",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "KDP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "KLAC",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "LLY",
+        "buyers": [
+          "Taylor"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "Taylor"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "LOW",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "LRCX",
+        "buyers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Taylor"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "LULU",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MA",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna",
+          "Whitehouse"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MCHP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MCK",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MET",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "META",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MLM",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MSCI",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MSFT",
+        "buyers": [
+          "Fetterman",
+          "Taylor",
+          "McCormick"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MU",
+        "buyers": [
+          "Fetterman"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "NDAQ",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "NEE",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "McCormick"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "NKE",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "NOW",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "NVDA",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "ORCL",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PAYX",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Capito",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PEP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Whitehouse"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PG",
+        "buyers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PGR",
+        "buyers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PH",
+        "buyers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PLD",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Taylor",
+          "Hern"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "PLTR",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Suozzi",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PM",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PNC",
+        "buyers": [
+          "Capito"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "PTC",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "RPM",
+        "buyers": [
+          "Taylor"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "Taylor"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "SCHW",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "SHW",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "SNPS",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "STT",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "SYF",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "SYK",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "T",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Fetterman",
+          "Taylor",
+          "Khanna"
+        ],
+        "seller_parties": [
+          "R",
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "TFC",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "TMO",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "TSCO",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "TTD",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "TTWO",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "UNH",
+        "buyers": [
+          "McCormick",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "V",
+        "buyers": [
+          "Taylor",
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "R",
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "VRTX",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "WFC",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "XSP",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      }
+    ]
+  },
+  "conviction": [
+    {
+      "type": "large_position",
+      "member": "Kevin Hern",
+      "party": "Republican",
+      "ticker": "TXN",
+      "trade_type": "SELL",
+      "value": 750000,
+      "value_fmt": "~$750K",
+      "txDate": "2026-03-18",
+      "price": 190.78
+    },
+    {
+      "type": "large_position",
+      "member": "Kevin Hern",
+      "party": "Republican",
+      "ticker": "ACN",
+      "trade_type": "SELL",
+      "value": 375000,
+      "value_fmt": "~$375K",
+      "txDate": "2026-03-16",
+      "price": 199.31
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "JPM",
+      "count": 3,
+      "total_value": 215500,
+      "value_fmt": "~$216K",
+      "dates": [
+        "2026-02-19",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 286.84
+    },
+    {
+      "type": "large_position",
+      "member": "Kevin Hern",
+      "party": "Republican",
+      "ticker": "ICLR",
+      "trade_type": "SELL",
+      "value": 175000,
+      "value_fmt": "~$175K",
+      "txDate": "2026-03-05",
+      "price": 110.6
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "LGIH",
+      "count": 4,
+      "total_value": 172500,
+      "value_fmt": "~$172K",
+      "dates": [
+        "2026-03-12",
+        "2026-03-18",
+        "2026-03-19",
+        "2026-03-20"
+      ],
+      "avg_price": 37.65
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "BRK/B",
+      "count": 3,
+      "total_value": 140000,
+      "value_fmt": "~$140K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "BMO",
+      "count": 3,
+      "total_value": 115500,
+      "value_fmt": "~$116K",
+      "dates": [
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-16"
+      ],
+      "avg_price": null
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "KO",
+      "count": 3,
+      "total_value": 97500,
+      "value_fmt": "~$98K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 76.42
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MCHP",
+      "count": 3,
+      "total_value": 91000,
+      "value_fmt": "~$91K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-30",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MA",
+      "count": 5,
+      "total_value": 89000,
+      "value_fmt": "~$89K",
+      "dates": [
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-23",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AJG",
+      "count": 4,
+      "total_value": 81000,
+      "value_fmt": "~$81K",
+      "dates": [
+        "2026-02-24",
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 215.1
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MCD",
+      "count": 3,
+      "total_value": 73000,
+      "value_fmt": "~$73K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 314.98
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "UNH",
+      "count": 3,
+      "total_value": 73000,
+      "value_fmt": "~$73K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 271.22
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AMZN",
+      "count": 3,
+      "total_value": 73000,
+      "value_fmt": "~$73K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 208.47
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "CRM",
+      "count": 3,
+      "total_value": 73000,
+      "value_fmt": "~$73K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 191.71
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "ABT",
+      "count": 3,
+      "total_value": 73000,
+      "value_fmt": "~$73K",
+      "dates": [
+        "2026-02-24",
+        "2026-03-10",
+        "2026-03-23"
+      ],
+      "avg_price": 109.99
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "WFC",
+      "count": 4,
+      "total_value": 56500,
+      "value_fmt": "~$56K",
+      "dates": [
+        "2026-03-11",
+        "2026-03-11",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 77.32
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "HD",
+      "count": 4,
+      "total_value": 56500,
+      "value_fmt": "~$56K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-20"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "PLTR",
+      "count": 7,
+      "total_value": 56000,
+      "value_fmt": "~$56K",
+      "dates": [
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "COF",
+      "count": 3,
+      "total_value": 48500,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-02",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 185.48
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "KKR",
+      "count": 3,
+      "total_value": 48500,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 90.39
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "LULU",
+      "count": 3,
+      "total_value": 48500,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 158.88
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MDT",
+      "count": 3,
+      "total_value": 48500,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MU",
+      "count": 3,
+      "total_value": 48500,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-12",
+        "2026-03-18"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "NVDA",
+      "count": 6,
+      "total_value": 48000,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AVGO",
+      "count": 6,
+      "total_value": 48000,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AMD",
+      "count": 6,
+      "total_value": 48000,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MSFT",
+      "count": 6,
+      "total_value": 48000,
+      "value_fmt": "~$48K",
+      "dates": [
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16",
+        "2026-03-16"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "NDAQ",
+      "count": 5,
+      "total_value": 40000,
+      "value_fmt": "~$40K",
+      "dates": [
+        "2026-02-11",
+        "2026-03-24",
+        "2026-03-24",
+        "2026-03-25",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "ACI",
+      "count": 4,
+      "total_value": 32000,
+      "value_fmt": "~$32K",
+      "dates": [
+        "2026-02-12",
+        "2026-03-04",
+        "2026-03-10",
+        "2026-03-12"
+      ],
+      "avg_price": 17.16
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "PG",
+      "count": 4,
+      "total_value": 32000,
+      "value_fmt": "~$32K",
+      "dates": [
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-23"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "UNH",
+      "count": 4,
+      "total_value": 32000,
+      "value_fmt": "~$32K",
+      "dates": [
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-20"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AXTA",
+      "count": 4,
+      "total_value": 32000,
+      "value_fmt": "~$32K",
+      "dates": [
+        "2026-02-12",
+        "2026-02-17",
+        "2026-02-23",
+        "2026-03-18"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "FDS",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-25",
+        "2026-03-26",
+        "2026-03-31"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "David Taylor",
+      "party": "Republican",
+      "ticker": "CVX",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-26",
+        "2026-03-11",
+        "2026-03-12"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "David Taylor",
+      "party": "Republican",
+      "ticker": "MPC",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-26",
+        "2026-03-11",
+        "2026-03-11"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "David Taylor",
+      "party": "Republican",
+      "ticker": "PH",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-09",
+        "2026-02-26",
+        "2026-02-26"
+      ]
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "SQ",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "avg_price": 61.27
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "ICE",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-24",
+        "2026-03-10",
+        "2026-03-23"
+      ],
+      "avg_price": 157.57
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "PYPL",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-24",
+        "2026-03-10",
+        "2026-03-23"
+      ],
+      "avg_price": 45.84
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "CSGP",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-24",
+        "2026-03-10",
+        "2026-03-23"
+      ],
+      "avg_price": 46.13
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "INFY",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-20"
+      ],
+      "avg_price": 13.12
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "NFLX",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-20"
+      ],
+      "avg_price": 91.82
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "CMG",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "WSM",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-10",
+        "2026-03-23",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "XSP",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-06",
+        "2026-03-19",
+        "2026-03-30"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "PM",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-20",
+        "2026-03-20",
+        "2026-03-23"
+      ]
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Sheldon Whitehouse",
+      "party": "Democrat",
+      "ticker": "PEP",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-23",
+        "2026-02-23",
+        "2026-03-30"
+      ]
+    }
+  ],
+  "sector_totals": [
+    {
+      "sector": "financials",
+      "buy_vol": 1875000,
+      "sell_vol": 1096500,
+      "net": 778500,
+      "buy_vol_fmt": "~$1.88M",
+      "sell_vol_fmt": "~$1.10M",
+      "net_fmt": "~$778K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Capito",
+        "Fetterman",
+        "Keating",
+        "Khanna",
+        "McCormick",
+        "Taylor"
+      ],
+      "members_selling": [
+        "Capito",
+        "Hern",
+        "Khanna",
+        "Moore",
+        "Taylor",
+        "Whitehouse"
+      ]
+    },
+    {
+      "sector": "information-technology",
+      "buy_vol": 928500,
+      "sell_vol": 2380500,
+      "net": -1452000,
+      "buy_vol_fmt": "~$928K",
+      "sell_vol_fmt": "~$2.38M",
+      "net_fmt": "~$1.45M",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Capito",
+        "Fetterman",
+        "Khanna",
+        "McCormick",
+        "Taylor"
+      ],
+      "members_selling": [
+        "Capito",
+        "Hern",
+        "Khanna",
+        "McCormick",
+        "Suozzi",
+        "Taylor"
+      ]
+    },
+    {
+      "sector": "consumer-discretionary",
+      "buy_vol": 877500,
+      "sell_vol": 498000,
+      "net": 379500,
+      "buy_vol_fmt": "~$878K",
+      "sell_vol_fmt": "~$498K",
+      "net_fmt": "~$380K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Fetterman",
+        "Khanna",
+        "McCormick",
+        "Moore",
+        "Taylor"
+      ],
+      "members_selling": [
+        "Khanna",
+        "Moore",
+        "Taylor",
+        "Whitehouse"
+      ]
+    },
+    {
+      "sector": "health-care",
+      "buy_vol": 565500,
+      "sell_vol": 943500,
+      "net": -378000,
+      "buy_vol_fmt": "~$566K",
+      "sell_vol_fmt": "~$944K",
+      "net_fmt": "~$378K",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Khanna",
+        "McCormick",
+        "Taylor"
+      ],
+      "members_selling": [
+        "Dingell",
+        "Hern",
+        "Khanna",
+        "McCormick",
+        "Taylor"
+      ]
+    },
+    {
+      "sector": "industrials",
+      "buy_vol": 306000,
+      "sell_vol": 491000,
+      "net": -185000,
+      "buy_vol_fmt": "~$306K",
+      "sell_vol_fmt": "~$491K",
+      "net_fmt": "~$185K",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Khanna",
+        "McCormick",
+        "Taylor"
+      ],
+      "members_selling": [
+        "Capito",
+        "Fetterman",
+        "Khanna",
+        "McCormick",
+        "Suozzi",
+        "Taylor"
+      ]
+    },
+    {
+      "sector": "consumer-staples",
+      "buy_vol": 282500,
+      "sell_vol": 322000,
+      "net": -39500,
+      "buy_vol_fmt": "~$282K",
+      "sell_vol_fmt": "~$322K",
+      "net_fmt": "~$40K",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Khanna",
+        "Taylor"
+      ],
+      "members_selling": [
+        "Hern",
+        "Khanna",
+        "Taylor",
+        "Whitehouse"
+      ]
+    },
+    {
+      "sector": "communication-services",
+      "buy_vol": 233500,
+      "sell_vol": 120500,
+      "net": 113000,
+      "buy_vol_fmt": "~$234K",
+      "sell_vol_fmt": "~$120K",
+      "net_fmt": "~$113K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Capito",
+        "Fetterman",
+        "Keating",
+        "Khanna",
+        "Taylor"
+      ],
+      "members_selling": [
+        "Fetterman",
+        "Hern",
+        "Khanna",
+        "Taylor",
+        "Whitehouse"
+      ]
+    },
+    {
+      "sector": "real-estate",
+      "buy_vol": 144500,
+      "sell_vol": 244000,
+      "net": -99500,
+      "buy_vol_fmt": "~$144K",
+      "sell_vol_fmt": "~$244K",
+      "net_fmt": "~$100K",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": [
+        "Hern",
+        "Khanna",
+        "Taylor"
+      ]
+    },
+    {
+      "sector": "materials",
+      "buy_vol": 128500,
+      "sell_vol": 120000,
+      "net": 8500,
+      "buy_vol_fmt": "~$128K",
+      "sell_vol_fmt": "~$120K",
+      "net_fmt": "~$8K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna",
+        "Taylor"
+      ],
+      "members_selling": [
+        "Khanna",
+        "Taylor"
+      ]
+    },
+    {
+      "sector": "utilities",
+      "buy_vol": 48000,
+      "sell_vol": 32000,
+      "net": 16000,
+      "buy_vol_fmt": "~$48K",
+      "sell_vol_fmt": "~$32K",
+      "net_fmt": "~$16K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": [
+        "Khanna",
+        "McCormick",
+        "Taylor"
+      ]
+    },
+    {
+      "sector": "energy",
+      "buy_vol": 24000,
+      "sell_vol": 48000,
+      "net": -24000,
+      "buy_vol_fmt": "~$24K",
+      "sell_vol_fmt": "~$48K",
+      "net_fmt": "~$24K",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": [
+        "Taylor"
+      ]
+    }
+  ],
+  "recent_trades": [
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "FDS:US",
+      "type": "SELL",
+      "txDate": "2026-03-31",
+      "published": "2026-04-05",
+      "value": 8000,
+      "price": 216.99,
+      "sector": "financials",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "MU:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 321.8,
+      "sector": "information-technology",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "MSFT:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 358.96,
+      "sector": "information-technology",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "ERIE:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 247.99,
+      "sector": "financials",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "GOOGL:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 273.14,
+      "sector": "communication-services",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "AMZN:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 200.95,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MCD:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 308.53,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "CSCO:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 77.04,
+      "sector": "information-technology",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "KO:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 76.27,
+      "sector": "consumer-staples",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "UNH:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 8000,
+      "price": 261.79,
+      "sector": "health-care",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "BSX:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 62.93,
+      "sector": "health-care",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "PGR:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 201.39,
+      "sector": "financials",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AMZN:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 200.95,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "INTU:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 429.03,
+      "sector": "information-technology",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "SPGI:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 417.59,
+      "sector": "financials",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "CRM:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 185.03,
+      "sector": "information-technology",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "ORCL:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 138.8,
+      "sector": "information-technology",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AXP:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 297.49,
+      "sector": "financials",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "TFC:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 44.64,
+      "sector": "financials",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "GOOGL:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 273.5,
+      "sector": "communication-services",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "DIS:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 94.32,
+      "sector": "communication-services",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MCO:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 432.05,
+      "sector": "financials",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "COF:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 178.13,
+      "sector": "financials",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "PANW:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 154.35,
+      "sector": "information-technology",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "JPM:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-09",
+      "value": 32500,
+      "price": 283.77,
+      "sector": "financials",
+      "filedAfterDays": 8
+    }
+  ]
+}

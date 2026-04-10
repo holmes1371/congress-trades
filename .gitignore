@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.idea/
+scoring/cache/
+site/
+digest.txt

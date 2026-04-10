@@ -1,0 +1,229 @@
+{
+  "generated": "2026-04-09",
+  "window_days": 365,
+  "short_window_days": 180,
+  "min_trades": 10,
+  "top_n": 20,
+  "recommended": [
+    {
+      "bioguideId": "C001047",
+      "fullName": "Shelley Moore Capito",
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "WV",
+      "composite": 1.2033,
+      "rank_long": 1,
+      "rank_short": 8,
+      "trade_count": 57
+    },
+    {
+      "bioguideId": "L000560",
+      "fullName": "Richard Larsen",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "WA",
+      "composite": 0.9973,
+      "rank_long": 2,
+      "rank_short": 10,
+      "trade_count": 14
+    },
+    {
+      "bioguideId": "F000479",
+      "fullName": "John Fetterman",
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "PA",
+      "composite": 0.878,
+      "rank_long": 3,
+      "rank_short": 9,
+      "trade_count": 28
+    },
+    {
+      "bioguideId": "T000490",
+      "fullName": "David Taylor",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "OH",
+      "composite": 0.544,
+      "rank_long": 6,
+      "rank_short": 4,
+      "trade_count": 156
+    },
+    {
+      "bioguideId": "M001236",
+      "fullName": "Timothy Moore",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "NC",
+      "composite": 0.5142,
+      "rank_long": 7,
+      "rank_short": 3,
+      "trade_count": 137
+    },
+    {
+      "bioguideId": "M001218",
+      "fullName": "Richard McCormick",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "GA",
+      "composite": 0.4981,
+      "rank_long": 8,
+      "rank_short": 6,
+      "trade_count": 50
+    },
+    {
+      "bioguideId": "B001327",
+      "fullName": "Robert Bresnahan",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "PA",
+      "composite": 0.238,
+      "rank_long": 12,
+      "rank_short": 18,
+      "trade_count": 168
+    },
+    {
+      "bioguideId": "M001222",
+      "fullName": "Max Miller",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "OH",
+      "composite": 0.2297,
+      "rank_long": 13,
+      "rank_short": 24,
+      "trade_count": 21
+    },
+    {
+      "bioguideId": "S001229",
+      "fullName": "Jefferson Shreve",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "IN",
+      "composite": 0.2131,
+      "rank_long": 14,
+      "rank_short": 13,
+      "trade_count": 332
+    },
+    {
+      "bioguideId": "S001201",
+      "fullName": "Thomas Suozzi",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "NY",
+      "composite": 0.2011,
+      "rank_long": 15,
+      "rank_short": 19,
+      "trade_count": 16
+    },
+    {
+      "bioguideId": "K000389",
+      "fullName": "Rohit Khanna",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "CA",
+      "composite": 0.1964,
+      "rank_long": 16,
+      "rank_short": 16,
+      "trade_count": 287
+    },
+    {
+      "bioguideId": "B001292",
+      "fullName": "Donald Beyer",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "VA",
+      "composite": 0.1782,
+      "rank_long": 17,
+      "rank_short": 15,
+      "trade_count": 14
+    },
+    {
+      "bioguideId": "T000278",
+      "fullName": "Thomas Tuberville",
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "AL",
+      "composite": 0.1772,
+      "rank_long": 18,
+      "rank_short": 35,
+      "trade_count": 28
+    },
+    {
+      "bioguideId": "D000624",
+      "fullName": "Deborah Dingell",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MI",
+      "composite": 0.1686,
+      "rank_long": 19,
+      "rank_short": 21,
+      "trade_count": 10
+    },
+    {
+      "bioguideId": "W000802",
+      "fullName": "Sheldon Whitehouse",
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "RI",
+      "composite": 0.1619,
+      "rank_long": 20,
+      "rank_short": 11,
+      "trade_count": 37
+    },
+    {
+      "bioguideId": "C001068",
+      "fullName": "Stephen Cohen",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "TN",
+      "composite": 0.147,
+      "rank_long": 22,
+      "rank_short": 32,
+      "trade_count": 13
+    },
+    {
+      "bioguideId": "H001072",
+      "fullName": "James Hill",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "AR",
+      "composite": 0.1295,
+      "rank_long": 24,
+      "rank_short": 28,
+      "trade_count": 18
+    },
+    {
+      "bioguideId": "C001129",
+      "fullName": "Michael Collins",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "GA",
+      "composite": 0.1139,
+      "rank_long": 25,
+      "rank_short": 29,
+      "trade_count": 12
+    },
+    {
+      "bioguideId": "H001082",
+      "fullName": "Kevin Hern",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "OK",
+      "composite": 0.102,
+      "rank_long": 27,
+      "rank_short": 12,
+      "trade_count": 39
+    },
+    {
+      "bioguideId": "K000375",
+      "fullName": "William Keating",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MA",
+      "composite": 0.0916,
+      "rank_long": 28,
+      "rank_short": 33,
+      "trade_count": 11
+    }
+  ]
+}

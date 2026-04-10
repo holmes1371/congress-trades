@@ -1,0 +1,1174 @@
+{
+  "computed_at": "2026-04-07T19:55:07",
+  "source_metadata": {
+    "generated": "2026-04-07",
+    "window_days": 60,
+    "cutoff_date": "2026-02-06",
+    "source": "capitoltrades.com",
+    "members_tracked": 28,
+    "committee": {
+      "name": "Senate Committee on Commerce, Science, and Transportation",
+      "thomas_id": "SSCM"
+    }
+  },
+  "summary": {
+    "members": 28,
+    "total_trades": 21,
+    "total_buy_volume": 88000,
+    "total_sell_volume": 72000,
+    "total_buy_vol_fmt": "~$88K",
+    "total_sell_vol_fmt": "~$72K",
+    "consensus_buy_signals": 1,
+    "cross_party_buys": 1,
+    "consensus_sell_signals": 0,
+    "cross_party_sells": 0,
+    "conviction_patterns": 1
+  },
+  "member_stats": {
+    "Rafael Cruz": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "TX",
+      "bioguideId": "C001098",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "John Thune": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "SD",
+      "bioguideId": "T000250",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Roger Wicker": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "MS",
+      "bioguideId": "W000437",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Deb Fischer": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "NE",
+      "bioguideId": "F000463",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Gerald Moran": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "KS",
+      "bioguideId": "M000934",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Daniel Sullivan": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "AK",
+      "bioguideId": "S001198",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Marsha Blackburn": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "TN",
+      "bioguideId": "B001243",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Todd Young": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "IN",
+      "bioguideId": "Y000064",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Ted Budd": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "NC",
+      "bioguideId": "B001305",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Eric Schmitt": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "MO",
+      "bioguideId": "S001227",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "John Curtis": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "UT",
+      "bioguideId": "C001114",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Bernie Moreno": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "OH",
+      "bioguideId": "M001242",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Tim Sheehy": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "MT",
+      "bioguideId": "S001232",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Shelley Moore Capito": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "WV",
+      "bioguideId": "C001047",
+      "total_trades": 11,
+      "equity_trades": 11,
+      "buys": 4,
+      "sells": 7,
+      "buy_vol": 32000,
+      "sell_vol": 56000,
+      "buy_vol_fmt": "~$32K",
+      "sell_vol_fmt": "~$56K",
+      "pct_buys": 36.4,
+      "bias": "Bearish",
+      "avg_filing_lag": 16,
+      "most_recent_trade": "2026-03-31",
+      "top_buy_tickers": [
+        {
+          "ticker": "PNC",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "AXP",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-11"
+          ]
+        },
+        {
+          "ticker": "AVGO",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-09"
+          ]
+        },
+        {
+          "ticker": "GOOGL",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-09"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "FDS",
+          "count": 3,
+          "value": 24000,
+          "dates": [
+            "2026-03-31",
+            "2026-03-26",
+            "2026-03-25"
+          ]
+        },
+        {
+          "ticker": "ITW",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "PAYX",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-20"
+          ]
+        },
+        {
+          "ticker": "BLK",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "ADI",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-10"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "financials",
+          "buy": 16000,
+          "sell": 32000
+        },
+        {
+          "sector": "information-technology",
+          "buy": 8000,
+          "sell": 8000
+        },
+        {
+          "sector": "communication-services",
+          "buy": 8000,
+          "sell": 0
+        },
+        {
+          "sector": "industrials",
+          "buy": 0,
+          "sell": 16000
+        }
+      ]
+    },
+    "Cynthia Lummis": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "WY",
+      "bioguideId": "L000571",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Maria Cantwell": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "WA",
+      "bioguideId": "C000127",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Amy Klobuchar": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "MN",
+      "bioguideId": "K000367",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Brian Schatz": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "HI",
+      "bioguideId": "S001194",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Edward Markey": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "MA",
+      "bioguideId": "M000133",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Gary Peters": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "MI",
+      "bioguideId": "P000595",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Tammy Baldwin": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "WI",
+      "bioguideId": "B001230",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Ladda Duckworth": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "IL",
+      "bioguideId": "D000622",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Jacky Rosen": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "NV",
+      "bioguideId": "R000608",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Ben Luján": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "NM",
+      "bioguideId": "L000570",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "John Hickenlooper": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "CO",
+      "bioguideId": "H000273",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "John Fetterman": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "PA",
+      "bioguideId": "F000479",
+      "total_trades": 10,
+      "equity_trades": 9,
+      "buys": 7,
+      "sells": 2,
+      "buy_vol": 56000,
+      "sell_vol": 16000,
+      "buy_vol_fmt": "~$56K",
+      "sell_vol_fmt": "~$16K",
+      "pct_buys": 77.8,
+      "bias": "Bullish",
+      "avg_filing_lag": 8,
+      "most_recent_trade": "2026-03-30",
+      "top_buy_tickers": [
+        {
+          "ticker": "MSFT",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-27"
+          ]
+        },
+        {
+          "ticker": "ERIE",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-30",
+            "2026-03-27"
+          ]
+        },
+        {
+          "ticker": "MU",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-30"
+          ]
+        },
+        {
+          "ticker": "GOOGL",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-30"
+          ]
+        },
+        {
+          "ticker": "AMZN",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-30"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "T",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-27"
+          ]
+        },
+        {
+          "ticker": "CNXC",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-11"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "information-technology",
+          "buy": 24000,
+          "sell": 0
+        },
+        {
+          "sector": "financials",
+          "buy": 16000,
+          "sell": 0
+        },
+        {
+          "sector": "communication-services",
+          "buy": 8000,
+          "sell": 8000
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 8000,
+          "sell": 0
+        },
+        {
+          "sector": "industrials",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Andy Kim": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "NJ",
+      "bioguideId": "K000394",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Lisa Blunt Rochester": {
+      "party": "Democrat",
+      "chamber": "Senate",
+      "state": "DE",
+      "bioguideId": "B001303",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    }
+  },
+  "consensus": {
+    "buys": [
+      {
+        "ticker": "GOOGL",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 16000,
+        "total_value_fmt": "~$16K",
+        "members": [
+          {
+            "name": "Shelley Moore Capito",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-09"
+            ]
+          },
+          {
+            "name": "John Fetterman",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-03-30"
+            ]
+          }
+        ]
+      }
+    ],
+    "sells": [],
+    "mixed": []
+  },
+  "conviction": [
+    {
+      "type": "repeated_sell",
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "FDS",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-03-25",
+        "2026-03-26",
+        "2026-03-31"
+      ]
+    }
+  ],
+  "sector_totals": [
+    {
+      "sector": "financials",
+      "buy_vol": 32000,
+      "sell_vol": 32000,
+      "net": 0,
+      "buy_vol_fmt": "~$32K",
+      "sell_vol_fmt": "~$32K",
+      "net_fmt": "~$0",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Capito",
+        "Fetterman"
+      ],
+      "members_selling": [
+        "Capito"
+      ]
+    },
+    {
+      "sector": "information-technology",
+      "buy_vol": 32000,
+      "sell_vol": 8000,
+      "net": 24000,
+      "buy_vol_fmt": "~$32K",
+      "sell_vol_fmt": "~$8K",
+      "net_fmt": "~$24K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Capito",
+        "Fetterman"
+      ],
+      "members_selling": [
+        "Capito"
+      ]
+    },
+    {
+      "sector": "communication-services",
+      "buy_vol": 16000,
+      "sell_vol": 8000,
+      "net": 8000,
+      "buy_vol_fmt": "~$16K",
+      "sell_vol_fmt": "~$8K",
+      "net_fmt": "~$8K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Capito",
+        "Fetterman"
+      ],
+      "members_selling": [
+        "Fetterman"
+      ]
+    },
+    {
+      "sector": "consumer-discretionary",
+      "buy_vol": 8000,
+      "sell_vol": 0,
+      "net": 8000,
+      "buy_vol_fmt": "~$8K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$8K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Fetterman"
+      ],
+      "members_selling": []
+    },
+    {
+      "sector": "industrials",
+      "buy_vol": 0,
+      "sell_vol": 24000,
+      "net": -24000,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$24K",
+      "net_fmt": "~$24K",
+      "net_direction": "Distributing",
+      "members_buying": [],
+      "members_selling": [
+        "Capito",
+        "Fetterman"
+      ]
+    }
+  ],
+  "recent_trades": [
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "FDS:US",
+      "type": "SELL",
+      "txDate": "2026-03-31",
+      "published": "2026-04-05",
+      "value": 8000,
+      "price": 216.99,
+      "sector": "financials",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "MU:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 321.8,
+      "sector": "information-technology",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "MSFT:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 358.96,
+      "sector": "information-technology",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "ERIE:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 247.99,
+      "sector": "financials",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "GOOGL:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 273.14,
+      "sector": "communication-services",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "AMZN:US",
+      "type": "BUY",
+      "txDate": "2026-03-30",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 200.95,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "T:US",
+      "type": "SELL",
+      "txDate": "2026-03-27",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 29.1,
+      "sector": "communication-services",
+      "filedAfterDays": 7
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "MSFT:US",
+      "type": "BUY",
+      "txDate": "2026-03-27",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 356.77,
+      "sector": "information-technology",
+      "filedAfterDays": 7
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "ERIE:US",
+      "type": "BUY",
+      "txDate": "2026-03-27",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": 240.87,
+      "sector": "financials",
+      "filedAfterDays": 7
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "FDS:US",
+      "type": "SELL",
+      "txDate": "2026-03-26",
+      "published": "2026-04-05",
+      "value": 8000,
+      "price": 196.27,
+      "sector": "financials",
+      "filedAfterDays": 9
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "FDS:US",
+      "type": "SELL",
+      "txDate": "2026-03-25",
+      "published": "2026-04-05",
+      "value": 8000,
+      "price": 193.88,
+      "sector": "financials",
+      "filedAfterDays": 10
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "PNC:US",
+      "type": "BUY",
+      "txDate": "2026-03-12",
+      "published": "2026-04-05",
+      "value": 8000,
+      "price": 202.69,
+      "sector": "financials",
+      "filedAfterDays": 23
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "AXP:US",
+      "type": "BUY",
+      "txDate": "2026-03-11",
+      "published": "2026-04-05",
+      "value": 8000,
+      "price": 305.99,
+      "sector": "financials",
+      "filedAfterDays": 24
+    },
+    {
+      "member": "John Fetterman",
+      "party": "Democrat",
+      "ticker": "CNXC:US",
+      "type": "SELL",
+      "txDate": "2026-03-11",
+      "published": "2026-04-03",
+      "value": 8000,
+      "price": null,
+      "sector": "industrials",
+      "filedAfterDays": 23
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "ITW:US",
+      "type": "SELL",
+      "txDate": "2026-02-24",
+      "published": "2026-03-04",
+      "value": 8000,
+      "price": 294.56,
+      "sector": "industrials",
+      "filedAfterDays": 8
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "PAYX:US",
+      "type": "SELL",
+      "txDate": "2026-02-20",
+      "published": "2026-03-04",
+      "value": 8000,
+      "price": 91.24,
+      "sector": "industrials",
+      "filedAfterDays": 12
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "BLK:US",
+      "type": "SELL",
+      "txDate": "2026-02-10",
+      "published": "2026-03-04",
+      "value": 8000,
+      "price": 1087.78,
+      "sector": "financials",
+      "filedAfterDays": 22
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "ADI:US",
+      "type": "SELL",
+      "txDate": "2026-02-10",
+      "published": "2026-03-04",
+      "value": 8000,
+      "price": 325.16,
+      "sector": "information-technology",
+      "filedAfterDays": 22
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "AVGO:US",
+      "type": "BUY",
+      "txDate": "2026-02-09",
+      "published": "2026-03-04",
+      "value": 8000,
+      "price": 343.94,
+      "sector": "information-technology",
+      "filedAfterDays": 23
+    },
+    {
+      "member": "Shelley Moore Capito",
+      "party": "Republican",
+      "ticker": "GOOGL:US",
+      "type": "BUY",
+      "txDate": "2026-02-09",
+      "published": "2026-03-04",
+      "value": 8000,
+      "price": 324.4,
+      "sector": "communication-services",
+      "filedAfterDays": 23
+    }
+  ]
+}

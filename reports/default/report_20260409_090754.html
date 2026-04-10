@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Congressional Trade Intelligence Report — Apr 9, 2026</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+    --accent: #4f8ef7; --green: #22c55e; --red: #ef4444;
+    --yellow: #f59e0b; --text: #e2e8f0; --muted: #64748b;
+    --border: #2e3450;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 24px; max-width: 1400px; margin: 0 auto; }
+  h1  { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+  h2  { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+  h3  { font-size: 0.85rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 6px; }
+  .meta   { font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
+  .grid   { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .card   { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .card.highlight { border-color: var(--accent); }
+  .card.warn      { border-color: var(--red); }
+  .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .badge.buy     { background: rgba(34,197,94,0.15);  color: var(--green); }
+  .badge.sell    { background: rgba(239,68,68,0.15);  color: var(--red); }
+  .badge.dem     { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .badge.rep     { background: rgba(239,68,68,0.15);  color: #f87171; }
+  .badge.bullish { background: rgba(34,197,94,0.15);  color: var(--green); }
+  .badge.bearish { background: rgba(239,68,68,0.15);  color: var(--red); }
+  .badge.mixed   { background: rgba(245,158,11,0.15); color: var(--yellow); }
+  .badge.neutral { background: rgba(100,116,139,0.15);color: var(--muted); }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 0.84rem; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--muted); }
+  .stat-val   { font-weight: 600; }
+  .green  { color: var(--green); }
+  .red    { color: var(--red); }
+  .yellow { color: var(--yellow); }
+  .ticker { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; font-size: 0.78rem; font-weight: 700; }
+  .ticker.buy-t    { border-color: rgba(34,197,94,0.45); color: var(--green); }
+  .ticker.sell-t   { border-color: rgba(239,68,68,0.45); color: var(--red); }
+  .ticker.con      { border-color: var(--accent); color: var(--accent); background: rgba(79,142,247,0.08); }
+  .ticker.con-sell { border-color: rgba(239,68,68,0.6); color: var(--red); background: rgba(239,68,68,0.08); }
+  .trade-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .trade-table th { text-align: left; padding: 6px 10px; background: var(--surface2); color: var(--muted); font-weight: 600; font-size: 0.73rem; text-transform: uppercase; }
+  .trade-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .trade-table tr:last-child td { border-bottom: none; }
+  .section-title { font-size: 1.0rem; font-weight: 700; color: var(--accent); margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .alert { background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.3); border-radius: 8px; padding: 14px 16px; font-size: 0.85rem; margin-bottom: 14px; line-height: 1.65; }
+  .alert.red-alert { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.3); }
+  .alert.yellow-alert { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.3); }
+  .alert.gray-alert { background: rgba(100,116,139,0.08); border-color: rgba(100,116,139,0.3); }
+  .alert strong { color: var(--accent); }
+  .alert.red-alert strong { color: #f87171; }
+  .alert.yellow-alert strong { color: var(--yellow); }
+  .alert.gray-alert strong { color: var(--muted); }
+  .obs     { font-size: 0.84rem; line-height: 1.7; color: var(--text); }
+  .disclaimer { font-size: 0.75rem; color: var(--muted); margin-top: 32px; padding: 14px; background: var(--surface); border-radius: 8px; line-height: 1.6; }
+  .rank-num { font-size: 1.0rem; font-weight: 800; color: var(--muted); width: 24px; }
+  .star { color: var(--yellow); }
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 720px) {
+  body { padding: 14px; }
+  h1 { font-size: 1.3rem; }
+  h2 { font-size: 1.0rem; }
+  .header { flex-wrap: wrap; gap: 6px; }
+  .meta { margin-bottom: 18px; }
+  .grid, .grid-3 { grid-template-columns: 1fr; gap: 12px; margin-bottom: 16px; }
+  .card { padding: 14px; }
+  .section-title { font-size: 0.95rem; margin: 20px 0 10px; }
+  .alert { font-size: 0.8rem; padding: 12px; }
+  .trade-table { display: block; width: 100%; overflow-x: auto; white-space: nowrap; font-size: 0.75rem; }
+  .trade-table th, .trade-table td { padding: 5px 8px; }
+  .stat-row { font-size: 0.78rem; }
+  .member-header { gap: 6px; }
+  .disclaimer { font-size: 0.7rem; padding: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header"><h1>🏛 Congressional Trade Intelligence Report</h1></div>
+<p class="meta">
+  Window: Feb 8 – Apr 9, 2026 (60 days) &nbsp;|&nbsp;
+  Source: capitoltrades.com &nbsp;|&nbsp;
+  Generated: Apr 9, 2026 &nbsp;|&nbsp;
+  Members: Rohit Khanna · Michael McCaul · Joshua Gottheimer · David McCormick · Timothy Moore · Cleo Fields
+</p>
+
+<div class="section-title">⚡ Executive Summary — Headline Signals</div>
+<div class="alert "><strong>CONSENSUS BUY — META (McCaul (R) + Khanna (D), cross-party)</strong><br>2 members, combined disclosed value ~$24K. Cross-party alignment on a mega-cap communication name is a modest but notable data point, since it is not driven by partisan sector preferences. The disclosed dollar amounts are small, so the signal is directional rather than size-weighted.</div>
+<div class="alert red-alert"><strong>CONSENSUS SELL — INTU (McCaul (R) + Gottheimer (D), cross-party)</strong><br>2 members, combined disclosed value ~$16K. Two members from opposing parties trimming the same software name in the same window is worth flagging, though the small size limits how much weight the signal should carry. It may reflect shared rebalancing rather than a shared view on fundamentals.</div>
+<div class="alert yellow-alert"><strong>CONVICTION — David McCormick GS ~$1.23M, 7 purchases</strong><br>A single member concentrating roughly $1.23M across seven separate purchases of one financial name represents an unusually high conviction pattern relative to the rest of the tracked group. Repeated accumulation of the same ticker over the window is more informative than a single opportunistic trade.</div>
+
+
+<div class="section-title">📊 Member Overview</div>
+<div class="card" style="margin-bottom:24px">
+  <table class="trade-table">
+    
+<thead><tr>
+  <th>Member</th><th>Party</th><th>Chamber</th>
+  <th>Total Trades</th><th>Public Equity</th>
+  <th>Buys</th><th>Sells</th>
+  <th>Est. Buy Vol</th><th>Est. Sell Vol</th>
+  <th>Last Trade</th><th>Bias</th>
+</tr></thead>
+
+    <tbody><tr><td><strong>Rohit Khanna</strong></td><td><span class="badge dem">D</span></td><td>House · CA</td><td>80</td><td>75</td><td class="green">67</td><td class="red">8</td><td class="green">~$1.34M</td><td class="red">~$64K</td><td data-sort="2026-02-25">Feb 25, 2026</td><td><span class="badge bullish">Strongly Bullish</span></td></tr><tr><td><strong>Michael McCaul</strong></td><td><span class="badge rep">R</span></td><td>House · TX</td><td>71</td><td>42</td><td class="green">27</td><td class="red">15</td><td class="green">~$388K</td><td class="red">~$120K</td><td data-sort="2026-02-27">Feb 27, 2026</td><td><span class="badge bullish">Bullish</span></td></tr><tr><td><strong>David McCormick</strong></td><td><span class="badge rep">R</span></td><td>Senate · PA</td><td>28</td><td>7</td><td class="green">7</td><td class="red">0</td><td class="green">~$1.23M</td><td class="red">~$0</td><td data-sort="2026-03-10">Mar 10, 2026</td><td><span class="badge bullish">Strongly Bullish</span></td></tr><tr><td><strong>Timothy Moore</strong></td><td><span class="badge rep">R</span></td><td>House · NC</td><td>12</td><td>9</td><td class="green">7</td><td class="red">2</td><td class="green">~$246K</td><td class="red">~$40K</td><td data-sort="2026-03-23">Mar 23, 2026</td><td><span class="badge bullish">Bullish</span></td></tr><tr><td><strong>Joshua Gottheimer</strong></td><td><span class="badge dem">D</span></td><td>House · NJ</td><td>6</td><td>6</td><td class="green">2</td><td class="red">4</td><td class="green">~$16K</td><td class="red">~$32K</td><td data-sort="2026-02-27">Feb 27, 2026</td><td><span class="badge bearish">Bearish</span></td></tr><tr><td><strong>Cleo Fields</strong></td><td><span class="badge dem">D</span></td><td>House · LA</td><td>4</td><td>4</td><td class="green">4</td><td class="red">0</td><td class="green">~$32K</td><td class="red">~$0</td><td data-sort="2026-03-16">Mar 16, 2026</td><td><span class="badge bullish">Strongly Bullish</span></td></tr></tbody>
+  </table>
+</div>
+
+<div class="section-title">📋 Ranked Trade Ideas</div>
+<div class="card" style="margin-bottom:24px">
+  <table class="trade-table">
+    
+<thead><tr>
+  <th>#</th><th>Ticker</th><th>Action</th>
+  <th>Strength</th><th>Members</th><th>Rationale</th>
+</tr></thead>
+
+    <tbody><tr><td><span class="rank-num">1</span></td><td><span class="ticker con">META</span></td><td><span class="badge buy">BUY</span></td><td class="green"><span class="star">★★☆</span> High</td><td>McCaul, Khanna</td><td>Cross-party consensus purchase in a mega-cap name, directionally supportive despite modest disclosed size.</td></tr><tr><td><span class="rank-num">2</span></td><td><span class="ticker con-sell">INTU</span></td><td><span class="badge sell">SELL</span></td><td class="green"><span class="star">★★☆</span> High</td><td>McCaul, Gottheimer</td><td>Two members across parties trimming the same software name in the same window, suggesting shared caution.</td></tr><tr><td><span class="rank-num">3</span></td><td><span class="ticker buy-t">GS</span></td><td><span class="badge buy">BUY</span></td><td class="green"><span class="star">★★★</span> Very High</td><td>McCormick</td><td>Single-member, multi-purchase accumulation (~$1.23M across seven buys) reflecting unusually high conviction.</td></tr><tr><td><span class="rank-num">4</span></td><td><span class="ticker buy-t">JPM</span></td><td><span class="badge buy">BUY</span></td><td class="green"><span class="star">★★☆</span> High</td><td>Khanna</td><td>Part of Khanna's broader, financials-tilted accumulation pattern over the window.</td></tr><tr><td><span class="rank-num">5</span></td><td><span class="ticker buy-t">LGIH</span></td><td><span class="badge buy">BUY</span></td><td class="green"><span class="star">★★☆</span> High</td><td>Moore</td><td>Anchors Moore's consumer-discretionary tilt within a small but directionally bullish book.</td></tr><tr><td><span class="rank-num">6</span></td><td><span class="ticker sell-t">AXTA</span></td><td><span class="badge sell">SELL</span></td><td class="red"><span class="star">★★☆</span> High</td><td>Khanna</td><td>One of the few trims inside an otherwise strongly bullish Khanna book.</td></tr></tbody>
+  </table>
+</div>
+
+<div class="section-title">🔄 Sector Rotation</div>
+<div class="grid-3"><div class="card"><h3>Financials</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$1.93M</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$32K</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Accumulating</span></div></div><div class="card"><h3>Consumer Discretionary</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$360K</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$56K</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Accumulating</span></div></div><div class="card"><h3>Information Technology</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$338K</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$64K</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Accumulating</span></div></div><div class="card"><h3>Industrials</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$234K</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$32K</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Accumulating</span></div></div><div class="card"><h3>Health Care</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$154K</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$16K</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Accumulating</span></div></div><div class="card"><h3>Communication Services</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$136K</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$8K</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Accumulating</span></div></div><div class="card"><h3>Materials</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$40K</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$48K</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Distributing</span></div></div><div class="card"><h3>Consumer Staples</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$24K</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$0</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Accumulating</span></div></div><div class="card"><h3>Real Estate</h3><div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$16K</span></div><div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$0</span></div><div class="stat-row"><span class="stat-label">Net Bias</span><span class="stat-val">Accumulating</span></div></div></div>
+
+<div class="section-title">👤 Member Deep Dives</div>
+<div class="section-title">👤 Rohit Khanna — D · House · CA</div><div class="grid">  <div class="card"><h3>Stats</h3>    <div class="stat-row"><span class="stat-label">Public Trades</span><span class="stat-val">80</span></div>    <div class="stat-row"><span class="stat-label">Buy / Sell</span><span class="stat-val green">67</span> / <span class="stat-val red">8</span></div>    <div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$1.34M</span></div>    <div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$64K</span></div>    <div class="stat-row"><span class="stat-label">Bias</span><span class="stat-val">Strongly Bullish</span></div>    <div class="stat-row"><span class="stat-label">Top Sector</span><span class="stat-val">Financials</span></div>  </div>  <div class="card"><h3>Top Buys</h3><span class="ticker buy-t">JPM</span> <span class="ticker buy-t">RY</span> <span class="ticker buy-t">BRK/B</span> <span class="ticker buy-t">HD</span> <span class="ticker buy-t">CM</span> <span class="ticker buy-t">MA</span></div>  <div class="card" style="grid-column: 1/-1"><h3>Observation</h3>    <p class="obs">Khanna's window is dominated by buying activity, with 67 purchases against only 8 sales and buy volume roughly 21 times sell volume. The book is tilted toward large-cap financials (JPM, RY, BRK/B, CM, MA) alongside established consumer and payments names, consistent with broad accumulation rather than thematic rotation. Taken together, the pattern reads as a steady risk-on posture across core blue-chip exposures.</p>  </div></div><div class="section-title">👤 Michael McCaul — R · House · TX</div><div class="grid">  <div class="card"><h3>Stats</h3>    <div class="stat-row"><span class="stat-label">Public Trades</span><span class="stat-val">71</span></div>    <div class="stat-row"><span class="stat-label">Buy / Sell</span><span class="stat-val green">27</span> / <span class="stat-val red">15</span></div>    <div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$388K</span></div>    <div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$120K</span></div>    <div class="stat-row"><span class="stat-label">Bias</span><span class="stat-val">Bullish</span></div>    <div class="stat-row"><span class="stat-label">Top Sector</span><span class="stat-val">Industrials</span></div>  </div>  <div class="card"><h3>Top Buys</h3><span class="ticker buy-t">HURN</span> <span class="ticker buy-t">FCN</span> <span class="ticker buy-t">PSTG</span> <span class="ticker buy-t">SPOT</span> <span class="ticker buy-t">ORCL</span> <span class="ticker buy-t">NFLX</span></div>  <div class="card" style="grid-column: 1/-1"><h3>Observation</h3>    <p class="obs">McCaul's activity is more two-sided, with 27 buys and 15 sells and a buy-to-sell volume ratio near 3:1. The buy list leans toward consulting and services (HURN, FCN) plus a mix of software, storage, and media names (PSTG, SPOT, ORCL, NFLX), suggesting selective adds across industrials and technology rather than broad accumulation. The posture is bullish but more balanced than the group's most aggressive buyers.</p>  </div></div><div class="section-title">👤 David McCormick — R · Senate · PA</div><div class="grid">  <div class="card"><h3>Stats</h3>    <div class="stat-row"><span class="stat-label">Public Trades</span><span class="stat-val">28</span></div>    <div class="stat-row"><span class="stat-label">Buy / Sell</span><span class="stat-val green">7</span> / <span class="stat-val red">0</span></div>    <div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$1.23M</span></div>    <div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$0</span></div>    <div class="stat-row"><span class="stat-label">Bias</span><span class="stat-val">Strongly Bullish</span></div>    <div class="stat-row"><span class="stat-label">Top Sector</span><span class="stat-val">Financials</span></div>  </div>  <div class="card"><h3>Top Buys</h3><span class="ticker buy-t">GS</span></div>  <div class="card" style="grid-column: 1/-1"><h3>Observation</h3>    <p class="obs">McCormick's disclosed activity is highly concentrated: all seven buys fall in one name (GS), with no offsetting sales and roughly $1.23M of disclosed purchase value. Repeated accumulation of a single large-cap investment bank over the window is the clearest high-conviction pattern in the tracked group. The absence of any sells reduces ambiguity about portfolio rebalancing as a driver.</p>  </div></div><div class="section-title">👤 Timothy Moore — R · House · NC</div><div class="grid">  <div class="card"><h3>Stats</h3>    <div class="stat-row"><span class="stat-label">Public Trades</span><span class="stat-val">12</span></div>    <div class="stat-row"><span class="stat-label">Buy / Sell</span><span class="stat-val green">7</span> / <span class="stat-val red">2</span></div>    <div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$246K</span></div>    <div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$40K</span></div>    <div class="stat-row"><span class="stat-label">Bias</span><span class="stat-val">Bullish</span></div>    <div class="stat-row"><span class="stat-label">Top Sector</span><span class="stat-val">Consumer Discretionary</span></div>  </div>  <div class="card"><h3>Top Buys</h3><span class="ticker buy-t">LGIH</span> <span class="ticker buy-t">CBRL</span> <span class="ticker buy-t">HOG</span> <span class="ticker buy-t">DNUT</span></div>  <div class="card" style="grid-column: 1/-1"><h3>Observation</h3>    <p class="obs">Moore's small book is tilted decisively toward consumer discretionary, with a homebuilder (LGIH) and a cluster of consumer brands (CBRL, HOG, DNUT) leading the buy list. Buy volume outpaces sell volume by roughly 6:1, pointing to a directional add rather than routine turnover. The sector concentration is worth watching as a thematic signal on consumer-sensitive names.</p>  </div></div><div class="section-title">👤 Joshua Gottheimer — D · House · NJ</div><div class="grid">  <div class="card"><h3>Stats</h3>    <div class="stat-row"><span class="stat-label">Public Trades</span><span class="stat-val">6</span></div>    <div class="stat-row"><span class="stat-label">Buy / Sell</span><span class="stat-val green">2</span> / <span class="stat-val red">4</span></div>    <div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$16K</span></div>    <div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$32K</span></div>    <div class="stat-row"><span class="stat-label">Bias</span><span class="stat-val">Bearish</span></div>    <div class="stat-row"><span class="stat-label">Top Sector</span><span class="stat-val">Information Technology</span></div>  </div>  <div class="card"><h3>Top Buys</h3><span class="ticker buy-t">IFNNY</span> <span class="ticker buy-t">FSS</span></div>  <div class="card" style="grid-column: 1/-1"><h3>Observation</h3>    <p class="obs">Gottheimer is the only tracked member with a net-bearish posture this window, with sales outpacing purchases in both count and dollar volume. The top sector by exposure is information technology, where trimming activity contributes to his appearance on the cross-party INTU consensus-sell signal. Total disclosed size is small, so the signal is directional rather than scale-driven.</p>  </div></div><div class="section-title">👤 Cleo Fields — D · House · LA</div><div class="grid">  <div class="card"><h3>Stats</h3>    <div class="stat-row"><span class="stat-label">Public Trades</span><span class="stat-val">4</span></div>    <div class="stat-row"><span class="stat-label">Buy / Sell</span><span class="stat-val green">4</span> / <span class="stat-val red">0</span></div>    <div class="stat-row"><span class="stat-label">Buy Volume</span><span class="stat-val green">~$32K</span></div>    <div class="stat-row"><span class="stat-label">Sell Volume</span><span class="stat-val red">~$0</span></div>    <div class="stat-row"><span class="stat-label">Bias</span><span class="stat-val">Strongly Bullish</span></div>    <div class="stat-row"><span class="stat-label">Top Sector</span><span class="stat-val">Information Technology</span></div>  </div>  <div class="card"><h3>Top Buys</h3><span class="ticker buy-t">MSFT</span> <span class="ticker buy-t">GOOGL</span> <span class="ticker buy-t">AAPL</span></div>  <div class="card" style="grid-column: 1/-1"><h3>Observation</h3>    <p class="obs">Fields's disclosed activity consists entirely of buys in mega-cap technology (MSFT, GOOGL, AAPL), with no offsetting sales in the window. While the dollar size is modest, the concentration in a small number of index-weight names points to a straightforward long-bias stance on large-cap tech. The pattern is directionally clear if limited in scale.</p>  </div></div>
+
+<p class="disclaimer">This report is generated from public disclosure data available on capitoltrades.com. Congressional stock trades are reported under the STOCK Act and reflect trades by members and their immediate families. This is not investment advice. Trade signals represent pattern observations only and carry no guarantee of future performance. Always conduct independent research before making investment decisions.</p>
+</body>
+</html>

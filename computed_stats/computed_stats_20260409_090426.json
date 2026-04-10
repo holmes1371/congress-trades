@@ -1,0 +1,1473 @@
+{
+  "computed_at": "2026-04-09T09:04:26",
+  "source_metadata": {
+    "generated": "2026-04-09",
+    "window_days": 60,
+    "cutoff_date": "2026-02-08",
+    "source": "capitoltrades.com",
+    "members_tracked": 6,
+    "committee": null
+  },
+  "summary": {
+    "members": 6,
+    "total_trades": 201,
+    "total_buy_volume": 3244500,
+    "total_sell_volume": 256500,
+    "total_buy_vol_fmt": "~$3.24M",
+    "total_sell_vol_fmt": "~$256K",
+    "consensus_buy_signals": 1,
+    "cross_party_buys": 1,
+    "consensus_sell_signals": 1,
+    "cross_party_sells": 1,
+    "conviction_patterns": 4
+  },
+  "member_stats": {
+    "Rohit Khanna": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "CA",
+      "bioguideId": "K000389",
+      "total_trades": 80,
+      "equity_trades": 75,
+      "buys": 67,
+      "sells": 8,
+      "buy_vol": 1338500,
+      "sell_vol": 64000,
+      "buy_vol_fmt": "~$1.34M",
+      "sell_vol_fmt": "~$64K",
+      "pct_buys": 89.3,
+      "bias": "Strongly Bullish",
+      "avg_filing_lag": 15,
+      "most_recent_trade": "2026-02-25",
+      "top_buy_tickers": [
+        {
+          "ticker": "JPM",
+          "count": 1,
+          "value": 175000,
+          "dates": [
+            "2026-02-19"
+          ]
+        },
+        {
+          "ticker": "RY",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "BRK/B",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "HD",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "CM",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "MA",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "NOW",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "ABT",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "ADBE",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "SYK",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "T",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "AJG",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "AXTA",
+          "count": 3,
+          "value": 24000,
+          "dates": [
+            "2026-02-23",
+            "2026-02-17",
+            "2026-02-12"
+          ]
+        },
+        {
+          "ticker": "TFC",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-25"
+          ]
+        },
+        {
+          "ticker": "ZBH",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-17"
+          ]
+        },
+        {
+          "ticker": "MODG",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-12"
+          ]
+        },
+        {
+          "ticker": "NDAQ",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-11"
+          ]
+        },
+        {
+          "ticker": "GPK",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-09"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "financials",
+          "buy": 650500,
+          "sell": 16000
+        },
+        {
+          "sector": "information-technology",
+          "buy": 202000,
+          "sell": 0
+        },
+        {
+          "sector": "health-care",
+          "buy": 154000,
+          "sell": 8000
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 107000,
+          "sell": 8000
+        },
+        {
+          "sector": "industrials",
+          "buy": 96500,
+          "sell": 0
+        },
+        {
+          "sector": "communication-services",
+          "buy": 72500,
+          "sell": 0
+        },
+        {
+          "sector": "consumer-staples",
+          "buy": 24000,
+          "sell": 0
+        },
+        {
+          "sector": "real-estate",
+          "buy": 16000,
+          "sell": 0
+        },
+        {
+          "sector": "materials",
+          "buy": 8000,
+          "sell": 32000
+        },
+        {
+          "sector": "utilities",
+          "buy": 8000,
+          "sell": 0
+        }
+      ]
+    },
+    "Michael McCaul": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "TX",
+      "bioguideId": "M001157",
+      "total_trades": 71,
+      "equity_trades": 42,
+      "buys": 27,
+      "sells": 15,
+      "buy_vol": 387500,
+      "sell_vol": 120000,
+      "buy_vol_fmt": "~$388K",
+      "sell_vol_fmt": "~$120K",
+      "pct_buys": 64.3,
+      "bias": "Bullish",
+      "avg_filing_lag": 21,
+      "most_recent_trade": "2026-02-27",
+      "top_buy_tickers": [
+        {
+          "ticker": "HURN",
+          "count": 2,
+          "value": 65000,
+          "dates": [
+            "2026-02-27",
+            "2026-02-12"
+          ]
+        },
+        {
+          "ticker": "FCN",
+          "count": 2,
+          "value": 65000,
+          "dates": [
+            "2026-02-27",
+            "2026-02-12"
+          ]
+        },
+        {
+          "ticker": "PSTG",
+          "count": 2,
+          "value": 40500,
+          "dates": [
+            "2026-02-26",
+            "2026-02-13"
+          ]
+        },
+        {
+          "ticker": "SPOT",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-27",
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "ORCL",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-27",
+            "2026-02-11"
+          ]
+        },
+        {
+          "ticker": "NFLX",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-27",
+            "2026-02-17"
+          ]
+        },
+        {
+          "ticker": "META",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-20",
+            "2026-02-11"
+          ]
+        },
+        {
+          "ticker": "LDNXF",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-17",
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "SAP",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-13",
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "LPX",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-27"
+          ]
+        },
+        {
+          "ticker": "HLI",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-13"
+          ]
+        },
+        {
+          "ticker": "ADSK",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-27"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "WWD",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-27",
+            "2026-02-18"
+          ]
+        },
+        {
+          "ticker": "UBER",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-13",
+            "2026-02-11"
+          ]
+        },
+        {
+          "ticker": "WDAY",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-10",
+            "2026-02-09"
+          ]
+        },
+        {
+          "ticker": "MSFT",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-27"
+          ]
+        },
+        {
+          "ticker": "CMCSA",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "NVDA",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-26"
+          ]
+        },
+        {
+          "ticker": "PTC",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "VMC",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-23"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "industrials",
+          "buy": 130000,
+          "sell": 32000
+        },
+        {
+          "sector": "information-technology",
+          "buy": 104500,
+          "sell": 48000
+        },
+        {
+          "sector": "financials",
+          "buy": 56500,
+          "sell": 0
+        },
+        {
+          "sector": "communication-services",
+          "buy": 56000,
+          "sell": 8000
+        },
+        {
+          "sector": "materials",
+          "buy": 32500,
+          "sell": 16000
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 8000,
+          "sell": 8000
+        },
+        {
+          "sector": "health-care",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Joshua Gottheimer": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "NJ",
+      "bioguideId": "G000583",
+      "total_trades": 6,
+      "equity_trades": 6,
+      "buys": 2,
+      "sells": 4,
+      "buy_vol": 16000,
+      "sell_vol": 32000,
+      "buy_vol_fmt": "~$16K",
+      "sell_vol_fmt": "~$32K",
+      "pct_buys": 33.3,
+      "bias": "Bearish",
+      "avg_filing_lag": 21,
+      "most_recent_trade": "2026-02-27",
+      "top_buy_tickers": [
+        {
+          "ticker": "IFNNY",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-27"
+          ]
+        },
+        {
+          "ticker": "FSS",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-26"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "PANW",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-27"
+          ]
+        },
+        {
+          "ticker": "INTU",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-20"
+          ]
+        },
+        {
+          "ticker": "CVNA",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-18"
+          ]
+        },
+        {
+          "ticker": "V",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-18"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "information-technology",
+          "buy": 8000,
+          "sell": 16000
+        },
+        {
+          "sector": "industrials",
+          "buy": 8000,
+          "sell": 0
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 0,
+          "sell": 8000
+        },
+        {
+          "sector": "financials",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "David McCormick": {
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "PA",
+      "bioguideId": "M001243",
+      "total_trades": 28,
+      "equity_trades": 7,
+      "buys": 7,
+      "sells": 0,
+      "buy_vol": 1225000,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$1.23M",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 100.0,
+      "bias": "Strongly Bullish",
+      "avg_filing_lag": 22,
+      "most_recent_trade": "2026-03-10",
+      "top_buy_tickers": [
+        {
+          "ticker": "GS",
+          "count": 7,
+          "value": 1225000,
+          "dates": [
+            "2026-03-10",
+            "2026-03-03",
+            "2026-02-25",
+            "2026-02-25",
+            "2026-02-24",
+            "2026-02-23",
+            "2026-02-23"
+          ]
+        }
+      ],
+      "top_sell_tickers": [],
+      "sector_breakdown": [
+        {
+          "sector": "financials",
+          "buy": 1225000,
+          "sell": 0
+        }
+      ]
+    },
+    "Timothy Moore": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "NC",
+      "bioguideId": "M001236",
+      "total_trades": 12,
+      "equity_trades": 9,
+      "buys": 7,
+      "sells": 2,
+      "buy_vol": 245500,
+      "sell_vol": 40500,
+      "buy_vol_fmt": "~$246K",
+      "sell_vol_fmt": "~$40K",
+      "pct_buys": 77.8,
+      "bias": "Bullish",
+      "avg_filing_lag": 7,
+      "most_recent_trade": "2026-03-23",
+      "top_buy_tickers": [
+        {
+          "ticker": "LGIH",
+          "count": 4,
+          "value": 172500,
+          "dates": [
+            "2026-03-20",
+            "2026-03-19",
+            "2026-03-18",
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "CBRL",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-03-23"
+          ]
+        },
+        {
+          "ticker": "HOG",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "DNUT",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-12"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "DNUT",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-03-17"
+          ]
+        },
+        {
+          "ticker": "COIN",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-18"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "consumer-discretionary",
+          "buy": 245500,
+          "sell": 32500
+        },
+        {
+          "sector": "financials",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Cleo Fields": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "LA",
+      "bioguideId": "F000110",
+      "total_trades": 4,
+      "equity_trades": 4,
+      "buys": 4,
+      "sells": 0,
+      "buy_vol": 32000,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$32K",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 100.0,
+      "bias": "Strongly Bullish",
+      "avg_filing_lag": 11,
+      "most_recent_trade": "2026-03-16",
+      "top_buy_tickers": [
+        {
+          "ticker": "MSFT",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-03-12",
+            "2026-03-12"
+          ]
+        },
+        {
+          "ticker": "GOOGL",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-16"
+          ]
+        },
+        {
+          "ticker": "AAPL",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-12"
+          ]
+        }
+      ],
+      "top_sell_tickers": [],
+      "sector_breakdown": [
+        {
+          "sector": "information-technology",
+          "buy": 24000,
+          "sell": 0
+        },
+        {
+          "sector": "communication-services",
+          "buy": 8000,
+          "sell": 0
+        }
+      ]
+    }
+  },
+  "consensus": {
+    "buys": [
+      {
+        "ticker": "META",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 24000,
+        "total_value_fmt": "~$24K",
+        "members": [
+          {
+            "name": "Michael McCaul",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-02-20",
+              "2026-02-11"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-24"
+            ]
+          }
+        ]
+      }
+    ],
+    "sells": [
+      {
+        "ticker": "INTU",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 2,
+        "total_value": 16000,
+        "total_value_fmt": "~$16K",
+        "members": [
+          {
+            "name": "Michael McCaul",
+            "party": "Republican",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-11"
+            ]
+          },
+          {
+            "name": "Joshua Gottheimer",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-20"
+            ]
+          }
+        ]
+      }
+    ],
+    "mixed": [
+      {
+        "ticker": "COIN",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Moore"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "DNUT",
+        "buyers": [
+          "Moore"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "Moore"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "INTU",
+        "buyers": [
+          "McCaul"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "McCaul",
+          "Gottheimer"
+        ],
+        "seller_parties": [
+          "D",
+          "R"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "MSFT",
+        "buyers": [
+          "Fields"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "McCaul"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "NDAQ",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "NVDA",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "McCaul"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      },
+      {
+        "ticker": "WDAY",
+        "buyers": [
+          "McCaul"
+        ],
+        "buyer_parties": [
+          "R"
+        ],
+        "sellers": [
+          "McCaul"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": true
+      }
+    ]
+  },
+  "conviction": [
+    {
+      "type": "repeated_buy",
+      "member": "David McCormick",
+      "party": "Republican",
+      "ticker": "GS",
+      "count": 7,
+      "total_value": 1225000,
+      "value_fmt": "~$1.23M",
+      "dates": [
+        "2026-02-23",
+        "2026-02-23",
+        "2026-02-24",
+        "2026-02-25",
+        "2026-02-25",
+        "2026-03-03",
+        "2026-03-10"
+      ],
+      "avg_price": null
+    },
+    {
+      "type": "large_position",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "JPM",
+      "trade_type": "BUY",
+      "value": 175000,
+      "value_fmt": "~$175K",
+      "txDate": "2026-02-19",
+      "price": null
+    },
+    {
+      "type": "repeated_buy",
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "LGIH",
+      "count": 4,
+      "total_value": 172500,
+      "value_fmt": "~$172K",
+      "dates": [
+        "2026-03-12",
+        "2026-03-18",
+        "2026-03-19",
+        "2026-03-20"
+      ],
+      "avg_price": 37.65
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AXTA",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-12",
+        "2026-02-17",
+        "2026-02-23"
+      ]
+    }
+  ],
+  "sector_totals": [
+    {
+      "sector": "financials",
+      "buy_vol": 1932000,
+      "sell_vol": 32000,
+      "net": 1900000,
+      "buy_vol_fmt": "~$1.93M",
+      "sell_vol_fmt": "~$32K",
+      "net_fmt": "~$1.90M",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna",
+        "McCaul",
+        "McCormick"
+      ],
+      "members_selling": [
+        "Gottheimer",
+        "Khanna",
+        "Moore"
+      ]
+    },
+    {
+      "sector": "consumer-discretionary",
+      "buy_vol": 360500,
+      "sell_vol": 56500,
+      "net": 304000,
+      "buy_vol_fmt": "~$360K",
+      "sell_vol_fmt": "~$56K",
+      "net_fmt": "~$304K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna",
+        "McCaul",
+        "Moore"
+      ],
+      "members_selling": [
+        "Gottheimer",
+        "Khanna",
+        "McCaul",
+        "Moore"
+      ]
+    },
+    {
+      "sector": "information-technology",
+      "buy_vol": 338500,
+      "sell_vol": 64000,
+      "net": 274500,
+      "buy_vol_fmt": "~$338K",
+      "sell_vol_fmt": "~$64K",
+      "net_fmt": "~$274K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Fields",
+        "Gottheimer",
+        "Khanna",
+        "McCaul"
+      ],
+      "members_selling": [
+        "Gottheimer",
+        "McCaul"
+      ]
+    },
+    {
+      "sector": "industrials",
+      "buy_vol": 234500,
+      "sell_vol": 32000,
+      "net": 202500,
+      "buy_vol_fmt": "~$234K",
+      "sell_vol_fmt": "~$32K",
+      "net_fmt": "~$202K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Gottheimer",
+        "Khanna",
+        "McCaul"
+      ],
+      "members_selling": [
+        "McCaul"
+      ]
+    },
+    {
+      "sector": "health-care",
+      "buy_vol": 154000,
+      "sell_vol": 16000,
+      "net": 138000,
+      "buy_vol_fmt": "~$154K",
+      "sell_vol_fmt": "~$16K",
+      "net_fmt": "~$138K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": [
+        "Khanna",
+        "McCaul"
+      ]
+    },
+    {
+      "sector": "communication-services",
+      "buy_vol": 136500,
+      "sell_vol": 8000,
+      "net": 128500,
+      "buy_vol_fmt": "~$136K",
+      "sell_vol_fmt": "~$8K",
+      "net_fmt": "~$128K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Fields",
+        "Khanna",
+        "McCaul"
+      ],
+      "members_selling": [
+        "McCaul"
+      ]
+    },
+    {
+      "sector": "materials",
+      "buy_vol": 40500,
+      "sell_vol": 48000,
+      "net": -7500,
+      "buy_vol_fmt": "~$40K",
+      "sell_vol_fmt": "~$48K",
+      "net_fmt": "~$8K",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Khanna",
+        "McCaul"
+      ],
+      "members_selling": [
+        "Khanna",
+        "McCaul"
+      ]
+    },
+    {
+      "sector": "consumer-staples",
+      "buy_vol": 24000,
+      "sell_vol": 0,
+      "net": 24000,
+      "buy_vol_fmt": "~$24K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$24K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": []
+    },
+    {
+      "sector": "real-estate",
+      "buy_vol": 16000,
+      "sell_vol": 0,
+      "net": 16000,
+      "buy_vol_fmt": "~$16K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$16K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": []
+    },
+    {
+      "sector": "utilities",
+      "buy_vol": 8000,
+      "sell_vol": 0,
+      "net": 8000,
+      "buy_vol_fmt": "~$8K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$8K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": []
+    }
+  ],
+  "recent_trades": [
+    {
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "CBRL:US",
+      "type": "BUY",
+      "txDate": "2026-03-23",
+      "published": "2026-03-25",
+      "value": 32500,
+      "price": 26.94,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 1
+    },
+    {
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "LGIH:US",
+      "type": "BUY",
+      "txDate": "2026-03-20",
+      "published": "2026-03-25",
+      "value": 32500,
+      "price": 34.24,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 4
+    },
+    {
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "LGIH:US",
+      "type": "BUY",
+      "txDate": "2026-03-19",
+      "published": "2026-03-25",
+      "value": 75000,
+      "price": 37.06,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 5
+    },
+    {
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "LGIH:US",
+      "type": "BUY",
+      "txDate": "2026-03-18",
+      "published": "2026-03-25",
+      "value": 32500,
+      "price": 38.25,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 6
+    },
+    {
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "DNUT:US",
+      "type": "SELL",
+      "txDate": "2026-03-17",
+      "published": "2026-03-25",
+      "value": 32500,
+      "price": 3.59,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 7
+    },
+    {
+      "member": "Cleo Fields",
+      "party": "Democrat",
+      "ticker": "GOOGL:US",
+      "type": "BUY",
+      "txDate": "2026-03-16",
+      "published": "2026-04-08",
+      "value": 8000,
+      "price": 304.42,
+      "sector": "communication-services",
+      "filedAfterDays": 22
+    },
+    {
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "HOG:US",
+      "type": "BUY",
+      "txDate": "2026-03-12",
+      "published": "2026-03-25",
+      "value": 32500,
+      "price": 17.97,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 12
+    },
+    {
+      "member": "Timothy Moore",
+      "party": "Republican",
+      "ticker": "LGIH:US",
+      "type": "BUY",
+      "txDate": "2026-03-12",
+      "published": "2026-03-25",
+      "value": 32500,
+      "price": 41.03,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 12
+    },
+    {
+      "member": "Cleo Fields",
+      "party": "Democrat",
+      "ticker": "MSFT:US",
+      "type": "BUY",
+      "txDate": "2026-03-12",
+      "published": "2026-03-18",
+      "value": 8000,
+      "price": 401.86,
+      "sector": "information-technology",
+      "filedAfterDays": 5
+    },
+    {
+      "member": "Cleo Fields",
+      "party": "Democrat",
+      "ticker": "MSFT:US",
+      "type": "BUY",
+      "txDate": "2026-03-12",
+      "published": "2026-03-18",
+      "value": 8000,
+      "price": 401.86,
+      "sector": "information-technology",
+      "filedAfterDays": 5
+    },
+    {
+      "member": "David McCormick",
+      "party": "Republican",
+      "ticker": "GS:US",
+      "type": "BUY",
+      "txDate": "2026-03-10",
+      "published": "2026-03-26",
+      "value": 175000,
+      "price": null,
+      "sector": "financials",
+      "filedAfterDays": 15
+    },
+    {
+      "member": "David McCormick",
+      "party": "Republican",
+      "ticker": "GS:US",
+      "type": "BUY",
+      "txDate": "2026-03-03",
+      "published": "2026-03-26",
+      "value": 175000,
+      "price": null,
+      "sector": "financials",
+      "filedAfterDays": 22
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "HURN:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 141.4,
+      "sector": "industrials",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "LPX:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 84.74,
+      "sector": "materials",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "FCN:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 164.42,
+      "sector": "industrials",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "ADSK:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 245.87,
+      "sector": "information-technology",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "SPOT:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 514.94,
+      "sector": "communication-services",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "MELI:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 1757.58,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "WDAY:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 133.76,
+      "sector": "information-technology",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "ORCL:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 145.4,
+      "sector": "information-technology",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "NFLX:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 96.24,
+      "sector": "communication-services",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "MSFT:US",
+      "type": "SELL",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 392.74,
+      "sector": "information-technology",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Michael McCaul",
+      "party": "Republican",
+      "ticker": "WWD:US",
+      "type": "SELL",
+      "txDate": "2026-02-27",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 386.76,
+      "sector": "industrials",
+      "filedAfterDays": 11
+    },
+    {
+      "member": "Joshua Gottheimer",
+      "party": "Democrat",
+      "ticker": "IFNNY:US",
+      "type": "BUY",
+      "txDate": "2026-02-27",
+      "published": "2026-03-17",
+      "value": 8000,
+      "price": 54.105,
+      "sector": "information-technology",
+      "filedAfterDays": 17
+    },
+    {
+      "member": "Joshua Gottheimer",
+      "party": "Democrat",
+      "ticker": "PANW:US",
+      "type": "SELL",
+      "txDate": "2026-02-27",
+      "published": "2026-03-17",
+      "value": 8000,
+      "price": 148.92,
+      "sector": "information-technology",
+      "filedAfterDays": 17
+    }
+  ]
+}

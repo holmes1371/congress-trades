@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "generated": "2026-04-07",
+    "window_days": 1,
+    "cutoff_date": "2026-04-06",
+    "source": "capitoltrades.com",
+    "members_tracked": 6
+  },
+  "members": {
+    "Rohit Khanna": {
+      "bioguideId": "K000389",
+      "fullName": "Rohit Khanna",
+      "firstName": "Rohit",
+      "lastName": "Khanna",
+      "chamber": "House",
+      "state": "CA",
+      "party": "Democrat",
+      "tradeCount": 0,
+      "trades": []
+    },
+    "Michael McCaul": {
+      "bioguideId": "M001157",
+      "fullName": "Michael McCaul",
+      "firstName": "Michael",
+      "lastName": "McCaul",
+      "chamber": "House",
+      "state": "TX",
+      "party": "Republican",
+      "tradeCount": 0,
+      "trades": []
+    },
+    "Joshua Gottheimer": {
+      "bioguideId": "G000583",
+      "fullName": "Joshua Gottheimer",
+      "firstName": "Joshua",
+      "lastName": "Gottheimer",
+      "chamber": "House",
+      "state": "NJ",
+      "party": "Democrat",
+      "tradeCount": 0,
+      "trades": []
+    },
+    "David McCormick": {
+      "bioguideId": "M001243",
+      "fullName": "David McCormick",
+      "firstName": "David",
+      "lastName": "McCormick",
+      "chamber": "Senate",
+      "state": "PA",
+      "party": "Republican",
+      "tradeCount": 0,
+      "trades": []
+    },
+    "Timothy Moore": {
+      "bioguideId": "M001236",
+      "fullName": "Timothy Moore",
+      "firstName": "Timothy",
+      "lastName": "Moore",
+      "chamber": "House",
+      "state": "NC",
+      "party": "Republican",
+      "tradeCount": 0,
+      "trades": []
+    },
+    "Cleo Fields": {
+      "bioguideId": "F000110",
+      "fullName": "Cleo Fields",
+      "firstName": "Cleo",
+      "lastName": "Fields",
+      "chamber": "House",
+      "state": "LA",
+      "party": "Democrat",
+      "tradeCount": 0,
+      "trades": []
+    }
+  }
+}

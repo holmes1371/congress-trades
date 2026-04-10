@@ -1,0 +1,104 @@
+name: Update Congressional Trade Report
+
+on:
+  # Run every weekday at 7 AM Eastern (11:00 UTC)
+  schedule:
+    - cron: '0 11 * * 1-5'
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 openpyxl anthropic
+
+      - name: Run pipeline (fetch → compute → skeleton)
+        id: pipeline
+        run: |
+          python3 run_pipeline.py 2>&1 | tee digest.txt
+          EXIT_CODE=${PIPESTATUS[0]}
+          echo "exit_code=$EXIT_CODE" >> "$GITHUB_OUTPUT"
+
+          # Check for NO_CHANGES
+          if [ $EXIT_CODE -eq 2 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "No new trades detected — skipping report generation."
+          elif [ $EXIT_CODE -ne 0 ]; then
+            echo "Pipeline failed with exit code $EXIT_CODE"
+            cat digest.txt
+            exit 1
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generate fills via Claude API
+        if: steps.pipeline.outputs.skip != 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python3 auto_fill.py --digest digest.txt --out fills.json
+
+      - name: Apply fills to skeleton
+        if: steps.pipeline.outputs.skip != 'true'
+        run: |
+          # Extract skeleton path from digest
+          SKELETON=$(grep "PIPELINE_READY:" digest.txt | sed 's/.*skeleton=//' | sed 's/ .*//')
+          SLUG=$(grep "PIPELINE_READY:" digest.txt | sed 's/.*slug=//' | tr -d '[:space:]')
+
+          if [ "$SLUG" = "default" ] || [ -z "$SLUG" ]; then
+            python3 fill_skeleton.py \
+              --skeleton "$SKELETON" \
+              --fills fills.json \
+              --out analysis/analysis.json
+            python3 generate_report.py analysis/analysis.json
+          else
+            python3 fill_skeleton.py \
+              --skeleton "$SKELETON" \
+              --fills fills.json \
+              --out "analysis/analysis_${SLUG}.json"
+            python3 generate_report.py "analysis/analysis_${SLUG}.json"
+          fi
+
+      - name: Build site index
+        run: |
+          python3 build_site.py --out site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build-report
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

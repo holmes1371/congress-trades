@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Congressional Trade Analysis — No New Trades</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+    --accent: #4f8ef7; --green: #22c55e; --red: #ef4444;
+    --yellow: #f59e0b; --text: #e2e8f0; --muted: #64748b;
+    --border: #2e3450;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 24px; max-width: 1400px; margin: 0 auto; }
+  h1  { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+  h2  { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+  h3  { font-size: 0.85rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 6px; }
+  .meta   { font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
+  .grid   { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .card   { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .card.highlight { border-color: var(--accent); }
+  .card.warn      { border-color: var(--red); }
+  .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .badge.buy     { background: rgba(34,197,94,0.15);  color: var(--green); }
+  .badge.sell    { background: rgba(239,68,68,0.15);  color: var(--red); }
+  .badge.dem     { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .badge.rep     { background: rgba(239,68,68,0.15);  color: #f87171; }
+  .badge.bullish { background: rgba(34,197,94,0.15);  color: var(--green); }
+  .badge.bearish { background: rgba(239,68,68,0.15);  color: var(--red); }
+  .badge.mixed   { background: rgba(245,158,11,0.15); color: var(--yellow); }
+  .badge.neutral { background: rgba(100,116,139,0.15);color: var(--muted); }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 0.84rem; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--muted); }
+  .stat-val   { font-weight: 600; }
+  .green  { color: var(--green); }
+  .red    { color: var(--red); }
+  .yellow { color: var(--yellow); }
+  .ticker { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; font-size: 0.78rem; font-weight: 700; }
+  .ticker.buy-t    { border-color: rgba(34,197,94,0.45); color: var(--green); }
+  .ticker.sell-t   { border-color: rgba(239,68,68,0.45); color: var(--red); }
+  .ticker.con      { border-color: var(--accent); color: var(--accent); background: rgba(79,142,247,0.08); }
+  .ticker.con-sell { border-color: rgba(239,68,68,0.6); color: var(--red); background: rgba(239,68,68,0.08); }
+  .trade-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .trade-table th { text-align: left; padding: 6px 10px; background: var(--surface2); color: var(--muted); font-weight: 600; font-size: 0.73rem; text-transform: uppercase; }
+  .trade-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .trade-table tr:last-child td { border-bottom: none; }
+  .section-title { font-size: 1.0rem; font-weight: 700; color: var(--accent); margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .alert { background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.3); border-radius: 8px; padding: 14px 16px; font-size: 0.85rem; margin-bottom: 14px; line-height: 1.65; }
+  .alert.red-alert { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.3); }
+  .alert.yellow-alert { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.3); }
+  .alert.gray-alert { background: rgba(100,116,139,0.08); border-color: rgba(100,116,139,0.3); }
+  .alert strong { color: var(--accent); }
+  .alert.red-alert strong { color: #f87171; }
+  .alert.yellow-alert strong { color: var(--yellow); }
+  .alert.gray-alert strong { color: var(--muted); }
+  .obs     { font-size: 0.84rem; line-height: 1.7; color: var(--text); }
+  .disclaimer { font-size: 0.75rem; color: var(--muted); margin-top: 32px; padding: 14px; background: var(--surface); border-radius: 8px; line-height: 1.6; }
+  .rank-num { font-size: 1.0rem; font-weight: 800; color: var(--muted); width: 24px; }
+  .star { color: var(--yellow); }
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 720px) {
+  body { padding: 14px; }
+  h1 { font-size: 1.3rem; }
+  h2 { font-size: 1.0rem; }
+  .header { flex-wrap: wrap; gap: 6px; }
+  .meta { margin-bottom: 18px; }
+  .grid, .grid-3 { grid-template-columns: 1fr; gap: 12px; margin-bottom: 16px; }
+  .card { padding: 14px; }
+  .section-title { font-size: 0.95rem; margin: 20px 0 10px; }
+  .alert { font-size: 0.8rem; padding: 12px; }
+  .trade-table { display: block; width: 100%; overflow-x: auto; white-space: nowrap; font-size: 0.75rem; }
+  .trade-table th, .trade-table td { padding: 5px 8px; }
+  .stat-row { font-size: 0.78rem; }
+  .member-header { gap: 6px; }
+  .disclaimer { font-size: 0.7rem; padding: 12px; }
+}
+</style></head><body>
+<div class="header"><h1>🏛 Congressional Trade Intelligence Report</h1></div>
+<p class="meta">Generated: Apr 08, 2026 08:44 &nbsp;|&nbsp; Source: Capitol Trades</p>
+<div class="section-title">No New Activity</div>
+<div class="card">
+  <p class="obs">No new congressional trades have been disclosed since <strong>04-08-2026</strong>.
+  The most recent fetch returned no transactions outside the existing dataset, so no analysis was generated.</p>
+  <p class="obs" style="margin-top:14px">📄 Most recent full analysis: <a href="report_20260408_073621.html" style="color:var(--accent)">report_20260408_073621.html</a></p>
+</div>
+<p class="disclaimer">This report is generated from public disclosure data available on capitoltrades.com. Congressional stock trades are reported under the STOCK Act and reflect trades by members and their immediate families. This is not investment advice. Trade signals represent pattern observations only and carry no guarantee of future performance. Always conduct independent research before making investment decisions.</p>
+</body></html>

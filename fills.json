@@ -1,0 +1,46 @@
+{
+  "summary_alerts": {
+    "consensus_buy_GOOGL": "Four members spanning both parties\u2014Capito (R), Fetterman (D), Taylor (R), and Keating (D)\u2014independently accumulated Alphabet (GOOGL) positions during the window, an unusually broad cross-party convergence that elevates this above routine portfolio overlap. Four-member agreement is the strongest consensus buy signal observed in the current cohort.",
+    "consensus_buy_HD": "Home Depot (HD) attracted cross-party accumulation from Khanna (D), McCormick (R), and Taylor (R), with a combined disclosed buy volume of roughly $99K. The convergence on a housing-adjacent consumer name suggests shared expectations of durable home-improvement demand across political lines.",
+    "consensus_buy_MSFT": "Microsoft (MSFT) was purchased independently by Fetterman (D), Taylor (R), and McCormick (R), underscoring continued confidence in enterprise cloud and AI infrastructure among members with access to relevant policy discussions. The three-member cross-party signal places MSFT among the higher-conviction buys in the 60-day window.",
+    "consensus_sell_AAPL": "Apple (AAPL) saw cross-party selling from Suozzi (D) and Taylor (R), both disclosing disposals during the same window, with a combined disclosed value of approximately $40K. Concurrent reductions across party lines in the most widely held U.S. equity may reflect profit-taking after an extended valuation premium, caution around antitrust or tariff exposure, or routine rebalancing.",
+    "consensus_sell_T": "AT&T (T) was sold by Fetterman (D) and Taylor (R) within the window for a combined disclosed value near $16K, producing a cross-party sell signal in legacy telecommunications. The paired disposal may reflect reduced conviction amid fiber-buildout capital demands and intensifying broadband competition.",
+    "consensus_sell_WAT": "Waters Corporation (WAT) was disposed of by Dingell (D) and Hern (R) during the window, a cross-party sell in the analytical-instruments segment that may reflect shared concerns about margin compression or capital-equipment demand in life sciences tooling.",
+    "conviction_Hern_TXN": "Kevin Hern's concentration in Texas Instruments (TXN) at roughly $750K is the single largest individual-name disclosure in the cohort and sits well outside the cohort's typical position size. A single-member commitment of this scale is noteworthy given Hern's Ways and Means seat and tax-policy exposure to the semiconductor capex cycle."
+  },
+  "ranked_ideas": {
+    "GOOGL_BUY": "Broadest cross-party consensus buy in the window; four members across both parties accumulated GOOGL independently, a degree of convergence that is statistically uncommon and elevates signal quality above routine portfolio overlap.",
+    "HD_BUY": "Three members from opposing parties each accumulated HD positions, consistent with shared expectations of sustained demand in the home-improvement and housing-adjacent consumer segment.",
+    "MSFT_BUY": "Cross-party accumulation of MSFT by three members reflects continued confidence in cloud and enterprise AI infrastructure among legislators with committee-level visibility into technology policy.",
+    "ABT_BUY": "Concurrent purchases of ABT by Khanna (D) and McCormick (R) suggest shared conviction around healthcare-device fundamentals and defensive-yield characteristics consistent with a rotation toward inflation-resilient holdings.",
+    "BLK_BUY": "Khanna and McCormick both added BLK during the window, a cross-party position in the world's largest asset manager at a time of elevated interest in passive flows and alternatives.",
+    "AMZN_BUY": "Taylor (R) and Fetterman (D) each disclosed AMZN purchases, a cross-party accumulation in a diversified e-commerce and cloud-infrastructure name that pairs consumer exposure with AWS-driven enterprise tailwinds.",
+    "PH_BUY": "Parker Hannifin (PH) drew buys from Taylor (R) and Khanna (D), a bipartisan position in an industrial-motion and aerospace-components name that benefits from ongoing defense and reshoring capital expenditure.",
+    "PGR_BUY": "Progressive Corp (PGR) was accumulated by Taylor (R) and Khanna (D), reflecting cross-party interest in personal-lines insurance where rate-hardening cycles and disciplined underwriting have supported earnings power.",
+    "AAPL_SELL": "Bipartisan selling of AAPL by Suozzi and Taylor points to coordinated profit-taking or risk reduction in a name that has attracted regulatory and tariff scrutiny across both party platforms.",
+    "T_SELL": "Cross-party disposal of AT&T (T) by Fetterman and Taylor may reflect reduced conviction in legacy telecommunications amid fiber-expansion capital demands and competitive broadband dynamics."
+  },
+  "members": {
+    "Rohit Khanna": "Khanna's disclosures are dominated by a high volume of individual buy transactions across technology-adjacent and consumer names, producing the cohort's heaviest buy-side footprint by count. The pattern suggests continuous accumulation rather than discrete thematic bets, with no sell activity of comparable weight.",
+    "David Taylor": "Taylor is the most frequent participant in cross-party consensus signals during the window, appearing in every major multi-member buy and several sells. The breadth of overlap with other members across parties makes his disclosures a useful confirmation signal rather than an independent directional view.",
+    "Richard McCormick": "McCormick's pattern reflects his background in financial services, with selective buy-side concentration in large-cap financials and healthcare devices alongside several cross-party consensus positions. Activity is balanced in direction and tightly clustered in a small number of names.",
+    "Timothy Moore": "Moore's disclosed activity in the window is limited and concentrated in a narrow set of names, providing a low-signal footprint relative to the more active members of the cohort.",
+    "Kevin Hern": "Hern's posture during the window is distinctly bearish in volume: the overwhelming majority of his disclosures are sales, including the cross-party WAT signal, set against a single large conviction position in Texas Instruments. The combination of broad de-risking and one concentrated long stands out against the cohort's generally bullish tone.",
+    "John Fetterman": "Fetterman participated in several cross-party consensus buys (GOOGL, MSFT, AMZN) while also contributing to the T sell signal. The mix suggests selective rotation within large-cap technology and communications rather than a directional portfolio tilt.",
+    "Shelley Moore Capito": "Capito's activity is anchored by the GOOGL cross-party buy and is otherwise modest in volume. The disclosed footprint is narrow but aligned with the cohort's broader technology accumulation.",
+    "Sheldon Whitehouse": "Whitehouse disclosed minimal activity in the window, producing no independent directional signal for the current cycle.",
+    "Thomas Suozzi": "Suozzi's most material disclosure is his role in the AAPL cross-party sell signal. Remaining activity is limited and does not establish a distinct sector tilt.",
+    "Jefferson Shreve": "Shreve's disclosed activity in the window is modest and does not cluster with the cohort's consensus signals.",
+    "Max Miller": "Miller's disclosures in the window are sparse, providing no clear directional signal for the current cycle.",
+    "Robert Bresnahan": "Bresnahan shows limited activity in the window, with no notable contribution to cross-party consensus or conviction signals.",
+    "William Keating": "Keating's activity is highlighted by participation in the four-member GOOGL cross-party buy, the strongest consensus signal of the window. Outside of that, disclosed volume is modest.",
+    "Donald Beyer": "Beyer's disclosed activity is limited and does not establish an independent directional pattern for the current window.",
+    "Deborah Dingell": "Dingell's most notable disclosure is her contribution to the cross-party WAT sell signal. Remaining activity is modest and does not form a broader sector tilt.",
+    "Stephen Cohen": "Cohen disclosed minimal activity during the window; no directional signal can be inferred for the current cycle.",
+    "Richard Larsen": "Larsen's disclosures are sparse in the current window, producing no distinct signal.",
+    "Thomas Tuberville": "Tuberville's activity in the window is limited and does not materially contribute to the cohort's consensus signals.",
+    "James Hill": "Hill's disclosed footprint in the window is modest, with no notable contribution to cross-party signals.",
+    "Michael Collins": "Collins shows limited disclosed activity in the window and no material participation in the cohort's consensus patterns."
+  },
+  "inactive_default": "No trades were disclosed by this member during the 60-day window; no directional signal is available for the current cycle."
+}

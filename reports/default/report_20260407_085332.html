@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Congressional Trade Analysis — Apr 7, 2026</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+    --accent: #4f8ef7; --green: #22c55e; --red: #ef4444;
+    --yellow: #f59e0b; --text: #e2e8f0; --muted: #64748b;
+    --border: #2e3450;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 24px; max-width: 1400px; margin: 0 auto; }
+  h1  { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+  h2  { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+  h3  { font-size: 0.85rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 6px; }
+  .meta   { font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
+  .grid   { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .card   { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .card.highlight { border-color: var(--accent); }
+  .card.warn      { border-color: var(--red); }
+  .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .badge.buy     { background: rgba(34,197,94,0.15);  color: var(--green); }
+  .badge.sell    { background: rgba(239,68,68,0.15);  color: var(--red); }
+  .badge.dem     { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .badge.rep     { background: rgba(239,68,68,0.15);  color: #f87171; }
+  .badge.bullish { background: rgba(34,197,94,0.15);  color: var(--green); }
+  .badge.bearish { background: rgba(239,68,68,0.15);  color: var(--red); }
+  .badge.mixed   { background: rgba(245,158,11,0.15); color: var(--yellow); }
+  .badge.neutral { background: rgba(100,116,139,0.15);color: var(--muted); }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 0.84rem; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--muted); }
+  .stat-val   { font-weight: 600; }
+  .green  { color: var(--green); }
+  .red    { color: var(--red); }
+  .yellow { color: var(--yellow); }
+  .ticker { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; font-size: 0.78rem; font-weight: 700; }
+  .ticker.buy-t    { border-color: rgba(34,197,94,0.45); color: var(--green); }
+  .ticker.sell-t   { border-color: rgba(239,68,68,0.45); color: var(--red); }
+  .ticker.con      { border-color: var(--accent); color: var(--accent); background: rgba(79,142,247,0.08); }
+  .ticker.con-sell { border-color: rgba(239,68,68,0.6); color: var(--red); background: rgba(239,68,68,0.08); }
+  .trade-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .trade-table th { text-align: left; padding: 6px 10px; background: var(--surface2); color: var(--muted); font-weight: 600; font-size: 0.73rem; text-transform: uppercase; }
+  .trade-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .trade-table tr:last-child td { border-bottom: none; }
+  .section-title { font-size: 1.0rem; font-weight: 700; color: var(--accent); margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .alert { background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.3); border-radius: 8px; padding: 14px 16px; font-size: 0.85rem; margin-bottom: 14px; line-height: 1.65; }
+  .alert.red-alert { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.3); }
+  .alert strong { color: var(--accent); }
+  .alert.red-alert strong { color: #f87171; }
+  .member-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .member-name   { font-size: 1.0rem; font-weight: 700; }
+  .no-data { color: var(--muted); font-size: 0.82rem; font-style: italic; }
+  .obs     { font-size: 0.84rem; line-height: 1.7; color: var(--text); }
+  .disclaimer { font-size: 0.75rem; color: var(--muted); margin-top: 32px; padding: 14px; background: var(--surface); border-radius: 8px; line-height: 1.6; }
+  .rank-num { font-size: 1.0rem; font-weight: 800; color: var(--muted); width: 24px; }
+  .star { color: var(--yellow); }
+</style>
+</head>
+<body>
+
+<div class="header"><h1>🏛 Congressional Trade Analysis</h1></div>
+<p class="meta">
+  Window: Jan 7 – Apr 7, 2026 (90 days) &nbsp;|&nbsp;
+  Source: Capitol Trades &nbsp;|&nbsp;
+  Generated: Apr 7, 2026 &nbsp;|&nbsp;
+  Members: Khanna · McCaul · Gottheimer · McCormick · Moore · Fields
+</p>
+
+<div class="section-title">⚡ EXECUTIVE SUMMARY — ACTIONABLE SIGNALS</div>
+<div class="alert "><strong>CONSENSUS BUY — META (Fields D + McCaul R + Khanna D, cross-party)</strong><br>Three members across both parties accumulated Meta, anchored by Fields' ~$175K position; combined disclosed value ~$274K.</div>
+<div class="alert "><strong>CONSENSUS BUY — PEAK (McCaul R + Khanna D, cross-party)</strong><br>McCaul placed a single ~$175K buy in Healthpeak; Khanna added a smaller position.</div>
+<div class="alert "><strong>CONSENSUS BUY — NFLX (Fields D + McCaul R, cross-party)</strong><br>Fields ~$75K, McCaul layered in four separate buys.</div>
+<div class="alert red-alert"><strong>CONSENSUS SELL — INTU (Khanna D + McCaul R + Gottheimer D, cross-party)</strong><br>Three-member, two-party exit from Intuit — the cleanest bearish signal in the dataset.</div>
+<div class="alert red-alert"><strong>CONSENSUS SELL — UBER, HUM, AMZN, GOOGL, CVS, WDAY (cross-party)</strong><br>A consistent rotation out of mega-cap consumer/tech and managed-care names, led by McCaul and Khanna in tandem.</div>
+<div class="alert "><strong>CONVICTION — McCormick GS ~$1.23M (7 buys)</strong><br>Senator McCormick — former Goldman Sachs CEO — added to GS seven times for ~$1.23M while also disclosing ~$3M in financials sales. Highest single-name conviction in the file.</div>
+<div class="alert "><strong>MIXED SIGNAL — MSFT, GOOGL, WDAY, UNH, V</strong><br>Same names appear on both buy and sell sides across different members; treat as conflicted rather than directional.</div>
+
+
+<div class="section-title">📊 Member Overview</div>
+<div class="card" style="margin-bottom:24px">
+  <table class="trade-table">
+    
+<thead><tr>
+  <th>Member</th><th>Party</th><th>Chamber</th>
+  <th>Total Trades</th><th>Public Equity</th>
+  <th>Buys</th><th>Sells</th>
+  <th>Est. Buy Vol</th><th>Est. Sell Vol</th><th>Bias</th>
+</tr></thead>
+
+    <tbody><tr><td><strong>Rohit Khanna</strong></td><td><span class='badge dem'>D</span></td><td>House · CA</td><td>287</td><td>266</td><td class='green'>184</td><td class='red'>82</td><td class='green'>~$2.88M</td><td class='red'>~$1.14M</td><td><span class='badge bullish'>Bullish</span></td></tr><tr><td><strong>Michael McCaul</strong></td><td><span class='badge rep'>R</span></td><td>House · TX</td><td>170</td><td>170</td><td class='green'>58</td><td class='red'>58</td><td class='green'>~$1.52M</td><td class='red'>~$1.74M</td><td><span class='badge mixed'>Mixed</span></td></tr><tr><td><strong>Joshua Gottheimer</strong></td><td><span class='badge dem'>D</span></td><td>House · NJ</td><td>22</td><td>22</td><td class='green'>11</td><td class='red'>11</td><td class='green'>~$88K</td><td class='red'>~$88K</td><td><span class='badge mixed'>Mixed</span></td></tr><tr><td><strong>David McCormick</strong></td><td><span class='badge rep'>R</span></td><td>Senate · PA</td><td>55</td><td>8</td><td class='green'>7</td><td class='red'>1</td><td class='green'>~$1.23M</td><td class='red'>~$3.00M</td><td><span class='badge bullish'>Strongly Bullish</span></td></tr><tr><td><strong>Timothy Moore</strong></td><td><span class='badge rep'>R</span></td><td>House · NC</td><td>18</td><td>14</td><td class='green'>10</td><td class='red'>4</td><td class='green'>~$318K</td><td class='red'>~$106K</td><td><span class='badge bullish'>Bullish</span></td></tr><tr><td><strong>Cleo Fields</strong></td><td><span class='badge dem'>D</span></td><td>House · LA</td><td>14</td><td>14</td><td class='green'>14</td><td class='red'>0</td><td class='green'>~$1.07M</td><td class='red'>$0</td><td><span class='badge bullish'>Strongly Bullish</span></td></tr></tbody>
+  </table>
+</div>
+
+<div class="section-title">📋 Ranked Trade Ideas</div>
+<div class="card" style="margin-bottom:24px">
+  <table class="trade-table">
+    
+<thead><tr>
+  <th>#</th><th>Ticker</th><th>Action</th>
+  <th>Strength</th><th>Members</th><th>Rationale</th>
+</tr></thead>
+
+    <tbody><tr><td><span class='rank-num'>1</span></td><td><span class='ticker con'>META</span></td><td><span class='badge buy'>BUY</span></td><td class='green'><span class='star'>★★★</span> Very High</td><td>Fields, McCaul, Khanna</td><td>Three-member cross-party accumulation; anchored by Fields' ~$175K position. Strongest consensus buy in the window.</td></tr><tr><td><span class='rank-num'>2</span></td><td><span class='ticker con-sell'>INTU</span></td><td><span class='badge sell'>SELL</span></td><td class='red'><span class='star'>★★★</span> Very High</td><td>Khanna, McCaul, Gottheimer</td><td>Three-member cross-party exit from Intuit. Highest-conviction bearish signal.</td></tr><tr><td><span class='rank-num'>3</span></td><td><span class='ticker buy-t'>GS</span></td><td><span class='badge buy'>BUY</span></td><td class='green'><span class='star'>★★★</span> Very High</td><td>McCormick</td><td>Seven repeated buys totaling ~$1.23M from a former Goldman CEO — high domain conviction in a single-member signal.</td></tr><tr><td><span class='rank-num'>4</span></td><td><span class='ticker con'>PEAK</span></td><td><span class='badge buy'>BUY</span></td><td class='green'><span class='star'>★★☆</span> High</td><td>McCaul, Khanna</td><td>Cross-party REIT buy with a single ~$175K McCaul position driving most of the value.</td></tr><tr><td><span class='rank-num'>5</span></td><td><span class='ticker con'>NFLX</span></td><td><span class='badge buy'>BUY</span></td><td class='green'><span class='star'>★★☆</span> High</td><td>Fields, McCaul</td><td>Cross-party accumulation; McCaul added across four disclosures, Fields placed a sizable ~$75K trade.</td></tr><tr><td><span class='rank-num'>6</span></td><td><span class='ticker con-sell'>UBER</span></td><td><span class='badge sell'>SELL</span></td><td class='red'><span class='star'>★★☆</span> High</td><td>McCaul, Khanna, Gottheimer</td><td>Three-member cross-party trim consistent with the broader rotation out of mega-cap consumer-tech.</td></tr><tr><td><span class='rank-num'>7</span></td><td><span class='ticker buy-t'>GOOGL</span></td><td><span class='badge buy'>BUY</span></td><td class='green'><span class='star'>★★☆</span> High</td><td>Fields</td><td>Three repeated buys totaling ~$358K. Khanna and McCaul disclosed sells in GOOGL — treat as mixed but Fields' size is meaningful.</td></tr><tr><td><span class='rank-num'>8</span></td><td><span class='ticker buy-t'>FCN</span></td><td><span class='badge buy'>BUY</span></td><td class='green'><span class='star'>★★☆</span> High</td><td>McCaul</td><td>Three repeated buys (~$240K) of FTI Consulting — methodical accumulation in a niche financial-advisory name.</td></tr><tr><td><span class='rank-num'>9</span></td><td><span class='ticker con-sell'>HUM</span></td><td><span class='badge sell'>SELL</span></td><td class='red'><span class='star'>★★☆</span> High</td><td>McCaul, Khanna</td><td>Cross-party exit from Humana; McCaul's leg is ~$75K. Pairs with the broader managed-care trim.</td></tr><tr><td><span class='rank-num'>10</span></td><td><span class='ticker buy-t'>LGIH</span></td><td><span class='badge buy'>BUY</span></td><td class='green'><span class='star'>★★☆</span> High</td><td>Moore</td><td>Four sequential buys of LGI Homes (~$172K) over a single week — concentrated single-member conviction in homebuilders.</td></tr></tbody>
+  </table>
+</div>
+
+
+<div class="section-title">🔄 Sector Rotation</div>
+<div class='grid-3'><div class='card'><h3>Communication Services</h3><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$932K</span></div><div class='stat-row'><span class='stat-label'>Sell Volume</span><span class='stat-val red'>~$219K</span></div><div class='stat-row'><span class='stat-label'>Net Bias</span><span class='stat-val'>Accumulating</span></div></div><div class='card'><h3>Information Technology</h3><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$1.33M</span></div><div class='stat-row'><span class='stat-label'>Sell Volume</span><span class='stat-val red'>~$718K</span></div><div class='stat-row'><span class='stat-label'>Net Bias</span><span class='stat-val'>Accumulating</span></div></div><div class='card'><h3>Consumer Discretionary</h3><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$644K</span></div><div class='stat-row'><span class='stat-label'>Sell Volume</span><span class='stat-val red'>~$291K</span></div><div class='stat-row'><span class='stat-label'>Net Bias</span><span class='stat-val'>Accumulating</span></div></div><div class='card'><h3>Materials</h3><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$338K</span></div><div class='stat-row'><span class='stat-label'>Sell Volume</span><span class='stat-val red'>~$112K</span></div><div class='stat-row'><span class='stat-label'>Net Bias</span><span class='stat-val'>Accumulating</span></div></div><div class='card'><h3>Industrials</h3><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$538K</span></div><div class='stat-row'><span class='stat-label'>Sell Volume</span><span class='stat-val red'>~$481K</span></div><div class='stat-row'><span class='stat-label'>Net Bias</span><span class='stat-val'>Accumulating</span></div></div><div class='card'><h3>Financials</h3><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$2.41M</span></div><div class='stat-row'><span class='stat-label'>Sell Volume</span><span class='stat-val red'>~$3.21M</span></div><div class='stat-row'><span class='stat-label'>Net Bias</span><span class='stat-val'>Distributing</span></div></div><div class='card'><h3>Health Care</h3><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$496K</span></div><div class='stat-row'><span class='stat-label'>Sell Volume</span><span class='stat-val red'>~$525K</span></div><div class='stat-row'><span class='stat-label'>Net Bias</span><span class='stat-val'>Distributing</span></div></div><div class='card'><h3>Consumer Staples</h3><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$136K</span></div><div class='stat-row'><span class='stat-label'>Sell Volume</span><span class='stat-val red'>~$266K</span></div><div class='stat-row'><span class='stat-label'>Net Bias</span><span class='stat-val'>Distributing</span></div></div></div>
+
+
+<div class="section-title">👤 Member Deep Dives</div>
+<div class='section-title'>👤 Rohit Khanna — D · House · CA</div><div class='grid'><div class='card'><h3>Stats</h3><div class='stat-row'><span class='stat-label'>Public Trades</span><span class='stat-val'>287</span></div><div class='stat-row'><span class='stat-label'>Buy / Sell</span><span class='stat-val green'>184</span> / <span class='stat-val red'>82</span></div><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$2.88M</span></div><div class='stat-row'><span class='stat-label'>Top Sector</span><span class='stat-val'>Financials</span></div></div><div class='card'><h3>Top Buys</h3><span class='ticker buy-t'>ACI</span> <span class='ticker buy-t'>IT</span> <span class='ticker buy-t'>MCHP</span> <span class='ticker buy-t'>BRK/B</span> <span class='ticker buy-t'>JPM</span></div><div class='card' style='grid-column: 1/-1'><h3>Observation</h3><p class='obs'>Highest activity in the dataset and a clearly bullish posture (69% buys). Concentration in Financials and Information Technology suggests a broad pro-cyclical stance. Filing lag averages roughly three weeks, so signals are timely but not real-time.</p></div></div><div class='section-title'>👤 Michael McCaul — R · House · TX</div><div class='grid'><div class='card'><h3>Stats</h3><div class='stat-row'><span class='stat-label'>Public Trades</span><span class='stat-val'>170</span></div><div class='stat-row'><span class='stat-label'>Buy / Sell</span><span class='stat-val green'>58</span> / <span class='stat-val red'>58</span></div><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$1.52M</span></div><div class='stat-row'><span class='stat-label'>Top Sector</span><span class='stat-val'>Information Technology</span></div></div><div class='card'><h3>Notable Buys</h3><span class='ticker buy-t'>FCN</span> <span class='ticker buy-t'>PEAK</span> <span class='ticker buy-t'>IFF</span> <span class='ticker buy-t'>SAP</span> <span class='ticker buy-t'>NFLX</span></div><div class='card' style='grid-column: 1/-1'><h3>Observation</h3><p class='obs'>Balanced flow (1:1 buy/sell). Activity is best read as a portfolio rebalance rather than a directional call: trimming Health Care and Consumer Staples while accumulating Materials and select Communication Services.</p></div></div><div class='section-title'>👤 Joshua Gottheimer — D · House · NJ</div><div class='grid'><div class='card'><h3>Stats</h3><div class='stat-row'><span class='stat-label'>Public Trades</span><span class='stat-val'>22</span></div><div class='stat-row'><span class='stat-label'>Buy / Sell</span><span class='stat-val green'>11</span> / <span class='stat-val red'>11</span></div><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$88K</span></div><div class='stat-row'><span class='stat-label'>Top Sector</span><span class='stat-val'>Industrials</span></div></div><div class='card'><h3>Top Activity</h3><span class='ticker sell-t'>INTU</span> <span class='ticker sell-t'>UBER</span> <span class='ticker buy-t'>ICE</span></div><div class='card' style='grid-column: 1/-1'><h3>Observation</h3><p class='obs'>Low activity and small position sizes. Most useful as a confirming voice on consensus signals — Gottheimer appears on the INTU and UBER cross-party sells and the ICE buy.</p></div></div><div class='section-title'>👤 David McCormick — R · Senate · PA</div><div class='grid'><div class='card'><h3>Stats</h3><div class='stat-row'><span class='stat-label'>Public Trades</span><span class='stat-val'>55</span></div><div class='stat-row'><span class='stat-label'>Buy / Sell</span><span class='stat-val green'>7</span> / <span class='stat-val red'>1</span></div><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$1.23M</span></div><div class='stat-row'><span class='stat-label'>Top Sector</span><span class='stat-val'>Financials (100%)</span></div></div><div class='card'><h3>Top Buys</h3><span class='ticker buy-t'>GS</span></div><div class='card' style='grid-column: 1/-1'><h3>Observation</h3><p class='obs'>Activity is concentrated entirely in Financials. Seven sequential GS buys totaling ~$1.23M from a former Goldman CEO is the highest single-name domain-conviction signal in the dataset. Disclosed sales in financials (~$3M) suggest portfolio rotation rather than de-risking.</p></div></div><div class='section-title'>👤 Timothy Moore — R · House · NC</div><div class='grid'><div class='card'><h3>Stats</h3><div class='stat-row'><span class='stat-label'>Public Trades</span><span class='stat-val'>18</span></div><div class='stat-row'><span class='stat-label'>Buy / Sell</span><span class='stat-val green'>10</span> / <span class='stat-val red'>4</span></div><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$318K</span></div><div class='stat-row'><span class='stat-label'>Top Sector</span><span class='stat-val'>Consumer Discretionary</span></div></div><div class='card'><h3>Top Buys</h3><span class='ticker buy-t'>LGIH</span> <span class='ticker buy-t'>T</span></div><div class='card' style='grid-column: 1/-1'><h3>Observation</h3><p class='obs'>Most of Moore's disclosed buy volume is concentrated in homebuilder LGI Homes — four sequential buys in the same week. A focused, single-name thesis.</p></div></div><div class='section-title'>👤 Cleo Fields — D · House · LA</div><div class='grid'><div class='card'><h3>Stats</h3><div class='stat-row'><span class='stat-label'>Public Trades</span><span class='stat-val'>14</span></div><div class='stat-row'><span class='stat-label'>Buy / Sell</span><span class='stat-val green'>14</span> / <span class='stat-val red'>0</span></div><div class='stat-row'><span class='stat-label'>Buy Volume</span><span class='stat-val green'>~$1.07M</span></div><div class='stat-row'><span class='stat-label'>Top Sector</span><span class='stat-val'>Communication Services</span></div></div><div class='card'><h3>Top Buys</h3><span class='ticker buy-t'>GOOGL</span> <span class='ticker buy-t'>META</span> <span class='ticker buy-t'>MU</span> <span class='ticker buy-t'>NFLX</span> <span class='ticker buy-t'>LRCX</span></div><div class='card' style='grid-column: 1/-1'><h3>Observation</h3><p class='obs'>Pure-buy posture across the window (zero disclosed sells), concentrated in mega-cap Communication Services and semiconductors. Several positions are at the upper disclosure bracket (~$175K), making Fields the largest individual contributor to the META and MU consensus signals.</p></div></div>
+
+<p class="disclaimer">This report is generated from public disclosure data available on capitoltrades.com. Congressional stock trades are reported under the STOCK Act and reflect trades by members and their immediate families. This is not investment advice. Trade signals represent pattern observations only and carry no guarantee of future performance. Always conduct independent research before making investment decisions.</p>
+</body>
+</html>

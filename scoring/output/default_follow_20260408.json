@@ -1,0 +1,75 @@
+{
+  "generated": "2026-04-08",
+  "window_days": 365,
+  "short_window_days": 180,
+  "min_trades": 5,
+  "top_n": 6,
+  "recommended": [
+    {
+      "bioguideId": "F000110",
+      "fullName": "Cleo Fields",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "LA",
+      "composite": 0.5297,
+      "rank_long": 1,
+      "rank_short": 5,
+      "trade_count": 221
+    },
+    {
+      "bioguideId": "M001236",
+      "fullName": "Timothy Moore",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "NC",
+      "composite": 0.5049,
+      "rank_long": 2,
+      "rank_short": 1,
+      "trade_count": 139
+    },
+    {
+      "bioguideId": "K000389",
+      "fullName": "Rohit Khanna",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "CA",
+      "composite": 0.3324,
+      "rank_long": 3,
+      "rank_short": 2,
+      "trade_count": 287
+    },
+    {
+      "bioguideId": "M001157",
+      "fullName": "Michael McCaul",
+      "party": "Republican",
+      "chamber": "House",
+      "state": "TX",
+      "composite": -0.1566,
+      "rank_long": 4,
+      "rank_short": 3,
+      "trade_count": 534
+    },
+    {
+      "bioguideId": "M001243",
+      "fullName": "David McCormick",
+      "party": "Republican",
+      "chamber": "Senate",
+      "state": "PA",
+      "composite": -0.1574,
+      "rank_long": 5,
+      "rank_short": 6,
+      "trade_count": 154
+    },
+    {
+      "bioguideId": "G000583",
+      "fullName": "Joshua Gottheimer",
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "NJ",
+      "composite": -1.053,
+      "rank_long": 6,
+      "rank_short": 4,
+      "trade_count": 181
+    }
+  ]
+}

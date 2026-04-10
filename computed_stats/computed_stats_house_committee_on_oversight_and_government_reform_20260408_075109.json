@@ -1,0 +1,1873 @@
+{
+  "computed_at": "2026-04-08T07:51:09",
+  "source_metadata": {
+    "generated": "2026-04-08",
+    "window_days": 60,
+    "cutoff_date": "2026-02-07",
+    "source": "capitoltrades.com",
+    "members_tracked": 46,
+    "committee": {
+      "name": "House Committee on Oversight and Government Reform",
+      "thomas_id": "HSGO"
+    }
+  },
+  "summary": {
+    "members": 46,
+    "total_trades": 90,
+    "total_buy_volume": 1378500,
+    "total_sell_volume": 104000,
+    "total_buy_vol_fmt": "~$1.38M",
+    "total_sell_vol_fmt": "~$104K",
+    "consensus_buy_signals": 2,
+    "cross_party_buys": 2,
+    "consensus_sell_signals": 0,
+    "cross_party_sells": 0,
+    "conviction_patterns": 2
+  },
+  "member_stats": {
+    "James Comer": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "KY",
+      "bioguideId": "C001108",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Robert Garcia": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "CA",
+      "bioguideId": "G000598",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "James Jordan": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "OH",
+      "bioguideId": "J000289",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Eleanor Holmes Norton": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "WA",
+      "bioguideId": "N000147",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Michael Turner": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "OH",
+      "bioguideId": "T000463",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Stephen Lynch": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MA",
+      "bioguideId": "L000562",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Paul Gosar": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "AZ",
+      "bioguideId": "G000565",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Raja Krishnamoorthi": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "IL",
+      "bioguideId": "K000391",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Virginia Foxx": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "NC",
+      "bioguideId": "F000450",
+      "total_trades": 1,
+      "equity_trades": 1,
+      "buys": 1,
+      "sells": 0,
+      "buy_vol": 8000,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$8K",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 100.0,
+      "bias": "Strongly Bullish",
+      "avg_filing_lag": 17,
+      "most_recent_trade": "2026-02-13",
+      "top_buy_tickers": [
+        {
+          "ticker": "ARLP",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-13"
+          ]
+        }
+      ],
+      "top_sell_tickers": [],
+      "sector_breakdown": [
+        {
+          "sector": "energy",
+          "buy": 8000,
+          "sell": 0
+        }
+      ]
+    },
+    "Rohit Khanna": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "CA",
+      "bioguideId": "K000389",
+      "total_trades": 80,
+      "equity_trades": 75,
+      "buys": 67,
+      "sells": 8,
+      "buy_vol": 1338500,
+      "sell_vol": 64000,
+      "buy_vol_fmt": "~$1.34M",
+      "sell_vol_fmt": "~$64K",
+      "pct_buys": 89.3,
+      "bias": "Strongly Bullish",
+      "avg_filing_lag": 15,
+      "most_recent_trade": "2026-02-25",
+      "top_buy_tickers": [
+        {
+          "ticker": "JPM",
+          "count": 1,
+          "value": 175000,
+          "dates": [
+            "2026-02-19"
+          ]
+        },
+        {
+          "ticker": "RY",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "BRK/B",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "HD",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "CM",
+          "count": 1,
+          "value": 75000,
+          "dates": [
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "MA",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "NOW",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "ABT",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "ADBE",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "SYK",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "T",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        },
+        {
+          "ticker": "AJG",
+          "count": 1,
+          "value": 32500,
+          "dates": [
+            "2026-02-24"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "AXTA",
+          "count": 3,
+          "value": 24000,
+          "dates": [
+            "2026-02-23",
+            "2026-02-17",
+            "2026-02-12"
+          ]
+        },
+        {
+          "ticker": "TFC",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-25"
+          ]
+        },
+        {
+          "ticker": "ZBH",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-17"
+          ]
+        },
+        {
+          "ticker": "MODG",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-12"
+          ]
+        },
+        {
+          "ticker": "NDAQ",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-11"
+          ]
+        },
+        {
+          "ticker": "GPK",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-02-09"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "financials",
+          "buy": 650500,
+          "sell": 16000
+        },
+        {
+          "sector": "information-technology",
+          "buy": 202000,
+          "sell": 0
+        },
+        {
+          "sector": "health-care",
+          "buy": 154000,
+          "sell": 8000
+        },
+        {
+          "sector": "consumer-discretionary",
+          "buy": 107000,
+          "sell": 8000
+        },
+        {
+          "sector": "industrials",
+          "buy": 96500,
+          "sell": 0
+        },
+        {
+          "sector": "communication-services",
+          "buy": 72500,
+          "sell": 0
+        },
+        {
+          "sector": "consumer-staples",
+          "buy": 24000,
+          "sell": 0
+        },
+        {
+          "sector": "real-estate",
+          "buy": 16000,
+          "sell": 0
+        },
+        {
+          "sector": "materials",
+          "buy": 8000,
+          "sell": 32000
+        },
+        {
+          "sector": "utilities",
+          "buy": 8000,
+          "sell": 0
+        }
+      ]
+    },
+    "Glenn Grothman": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "WI",
+      "bioguideId": "G000576",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Kweisi Mfume": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MD",
+      "bioguideId": "M000687",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Michael Cloud": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "TX",
+      "bioguideId": "C001115",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Shontel Brown": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "OH",
+      "bioguideId": "B001313",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Gary Palmer": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "AL",
+      "bioguideId": "P000609",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Melanie Stansbury": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "NM",
+      "bioguideId": "S001218",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Clay Higgins": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "LA",
+      "bioguideId": "H001077",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Maxwell Frost": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "FL",
+      "bioguideId": "F000476",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Peter Sessions": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "TX",
+      "bioguideId": "S000250",
+      "total_trades": 1,
+      "equity_trades": 1,
+      "buys": 0,
+      "sells": 1,
+      "buy_vol": 0,
+      "sell_vol": 8000,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$8K",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": 0,
+      "most_recent_trade": "2026-03-09",
+      "top_buy_tickers": [],
+      "top_sell_tickers": [
+        {
+          "ticker": "VZ",
+          "count": 1,
+          "value": 8000,
+          "dates": [
+            "2026-03-09"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "communication-services",
+          "buy": 0,
+          "sell": 8000
+        }
+      ]
+    },
+    "Summer Lee": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "PA",
+      "bioguideId": "L000602",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Andy Biggs": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "AZ",
+      "bioguideId": "B001302",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Gregorio Casar": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "TX",
+      "bioguideId": "C001131",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Nancy Mace": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "SC",
+      "bioguideId": "M000194",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Jasmine Crockett": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "TX",
+      "bioguideId": "C001130",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Patrick Fallon": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "TX",
+      "bioguideId": "F000246",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Emily Randall": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "WA",
+      "bioguideId": "R000621",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Byron Donalds": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "FL",
+      "bioguideId": "D000032",
+      "total_trades": 8,
+      "equity_trades": 8,
+      "buys": 4,
+      "sells": 4,
+      "buy_vol": 32000,
+      "sell_vol": 32000,
+      "buy_vol_fmt": "~$32K",
+      "sell_vol_fmt": "~$32K",
+      "pct_buys": 50.0,
+      "bias": "Mixed",
+      "avg_filing_lag": 24,
+      "most_recent_trade": "2026-02-10",
+      "top_buy_tickers": [
+        {
+          "ticker": "NOW",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-10",
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "TTD",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-10",
+            "2026-02-10"
+          ]
+        }
+      ],
+      "top_sell_tickers": [
+        {
+          "ticker": "BRO",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-10",
+            "2026-02-10"
+          ]
+        },
+        {
+          "ticker": "PYPL",
+          "count": 2,
+          "value": 16000,
+          "dates": [
+            "2026-02-10",
+            "2026-02-10"
+          ]
+        }
+      ],
+      "sector_breakdown": [
+        {
+          "sector": "information-technology",
+          "buy": 16000,
+          "sell": 0
+        },
+        {
+          "sector": "communication-services",
+          "buy": 16000,
+          "sell": 0
+        },
+        {
+          "sector": "financials",
+          "buy": 0,
+          "sell": 32000
+        }
+      ]
+    },
+    "Suhas Subramanyam": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "VA",
+      "bioguideId": "S001230",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Scott Perry": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "PA",
+      "bioguideId": "P000605",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Yassamin Ansari": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "AZ",
+      "bioguideId": "A000381",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "William Timmons": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "SC",
+      "bioguideId": "T000480",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Wesley Bell": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MO",
+      "bioguideId": "B001324",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Tim Burchett": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "TN",
+      "bioguideId": "B001309",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Lateefah Simon": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "CA",
+      "bioguideId": "S001231",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Lauren Boebert": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "CO",
+      "bioguideId": "B000825",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "David Min": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "CA",
+      "bioguideId": "M001241",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Anna Paulina Luna": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "FL",
+      "bioguideId": "L000596",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "James Walkinshaw": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "VA",
+      "bioguideId": "W000831",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Nicholas Langworthy": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "NY",
+      "bioguideId": "L000600",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Ayanna Pressley": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MA",
+      "bioguideId": "P000617",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Eric Burlison": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "MO",
+      "bioguideId": "B001316",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Rashida Tlaib": {
+      "party": "Democrat",
+      "chamber": "House",
+      "state": "MI",
+      "bioguideId": "T000481",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Eli Crane": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "AZ",
+      "bioguideId": "C001132",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Brian Jack": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "GA",
+      "bioguideId": "J000311",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "John McGuire": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "VA",
+      "bioguideId": "M001239",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    },
+    "Brandon Gill": {
+      "party": "Republican",
+      "chamber": "House",
+      "state": "TX",
+      "bioguideId": "G000603",
+      "total_trades": 0,
+      "equity_trades": 0,
+      "buys": 0,
+      "sells": 0,
+      "buy_vol": 0,
+      "sell_vol": 0,
+      "buy_vol_fmt": "~$0",
+      "sell_vol_fmt": "~$0",
+      "pct_buys": 0.0,
+      "bias": "Bearish",
+      "avg_filing_lag": null,
+      "most_recent_trade": null,
+      "top_buy_tickers": [],
+      "top_sell_tickers": [],
+      "sector_breakdown": []
+    }
+  },
+  "consensus": {
+    "buys": [
+      {
+        "ticker": "NOW",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 48500,
+        "total_value_fmt": "~$48K",
+        "members": [
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 32500,
+            "dates": [
+              "2026-02-24"
+            ]
+          },
+          {
+            "name": "Byron Donalds",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-02-10",
+              "2026-02-10"
+            ]
+          }
+        ]
+      },
+      {
+        "ticker": "TTD",
+        "cross_party": true,
+        "member_count": 2,
+        "total_count": 3,
+        "total_value": 24000,
+        "total_value_fmt": "~$24K",
+        "members": [
+          {
+            "name": "Byron Donalds",
+            "party": "Republican",
+            "count": 2,
+            "value": 16000,
+            "dates": [
+              "2026-02-10",
+              "2026-02-10"
+            ]
+          },
+          {
+            "name": "Rohit Khanna",
+            "party": "Democrat",
+            "count": 1,
+            "value": 8000,
+            "dates": [
+              "2026-02-24"
+            ]
+          }
+        ]
+      }
+    ],
+    "sells": [],
+    "mixed": [
+      {
+        "ticker": "NDAQ",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Khanna"
+        ],
+        "seller_parties": [
+          "D"
+        ],
+        "cross_party_conflict": true
+      },
+      {
+        "ticker": "PYPL",
+        "buyers": [
+          "Khanna"
+        ],
+        "buyer_parties": [
+          "D"
+        ],
+        "sellers": [
+          "Donalds"
+        ],
+        "seller_parties": [
+          "R"
+        ],
+        "cross_party_conflict": false
+      }
+    ]
+  },
+  "conviction": [
+    {
+      "type": "large_position",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "JPM",
+      "trade_type": "BUY",
+      "value": 175000,
+      "value_fmt": "~$175K",
+      "txDate": "2026-02-19",
+      "price": null
+    },
+    {
+      "type": "repeated_sell",
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AXTA",
+      "count": 3,
+      "total_value": 24000,
+      "value_fmt": "~$24K",
+      "dates": [
+        "2026-02-12",
+        "2026-02-17",
+        "2026-02-23"
+      ]
+    }
+  ],
+  "sector_totals": [
+    {
+      "sector": "financials",
+      "buy_vol": 650500,
+      "sell_vol": 48000,
+      "net": 602500,
+      "buy_vol_fmt": "~$650K",
+      "sell_vol_fmt": "~$48K",
+      "net_fmt": "~$602K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": [
+        "Donalds",
+        "Khanna"
+      ]
+    },
+    {
+      "sector": "information-technology",
+      "buy_vol": 218000,
+      "sell_vol": 0,
+      "net": 218000,
+      "buy_vol_fmt": "~$218K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$218K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Donalds",
+        "Khanna"
+      ],
+      "members_selling": []
+    },
+    {
+      "sector": "health-care",
+      "buy_vol": 154000,
+      "sell_vol": 8000,
+      "net": 146000,
+      "buy_vol_fmt": "~$154K",
+      "sell_vol_fmt": "~$8K",
+      "net_fmt": "~$146K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": [
+        "Khanna"
+      ]
+    },
+    {
+      "sector": "consumer-discretionary",
+      "buy_vol": 107000,
+      "sell_vol": 8000,
+      "net": 99000,
+      "buy_vol_fmt": "~$107K",
+      "sell_vol_fmt": "~$8K",
+      "net_fmt": "~$99K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": [
+        "Khanna"
+      ]
+    },
+    {
+      "sector": "industrials",
+      "buy_vol": 96500,
+      "sell_vol": 0,
+      "net": 96500,
+      "buy_vol_fmt": "~$96K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$96K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": []
+    },
+    {
+      "sector": "communication-services",
+      "buy_vol": 88500,
+      "sell_vol": 8000,
+      "net": 80500,
+      "buy_vol_fmt": "~$88K",
+      "sell_vol_fmt": "~$8K",
+      "net_fmt": "~$80K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Donalds",
+        "Khanna"
+      ],
+      "members_selling": [
+        "Sessions"
+      ]
+    },
+    {
+      "sector": "consumer-staples",
+      "buy_vol": 24000,
+      "sell_vol": 0,
+      "net": 24000,
+      "buy_vol_fmt": "~$24K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$24K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": []
+    },
+    {
+      "sector": "real-estate",
+      "buy_vol": 16000,
+      "sell_vol": 0,
+      "net": 16000,
+      "buy_vol_fmt": "~$16K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$16K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": []
+    },
+    {
+      "sector": "energy",
+      "buy_vol": 8000,
+      "sell_vol": 0,
+      "net": 8000,
+      "buy_vol_fmt": "~$8K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$8K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Foxx"
+      ],
+      "members_selling": []
+    },
+    {
+      "sector": "materials",
+      "buy_vol": 8000,
+      "sell_vol": 32000,
+      "net": -24000,
+      "buy_vol_fmt": "~$8K",
+      "sell_vol_fmt": "~$32K",
+      "net_fmt": "~$24K",
+      "net_direction": "Distributing",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": [
+        "Khanna"
+      ]
+    },
+    {
+      "sector": "utilities",
+      "buy_vol": 8000,
+      "sell_vol": 0,
+      "net": 8000,
+      "buy_vol_fmt": "~$8K",
+      "sell_vol_fmt": "~$0",
+      "net_fmt": "~$8K",
+      "net_direction": "Accumulating",
+      "members_buying": [
+        "Khanna"
+      ],
+      "members_selling": []
+    }
+  ],
+  "recent_trades": [
+    {
+      "member": "Peter Sessions",
+      "party": "Republican",
+      "ticker": "VZ:US",
+      "type": "SELL",
+      "txDate": "2026-03-09",
+      "published": "2026-03-10",
+      "value": 8000,
+      "price": 50.45,
+      "sector": "communication-services",
+      "filedAfterDays": 0
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "TFC:US",
+      "type": "SELL",
+      "txDate": "2026-02-25",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 50.57,
+      "sector": "financials",
+      "filedAfterDays": 12
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "RY:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 75000,
+      "price": null,
+      "sector": "financials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MET:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 75.34,
+      "sector": "financials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "BRK/B:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 75000,
+      "price": 494.51,
+      "sector": "financials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "HD:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 75000,
+      "price": 384.48,
+      "sector": "consumer-discretionary",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MA:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 498,
+      "sector": "financials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "NOW:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 102.49,
+      "sector": "information-technology",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "ABT:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 114.58,
+      "sector": "health-care",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "ADBE:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 255.17,
+      "sector": "information-technology",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "SYK:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 381.33,
+      "sector": "health-care",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "T:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 28.35,
+      "sector": "communication-services",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AJG:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 215.98,
+      "sector": "financials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "PAYX:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 88.48,
+      "sector": "industrials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "APP:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 393.22,
+      "sector": "information-technology",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AMGN:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 382.87,
+      "sector": "health-care",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "NDAQ:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 81.11,
+      "sector": "financials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "MCHP:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 75.93,
+      "sector": "information-technology",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "ELV:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 327.14,
+      "sector": "health-care",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "BLK:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 1081.05,
+      "sector": "financials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "AMP:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 32500,
+      "price": 466.24,
+      "sector": "financials",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "IBM:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 229.32,
+      "sector": "information-technology",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "TMUS:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 221.98,
+      "sector": "communication-services",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "CDNS:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 290.63,
+      "sector": "information-technology",
+      "filedAfterDays": 13
+    },
+    {
+      "member": "Rohit Khanna",
+      "party": "Democrat",
+      "ticker": "CI:US",
+      "type": "BUY",
+      "txDate": "2026-02-24",
+      "published": "2026-03-12",
+      "value": 8000,
+      "price": 281,
+      "sector": "health-care",
+      "filedAfterDays": 13
+    }
+  ]
+}
