@@ -54,19 +54,31 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Extract skeleton path from digest
+        if: steps.pipeline.outputs.skip != 'true'
+        id: skeleton
+        run: |
+          SKELETON=$(grep "PIPELINE_READY:" digest.txt | sed 's/.*skeleton=//' | sed 's/ .*//')
+          SLUG=$(grep "PIPELINE_READY:" digest.txt | sed 's/.*slug=//' | tr -d '[:space:]')
+          echo "path=$SKELETON" >> "$GITHUB_OUTPUT"
+          echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
+          echo "Skeleton: $SKELETON  Slug: $SLUG"
+
       - name: Generate fills via Claude API
         if: steps.pipeline.outputs.skip != 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          python3 auto_fill.py --digest digest.txt --out fills.json
+          python3 auto_fill.py \
+            --digest digest.txt \
+            --skeleton "${{ steps.skeleton.outputs.path }}" \
+            --out fills.json
 
-      - name: Apply fills to skeleton
+      - name: Apply fills to skeleton and generate report
         if: steps.pipeline.outputs.skip != 'true'
         run: |
-          # Extract skeleton path from digest
-          SKELETON=$(grep "PIPELINE_READY:" digest.txt | sed 's/.*skeleton=//' | sed 's/ .*//')
-          SLUG=$(grep "PIPELINE_READY:" digest.txt | sed 's/.*slug=//' | tr -d '[:space:]')
+          SKELETON="${{ steps.skeleton.outputs.path }}"
+          SLUG="${{ steps.skeleton.outputs.slug }}"
 
           if [ "$SLUG" = "default" ] || [ -z "$SLUG" ]; then
             python3 fill_skeleton.py \
