@@ -22,11 +22,11 @@ Strict rules for writing it:
 
 **2026-04-21 (session 1)**
 
-- Scaffolded the multi-session handoff framework (commit 4ff0e14) and refined `design/soft-delete-convention.md` with the pre-op `.git/*.lock` sweep (commit 96ae88f).
-- Filed #1 — pytest suite + CI workflow (commit d7c2c33). `[ ]` not started; design-note questions in the item body.
-- Added `design/project-framing.md` and filed #2–#11 from a prior agent's refactoring note (commit 05e6cc9). All `[ ]`; design-note questions embedded in each item.
-- Retired the congress-trades SKILL.md and the canonical-SKILL memory (this commit); pipeline now runs exclusively in GHA, so local-invocation runbook is gone. Tom must uninstall the congress-trades skill from the Cowork Skills UI to clear the read-only stub.
-- Next: start pytest commit #1 (design note + `[ ]` → `[~]` flip on #1).
+- Scaffolded the handoff framework (4ff0e14), refined soft-delete convention (96ae88f), filed #1 (d7c2c33), filed #2–#11 + project-framing (05e6cc9), retired the congress-trades SKILL.md (2e6ecf7).
+- ROADMAP #1 now `[~]`; design note at `design/pytest-ci-suite.md` (this commit, pytest 1/6 of 6).
+- Tests will cover stable primitives only — the 8 surfaces listed in the design note — and skip the assemblies #2–#11 will rewrite.
+- Sandbox network allowlist for capitoltrades/yfinance fixture recording is a live risk flagged for commit 2/6; fallback paths documented in the design note.
+- Next: pytest commit 2/6 — scaffolding (`requirements-dev.txt`, `tests/conftest.py`, `tests/fixtures/` with four fixture files, `tests/fixtures/_record.py`). Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
 
 ## For future agents
 
@@ -55,7 +55,9 @@ Status legend:
 
 ## Backlog (priority order)
 
-### 1. [ ] Pytest suite + CI workflow
+### 1. [~] Pytest suite + CI workflow
+
+In progress — design note at `design/pytest-ci-suite.md`. Commit plan is six commits: (1) design note + this `[~]` flip *(landed)*, (2) scaffolding + fixtures, (3) pure-function tests, (4) fixture-dependent tests, (5) schema-contract tests, (6) `.github/workflows/tests.yml` + the two "For future agents" bullets. Tests cover stable primitives only (ticker normalization, money-range parse, date parse, price-cache read contract, alpha/composite math, transaction classification) — the assemblies #2–#11 will rewrite are deliberately skipped.
 
 No test suite exists in the repo yet. Stand one up, wire it into GitHub Actions so a red check blocks merge, and add the "extend tests with the feature, not after" discipline to "For future agents" once the scaffolding lands. Until that clause is in the ROADMAP, agents writing new features have no standing rule requiring test coverage — so this item is a prerequisite for the rest of the backlog to be trustworthy.
 

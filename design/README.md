@@ -25,5 +25,11 @@ Triggers:
 
 ## Existing notes
 
-- `project-framing.md` — standing framing note: what this project is, the central hazard (disclosure lag), the right benchmarks (NANC/KRUZ/SPY/QQQ), and what the project is not. Read at the start of any session.
-- `soft-delete-convention.md` — standing convention for discarding files on this FUSE mount (reference, not a feature).
+Standing references (read as needed, not re-litigated per session):
+
+- `project-framing.md` — what this project is, the central hazard (disclosure lag), the right benchmarks (NANC/KRUZ/SPY/QQQ), and what the project is not. Read at the start of any session.
+- `soft-delete-convention.md` — convention for discarding files on this FUSE mount, plus the pre-op `.git/*.lock` sweep and corrupt-index recovery ritual.
+
+Active feature notes (paired with an in-flight `[~]` item in `ROADMAP.md`):
+
+- `pytest-ci-suite.md` — ROADMAP #1. Scope, fixtures, and commit plan for the pytest suite + `.github/workflows/tests.yml`. Six-commit sequence; tests target stable primitives, not the churning assemblies that #2–#11 will rewrite.
