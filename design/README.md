@@ -25,4 +25,5 @@ Triggers:
 
 ## Existing notes
 
+- `project-framing.md` — standing framing note: what this project is, the central hazard (disclosure lag), the right benchmarks (NANC/KRUZ/SPY/QQQ), and what the project is not. Read at the start of any session.
 - `soft-delete-convention.md` — standing convention for discarding files on this FUSE mount (reference, not a feature).
