@@ -17,10 +17,17 @@ import pytest
 
 # Make the repo root importable so tests can `from scoring import ...`
 # and `import fetch_trades` without a sys.path manipulation in every
-# test file.
+# test file. Also expose `scoring/` itself, since `scoring/score_members.py`
+# does `from price_cache import get_prices` (sibling import, no `scoring.`
+# prefix) — that works when the script is invoked as
+# `python3 scoring/score_members.py` because Python adds the script's
+# directory to sys.path[0], but pytest imports it as a package member,
+# so we have to replicate the script-style search path here.
 REPO_ROOT = Path(__file__).resolve().parent.parent
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
+SCORING_DIR = REPO_ROOT / "scoring"
+for p in (REPO_ROOT, SCORING_DIR):
+    if str(p) not in sys.path:
+        sys.path.insert(0, str(p))
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 

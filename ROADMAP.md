@@ -22,11 +22,10 @@ Strict rules for writing it:
 
 **2026-04-21 (session 1)**
 
-- ROADMAP #1 pytest suite in progress — design note at `design/pytest-ci-suite.md` (pytest 1/6 c571481); scaffolding + fixtures landed this commit (2/6 of 6).
-- Scaffolding: `requirements-dev.txt`, `tests/conftest.py`, and `tests/fixtures/` (1 capitoltrades page, 5 bipartisan members, 10 ticker CSVs, 5 synthetic alpha scenarios, `_record.py` regenerator).
-- Network-allowlist risk resolved: `_record.py` samples from the already-materialized `scoring/cache/` rather than hitting capitoltrades/yfinance directly, so the recorder works in the sandbox.
-- Smoke test: pytest discovers conftest and all 5 fixtures resolve (0 tests collected, no import errors).
-- Next: pytest commit 3/6 — batch 1 tests (ticker normalization, money-range parse, date parse). Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
+- ROADMAP #1 pytest suite in progress — design note at `design/pytest-ci-suite.md` (1/6 c571481, 2/6 6b7ea0b); batch 1 tests landed this commit (3/6 of 6), 29/29 green locally.
+- Batch 1 rescoped: `test_ticker_normalization.py` (23 parametrized cases against `scoring.score_members.normalize_ticker`) + `test_fetch_trades_normalise.py` (6 cases against `fetch_trades._normalise_trade`). Money-range and date-parse files dropped — no standalone primitives exist in current code; rationale in the design note's "Batch 1 amendment."
+- conftest now adds `scoring/` to sys.path alongside repo root, because `score_members.py` does a bare `from price_cache import …` that works under script invocation but not under pytest import — smallest fix is test-infra, not production code.
+- Next: pytest commit 4/6 — batch 2 (fixture-dependent: `test_price_cache.py`, `test_alpha_math.py`, `test_composite_math.py`). Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
 
 ## For future agents
 

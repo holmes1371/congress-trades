@@ -4,7 +4,7 @@ ROADMAP #1. Active feature. Flipped to `[~]` alongside this note in the commit t
 
 ## Scope
 
-**In scope.** A `tests/` directory with a pytest suite covering the stable primitives in the codebase (ticker normalization, money-range parsing, date parsing, price-cache read contract, alpha math, composite math, transaction classification, end-to-end parse of one capitoltrades record set). Shared fixtures under `tests/fixtures/` designed for compounding reuse across ROADMAP items #2–#11. A `requirements-dev.txt` declaring dev dependencies (`pytest`, `responses`). A GitHub Actions workflow at `.github/workflows/tests.yml` running pytest on push-to-main and pull-requests-against-main, on Python 3.11. Two "extend tests with the feature" clauses appended to `ROADMAP.md`'s "For future agents" section in the final commit of this feature.
+**In scope.** A `tests/` directory with a pytest suite covering the stable primitives in the codebase (ticker normalization, record-level trade parse, price-cache read contract, alpha math, composite math, transaction classification, end-to-end parse of one capitoltrades record set). Money-range parsing and a dedicated date parser were in the original plan but were dropped from v1 after a code-reality check — neither exists as a standalone primitive in current code; see "Batch 1 amendment" under Test plan. Shared fixtures under `tests/fixtures/` designed for compounding reuse across ROADMAP items #2–#11. A `requirements-dev.txt` declaring dev dependencies (`pytest`, `responses`). A GitHub Actions workflow at `.github/workflows/tests.yml` running pytest on push-to-main and pull-requests-against-main, on Python 3.11. Two "extend tests with the feature" clauses appended to `ROADMAP.md`'s "For future agents" section in the final commit of this feature.
 
 **Out of scope.** Coverage reporting, linting (ruff / black / mypy), matrix builds, integration tests against live capitoltrades or live yfinance, branch protection rules (a manual GitHub-UI step — checklist below), and any snapshot tests pinning current composite weights, ranking output, or leaderboard shape (see "Guiding principle").
 
@@ -47,18 +47,35 @@ Tests covering the primitives survive every refactor in the backlog. Tests cover
 
 ## Test plan
 
-Eight modules under `tests/`, target ~50 cases total:
+Seven modules under `tests/`, target ~45 cases total:
 
 | File | Cases (rough) | Coverage |
 |---|---|---|
-| `test_ticker_normalization.py` | ~8 | `TICKER:US` → `TICKER`, dots, foreign-suffix rejection, empty/null edges |
-| `test_money_range_parse.py` | ~6 | `$15,001–$50,000` → `(15001, 50000)`; em-dash vs hyphen; `$1,000,000+`; malformed input |
-| `test_date_parse.py` | ~6 | trade date, publication date, timezone handling, missing-field behavior |
+| `test_ticker_normalization.py` | ~20 (parametrized) | `TICKER:US` → `TICKER`, dots, foreign-suffix rejection, empty/null edges, placeholder strings, case/whitespace |
+| `test_fetch_trades_normalise.py` | ~6 | `_normalise_trade`: `pubDate[:10]` truncation, missing `pubDate`, missing `issuer` block, `txType` uppercasing, missing `txType` |
 | `test_price_cache.py` | ~5 | hit, miss, missing date range, concurrent access, corrupt-file fallback; mocks yfinance adapter |
 | `test_alpha_math.py` | ~10 | parametrized over entry dates (trade-date, post-file) and horizons (5d/20d/60d); holiday gap; synthetic edge cases |
 | `test_composite_math.py` | ~5 | z-score, weighted sum, NaN handling, partial-input behavior; parametrized over weight tuples so no current choice is pinned |
 | `test_transaction_classification.py` | ~6 | buy, sell, exchange, options rolls, corporate actions, edge cases |
 | `test_fetch_trades_parse.py` | ~3 | one end-to-end parse over the recorded fixture; record count, field presence; no assertion on derived scoring |
+
+**Batch 1 amendment (pytest 3/6):** the original plan had three batch-1 files —
+`test_ticker_normalization.py`, `test_money_range_parse.py`, `test_date_parse.py`.
+A code-reality check before writing them showed:
+
+- **Money-range parsing.** The capitoltrades payload delivers `value` as an
+  already-parsed integer (e.g. `175000`), not a range string like
+  `"$15,001–$50,000"`. No parser exists in the current pipeline, so there is no
+  primitive to test. If #7's range-weighted sizing introduces one, that's when
+  the file gets written.
+- **Date parsing.** There is no dedicated date-parse function either —
+  `fetch_trades.py` calls stdlib `date.fromisoformat()` directly. The one
+  non-trivial transformation is `pubDate[:10]` truncation inside
+  `_normalise_trade`, which is folded into `test_fetch_trades_normalise.py`
+  alongside the other missing/nullable-field behaviors in that function.
+
+Net: three files → two files, ~20 cases → ~26 cases. The table above reflects
+the amended shape.
 
 ## Fixtures
 
@@ -171,7 +188,7 @@ After commit 6/6 lands and the first green check appears, user configures in the
 
 1. **This commit.** `design/pytest-ci-suite.md` + `design/README.md` listing update + ROADMAP `[ ] → [~]` flip on #1 + session-summary update.
 2. **Scaffolding.** `requirements-dev.txt`, `tests/conftest.py`, `tests/fixtures/` with all four fixture files, and `tests/fixtures/_record.py`.
-3. **Tests batch 1** (pure-function, no network). `test_ticker_normalization.py`, `test_money_range_parse.py`, `test_date_parse.py`.
+3. **Tests batch 1** (pure-function, no network). `test_ticker_normalization.py`, `test_fetch_trades_normalise.py` (folds the money-range / date-parse coverage the original plan had as separate files — see "Batch 1 amendment" under Test plan for why).
 4. **Tests batch 2** (needs fixtures). `test_price_cache.py`, `test_alpha_math.py`, `test_composite_math.py`.
 5. **Tests batch 3** (schema contract). `test_transaction_classification.py`, `test_fetch_trades_parse.py`.
 6. **CI + ROADMAP.** `.github/workflows/tests.yml` + the two "For future agents" bullets. Leaves ROADMAP #1 in `[~]`; user flips to `[x]` after seeing the first green check and configuring branch protection.
