@@ -1,0 +1,661 @@
+[
+  {
+    "id": {
+      "bioguide": "A000055",
+      "thomas": "01460",
+      "govtrack": 400004,
+      "opensecrets": "N00003028",
+      "votesmart": 441,
+      "fec": [
+        "H6AL04098"
+      ],
+      "cspan": 45516,
+      "wikipedia": "Robert Aderholt",
+      "house_history": 8333,
+      "ballotpedia": "Robert B. Aderholt",
+      "maplight": 127,
+      "icpsr": 29701,
+      "wikidata": "Q672671",
+      "google_entity_id": "kg:/m/024p03",
+      "pictorial": 12897
+    },
+    "name": {
+      "first": "Robert",
+      "last": "Aderholt",
+      "official_full": "Robert B. Aderholt",
+      "middle": "B."
+    },
+    "bio": {
+      "birthday": "1965-07-22",
+      "gender": "M"
+    },
+    "terms": [
+      {
+        "type": "rep",
+        "start": "1997-01-07",
+        "end": "1999-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican"
+      },
+      {
+        "type": "rep",
+        "start": "1999-01-06",
+        "end": "2001-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican"
+      },
+      {
+        "type": "rep",
+        "start": "2001-01-03",
+        "end": "2003-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican"
+      },
+      {
+        "type": "rep",
+        "start": "2003-01-07",
+        "end": "2005-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "url": "http://www.house.gov/aderholt"
+      },
+      {
+        "type": "rep",
+        "start": "2005-01-04",
+        "end": "2007-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "url": "http://www.house.gov/aderholt"
+      },
+      {
+        "type": "rep",
+        "start": "2007-01-04",
+        "end": "2009-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "url": "http://aderholt.house.gov"
+      },
+      {
+        "type": "rep",
+        "start": "2009-01-06",
+        "end": "2011-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "url": "http://aderholt.house.gov"
+      },
+      {
+        "type": "rep",
+        "start": "2011-01-05",
+        "end": "2013-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "url": "http://aderholt.house.gov",
+        "address": "2264 Rayburn HOB; Washington DC 20515-0104",
+        "phone": "202-225-4876",
+        "fax": "202-225-5587",
+        "contact_form": "http://aderholt.house.gov/?sectionid=195&amp;sectiontree=195",
+        "office": "2264 Rayburn House Office Building"
+      },
+      {
+        "type": "rep",
+        "start": "2013-01-03",
+        "end": "2015-01-03",
+        "state": "AL",
+        "party": "Republican",
+        "district": 4,
+        "url": "http://aderholt.house.gov",
+        "address": "2369 Rayburn HOB; Washington DC 20515-0104",
+        "phone": "202-225-4876",
+        "fax": "202-225-5587",
+        "contact_form": "http://aderholt.house.gov/email-me2/",
+        "office": "2369 Rayburn House Office Building",
+        "rss_url": "http://aderholt.house.gov/common/rss//index.cfm?rss=20"
+      },
+      {
+        "type": "rep",
+        "start": "2015-01-06",
+        "end": "2017-01-03",
+        "state": "AL",
+        "party": "Republican",
+        "district": 4,
+        "url": "https://aderholt.house.gov",
+        "address": "235 Cannon HOB; Washington DC 20515-0104",
+        "phone": "202-225-4876",
+        "fax": "202-225-5587",
+        "contact_form": "http://aderholt.house.gov/email-me2/",
+        "office": "235 Cannon House Office Building",
+        "rss_url": "http://aderholt.house.gov/common/rss//index.cfm?rss=20"
+      },
+      {
+        "type": "rep",
+        "start": "2017-01-03",
+        "end": "2019-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "phone": "202-225-4876",
+        "url": "https://aderholt.house.gov",
+        "rss_url": "http://aderholt.house.gov/common/rss//index.cfm?rss=20",
+        "address": "235 Cannon House Office Building; Washington DC 20515-0104",
+        "office": "235 Cannon House Office Building",
+        "fax": "202-225-5587"
+      },
+      {
+        "type": "rep",
+        "start": "2019-01-03",
+        "end": "2021-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "phone": "202-225-4876",
+        "address": "1203 Longworth House Office Building Washington DC 20515-0104",
+        "office": "1203 Longworth House Office Building",
+        "url": "https://aderholt.house.gov",
+        "rss_url": "http://aderholt.house.gov/common/rss//index.cfm?rss=20"
+      },
+      {
+        "type": "rep",
+        "start": "2021-01-03",
+        "end": "2023-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "url": "https://aderholt.house.gov",
+        "rss_url": "http://aderholt.house.gov/common/rss//index.cfm?rss=20",
+        "address": "266 Cannon House Office Building Washington DC 20515-0104",
+        "office": "266 Cannon House Office Building",
+        "phone": "202-225-4876"
+      },
+      {
+        "type": "rep",
+        "start": "2023-01-03",
+        "end": "2025-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "url": "https://aderholt.house.gov",
+        "rss_url": "http://aderholt.house.gov/common/rss//index.cfm?rss=20",
+        "address": "266 Cannon House Office Building Washington DC 20515-0104",
+        "office": "266 Cannon House Office Building",
+        "phone": "202-225-4876"
+      },
+      {
+        "type": "rep",
+        "start": "2025-01-03",
+        "end": "2027-01-03",
+        "state": "AL",
+        "district": 4,
+        "party": "Republican",
+        "url": "https://aderholt.house.gov",
+        "rss_url": "http://aderholt.house.gov/common/rss//index.cfm?rss=20",
+        "address": "272 Cannon House Office Building Washington DC 20515-0104",
+        "office": "272 Cannon House Office Building",
+        "phone": "202-225-4876"
+      }
+    ]
+  },
+  {
+    "id": {
+      "bioguide": "C001133",
+      "fec": [
+        "H2AZ02360"
+      ],
+      "govtrack": 456880,
+      "opensecrets": "N00049039",
+      "wikidata": "Q115220916",
+      "wikipedia": "Juan Ciscomani",
+      "votesmart": 106728,
+      "pictorial": 12911,
+      "ballotpedia": "Juan Ciscomani",
+      "google_entity_id": "kg:/g/11rwlm4mv5"
+    },
+    "name": {
+      "first": "Juan",
+      "middle": "Guadaloupe",
+      "last": "Ciscomani",
+      "official_full": "Juan Ciscomani"
+    },
+    "bio": {
+      "gender": "M",
+      "birthday": "1982-08-30"
+    },
+    "terms": [
+      {
+        "type": "rep",
+        "start": "2023-01-03",
+        "end": "2025-01-03",
+        "state": "AZ",
+        "district": 6,
+        "party": "Republican",
+        "url": "https://ciscomani.house.gov",
+        "address": "1429 Longworth House Office Building Washington DC 20515-0306",
+        "office": "1429 Longworth House Office Building",
+        "phone": "202-225-2542"
+      },
+      {
+        "type": "rep",
+        "start": "2025-01-03",
+        "end": "2027-01-03",
+        "state": "AZ",
+        "district": 6,
+        "party": "Republican",
+        "url": "https://ciscomani.house.gov",
+        "address": "461 Cannon House Office Building Washington DC 20515-0306",
+        "office": "461 Cannon House Office Building",
+        "phone": "202-225-2542"
+      }
+    ]
+  },
+  {
+    "id": {
+      "bioguide": "H001079",
+      "lis": "S395",
+      "govtrack": 412743,
+      "votesmart": 20784,
+      "fec": [
+        "S8MS00261"
+      ],
+      "cspan": 113208,
+      "wikipedia": "Cindy Hyde-Smith",
+      "ballotpedia": "Cindy Hyde-Smith",
+      "wikidata": "Q5120540",
+      "icpsr": 41707,
+      "google_entity_id": "kg:/m/03wc2px",
+      "opensecrets": "N00043298",
+      "pictorial": 13424
+    },
+    "name": {
+      "first": "Cindy",
+      "last": "Hyde-Smith",
+      "official_full": "Cindy Hyde-Smith"
+    },
+    "bio": {
+      "gender": "F",
+      "birthday": "1959-05-10"
+    },
+    "terms": [
+      {
+        "type": "sen",
+        "start": "2018-04-09",
+        "end": "2018-11-27",
+        "how": "appointment",
+        "end-type": "special-election",
+        "state": "MS",
+        "class": 2,
+        "party": "Republican",
+        "state_rank": "junior",
+        "url": "https://www.hydesmith.senate.gov",
+        "contact_form": "https://www.hydesmith.senate.gov/content/contact-senator",
+        "address": "G12 Dirksen Senate Office Building Washington DC 20510",
+        "office": "G12 Dirksen Senate Office Building",
+        "phone": "202-224-5054"
+      },
+      {
+        "type": "sen",
+        "start": "2018-11-28",
+        "end": "2021-01-03",
+        "state": "MS",
+        "class": 2,
+        "party": "Republican",
+        "state_rank": "junior",
+        "url": "https://www.hydesmith.senate.gov",
+        "contact_form": "https://www.hydesmith.senate.gov/content/contact-senator",
+        "address": "702 Hart Senate Office Building Washington DC 20510",
+        "office": "702 Hart Senate Office Building",
+        "phone": "202-224-5054"
+      },
+      {
+        "type": "sen",
+        "start": "2021-01-03",
+        "end": "2027-01-03",
+        "state": "MS",
+        "class": 2,
+        "state_rank": "junior",
+        "party": "Republican",
+        "url": "https://www.hydesmith.senate.gov",
+        "contact_form": "https://www.hydesmith.senate.gov/contact-senator",
+        "address": "528 Hart Senate Office Building Washington DC 20510",
+        "office": "528 Hart Senate Office Building",
+        "phone": "202-224-5054"
+      }
+    ]
+  },
+  {
+    "id": {
+      "govtrack": 412560,
+      "bioguide": "M001188",
+      "thomas": "02148",
+      "cspan": 68411,
+      "votesmart": 69157,
+      "wikipedia": "Grace Meng",
+      "fec": [
+        "H2NY06116"
+      ],
+      "opensecrets": "N00034547",
+      "ballotpedia": "Grace Meng",
+      "maplight": 1784,
+      "icpsr": 21342,
+      "house_history": 15032387500,
+      "wikidata": "Q5591303",
+      "google_entity_id": "kg:/m/04ld76x",
+      "pictorial": 13174
+    },
+    "name": {
+      "first": "Grace",
+      "last": "Meng",
+      "official_full": "Grace Meng"
+    },
+    "bio": {
+      "gender": "F",
+      "birthday": "1975-10-01"
+    },
+    "terms": [
+      {
+        "type": "rep",
+        "start": "2013-01-03",
+        "end": "2015-01-03",
+        "state": "NY",
+        "party": "Democrat",
+        "district": 6,
+        "office": "1317 Longworth House Office Building",
+        "address": "1317 Longworth HOB; Washington DC 20515-3206",
+        "phone": "202-225-2601",
+        "url": "http://meng.house.gov",
+        "rss_url": "http://meng.house.gov/rss.xml",
+        "contact_form": "https://meng.house.gov/contact/email-me"
+      },
+      {
+        "type": "rep",
+        "start": "2015-01-06",
+        "end": "2017-01-03",
+        "state": "NY",
+        "party": "Democrat",
+        "district": 6,
+        "office": "1317 Longworth House Office Building",
+        "address": "1317 Longworth HOB; Washington DC 20515-3206",
+        "phone": "202-225-2601",
+        "url": "http://meng.house.gov",
+        "rss_url": "http://meng.house.gov/rss.xml",
+        "contact_form": "https://meng.house.gov/contact/email-me",
+        "fax": "202-225-1589"
+      },
+      {
+        "type": "rep",
+        "start": "2017-01-03",
+        "end": "2019-01-03",
+        "state": "NY",
+        "district": 6,
+        "party": "Democrat",
+        "phone": "202-225-2601",
+        "url": "https://meng.house.gov",
+        "rss_url": "http://meng.house.gov/rss.xml",
+        "address": "1317 Longworth House Office Building; Washington DC 20515-3206",
+        "office": "1317 Longworth House Office Building",
+        "fax": "202-225-1589"
+      },
+      {
+        "type": "rep",
+        "start": "2019-01-03",
+        "end": "2021-01-03",
+        "state": "NY",
+        "district": 6,
+        "party": "Democrat",
+        "phone": "202-225-2601",
+        "address": "2209 Rayburn House Office Building Washington DC 20515-3206",
+        "office": "2209 Rayburn House Office Building",
+        "url": "https://meng.house.gov",
+        "rss_url": "http://meng.house.gov/rss.xml"
+      },
+      {
+        "type": "rep",
+        "start": "2021-01-03",
+        "end": "2023-01-03",
+        "state": "NY",
+        "district": 6,
+        "party": "Democrat",
+        "url": "https://meng.house.gov",
+        "rss_url": "http://meng.house.gov/rss.xml",
+        "address": "2209 Rayburn House Office Building Washington DC 20515-3206",
+        "office": "2209 Rayburn House Office Building",
+        "phone": "202-225-2601"
+      },
+      {
+        "type": "rep",
+        "start": "2023-01-03",
+        "end": "2025-01-03",
+        "state": "NY",
+        "district": 6,
+        "party": "Democrat",
+        "url": "https://meng.house.gov",
+        "rss_url": "http://meng.house.gov/rss.xml",
+        "address": "2209 Rayburn House Office Building Washington DC 20515-3206",
+        "office": "2209 Rayburn House Office Building",
+        "phone": "202-225-2601"
+      },
+      {
+        "type": "rep",
+        "start": "2025-01-03",
+        "end": "2027-01-03",
+        "state": "NY",
+        "district": 6,
+        "party": "Democrat",
+        "url": "https://meng.house.gov",
+        "rss_url": "http://meng.house.gov/rss.xml",
+        "address": "2468 Rayburn House Office Building Washington DC 20515-3206",
+        "office": "2468 Rayburn House Office Building",
+        "phone": "202-225-2601"
+      }
+    ]
+  },
+  {
+    "id": {
+      "bioguide": "S000344",
+      "thomas": "01526",
+      "govtrack": 400371,
+      "opensecrets": "N00006897",
+      "votesmart": 142,
+      "fec": [
+        "H6CA24113"
+      ],
+      "cspan": 45124,
+      "wikipedia": "Brad Sherman",
+      "maplight": 462,
+      "icpsr": 29707,
+      "house_history": 21565,
+      "wikidata": "Q672919",
+      "google_entity_id": "kg:/m/024tkr",
+      "ballotpedia": "Brad Sherman",
+      "pictorial": 12946
+    },
+    "name": {
+      "first": "Brad",
+      "middle": "J.",
+      "last": "Sherman",
+      "official_full": "Brad Sherman"
+    },
+    "bio": {
+      "birthday": "1954-10-24",
+      "gender": "M"
+    },
+    "terms": [
+      {
+        "type": "rep",
+        "start": "1997-01-07",
+        "end": "1999-01-03",
+        "state": "CA",
+        "district": 24,
+        "party": "Democrat"
+      },
+      {
+        "type": "rep",
+        "start": "1999-01-06",
+        "end": "2001-01-03",
+        "state": "CA",
+        "district": 24,
+        "party": "Democrat"
+      },
+      {
+        "type": "rep",
+        "start": "2001-01-03",
+        "end": "2003-01-03",
+        "state": "CA",
+        "district": 24,
+        "party": "Democrat"
+      },
+      {
+        "type": "rep",
+        "start": "2003-01-07",
+        "end": "2005-01-03",
+        "state": "CA",
+        "district": 27,
+        "party": "Democrat",
+        "url": "http://www.house.gov/sherman"
+      },
+      {
+        "type": "rep",
+        "start": "2005-01-04",
+        "end": "2007-01-03",
+        "state": "CA",
+        "district": 27,
+        "party": "Democrat",
+        "url": "http://www.house.gov/sherman"
+      },
+      {
+        "type": "rep",
+        "start": "2007-01-04",
+        "end": "2009-01-03",
+        "state": "CA",
+        "district": 27,
+        "party": "Democrat",
+        "url": "http://bradsherman.house.gov"
+      },
+      {
+        "type": "rep",
+        "start": "2009-01-06",
+        "end": "2011-01-03",
+        "state": "CA",
+        "district": 27,
+        "party": "Democrat",
+        "url": "http://bradsherman.house.gov"
+      },
+      {
+        "type": "rep",
+        "start": "2011-01-05",
+        "end": "2013-01-03",
+        "state": "CA",
+        "district": 27,
+        "party": "Democrat",
+        "url": "http://bradsherman.house.gov",
+        "address": "2242 Rayburn HOB; Washington DC 20515-0527",
+        "phone": "202-225-5911",
+        "fax": "202-225-5879",
+        "contact_form": "http://www.house.gov/sherman/contact/",
+        "office": "2242 Rayburn House Office Building"
+      },
+      {
+        "type": "rep",
+        "start": "2013-01-03",
+        "end": "2015-01-03",
+        "state": "CA",
+        "party": "Democrat",
+        "district": 30,
+        "url": "http://bradsherman.house.gov",
+        "address": "2242 Rayburn HOB; Washington DC 20515-0530",
+        "phone": "202-225-5911",
+        "fax": "202-225-5879",
+        "contact_form": "http://sherman.house.gov/contact/contact-congressman-sherman-form",
+        "office": "2242 Rayburn House Office Building",
+        "rss_url": "http://bradsherman.house.gov/press-releases-and-columns/rss.shtml"
+      },
+      {
+        "type": "rep",
+        "start": "2015-01-06",
+        "end": "2017-01-03",
+        "state": "CA",
+        "party": "Democrat",
+        "district": 30,
+        "url": "http://sherman.house.gov",
+        "address": "2242 Rayburn HOB; Washington DC 20515-0530",
+        "phone": "202-225-5911",
+        "fax": "202-225-5879",
+        "contact_form": "http://sherman.house.gov/contact/contact-congressman-sherman-form",
+        "office": "2242 Rayburn House Office Building",
+        "rss_url": "http://bradsherman.house.gov/press-releases-and-columns/rss.shtml"
+      },
+      {
+        "type": "rep",
+        "start": "2017-01-03",
+        "end": "2019-01-03",
+        "state": "CA",
+        "district": 30,
+        "party": "Democrat",
+        "phone": "202-225-5911",
+        "url": "https://sherman.house.gov",
+        "rss_url": "http://bradsherman.house.gov/press-releases-and-columns/rss.shtml",
+        "address": "2181 Rayburn House Office Building; Washington DC 20515-0530",
+        "office": "2181 Rayburn House Office Building",
+        "fax": "202-225-5879"
+      },
+      {
+        "type": "rep",
+        "start": "2019-01-03",
+        "end": "2021-01-03",
+        "state": "CA",
+        "district": 30,
+        "party": "Democrat",
+        "phone": "202-225-5911",
+        "address": "2181 Rayburn House Office Building Washington DC 20515-0530",
+        "office": "2181 Rayburn House Office Building",
+        "url": "https://sherman.house.gov",
+        "rss_url": "http://bradsherman.house.gov/press-releases-and-columns/rss.shtml"
+      },
+      {
+        "type": "rep",
+        "start": "2021-01-03",
+        "end": "2023-01-03",
+        "state": "CA",
+        "district": 30,
+        "party": "Democrat",
+        "url": "https://sherman.house.gov",
+        "rss_url": "http://bradsherman.house.gov/press-releases-and-columns/rss.shtml",
+        "address": "2181 Rayburn House Office Building Washington DC 20515-0530",
+        "office": "2181 Rayburn House Office Building",
+        "phone": "202-225-5911"
+      },
+      {
+        "type": "rep",
+        "start": "2023-01-03",
+        "end": "2025-01-03",
+        "state": "CA",
+        "district": 32,
+        "party": "Democrat",
+        "url": "https://sherman.house.gov",
+        "rss_url": "http://bradsherman.house.gov/press-releases-and-columns/rss.shtml",
+        "address": "2365 Rayburn House Office Building Washington DC 20515-0532",
+        "office": "2365 Rayburn House Office Building",
+        "phone": "202-225-5911"
+      },
+      {
+        "type": "rep",
+        "start": "2025-01-03",
+        "end": "2027-01-03",
+        "state": "CA",
+        "district": 32,
+        "party": "Democrat",
+        "url": "https://sherman.house.gov",
+        "rss_url": "http://bradsherman.house.gov/press-releases-and-columns/rss.shtml",
+        "address": "2365 Rayburn House Office Building Washington DC 20515-0532",
+        "office": "2365 Rayburn House Office Building",
+        "phone": "202-225-5911"
+      }
+    ]
+  }
+]

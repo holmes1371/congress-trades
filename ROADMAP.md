@@ -22,11 +22,11 @@ Strict rules for writing it:
 
 **2026-04-21 (session 1)**
 
-- Scaffolded the handoff framework (4ff0e14), refined soft-delete convention (96ae88f), filed #1 (d7c2c33), filed #2–#11 + project-framing (05e6cc9), retired the congress-trades SKILL.md (2e6ecf7).
-- ROADMAP #1 now `[~]`; design note at `design/pytest-ci-suite.md` (this commit, pytest 1/6 of 6).
-- Tests will cover stable primitives only — the 8 surfaces listed in the design note — and skip the assemblies #2–#11 will rewrite.
-- Sandbox network allowlist for capitoltrades/yfinance fixture recording is a live risk flagged for commit 2/6; fallback paths documented in the design note.
-- Next: pytest commit 2/6 — scaffolding (`requirements-dev.txt`, `tests/conftest.py`, `tests/fixtures/` with four fixture files, `tests/fixtures/_record.py`). Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
+- ROADMAP #1 pytest suite in progress — design note at `design/pytest-ci-suite.md` (pytest 1/6 c571481); scaffolding + fixtures landed this commit (2/6 of 6).
+- Scaffolding: `requirements-dev.txt`, `tests/conftest.py`, and `tests/fixtures/` (1 capitoltrades page, 5 bipartisan members, 10 ticker CSVs, 5 synthetic alpha scenarios, `_record.py` regenerator).
+- Network-allowlist risk resolved: `_record.py` samples from the already-materialized `scoring/cache/` rather than hitting capitoltrades/yfinance directly, so the recorder works in the sandbox.
+- Smoke test: pytest discovers conftest and all 5 fixtures resolve (0 tests collected, no import errors).
+- Next: pytest commit 3/6 — batch 1 tests (ticker normalization, money-range parse, date parse). Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
 
 ## For future agents
 
