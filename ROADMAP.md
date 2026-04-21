@@ -22,10 +22,10 @@ Strict rules for writing it:
 
 **2026-04-21 (session 1)**
 
-- ROADMAP #1 pytest suite in progress — design note at `design/pytest-ci-suite.md` (1/6 c571481, 2/6 6b7ea0b, 3/6 897dbd1); batch 2 tests landed this commit (4/6 of 6), 65/65 green locally.
-- Batch 2 files: `test_price_cache.py` (4 cases, monkeypatch on `_bulk_download`), `test_alpha_math.py` (10 cases, parametrized over the synthetic scenarios + edge cases), `test_composite_math.py` (22 cases — `_zscore`, `_trade_count_score`, `compute_composite` weight-isolation via monkeypatch on `COMPOSITE_WEIGHTS`).
-- Two deviations recorded in the design note's "Batch 2 amendment": price-cache `concurrent_access` case dropped (no locking in code to assert against), and Scenario 5 in synthetic_alpha_scenarios renamed/reshaped from `missing_day_forward_fills` to `entry_day_missing_forward_fills` (the original imagined an exit-side forward-fill that the code doesn't implement).
-- Next: pytest commit 5/6 — batch 3 schema-contract (`test_transaction_classification.py`, `test_fetch_trades_parse.py`). Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
+- ROADMAP #1 pytest suite in progress — design note at `design/pytest-ci-suite.md`; batch 3 tests landed this commit (5/6 of 6), 77/77 green locally.
+- Batch 3 file: `test_fetch_trades_parse.py` — 12 schema-contract cases over `capitoltrades_page_sample.json` (envelope keys, member block keys, `tradeCount` vs `len(trades)` parity, per-trade required keys, `type ∈ {BUY, SELL}`, `txDate`/`published` ISO-parseability, integer-field types). Pins the contract between fetch and scoring without pinning any specific trade data.
+- Deviation recorded in the design note's "Batch 3 amendment": `test_transaction_classification.py` dropped — no standalone classification primitive in code (BUY/SELL filtering is inline at call sites; options/corp-actions/exchange types don't exist in the pipeline). Deferred to ROADMAP #4 if a classification helper is introduced then.
+- Next: pytest commit 6/6 — `.github/workflows/tests.yml` + the two "For future agents" bullets; then Tom configures branch protection in the GitHub UI and the next session flips ROADMAP #1 to `[x]`. Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
 
 ## For future agents
 

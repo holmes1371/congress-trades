@@ -56,8 +56,8 @@ Seven modules under `tests/`, target ~45 cases total:
 | `test_price_cache.py` | ~4 | hit, miss, partial coverage, corrupt-file fallback; mocks yfinance adapter. "Concurrent access" dropped — see "Batch 2 amendment" |
 | `test_alpha_math.py` | ~10 | parametrized over entry dates (trade-date, post-file) and horizons (5d/20d/60d); holiday gap; synthetic edge cases |
 | `test_composite_math.py` | ~5 | z-score, weighted sum, NaN handling, partial-input behavior; parametrized over weight tuples so no current choice is pinned |
-| `test_transaction_classification.py` | ~6 | buy, sell, exchange, options rolls, corporate actions, edge cases |
-| `test_fetch_trades_parse.py` | ~3 | one end-to-end parse over the recorded fixture; record count, field presence; no assertion on derived scoring |
+| `test_transaction_classification.py` | dropped | See "Batch 3 amendment" — no standalone classification primitive to test |
+| `test_fetch_trades_parse.py` | ~12 | schema contract over the recorded fixture: envelope, member block, per-trade required keys, `type` domain, ISO date parseability, integer-field types |
 
 **Batch 1 amendment (pytest 3/6):** the original plan had three batch-1 files —
 `test_ticker_normalization.py`, `test_money_range_parse.py`, `test_date_parse.py`.
@@ -103,6 +103,35 @@ worth recording:
   the composite equals that column. This satisfies the no-pinning contract
   without forcing a refactor of `compute_composite`.
 
+**Batch 3 amendment (pytest 5/6).** The original plan had two files in this
+batch; one was dropped after a code-reality check:
+
+- `test_transaction_classification.py` — dropped. There is no standalone
+  transaction-classification function in the codebase to target as a
+  primitive. `scoring/score_members.py` filters on `t["type"] == "BUY"`
+  inline at several call sites; `fetch_trades._normalise_trade` just
+  uppercases whatever `txType` the scraper emits (already covered by
+  `test_fetch_trades_normalise.py::test_tx_type_uppercased`). The
+  "exchange / options rolls / corporate actions" cases the original plan
+  envisioned do not exist in code — the pipeline simply does not classify
+  these types. If ROADMAP #4 (fetch-trades rewrite) introduces a
+  classification helper, that's when this file gets written. For now the
+  type-domain constraint ("every trade's `type` is `BUY` or `SELL`") is
+  pinned at the schema-contract level in `test_fetch_trades_parse.py`,
+  which is the appropriate seam given the current code.
+- `test_fetch_trades_parse.py` — written as schema-contract tests over the
+  recorded fixture, not an end-to-end scraper replay. The fixture on disk
+  is already the post-`_normalise_trade` shape (that's what downstream
+  scoring consumes), so mocking the HTTP layer with `responses` and
+  running `fetch_page` against it would re-exercise code already covered
+  by `test_fetch_trades_normalise.py` without adding signal. Instead,
+  the 12 cases pin what the scoring pipeline actually depends on:
+  envelope keys, member block keys, `tradeCount` vs `len(trades)` parity,
+  per-trade required keys, `type ∈ {BUY, SELL}`, `txDate` and `published`
+  ISO-parseability, integer-field types. When #4 re-records the fixture
+  with fresh data, these tests must still pass as long as the schema
+  contract holds.
+
 ## Fixtures
 
 Under `tests/fixtures/`:
@@ -125,7 +154,7 @@ Under `tests/fixtures/`:
 capitoltrades via `responses`:
 
 ```python
-@responses.activate
+@`1responses.activate
 def test_fetch_trades_parse(capitoltrades_page_sample):
     responses.add(
         responses.GET,
@@ -216,7 +245,7 @@ After commit 6/6 lands and the first green check appears, user configures in the
 2. **Scaffolding.** `requirements-dev.txt`, `tests/conftest.py`, `tests/fixtures/` with all four fixture files, and `tests/fixtures/_record.py`.
 3. **Tests batch 1** (pure-function, no network). `test_ticker_normalization.py`, `test_fetch_trades_normalise.py` (folds the money-range / date-parse coverage the original plan had as separate files — see "Batch 1 amendment" under Test plan for why).
 4. **Tests batch 2** (needs fixtures). `test_price_cache.py`, `test_alpha_math.py`, `test_composite_math.py`.
-5. **Tests batch 3** (schema contract). `test_transaction_classification.py`, `test_fetch_trades_parse.py`.
+5. **Tests batch 3** (schema contract). `test_fetch_trades_parse.py` — schema-contract tests over the recorded fixture. `test_transaction_classification.py` was dropped; see "Batch 3 amendment" for why.
 6. **CI + ROADMAP.** `.github/workflows/tests.yml` + the two "For future agents" bullets. Leaves ROADMAP #1 in `[~]`; user flips to `[x]` after seeing the first green check and configuring branch protection.
 
-Each commit stands alone — mid-feature handoff picks up from this note plus the last SHA without re-litigating scope.
+Each commit stands alone — mid-feature handoff picks up from this note plus the last SHA without re-litigating scope
