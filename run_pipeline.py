@@ -2,7 +2,7 @@
 run_pipeline.py — Congress Trades Pipeline Orchestrator (Steps 1–4)
 ====================================================================
 Single entry point that runs the mechanical portion of the
-congress-trades skill end-to-end with no agent involvement:
+pipeline end-to-end with no agent involvement:
 
     Step 1  committee_lookup    (only if --committee supplied)
     Step 2  fetch_trades        (committee / explicit IDs / default list)
@@ -107,7 +107,7 @@ class NoChanges(RuntimeError):
 
 
 class CongressTradesPipeline:
-    """Runs Steps 1–4 of the congress-trades skill in one shot."""
+    """Runs Steps 1–4 of the pipeline in one shot."""
 
     def __init__(
         self,
@@ -218,7 +218,7 @@ class CongressTradesPipeline:
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
-        description="Run Steps 1–4 of the congress-trades skill in one invocation.",
+        description="Run Steps 1–4 of the pipeline in one invocation.",
     )
     p.add_argument("--committee", help="Committee name, substring, or thomas_id")
     p.add_argument(

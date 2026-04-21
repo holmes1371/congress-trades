@@ -24,8 +24,9 @@ Strict rules for writing it:
 
 - Scaffolded the multi-session handoff framework (commit 4ff0e14) and refined `design/soft-delete-convention.md` with the pre-op `.git/*.lock` sweep (commit 96ae88f).
 - Filed #1 — pytest suite + CI workflow (commit d7c2c33). `[ ]` not started; design-note questions in the item body.
-- Added `design/project-framing.md` and filed #2–#11 from a prior agent's refactoring note (this commit). All `[ ]`; design-note questions embedded in each item. Priority order tracks value-per-effort: post-file alpha and benchmarks first, live artifact last.
-- Nothing else in flight.
+- Added `design/project-framing.md` and filed #2–#11 from a prior agent's refactoring note (commit 05e6cc9). All `[ ]`; design-note questions embedded in each item.
+- Retired the congress-trades SKILL.md and the canonical-SKILL memory (this commit); pipeline now runs exclusively in GHA, so local-invocation runbook is gone. Tom must uninstall the congress-trades skill from the Cowork Skills UI to clear the read-only stub.
+- Next: start pytest commit #1 (design note + `[ ]` → `[~]` flip on #1).
 
 ## For future agents
 
