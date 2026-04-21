@@ -20,8 +20,8 @@ Strict rules for writing it:
 
 **2026-04-21 (session 1)**
 
-- Scaffolded the multi-session handoff framework: `ROADMAP.md`, `COMPLETED.md`, `design/README.md`, `design/soft-delete-convention.md`. Modeled on the kids-schedule-github setup.
-- Backlog intentionally empty — items get filed as Tom surfaces them.
+- Scaffolded the multi-session handoff framework: `ROADMAP.md`, `COMPLETED.md`, `design/README.md`, `design/soft-delete-convention.md` (commit 4ff0e14). Modeled on the kids-schedule-github setup.
+- Filed #1 — pytest suite + CI workflow. `[ ]` not started; design-note questions in the item body cover which module anchors the extend-tests-in-step clause, HTTP mocking approach, and Python version pin.
 - Nothing else in flight.
 
 ## For future agents
@@ -51,7 +51,24 @@ Status legend:
 
 ## Backlog (priority order)
 
-_(none yet — file items as they come up. Preserve original numbering once items land; never renumber.)_
+### 1. [ ] Pytest suite + CI workflow
+
+No test suite exists in the repo yet. Stand one up, wire it into GitHub Actions so a red check blocks merge, and add the "extend tests with the feature, not after" discipline to "For future agents" once the scaffolding lands. Until that clause is in the ROADMAP, agents writing new features have no standing rule requiring test coverage — so this item is a prerequisite for the rest of the backlog to be trustworthy.
+
+Sketch: add `tests/` with pytest + whatever fixtures the first-batch modules need (sample capitoltrades payloads, a trimmed `member_bioguide.json`, etc). Seed coverage with the pure-function-y modules first — `scoring/factors.py` (alpha math, composite weights, z-score) and the ticker/normalization helpers in `fetch_trades.py` are the highest-signal starting points; HTML renderers and HTTP-heavy paths follow in subsequent PRs. Add `requirements-dev.txt` (or extend `requirements.txt`) with pytest, and a `.github/workflows/tests.yml` that runs pytest on push + PR to `main` with a red-check-blocks-merge policy.
+
+Once the suite is in place, fold these into "For future agents":
+
+- "Tests live in `tests/` and run on every push + PR via `.github/workflows/tests.yml`. A red test check blocks merge; don't mark a feature done with tests failing."
+- "Any feature that modifies [core module(s) to be chosen in the design note] must extend the pytest fixtures in step with the change, not after."
+
+Design-note questions to resolve before coding:
+
+- Which module(s) carry the "extend tests with the feature, not after" clause? The kids-schedule equivalent names one concrete file (`process_events.py`); candidates here are `fetch_trades.py`, `compute_analysis.py`, `scoring/factors.py`, or a broader module-agnostic rule ("any module under `tests/` coverage"). Confirm with Tom.
+- HTTP mocking approach for capitoltrades — record-and-replay fixture payloads, vcrpy, or the `responses` library. Similar question for the scoring pipeline's yfinance calls (mock at the `price_cache` layer or at yfinance itself — the former is simpler and lets the cache logic stay real).
+- Python version pin vs matrix build. The repo's existing runtime setup (if any pinned version) anchors the decision.
+- Whether to add coverage reporting (codecov or similar) now or defer.
+- Whether the CI workflow should also lint (`ruff` / `black --check`), or keep scope to pytest only for v1.
 
 ## Descoped / on hold
 
