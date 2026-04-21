@@ -22,10 +22,10 @@ Strict rules for writing it:
 
 **2026-04-21 (session 1)**
 
-- ROADMAP #1 pytest suite: 6/6 commits landed this session — design note + `[~]` flip, scaffolding + fixtures, batch 1/2/3 tests, and `.github/workflows/tests.yml` + the two "For future agents" bullets. 77/77 pytest cases green locally.
-- CI workflow triggers on `on: push` only (no `pull_request`, no branch filter). Tom asked to drop the PR path; branch-protection checklist was removed from the design note alongside it — see "Batch 4 amendment" in `design/pytest-ci-suite.md`.
-- Item still sits at `[~]` because closing is Tom's call: once he sees the first green check on the pytest workflow, the next session flips ROADMAP #1 to `[x]` with the 6/6 SHA preserved.
+- ROADMAP #1 closed — `3022a38`, first green GHA run confirmed. Full post-mortem (scope, four "Batch N amendments", commit trail, infra notes) in `COMPLETED.md`.
+- "For future agents" gained a third test-related bullet — **"Ship tests with the feature, not after"** — added this commit to close the gap where the existing two bullets didn't cover *new* modules, only existing ones.
 - Standing follow-up: Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
+- Next up: ROADMAP #2 (post-file alpha recomputation) is the top unchecked item — read `design/project-framing.md` before proposing scope.
 
 ## For future agents
 
@@ -45,6 +45,7 @@ Session discipline:
 - **Closed items live in `COMPLETED.md`, not here.** When Tom signs off a `[~]` item, the next session moves its full prose into `COMPLETED.md` and leaves a one-line stub at the original item number in this file. Original numbers are stable — never renumber. When touching territory that overlaps a completed item, read its full entry in `COMPLETED.md` before re-deriving decisions.
 - Honor the standing order: deterministic work lives in Python scripts; the agent does only judgment and interpretation. If a feature tempts you to move mechanical work into agent-handled text, push back.
 - Tests live in `tests/` and run on every push via `.github/workflows/tests.yml`. Do not mark a feature done with tests failing; check the commit's test run before calling a feature closed.
+- **Ship tests with the feature, not after.** When a commit adds a new primitive (parser, adapter, pure-math function, schema transform, cache seam), the same commit adds pytest coverage for it. Assembly-level code that ROADMAP #2–#11 is expected to rewrite is deliberately skipped per `design/pytest-ci-suite.md`'s "Guiding principle" — if you skip, say so in the commit message so a reviewer sees the trade-off, not a miss.
 - Any change to `scoring/factors.py` must extend `tests/test_alpha_math.py` or `tests/test_composite_math.py` in the same commit. Other modules with existing test coverage extend their fixtures in step with the change, not after.
 
 Status legend:
@@ -56,11 +57,7 @@ Status legend:
 
 ## Backlog (priority order)
 
-### 1. [~] Pytest suite + CI workflow
-
-All six commits in the design note's plan are landed: (1) design note + `[~]` flip, (2) scaffolding + fixtures, (3) batch 1 tests (ticker normalization + trade-dict normalise), (4) batch 2 tests (price cache + alpha math + composite math), (5) batch 3 tests (fetch-trades schema contract), (6) `.github/workflows/tests.yml` + the two "For future agents" bullets. 77 pytest cases green locally. Full decision trail — scope, stable-vs-churning surface map, locked decisions, four "Batch N amendment" paragraphs — lives in `design/pytest-ci-suite.md`. SHAs for each commit are in `git log` as `pytest N/6`.
-
-Pending manual verification: Tom confirms the first green check on the pytest workflow after pushing 6/6. The next session flips `[~] → [x]` with the 6/6 SHA preserved. If the GHA run goes red on an environment drift (a fixture path, a missing dep), the next session fixes it in a pytest-follow-up commit before the flip.
+### 1. [x] Pytest suite + CI workflow — 3022a38 — see COMPLETED.md
 
 ### 2. [ ] Post-file alpha recomputation
 
