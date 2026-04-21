@@ -4,9 +4,9 @@ ROADMAP #1. Active feature. Flipped to `[~]` alongside this note in the commit t
 
 ## Scope
 
-**In scope.** A `tests/` directory with a pytest suite covering the stable primitives in the codebase (ticker normalization, record-level trade parse, price-cache read contract, alpha math, composite math, transaction classification, end-to-end parse of one capitoltrades record set). Money-range parsing and a dedicated date parser were in the original plan but were dropped from v1 after a code-reality check — neither exists as a standalone primitive in current code; see "Batch 1 amendment" under Test plan. Shared fixtures under `tests/fixtures/` designed for compounding reuse across ROADMAP items #2–#11. A `requirements-dev.txt` declaring dev dependencies (`pytest`, `responses`). A GitHub Actions workflow at `.github/workflows/tests.yml` running pytest on push-to-main and pull-requests-against-main, on Python 3.11. Two "extend tests with the feature" clauses appended to `ROADMAP.md`'s "For future agents" section in the final commit of this feature.
+**In scope.** A `tests/` directory with a pytest suite covering the stable primitives in the codebase (ticker normalization, record-level trade parse, price-cache read contract, alpha math, composite math, transaction classification, end-to-end parse of one capitoltrades record set). Money-range parsing and a dedicated date parser were in the original plan but were dropped from v1 after a code-reality check — neither exists as a standalone primitive in current code; see "Batch 1 amendment" under Test plan. Shared fixtures under `tests/fixtures/` designed for compounding reuse across ROADMAP items #2–#11. A `requirements-dev.txt` declaring dev dependencies (`pytest`, `responses`). A GitHub Actions workflow at `.github/workflows/tests.yml` running pytest on every push, on Python 3.11. Two "extend tests with the feature" clauses appended to `ROADMAP.md`'s "For future agents" section in the final commit of this feature.
 
-**Out of scope.** Coverage reporting, linting (ruff / black / mypy), matrix builds, integration tests against live capitoltrades or live yfinance, branch protection rules (a manual GitHub-UI step — checklist below), and any snapshot tests pinning current composite weights, ranking output, or leaderboard shape (see "Guiding principle").
+**Out of scope.** Coverage reporting, linting (ruff / black / mypy), matrix builds, integration tests against live capitoltrades or live yfinance, pull-request triggers on the workflow (Tom works on `main` directly; see "Batch 4 amendment" under Commit plan), branch protection rules (dropped alongside the PR path — same amendment), and any snapshot tests pinning current composite weights, ranking output, or leaderboard shape (see "Guiding principle").
 
 ## Guiding principle
 
@@ -43,7 +43,7 @@ Tests covering the primitives survive every refactor in the backlog. Tests cover
 6. **Price-cache fixture: a real yfinance snapshot, committed once.** ~10 tickers × ~2 years of daily closes.
 7. **Synthetic alpha scenarios are hand-crafted, separate from the recorded fixture.** Used for edge cases (holiday gaps, splits, missing price days); decoupled from recorded historical data so yfinance re-records don't invalidate edge-case assertions.
 8. **Primary "extend tests with the feature" anchor: `scoring/factors.py`.** Any change to this file must extend `tests/test_alpha_math.py` or `tests/test_composite_math.py` in the same commit. Other covered modules follow a softer fixture-extension rule.
-9. **Branch protection is a manual GitHub-UI step**, not a workflow-file concern. Checklist below; user configures once.
+9. **Workflow triggers on push only, no pull-request path, no branch protection.** Tom works directly on `main`; a PR gate and status-check merge requirement don't match the actual workflow. Tests still run on every push so regressions are visible in the commit UI. If the contribution model ever changes (a second committer, a staging branch), revisit in that PR.
 
 ## Test plan
 
@@ -180,16 +180,12 @@ def test_price_cache_hit(monkeypatch, tmp_path, price_cache_sample):
 
 Exact signatures will shift based on what is in the code at commit-write time; these are directional, not binding.
 
-## CI workflow sketch (`.github/workflows/tests.yml`)
+## CI workflow (`.github/workflows/tests.yml`)
 
 ```yaml
 name: Tests
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: push
 
 jobs:
   pytest:
@@ -207,23 +203,17 @@ jobs:
       - run: pytest
 ```
 
+`on: push` is unfiltered — runs on every push to any branch. The
+original sketch had `on: push: branches: [main]` paired with an
+`on: pull_request:` block; both the branch filter and the PR trigger
+were dropped at commit 6/6. See "Batch 4 amendment" under Commit plan.
+
 ## "Extend tests with the feature" clauses (lands in commit 6/6)
 
 Two bullets appended to `ROADMAP.md`'s "For future agents" section:
 
-- Tests live in `tests/` and run on every push + PR via `.github/workflows/tests.yml`. A red test check blocks merge once branch protection is configured. Do not mark a feature done with tests failing.
+- Tests live in `tests/` and run on every push via `.github/workflows/tests.yml`. Do not mark a feature done with tests failing; check the commit's test run before calling a feature closed.
 - Any change to `scoring/factors.py` must extend `tests/test_alpha_math.py` or `tests/test_composite_math.py` in the same commit. Other modules with existing test coverage extend their fixtures in step with the change, not after.
-
-## Branch protection checklist (manual, post-commit-6/6)
-
-After commit 6/6 lands and the first green check appears, user configures in the GitHub UI:
-
-1. Settings → Branches → Add branch protection rule.
-2. Branch name pattern: `main`.
-3. Require a pull request before merging.
-4. Require status checks to pass before merging.
-5. Select `pytest` as a required status check.
-6. Save.
 
 ## Responsibility table
 
@@ -236,8 +226,7 @@ After commit 6/6 lands and the first green check appears, user configures in the
 | Alpha math assertions | Script (parametrized pytest cases) | Uses both recorded and synthetic fixtures |
 | Composite math assertions | Script (parametrized pytest cases) | Weight tuples passed as parameters, not hardcoded |
 | Deciding what to cover and what to defer | Agent (this design note) | Stable-vs-churning judgment lives here, not in code |
-| Branch protection configuration | User (GitHub UI) | Checklist above |
-| `[~] → [x]` flip on ROADMAP #1 | User | After branch protection is configured and first green check seen |
+| `[~] → [x]` flip on ROADMAP #1 | User | After first green check on the pytest workflow is seen |
 
 ## Commit plan
 
@@ -246,6 +235,18 @@ After commit 6/6 lands and the first green check appears, user configures in the
 3. **Tests batch 1** (pure-function, no network). `test_ticker_normalization.py`, `test_fetch_trades_normalise.py` (folds the money-range / date-parse coverage the original plan had as separate files — see "Batch 1 amendment" under Test plan for why).
 4. **Tests batch 2** (needs fixtures). `test_price_cache.py`, `test_alpha_math.py`, `test_composite_math.py`.
 5. **Tests batch 3** (schema contract). `test_fetch_trades_parse.py` — schema-contract tests over the recorded fixture. `test_transaction_classification.py` was dropped; see "Batch 3 amendment" for why.
-6. **CI + ROADMAP.** `.github/workflows/tests.yml` + the two "For future agents" bullets. Leaves ROADMAP #1 in `[~]`; user flips to `[x]` after seeing the first green check and configuring branch protection.
+6. **CI + ROADMAP.** `.github/workflows/tests.yml` + the two "For future agents" bullets. Leaves ROADMAP #1 in `[~]`; user flips to `[x]` after seeing the first green check.
+
+**Batch 4 amendment (pytest 6/6).** The workflow trigger was simplified
+from `on: push (branches: [main]) + on: pull_request (branches: [main])`
+to plain `on: push`, and the branch-protection checklist that was
+originally planned as a post-commit-6/6 manual step was removed
+entirely. Rationale: Tom pushes directly to `main` — there is no PR
+gate to hang a required-status-check on, and a branch protection rule
+requiring PRs would get in his way rather than protect anything. The
+workflow still runs on every push, so a red test is visible in the
+commit UI. If the contribution model changes later (a second
+committer, a staging branch), the PR trigger and branch protection
+can be added in that PR; they are not load-bearing for v1.
 
 Each commit stands alone — mid-feature handoff picks up from this note plus the last SHA without re-litigating scope

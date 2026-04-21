@@ -22,10 +22,10 @@ Strict rules for writing it:
 
 **2026-04-21 (session 1)**
 
-- ROADMAP #1 pytest suite in progress — design note at `design/pytest-ci-suite.md`; batch 3 tests landed this commit (5/6 of 6), 77/77 green locally.
-- Batch 3 file: `test_fetch_trades_parse.py` — 12 schema-contract cases over `capitoltrades_page_sample.json` (envelope keys, member block keys, `tradeCount` vs `len(trades)` parity, per-trade required keys, `type ∈ {BUY, SELL}`, `txDate`/`published` ISO-parseability, integer-field types). Pins the contract between fetch and scoring without pinning any specific trade data.
-- Deviation recorded in the design note's "Batch 3 amendment": `test_transaction_classification.py` dropped — no standalone classification primitive in code (BUY/SELL filtering is inline at call sites; options/corp-actions/exchange types don't exist in the pipeline). Deferred to ROADMAP #4 if a classification helper is introduced then.
-- Next: pytest commit 6/6 — `.github/workflows/tests.yml` + the two "For future agents" bullets; then Tom configures branch protection in the GitHub UI and the next session flips ROADMAP #1 to `[x]`. Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
+- ROADMAP #1 pytest suite: 6/6 commits landed this session — design note + `[~]` flip, scaffolding + fixtures, batch 1/2/3 tests, and `.github/workflows/tests.yml` + the two "For future agents" bullets. 77/77 pytest cases green locally.
+- CI workflow triggers on `on: push` only (no `pull_request`, no branch filter). Tom asked to drop the PR path; branch-protection checklist was removed from the design note alongside it — see "Batch 4 amendment" in `design/pytest-ci-suite.md`.
+- Item still sits at `[~]` because closing is Tom's call: once he sees the first green check on the pytest workflow, the next session flips ROADMAP #1 to `[x]` with the 6/6 SHA preserved.
+- Standing follow-up: Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
 
 ## For future agents
 
@@ -44,6 +44,8 @@ Session discipline:
 - **Update the "Last session summary" block between each commit during a multi-commit feature, not just at session end.** The block should always reflect what *just* landed and what's next, so a mid-feature handoff — mid-session or across agents — has a clean pickup point. The block is single-slot: replace in place, do not append. Older sessions' context lives in commit messages, `COMPLETED.md`, and `design/*.md`.
 - **Closed items live in `COMPLETED.md`, not here.** When Tom signs off a `[~]` item, the next session moves its full prose into `COMPLETED.md` and leaves a one-line stub at the original item number in this file. Original numbers are stable — never renumber. When touching territory that overlaps a completed item, read its full entry in `COMPLETED.md` before re-deriving decisions.
 - Honor the standing order: deterministic work lives in Python scripts; the agent does only judgment and interpretation. If a feature tempts you to move mechanical work into agent-handled text, push back.
+- Tests live in `tests/` and run on every push via `.github/workflows/tests.yml`. Do not mark a feature done with tests failing; check the commit's test run before calling a feature closed.
+- Any change to `scoring/factors.py` must extend `tests/test_alpha_math.py` or `tests/test_composite_math.py` in the same commit. Other modules with existing test coverage extend their fixtures in step with the change, not after.
 
 Status legend:
 
@@ -56,24 +58,9 @@ Status legend:
 
 ### 1. [~] Pytest suite + CI workflow
 
-In progress — design note at `design/pytest-ci-suite.md`. Commit plan is six commits: (1) design note + this `[~]` flip *(landed)*, (2) scaffolding + fixtures, (3) pure-function tests, (4) fixture-dependent tests, (5) schema-contract tests, (6) `.github/workflows/tests.yml` + the two "For future agents" bullets. Tests cover stable primitives only (ticker normalization, money-range parse, date parse, price-cache read contract, alpha/composite math, transaction classification) — the assemblies #2–#11 will rewrite are deliberately skipped.
+All six commits in the design note's plan are landed: (1) design note + `[~]` flip, (2) scaffolding + fixtures, (3) batch 1 tests (ticker normalization + trade-dict normalise), (4) batch 2 tests (price cache + alpha math + composite math), (5) batch 3 tests (fetch-trades schema contract), (6) `.github/workflows/tests.yml` + the two "For future agents" bullets. 77 pytest cases green locally. Full decision trail — scope, stable-vs-churning surface map, locked decisions, four "Batch N amendment" paragraphs — lives in `design/pytest-ci-suite.md`. SHAs for each commit are in `git log` as `pytest N/6`.
 
-No test suite exists in the repo yet. Stand one up, wire it into GitHub Actions so a red check blocks merge, and add the "extend tests with the feature, not after" discipline to "For future agents" once the scaffolding lands. Until that clause is in the ROADMAP, agents writing new features have no standing rule requiring test coverage — so this item is a prerequisite for the rest of the backlog to be trustworthy.
-
-Sketch: add `tests/` with pytest + whatever fixtures the first-batch modules need (sample capitoltrades payloads, a trimmed `member_bioguide.json`, etc). Seed coverage with the pure-function-y modules first — `scoring/factors.py` (alpha math, composite weights, z-score) and the ticker/normalization helpers in `fetch_trades.py` are the highest-signal starting points; HTML renderers and HTTP-heavy paths follow in subsequent PRs. Add `requirements-dev.txt` (or extend `requirements.txt`) with pytest, and a `.github/workflows/tests.yml` that runs pytest on push + PR to `main` with a red-check-blocks-merge policy.
-
-Once the suite is in place, fold these into "For future agents":
-
-- "Tests live in `tests/` and run on every push + PR via `.github/workflows/tests.yml`. A red test check blocks merge; don't mark a feature done with tests failing."
-- "Any feature that modifies [core module(s) to be chosen in the design note] must extend the pytest fixtures in step with the change, not after."
-
-Design-note questions to resolve before coding:
-
-- Which module(s) carry the "extend tests with the feature, not after" clause? The kids-schedule equivalent names one concrete file (`process_events.py`); candidates here are `fetch_trades.py`, `compute_analysis.py`, `scoring/factors.py`, or a broader module-agnostic rule ("any module under `tests/` coverage"). Confirm with Tom.
-- HTTP mocking approach for capitoltrades — record-and-replay fixture payloads, vcrpy, or the `responses` library. Similar question for the scoring pipeline's yfinance calls (mock at the `price_cache` layer or at yfinance itself — the former is simpler and lets the cache logic stay real).
-- Python version pin vs matrix build. The repo's existing runtime setup (if any pinned version) anchors the decision.
-- Whether to add coverage reporting (codecov or similar) now or defer.
-- Whether the CI workflow should also lint (`ruff` / `black --check`), or keep scope to pytest only for v1.
+Pending manual verification: Tom confirms the first green check on the pytest workflow after pushing 6/6. The next session flips `[~] → [x]` with the 6/6 SHA preserved. If the GHA run goes red on an environment drift (a fixture path, a missing dep), the next session fixes it in a pytest-follow-up commit before the flip.
 
 ### 2. [ ] Post-file alpha recomputation
 
