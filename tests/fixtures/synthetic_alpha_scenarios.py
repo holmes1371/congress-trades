@@ -148,33 +148,41 @@ SPLIT_ADJUSTED_HOLD = {
 }
 
 
-# ─── Scenario 5: missing price day inside the horizon window ─────────
+# ─── Scenario 5: trade date missing from cache — entry forward-fills ──
 #
-# A single business day has no data (illiquid ticker, data-provider gap).
-# Exercises the forward-fill / skip-day behavior that
-# `_next_close_at_or_after` in scoring/factors.py is responsible for.
-MISSING_DAY_INSIDE_HORIZON = {
-    "name": "missing_day_forward_fills",
-    "trade_date": date(2024, 5, 6),
-    "publication_date": date(2024, 5, 20),
+# Original draft of this scenario tried to exercise an *exit-side*
+# forward-fill, but `factors.py` doesn't implement one: it picks the
+# exit by integer index into the price DataFrame, so a missing row
+# doesn't behave as "skip forward one calendar day" — it behaves as
+# "shift the target forward by one row." The behavior the code *does*
+# implement is entry-side forward-fill via `_next_close_at_or_after`:
+# if the trade date has no row, entry resolves to the first available
+# close on or after that date. This scenario exercises that path.
+ENTRY_DAY_MISSING_FORWARD_FILLS = {
+    "name": "entry_day_missing_forward_fills",
+    "trade_date": date(2024, 5, 8),        # no row on this date
+    "publication_date": date(2024, 5, 22),
     "ticker_prices": [
-        (date(2024, 5, 6), 75.0),
         (date(2024, 5, 7), 76.0),
-        # 2024-05-08 missing entirely
-        (date(2024, 5, 9), 77.0),
+        # 2024-05-08 missing entirely → entry forward-fills to 5/9
+        (date(2024, 5, 9), 77.0),          # entry idx = 1
         (date(2024, 5, 10), 78.0),
-        (date(2024, 5, 13), 78.75),  # D+5 bday (counting real days)
+        (date(2024, 5, 13), 79.0),
+        (date(2024, 5, 14), 79.5),
+        (date(2024, 5, 15), 80.0),
+        (date(2024, 5, 16), 80.85),        # idx 1 + 5 = idx 6
     ],
     "benchmark_prices": [
-        (date(2024, 5, 6), 500.0),
         (date(2024, 5, 7), 500.0),
-        (date(2024, 5, 8), 500.0),
         (date(2024, 5, 9), 500.0),
         (date(2024, 5, 10), 500.0),
         (date(2024, 5, 13), 500.0),
+        (date(2024, 5, 14), 500.0),
+        (date(2024, 5, 15), 500.0),
+        (date(2024, 5, 16), 500.0),
     ],
     "horizon_bdays": 5,
-    "expected_alpha_approx": 0.05,  # 75 → 78.75 is +5%
+    "expected_alpha_approx": 0.05,         # 77 → 80.85 = +5.0%
 }
 
 
@@ -183,5 +191,5 @@ ALL_SCENARIOS = [
     HOLIDAY_GAP_5D_BUY,
     POSTFILE_DIVERGENCE,
     SPLIT_ADJUSTED_HOLD,
-    MISSING_DAY_INSIDE_HORIZON,
+    ENTRY_DAY_MISSING_FORWARD_FILLS,
 ]

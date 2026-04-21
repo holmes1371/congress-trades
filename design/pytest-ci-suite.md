@@ -53,7 +53,7 @@ Seven modules under `tests/`, target ~45 cases total:
 |---|---|---|
 | `test_ticker_normalization.py` | ~20 (parametrized) | `TICKER:US` → `TICKER`, dots, foreign-suffix rejection, empty/null edges, placeholder strings, case/whitespace |
 | `test_fetch_trades_normalise.py` | ~6 | `_normalise_trade`: `pubDate[:10]` truncation, missing `pubDate`, missing `issuer` block, `txType` uppercasing, missing `txType` |
-| `test_price_cache.py` | ~5 | hit, miss, missing date range, concurrent access, corrupt-file fallback; mocks yfinance adapter |
+| `test_price_cache.py` | ~4 | hit, miss, partial coverage, corrupt-file fallback; mocks yfinance adapter. "Concurrent access" dropped — see "Batch 2 amendment" |
 | `test_alpha_math.py` | ~10 | parametrized over entry dates (trade-date, post-file) and horizons (5d/20d/60d); holiday gap; synthetic edge cases |
 | `test_composite_math.py` | ~5 | z-score, weighted sum, NaN handling, partial-input behavior; parametrized over weight tuples so no current choice is pinned |
 | `test_transaction_classification.py` | ~6 | buy, sell, exchange, options rolls, corporate actions, edge cases |
@@ -76,6 +76,32 @@ A code-reality check before writing them showed:
 
 Net: three files → two files, ~20 cases → ~26 cases. The table above reflects
 the amended shape.
+
+**Batch 2 amendment (pytest 4/6).** Two deviations from the original plan
+worth recording:
+
+- `test_price_cache.py` — the "concurrent access" case named in the original
+  plan was dropped. `_save_cache` writes the CSV non-atomically and the module
+  has no locking; there is nothing to assert without first adding the locking,
+  and adding locking is out of scope here. If #5 (paper-trading log) or #10
+  (nightly cadence) introduces real concurrency on this seam, file the locking
+  work and add the test then.
+- `tests/fixtures/synthetic_alpha_scenarios.py` — Scenario 5 was renamed from
+  `missing_day_forward_fills` to `entry_day_missing_forward_fills` and
+  reshaped. The original imagined an *exit-side* forward-fill on the price
+  series, but `factors._close_n_bdays_later` looks up exits by integer index
+  into the DataFrame — there is no exit-side forward-fill to test. The
+  renamed scenario exercises the *entry-side* forward-fill that
+  `_next_close_at_or_after` actually implements (trade falls on a date with
+  no row → entry resolves to the next available close).
+- `compute_composite` weight parametrization — the original plan said
+  "parametrize over weight tuples." `compute_composite` reads
+  `COMPOSITE_WEIGHTS` from module scope rather than taking weights as a
+  parameter, so parametrization is implemented as
+  `monkeypatch.setattr(factors, "COMPOSITE_WEIGHTS", isolated)`. Each
+  parametrize case isolates a single z-column under 100% weight and asserts
+  the composite equals that column. This satisfies the no-pinning contract
+  without forcing a refactor of `compute_composite`.
 
 ## Fixtures
 

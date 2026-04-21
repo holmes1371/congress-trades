@@ -22,10 +22,10 @@ Strict rules for writing it:
 
 **2026-04-21 (session 1)**
 
-- ROADMAP #1 pytest suite in progress — design note at `design/pytest-ci-suite.md` (1/6 c571481, 2/6 6b7ea0b); batch 1 tests landed this commit (3/6 of 6), 29/29 green locally.
-- Batch 1 rescoped: `test_ticker_normalization.py` (23 parametrized cases against `scoring.score_members.normalize_ticker`) + `test_fetch_trades_normalise.py` (6 cases against `fetch_trades._normalise_trade`). Money-range and date-parse files dropped — no standalone primitives exist in current code; rationale in the design note's "Batch 1 amendment."
-- conftest now adds `scoring/` to sys.path alongside repo root, because `score_members.py` does a bare `from price_cache import …` that works under script invocation but not under pytest import — smallest fix is test-infra, not production code.
-- Next: pytest commit 4/6 — batch 2 (fixture-dependent: `test_price_cache.py`, `test_alpha_math.py`, `test_composite_math.py`). Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
+- ROADMAP #1 pytest suite in progress — design note at `design/pytest-ci-suite.md` (1/6 c571481, 2/6 6b7ea0b, 3/6 897dbd1); batch 2 tests landed this commit (4/6 of 6), 65/65 green locally.
+- Batch 2 files: `test_price_cache.py` (4 cases, monkeypatch on `_bulk_download`), `test_alpha_math.py` (10 cases, parametrized over the synthetic scenarios + edge cases), `test_composite_math.py` (22 cases — `_zscore`, `_trade_count_score`, `compute_composite` weight-isolation via monkeypatch on `COMPOSITE_WEIGHTS`).
+- Two deviations recorded in the design note's "Batch 2 amendment": price-cache `concurrent_access` case dropped (no locking in code to assert against), and Scenario 5 in synthetic_alpha_scenarios renamed/reshaped from `missing_day_forward_fills` to `entry_day_missing_forward_fills` (the original imagined an exit-side forward-fill that the code doesn't implement).
+- Next: pytest commit 5/6 — batch 3 schema-contract (`test_transaction_classification.py`, `test_fetch_trades_parse.py`). Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
 
 ## For future agents
 
