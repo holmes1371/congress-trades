@@ -23,8 +23,8 @@ Strict rules for writing it:
 **2026-04-22 (session 2)**
 
 - #2 closed: `[~]` → `[x]` at `6a5b0eb` after Tom confirmed the rendered leaderboard carried the benchmark block + spot-checked values against Yahoo. Full post-mortem in `COMPLETED.md #2`; one-line stub at ROADMAP #2.
-- #3 in flight (`[~]`): signal-quality filters. Design note: `design/signal-quality-filters.md`. SHAs: 1/5 `b22cd02` (design note + `[~]` flip), 2/5 `fbd4b82` (filter primitives + 45 tests), 3/5 `8bcb1a6` (wire into `score_members.py` + extend `aggregate_member_factors` + 5 new aggregation tests), 4/5 this commit (leaderboard surface — xlsx `display_cols` gets 4 new filter columns; `build_leaderboard.py` renders Non-self / Late / ETF drops / Opt drops with tooltip headers). Transition-period display: all existing columns preserved.
-- Next: commit 5/5 — schema-contract test `tests/test_leaderboard_filter_columns.py` asserting the four new column headers and `fmt_pct` / integer cell shapes appear in the rendered leaderboard. Full suite: 145 tests green. Standing follow-ons #10 (price_cache bug) and #12 (weekly-report strip) remain queued.
+- #3 `[~]` — all five commits landed, awaiting manual QA. SHAs: 1/5 `b22cd02` (design note + `[~]` flip), 2/5 `fbd4b82` (primitives + 45 tests), 3/5 `8bcb1a6` (wire into pipeline + 5 aggregation tests), 4/5 `69dc685` (leaderboard xlsx + HTML columns), 5/5 this commit (`tests/test_leaderboard_filter_columns.py`, 4 schema-contract cases). Transition-period display preserves all existing leaderboard columns.
+- Next: manual QA. Tom pushes, reruns `score_members.py` locally (expect a reshuffle: ETF-heavy members drop in rank; non-self-heavy members unchanged but tagged), then re-renders `build_leaderboard.py` to confirm the four new columns (Non-self / Late / ETF drops / Opt drops) appear cleanly on the HTML page. On signoff, next session flips `[~]` → `[x]` with `<5/5 SHA>` and moves #3 prose into `COMPLETED.md`. Full suite: 149 tests green. Standing follow-ons #10 (price_cache bug) and #12 (weekly-report strip) remain queued.
 
 ## For future agents
 
@@ -60,7 +60,7 @@ Status legend:
 
 ### 3. [~] Signal-quality filters (ETFs, options, spouse, late filings)
 
-In progress. Commit 1/5 landed: `design/signal-quality-filters.md` + `[~]` flip + design/README.md listing. Locked decisions: single `scoring/filters.py` module with four pure functions; ETF + options → drop, non-self + late → tag; hardcoded broad-market ETF list (NANC/KRUZ excluded as niche signals); 40-day late threshold; options encoding verified in commit 2 prep against safe default. Remaining: 2/5 filter primitives + tests; 3/5 wire into `score_members.py` + factor aggregation extension; 4/5 leaderboard column additions; 5/5 schema-contract test.
+In progress — all five commits landed, awaiting manual QA. SHAs: 1/5 `b22cd02` (design note + renumber bundle); 2/5 `fbd4b82` (primitives + 45 tests); 3/5 `8bcb1a6` (wire into `score_members.py` + extend `aggregate_member_factors` + 5 aggregation tests); 4/5 `69dc685` (leaderboard xlsx + HTML columns); 5/5 this commit (`tests/test_leaderboard_filter_columns.py`, 4 schema-contract cases). Tom signs off after push + `score_members.py` rerun + visual leaderboard QA (reshuffle direction correct; new columns render cleanly).
 
 
 A non-trivial fraction of disclosed transactions are ETF rebalances in managed accounts, options rolls, corporate actions, and spouse-directed trades. Treating all transactions equivalently inflates noise in both the scoring and signal-generation layers. Sequenced before #4 so the post-file alpha reshuffle runs on a filter-clean universe rather than a polluted one. Bundled because they share the same fixtures and the same place in the pipeline:
