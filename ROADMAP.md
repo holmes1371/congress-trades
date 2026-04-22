@@ -22,9 +22,9 @@ Strict rules for writing it:
 
 **2026-04-22 (session 2)**
 
-- #2 closed: `[~]` → `[x]` at `6a5b0eb` after Tom confirmed the rendered leaderboard carried the benchmark block + the four values spot-checked against Yahoo. Full post-mortem + commit trail moved to `COMPLETED.md #2`; one-line stub left at ROADMAP #2 per convention.
-- Side edit this commit: `COMPLETED.md` preface was still carrying the pre-session-2 "original numbers are stable — never renumber" line, which became stale when session 2 adopted priority-order renumbering. Preface text now matches the current convention.
-- Next: #3 (signal-quality filters — ETFs, options, spouse, late filings). Plan-and-wait on the design note before coding; the `[~]` flip goes in #3's first artifact per convention. Standing follow-ons #10 (price_cache bug) and #12 (weekly-report strip) remain queued at their slotted positions.
+- #2 closed: `[~]` → `[x]` at `6a5b0eb` after Tom confirmed the rendered leaderboard carried the benchmark block + spot-checked values against Yahoo. Full post-mortem in `COMPLETED.md #2`; one-line stub at ROADMAP #2.
+- #3 in flight (`[~]`): signal-quality filters (ETF + options → drop; non-self owner + late → tag). Design note: `design/signal-quality-filters.md`. Five-commit plan; commit 1/5 this commit (design note + `[~]` flip + listing). Key decisions locked: single `scoring/filters.py` with four pure functions; ETF list hardcoded (14 broad-market funds; NANC/KRUZ deliberately excluded as niche signals); 40-day late threshold; options encoding = safe-default with commit-2 verification against real cache.
+- Next: commit 2/5 — `scoring/filters.py` primitives + `tests/test_filters.py` (~16 cases). Includes the options-encoding verification as a pre-commit scan of local `scoring/cache/trades/`. Standing follow-ons #10 (price_cache bug) and #12 (weekly-report strip) remain queued.
 
 ## For future agents
 
@@ -58,7 +58,10 @@ Status legend:
 
 ### 2. [x] NANC / KRUZ / SPY / QQQ benchmark row — 6a5b0eb — see COMPLETED.md
 
-### 3. [ ] Signal-quality filters (ETFs, options, spouse, late filings)
+### 3. [~] Signal-quality filters (ETFs, options, spouse, late filings)
+
+In progress. Commit 1/5 landed: `design/signal-quality-filters.md` + `[~]` flip + design/README.md listing. Locked decisions: single `scoring/filters.py` module with four pure functions; ETF + options → drop, non-self + late → tag; hardcoded broad-market ETF list (NANC/KRUZ excluded as niche signals); 40-day late threshold; options encoding verified in commit 2 prep against safe default. Remaining: 2/5 filter primitives + tests; 3/5 wire into `score_members.py` + factor aggregation extension; 4/5 leaderboard column additions; 5/5 schema-contract test.
+
 
 A non-trivial fraction of disclosed transactions are ETF rebalances in managed accounts, options rolls, corporate actions, and spouse-directed trades. Treating all transactions equivalently inflates noise in both the scoring and signal-generation layers. Sequenced before #4 so the post-file alpha reshuffle runs on a filter-clean universe rather than a polluted one. Bundled because they share the same fixtures and the same place in the pipeline:
 

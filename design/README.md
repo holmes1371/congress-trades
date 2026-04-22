@@ -32,7 +32,7 @@ Standing references (read as needed, not re-litigated per session):
 
 Active feature notes (paired with an in-flight `[~]` item in `ROADMAP.md`):
 
-_(none currently)_
+- `signal-quality-filters.md` — ROADMAP #3. Scope and commit plan for four signal-quality filters (broad-market ETF drop, options drop, non-self-owner tag, late-filing tag). Five-commit sequence; `scoring/filters.py` as a new module with four pure functions composed in `score_members.py`, factor aggregation extended with six new columns.
 
 Closed feature notes (retained as historical context; matching ROADMAP item lives in `COMPLETED.md`):
 
