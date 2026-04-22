@@ -24,8 +24,8 @@ Strict rules for writing it:
 
 - Backlog renumbered so numbers match priority order. Old→new map: old-#2 → **#4** (post-file alpha); old-#3 → **#2** (benchmarks); old-#4 → **#3** (filters); old-#5 → **#6** (paper log); old-#6 → **#5** (walk-forward). #1 and #7–#11 unchanged. Cross-refs in `design/pytest-ci-suite.md` migrated alongside.
 - #4 reframed: post-file alpha is *the* composite now (not a second family); trade-date demotes to a diagnostic column. #5 walk-forward bundled into the same design note — without an out-of-sample loop, #4 is a column change, not a viability test.
-- #2 in flight (`[~]`). Option (A) chosen — benchmark reference row, not a follow-list mirror-PnL simulator (mirror-PnL stays with #5). Design note at `design/benchmark-row.md`; four-commit plan. This commit also bundles the renumber + `pytest-ci-suite.md` cross-ref doc edits so they don't sit in the worktree.
-- Next up: commit 2/4 — `scoring/benchmarks.py` primitive + `tests/test_benchmarks.py` + `tests/fixtures/prices/{NANC,KRUZ,QQQ}.csv`.
+- #2 in flight (`[~]`), option (A) — benchmark reference row only, no follow-list mirror-PnL simulator (mirror-PnL stays with #5). Design note: `design/benchmark-row.md`. Commit 1/4 `0254ef0` landed the design note + the backlog-renumber + `pytest-ci-suite.md` cross-ref bundle. Commit 2/4 adds `scoring/benchmarks.py` + 11 parametrized tests + synthetic NANC/KRUZ/QQQ fixtures (SPY already existed; synthetic chosen over recorded to sidestep the sandbox yfinance allowlist).
+- Next up: commit 3/4 — wire `all_benchmark_returns` into `build_leaderboard.py` as a block above the 365d table + fee-gross footnote; commit-3-time call on whether the weekly-report strip lands here or as a follow-on.
 
 ## For future agents
 
@@ -61,7 +61,7 @@ Status legend:
 
 ### 2. [~] NANC / KRUZ / SPY / QQQ benchmark row in the weekly report
 
-In progress. Commit 1/4 landed: `design/benchmark-row.md` + `[~]` flip + bundled doc edits. Option (A) chosen (reference row only; no follow-list mirror-PnL simulator — mirror-PnL stays with #5). Commits 2–4 remaining: benchmark primitive + tests → leaderboard wiring → schema-contract test.
+In progress. Commits landed: 1/4 `0254ef0` (design note + renumber bundle); 2/4 this commit (`scoring/benchmarks.py` primitive + 11 tests + synthetic NANC/KRUZ/QQQ fixtures). Option (A) — reference row only; no follow-list mirror-PnL simulator (that stays with #5). Remaining: 3/4 wire into `build_leaderboard.py`; 4/4 schema-contract test.
 
 The current weekly report presents absolute numbers against an implicit "no benchmark." The four defensible reference points are NANC and KRUZ (both already implement congressional mirroring with institutional execution) and SPY and QQQ (broad-market anchors). Add a cumulative-PnL row comparing the curated follow list's mirror PnL against each benchmark over the report's window, so the value-add question is visible every week rather than deferred. Sequenced first because it is small and additive — a stable reference line in the report makes the #3 universe shrink and the #4 reshuffle interpretable against something fixed rather than a moving target.
 
