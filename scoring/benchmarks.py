@@ -19,7 +19,7 @@ from datetime import date
 
 import pandas as pd
 
-from price_cache import get_prices
+from scoring.price_cache import get_prices
 
 
 BENCHMARK_TICKERS: tuple[str, ...] = ("NANC", "KRUZ", "SPY", "QQQ")

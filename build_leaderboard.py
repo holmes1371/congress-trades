@@ -15,12 +15,15 @@ import argparse
 import glob
 import os
 import sys
+from datetime import date, timedelta
 from pathlib import Path
 
 try:
     import openpyxl
 except ImportError:
     sys.exit("ERROR: openpyxl not installed. Run: pip install openpyxl")
+
+from scoring.benchmarks import BENCHMARK_TICKERS, all_benchmark_returns
 
 
 PROJ = Path(__file__).resolve().parent
@@ -125,6 +128,32 @@ def build_weights_section(wb):
     return "<ul>" + "".join(items) + "</ul>"
 
 
+def build_benchmark_block(long_returns, short_returns):
+    """Render a compact benchmark-returns card (4 tickers × 2 windows).
+
+    Returns are gross of expense ratios and slippage; None → '—' via
+    fmt_pct. The follow list is also reported gross, so the comparison
+    is consistent (see design/benchmark-row.md, locked decision 5).
+    """
+    rows = []
+    for ticker in BENCHMARK_TICKERS:
+        long_r = fmt_pct(long_returns.get(ticker))
+        short_r = fmt_pct(short_returns.get(ticker))
+        rows.append(
+            f"<tr><td><strong>{ticker}</strong></td>"
+            f"<td>{long_r}</td><td>{short_r}</td></tr>"
+        )
+    return (
+        '<div class="weights-card">'
+        '<h3>Benchmark Reference — Cumulative Return</h3>'
+        '<table style="font-size:0.82rem; width:auto;">'
+        '<thead><tr><th>Ticker</th><th>365d</th><th>180d</th></tr></thead>'
+        '<tbody>' + "".join(rows) + '</tbody>'
+        '</table>'
+        '</div>'
+    )
+
+
 PAGE_TEMPLATE = """\
 <!DOCTYPE html>
 <html lang="en">
@@ -212,6 +241,8 @@ PAGE_TEMPLATE = """\
   {weights_html}
 </div>
 
+{benchmark_block}
+
 <div class="section-title">365-Day Window (Top 20)</div>
 <div class="table-wrap">
   <table>
@@ -243,8 +274,9 @@ PAGE_TEMPLATE = """\
 <div class="footer">
   Composite scores are z-score-weighted aggregates of per-trade alpha (buy trades
   measured against SPY at 5/20/60-day horizons), hit rate, Sharpe ratio of alpha,
-  reporting lag, liquidity pass rate, and trade count. This is for informational
-  purposes only and does not constitute investment advice.
+  reporting lag, liquidity pass rate, and trade count. Benchmark returns above
+  are gross of expense ratios and slippage. This is for informational purposes
+  only and does not constitute investment advice.
   <br>Last built: {build_time}
 </div>
 
@@ -285,12 +317,18 @@ def main():
 
     weights_html = build_weights_section(wb)
 
+    today = date.today()
+    long_returns = all_benchmark_returns(today - timedelta(days=365), today)
+    short_returns = all_benchmark_returns(today - timedelta(days=180), today)
+    benchmark_block = build_benchmark_block(long_returns, short_returns)
+
     out_dir = Path(PROJ / args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     html = PAGE_TEMPLATE.format(
         data_date=data_date,
         weights_html=weights_html,
+        benchmark_block=benchmark_block,
         long_rows=long_rows,
         short_rows=short_rows,
         build_time=datetime.now().strftime("%b %d, %Y at %I:%M %p"),
