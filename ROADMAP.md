@@ -22,11 +22,9 @@ Strict rules for writing it:
 
 **2026-04-22 (session 2)**
 
-- Backlog renumbered so numbers match priority order. Old→new map: old-#2 → **#4** (post-file alpha); old-#3 → **#2** (benchmarks); old-#4 → **#3** (filters); old-#5 → **#6** (paper log); old-#6 → **#5** (walk-forward). #1 and #7–#11 unchanged. Cross-refs in `design/pytest-ci-suite.md` migrated alongside.
-- #4 reframed: post-file alpha is *the* composite now (not a second family); trade-date demotes to a diagnostic column. #5 walk-forward bundled into the same design note — without an out-of-sample loop, #4 is a column change, not a viability test.
-- #2 `[~]` — all four commits landed, awaiting manual QA signoff. Option (A): benchmark reference row only; no follow-list mirror-PnL simulator (that stays with #5). Design note: `design/benchmark-row.md`. SHAs: 1/4 `0254ef0` (note + renumber bundle); 2/4 `3493a7e` (primitive + 11 tests + synthetic fixtures); 3/4 `2bd1f28` (wired into `build_leaderboard.py` + fee-gross footnote; weekly-report strip deferred to a follow-on); 4/4 this commit (`tests/test_leaderboard_benchmark_block.py`, 7 schema-contract cases). Full suite is 95 tests green.
-- Sandbox note: local render was blocked by a pre-existing price_cache single-ticker code path (raises when yfinance returns empty-column frames) — unrelated to this feature. Real render happens on Tom's local run / on push.
-- Next: manual QA checkpoint A — Tom renders the leaderboard locally or after push, spot-checks NANC/KRUZ/SPY/QQQ values against Yahoo Finance, confirms the block sits above the 365d table and the gross-of-fees footnote is visible. On signoff, next session flips `[~]` → `[x]` with the 4/4 SHA and moves the full #2 prose into `COMPLETED.md` per convention.
+- #2 `[~]` — all four commits landed (1/4 `0254ef0`, 2/4 `3493a7e`, 3/4 `2bd1f28`, 4/4 `6a5b0eb`); awaiting manual QA signoff. Option (A): benchmark reference row only; no follow-list mirror-PnL simulator (that stays with #5). Design note: `design/benchmark-row.md`. Full suite: 95 tests green.
+- Two follow-ons filed this commit: **#10** (fix `price_cache.py` single-ticker fallback on empty yfinance response — surfaced during #2's local-render attempt; sequenced before nightly-cadence #11 amplifies exposure) and **#12** (weekly-report benchmark strip — deferred from #2 commit 3). Daily cadence → **#11**; live Cowork artifact → **#13**. Cross-refs migrated in `COMPLETED.md`, `design/README.md`, and `design/pytest-ci-suite.md`.
+- Next: manual QA checkpoint A — render the leaderboard, spot-check NANC/KRUZ/SPY/QQQ values vs. Yahoo, confirm the block sits above the 365d table and the gross-of-fees footnote is visible. On signoff, next session flips `[~]` → `[x]` with `6a5b0eb` and moves #2 prose into `COMPLETED.md`. Then #3 (filters) is top of queue.
 
 ## For future agents
 
@@ -46,7 +44,7 @@ Session discipline:
 - **Closed items live in `COMPLETED.md`, not here.** When Tom signs off a `[~]` item, the next session moves its full prose into `COMPLETED.md` and leaves a one-line stub at its current item number in this file. **Numbers follow priority order, not historical identity.** When the backlog is reprioritized, physically move the blocks *and* renumber so top-to-bottom matches 1, 2, 3, …; update all in-repo cross-references (this file, `design/*.md`, `COMPLETED.md`) in the same commit; record the old→new map in the session summary and commit message so past references remain resolvable via git history. When touching territory that overlaps a completed item, read its full entry in `COMPLETED.md` before re-deriving decisions.
 - Honor the standing order: deterministic work lives in Python scripts; the agent does only judgment and interpretation. If a feature tempts you to move mechanical work into agent-handled text, push back.
 - Tests live in `tests/` and run on every push via `.github/workflows/tests.yml`. Do not mark a feature done with tests failing; check the commit's test run before calling a feature closed.
-- **Ship tests with the feature, not after.** When a commit adds a new primitive (parser, adapter, pure-math function, schema transform, cache seam), the same commit adds pytest coverage for it. Assembly-level code that ROADMAP #2–#11 is expected to rewrite is deliberately skipped per `design/pytest-ci-suite.md`'s "Guiding principle" — if you skip, say so in the commit message so a reviewer sees the trade-off, not a miss.
+- **Ship tests with the feature, not after.** When a commit adds a new primitive (parser, adapter, pure-math function, schema transform, cache seam), the same commit adds pytest coverage for it. Assembly-level code that ROADMAP #2–#13 is expected to rewrite is deliberately skipped per `design/pytest-ci-suite.md`'s "Guiding principle" — if you skip, say so in the commit message so a reviewer sees the trade-off, not a miss.
 - Any change to `scoring/factors.py` must extend `tests/test_alpha_math.py` or `tests/test_composite_math.py` in the same commit. Other modules with existing test coverage extend their fixtures in step with the change, not after.
 
 Status legend:
@@ -123,7 +121,7 @@ Design-note questions:
 - Entry rule. Next-day open, next-day close, or hold-out until the nightly pipeline runs.
 - Exit rule. Fixed horizon (N days), trailing stop, sell-on-subsequent-disclosure, or all three as configurable modes.
 - Storage format. CSV in-repo is simplest; parquet or sqlite become worthwhile once the log is large.
-- Surface. Weekly report, separate page, or the live Cowork artifact in #11 — overlaps decided in the #11 design note rather than here.
+- Surface. Weekly report, separate page, or the live Cowork artifact in #13 — overlaps decided in the #13 design note rather than here.
 - What happens to entries when the signal source is later retracted or corrected.
 
 ### 7. [ ] Transaction-cost, tax-drag, and position-sizing overlays
@@ -163,9 +161,19 @@ Design-note questions:
 - Proximity window. 7, 14, or 30 days.
 - Failure mode when a member sits on multiple committees. Is the tag "any relevant hearing within window," or restricted to the committee whose jurisdiction matches the ticker.
 
-### 10. [ ] Daily / on-disclosure cadence
+### 10. [ ] Fix `price_cache.py` single-ticker fallback on empty yfinance response
 
-Weekly cadence gives up several days of post-disclosure drift that the research suggests is capturable. A nightly run with a short "new signals since last run" digest tightens the loop. The existing no-changes short-circuit makes this cheap to operate. Paired with the live artifact in #11, this changes the platform from a weekly snapshot into something closer to an event-driven stream.
+When `scoring/price_cache.py::_bulk_download` is called with a single ticker and yfinance returns a frame with no `Close` / `Volume` columns (empty response, rate-limit fallback, delisted or unknown ticker, etc.), the single-ticker branch builds a `pd.DataFrame` from scalar `pd.NA` values (around line 128) and crashes with `ValueError: If using all scalar values, you must pass an index`. Surfaced during #2's local-render attempt in the sandbox: `get_prices([ticker], ...)` calls from `scoring/benchmarks.py::benchmark_cumulative_return`'s fallback path tripped the bug. Effect: the pipeline aborts rather than gracefully dropping the missing ticker; the nightly cadence in #11 amplifies exposure and the weekly-report strip in #12 is a new caller. Fix: detect the empty-column shape upstream of the DataFrame construction and return an empty dict for that ticker, matching the module's existing dropped-ticker convention. Ship a regression test alongside: a `responses`-mocked `_bulk_download` call returning an empty-column frame, asserting `get_prices` returns `{}` without raising.
+
+Design-note questions:
+
+- Whether the multi-ticker branch (lines 139-154) needs the same guard. It has a `"Close" in sub_raw.columns` check but then still builds a DataFrame with `pd.NA` for the Volume column — same hazard if Close exists but Volume is absent.
+- Whether to persist a "no data" marker per ticker to avoid repeated yfinance hits on the same missing symbol. Favor not persisting — simple, and a missing ticker is rare enough that retry-on-every-query is cheap.
+- Reproducibility of yfinance's exact empty-column shape in a regression test. May need to capture a live example once and codify the shape in a fixture.
+
+### 11. [ ] Daily / on-disclosure cadence
+
+Weekly cadence gives up several days of post-disclosure drift that the research suggests is capturable. A nightly run with a short "new signals since last run" digest tightens the loop. The existing no-changes short-circuit makes this cheap to operate. Paired with the live artifact in #13, this changes the platform from a weekly snapshot into something closer to an event-driven stream.
 
 Design-note questions:
 
@@ -174,9 +182,21 @@ Design-note questions:
 - Whether the weekly report persists as a digest-of-digests or is retired once the nightly stream is stable.
 - CI vs. local run. The nightly cadence implies GitHub Actions on a schedule; cost and rate-limit implications for capitoltrades need sizing.
 
-### 11. [ ] Live Cowork artifact
+### 12. [ ] Weekly-report benchmark strip
 
-An artifact (in the Cowork sense) that re-queries on open and shows open paper-trade positions, days held, and current PnL against the benchmarks from #2. More actionable than a static HTML report, and a natural home for the paper-trading log from #6. Placed last in priority order because it sits on top of #6 (log), #2 (benchmarks), and ideally #10 (cadence); building it earlier means re-wiring it as each prerequisite lands.
+Extend #2's benchmark reference block to the weekly report (`generate_report.py`) as a compact four-cell strip near the top meta area, so NANC/KRUZ/SPY/QQQ cumulative returns are visible every week rather than only on the monthly leaderboard rebuild. Deferred from #2's commit 3 because the wiring path — `compute_analysis.py` → `build_skeleton.py` → `fill_skeleton.py` → `generate_report.py` — is non-trivial, and the leaderboard surface already delivers the core value-add question. The strip adds cadence: weekly visibility for a reader who only looks at the latest report, not the monthly ranking page.
+
+Design-note questions:
+
+- Compute seam. Bake benchmarks into `analysis_skeleton.json` at `build_skeleton.py` time (paper trail, matches the fill-pipeline convention), or compute at `generate_report.py` render time (simpler, no skeleton plumbing).
+- Window alignment. Match the leaderboard's 180d/365d anchors for continuity with #2, or use the weekly report's trade-window. Framing favors 180d/365d.
+- Placement. Compact four-cell strip in the meta area directly below the title, or a full card below the Executive Summary section.
+- Fallback when benchmark data is unavailable in a given CI run (empty price cache, yfinance unreachable). Show dashes, omit the strip, or fail-closed?
+- Dependency on #10. The strip adds a new caller of `scoring.benchmarks.all_benchmark_returns`, which fans into single-ticker `get_prices` calls in fallback paths. #10 should land first so the strip-generation path isn't a crash vector.
+
+### 13. [ ] Live Cowork artifact
+
+An artifact (in the Cowork sense) that re-queries on open and shows open paper-trade positions, days held, and current PnL against the benchmarks from #2. More actionable than a static HTML report, and a natural home for the paper-trading log from #6. Placed last in priority order because it sits on top of #6 (log), #2 (benchmarks), and ideally #11 (cadence); building it earlier means re-wiring it as each prerequisite lands.
 
 Design-note questions:
 

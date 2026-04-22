@@ -36,4 +36,4 @@ Active feature notes (paired with an in-flight `[~]` item in `ROADMAP.md`):
 
 Closed feature notes (retained as historical context; matching ROADMAP item lives in `COMPLETED.md`):
 
-- `pytest-ci-suite.md` — ROADMAP #1. Scope, fixtures, and commit plan for the pytest suite + `.github/workflows/tests.yml`. Six-commit sequence; tests target stable primitives, not the churning assemblies that #2–#11 will rewrite. Closed `3022a38`.
+- `pytest-ci-suite.md` — ROADMAP #1. Scope, fixtures, and commit plan for the pytest suite + `.github/workflows/tests.yml`. Six-commit sequence; tests target stable primitives, not the churning assemblies that #2–#13 will rewrite. Closed `3022a38`.
