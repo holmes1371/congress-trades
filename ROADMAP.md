@@ -6,7 +6,7 @@ Always load the karpathy-guidelines skill before starting anything here.
 
 Read `design/project-framing.md` at the start of every session before proposing features or strategy claims. It's the standing frame — what this project is (a research platform, not a trading product), the central hazard (STOCK Act disclosure lag), the right benchmarks (NANC/KRUZ/SPY/QQQ), and what this project is not — that keeps backlog items honest. It is not re-litigated per session.
 
-Closed `[x]` items are archived in `COMPLETED.md` with their full post-mortem prose. Stubs below preserve the original numbering so past session summaries and commit messages still resolve.
+Closed `[x]` items are archived in `COMPLETED.md` with their full post-mortem prose. One-line stubs remain below at their current numbers. When items reprioritize, blocks renumber together and in-repo cross-references update in the same commit; past references in commit messages resolve via the renumber commit in git history.
 
 ## Last session summary
 
@@ -20,12 +20,12 @@ Strict rules for writing it:
 4. **No cross-session carry-overs.** If something is still broken session-to-session, file it as a numbered ROADMAP item instead of repeating it here.
 5. **Replace in place.** Do not append a new block and archive the old one below.
 
-**2026-04-21 (session 1)**
+**2026-04-22 (session 2)**
 
-- ROADMAP #1 closed — `3022a38`, first green GHA run confirmed. Full post-mortem (scope, four "Batch N amendments", commit trail, infra notes) in `COMPLETED.md`.
-- "For future agents" gained a third test-related bullet — **"Ship tests with the feature, not after"** — added this commit to close the gap where the existing two bullets didn't cover *new* modules, only existing ones.
-- Standing follow-up: Tom still needs to uninstall the legacy congress-trades skill from the Cowork Skills UI.
-- Next up: ROADMAP #2 (post-file alpha recomputation) is the top unchecked item — read `design/project-framing.md` before proposing scope.
+- Backlog renumbered so numbers match priority order. Old→new map: old-#2 → **#4** (post-file alpha); old-#3 → **#2** (benchmarks); old-#4 → **#3** (filters); old-#5 → **#6** (paper log); old-#6 → **#5** (walk-forward). #1 and #7–#11 unchanged. Cross-refs in `design/pytest-ci-suite.md` migrated alongside.
+- #4 reframed: post-file alpha is *the* composite now (not a second family); trade-date demotes to a diagnostic column. #5 walk-forward bundled into the same design note — without an out-of-sample loop, #4 is a column change, not a viability test.
+- #2 in flight (`[~]`). Option (A) chosen — benchmark reference row, not a follow-list mirror-PnL simulator (mirror-PnL stays with #5). Design note at `design/benchmark-row.md`; four-commit plan. This commit also bundles the renumber + `pytest-ci-suite.md` cross-ref doc edits so they don't sit in the worktree.
+- Next up: commit 2/4 — `scoring/benchmarks.py` primitive + `tests/test_benchmarks.py` + `tests/fixtures/prices/{NANC,KRUZ,QQQ}.csv`.
 
 ## For future agents
 
@@ -42,7 +42,7 @@ Session discipline:
 - **Flip `[ ]` → `[~]` as soon as Tom approves the plan for a backlog item — before the design note, before any code.** The status flag is there to tell the next agent what's actually in flight; flipping only at session end means a mid-session interruption leaves the item falsely marked "not started" even though a design note and half the commits exist. Record the flip in whichever commit introduces the first artifact for the item (usually the design note); if the plan is approved but no commit has landed yet, include the flip alongside the first real change so it doesn't need its own throwaway commit.
 - End each session by updating this file — mark in-progress items, note any deviations or follow-ups — and commit the update. **Do not flip an item to `[x]` without explicit user signoff.** When the final code commit for an item lands, leave the item in `[~]`, record the SHA, and summarize what's pending manual verification. Tom pushes, tests manually, and either confirms the close (then the next session flips it to `[x]` with the SHA preserved) or returns feedback to address. Closing on your own reads as premature.
 - **Update the "Last session summary" block between each commit during a multi-commit feature, not just at session end.** The block should always reflect what *just* landed and what's next, so a mid-feature handoff — mid-session or across agents — has a clean pickup point. The block is single-slot: replace in place, do not append. Older sessions' context lives in commit messages, `COMPLETED.md`, and `design/*.md`.
-- **Closed items live in `COMPLETED.md`, not here.** When Tom signs off a `[~]` item, the next session moves its full prose into `COMPLETED.md` and leaves a one-line stub at the original item number in this file. Original numbers are stable — never renumber. When touching territory that overlaps a completed item, read its full entry in `COMPLETED.md` before re-deriving decisions.
+- **Closed items live in `COMPLETED.md`, not here.** When Tom signs off a `[~]` item, the next session moves its full prose into `COMPLETED.md` and leaves a one-line stub at its current item number in this file. **Numbers follow priority order, not historical identity.** When the backlog is reprioritized, physically move the blocks *and* renumber so top-to-bottom matches 1, 2, 3, …; update all in-repo cross-references (this file, `design/*.md`, `COMPLETED.md`) in the same commit; record the old→new map in the session summary and commit message so past references remain resolvable via git history. When touching territory that overlaps a completed item, read its full entry in `COMPLETED.md` before re-deriving decisions.
 - Honor the standing order: deterministic work lives in Python scripts; the agent does only judgment and interpretation. If a feature tempts you to move mechanical work into agent-handled text, push back.
 - Tests live in `tests/` and run on every push via `.github/workflows/tests.yml`. Do not mark a feature done with tests failing; check the commit's test run before calling a feature closed.
 - **Ship tests with the feature, not after.** When a commit adds a new primitive (parser, adapter, pure-math function, schema transform, cache seam), the same commit adds pytest coverage for it. Assembly-level code that ROADMAP #2–#11 is expected to rewrite is deliberately skipped per `design/pytest-ci-suite.md`'s "Guiding principle" — if you skip, say so in the commit message so a reviewer sees the trade-off, not a miss.
@@ -59,21 +59,11 @@ Status legend:
 
 ### 1. [x] Pytest suite + CI workflow — 3022a38 — see COMPLETED.md
 
-### 2. [ ] Post-file alpha recomputation
+### 2. [~] NANC / KRUZ / SPY / QQQ benchmark row in the weekly report
 
-Trade-date alpha is what the member captured; post-file alpha is what a follower can capture. The STOCK Act's 45-day disclosure window means the two diverge materially, and `design/project-framing.md` makes the case that follower-facing rankings must be built on post-file alpha. Add a second family of alpha columns in `scoring/factors.py` — `alpha_postfile_5d/20d/60d` measured from the later of publication date or trade date + a small entry buffer — and switch the default-follow ranking to the post-file composite. Keep the existing trade-date columns alongside as historical context rather than removing them; they are still useful for characterizing how a member traded, just not for deciding whether to follow them.
+In progress. Commit 1/4 landed: `design/benchmark-row.md` + `[~]` flip + bundled doc edits. Option (A) chosen (reference row only; no follow-list mirror-PnL simulator — mirror-PnL stays with #5). Commits 2–4 remaining: benchmark primitive + tests → leaderboard wiring → schema-contract test.
 
-Design-note questions to resolve before coding:
-
-- Entry buffer size. "+2 business days" is a reasonable starting point; worth confirming whether 1 or 3 is more defensible given how often capitoltrades files late in the trading day.
-- Composite weights. Reuse the existing 5/20/60-day weights on the post-file side, or re-tune against a validation window.
-- Backfill policy. Recompute history end-to-end, or only apply post-file alpha going forward and note the cutover in the leaderboard.
-- Test fixtures. Need a trimmed price-cache sample plus a synthetic member with a known trade/publication date gap so the alpha math is unit-testable without live network.
-- Expected reshuffle magnitude. Worth an exploratory dry run on a single member before committing to the schema change, so the composite change is sized honestly.
-
-### 3. [ ] NANC / KRUZ / SPY / QQQ benchmark row in the weekly report
-
-The current weekly report presents absolute numbers against an implicit "no benchmark." The four defensible reference points are NANC and KRUZ (both already implement congressional mirroring with institutional execution) and SPY and QQQ (broad-market anchors). Add a cumulative-PnL row comparing the curated follow list's mirror PnL against each benchmark over the report's window, so the value-add question is visible every week rather than deferred.
+The current weekly report presents absolute numbers against an implicit "no benchmark." The four defensible reference points are NANC and KRUZ (both already implement congressional mirroring with institutional execution) and SPY and QQQ (broad-market anchors). Add a cumulative-PnL row comparing the curated follow list's mirror PnL against each benchmark over the report's window, so the value-add question is visible every week rather than deferred. Sequenced first because it is small and additive — a stable reference line in the report makes the #3 universe shrink and the #4 reshuffle interpretable against something fixed rather than a moving target.
 
 Design-note questions:
 
@@ -82,9 +72,9 @@ Design-note questions:
 - Placement. First-class section of the report, or footer strip.
 - Fee/slippage treatment on the benchmark side. ETFs have expense ratios; document whether the report adjusts for them or reports gross.
 
-### 4. [ ] Signal-quality filters (ETFs, options, spouse, late filings)
+### 3. [ ] Signal-quality filters (ETFs, options, spouse, late filings)
 
-A non-trivial fraction of disclosed transactions are ETF rebalances in managed accounts, options rolls, corporate actions, and spouse-directed trades. Treating all transactions equivalently inflates noise in both the scoring and signal-generation layers. Bundled because they share the same fixtures and the same place in the pipeline:
+A non-trivial fraction of disclosed transactions are ETF rebalances in managed accounts, options rolls, corporate actions, and spouse-directed trades. Treating all transactions equivalently inflates noise in both the scoring and signal-generation layers. Sequenced before #4 so the post-file alpha reshuffle runs on a filter-clean universe rather than a polluted one. Bundled because they share the same fixtures and the same place in the pipeline:
 
 - Exclude broad-market ETFs (SPY, VOO, QQQ, IVV, etc.) from scoring and signal generation. A member buying SPY is not an informed signal.
 - Separate options trades into their own stream rather than mixing them into the mirror universe. Their risk profile differs from spot equities and most retail followers cannot copy them.
@@ -98,9 +88,34 @@ Design-note questions:
 - Source of truth for the broad-market ETF exclusion list. Hardcoded in the repo vs. pulled from a provider.
 - Impact on existing leaderboard windows. Filters will shrink transaction counts; decide whether to show the filter-aware and filter-unaware counts side by side for a transition period.
 
-### 5. [ ] Auto paper-trading log
+### 4. [ ] Post-file alpha recomputation (bundled with #5)
 
-The only way to get an honest, out-of-sample read on the platform's viability is a paper-trading log that starts the moment any of this is considered live. Every time a signal fires, log the entry price, a rule-based exit, and track the live PnL. After 6–12 months the log becomes the user's own track record rather than a historical backtest. Pulled forward in the priority order so the log accumulates in parallel with the rest of the backlog; there is no cost to starting it early and real cost to starting it late.
+Trade-date alpha is what the member captured; post-file alpha is what a follower can capture. The STOCK Act's 45-day disclosure window means the two diverge materially, and `design/project-framing.md` makes the case that follower-facing rankings must be built on post-file alpha. Rework `scoring/factors.py` so the composite is built on post-file alpha — `alpha_postfile_5d/20d/60d` measured from the later of publication date or trade date + a small entry buffer. Trade-date alpha drops from co-headline to a diagnostic column: still emitted so a member's capture can be characterized, not used to rank follow candidates. Bundle the walk-forward backtest (#5) into the same design note — post-file alpha without an out-of-sample loop is a column change, not a viability test — and plan a single schema cutover rather than two. Sequenced after #2 (stable benchmark reference in place before the reshuffle) and #3 (filter-clean universe before the composite is re-fit).
+
+Design-note questions to resolve before coding:
+
+- Entry buffer size. "+2 business days" is a reasonable starting point; worth confirming whether 1 or 3 is more defensible given how often capitoltrades files late in the trading day.
+- Composite weights. Reuse the existing 5/20/60-day weights on the post-file side, or re-tune against a validation window.
+- Backfill policy. Recompute history end-to-end, or only apply post-file alpha going forward and note the cutover in the leaderboard.
+- Test fixtures. Need a trimmed price-cache sample plus a synthetic member with a known trade/publication date gap so the alpha math is unit-testable without live network. Same fixture set should cover the #5 walk-forward loop to avoid duplication.
+- Expected reshuffle magnitude. Worth an exploratory dry run on a single member before committing to the schema change, so the composite change is sized honestly. Post-#3 the member universe will already have shrunk; do the dry run against the filtered dataset, not the raw one.
+- Trade-date column deprecation. Whether trade-date alpha stays in the leaderboard UI as a secondary column, moves to a separate diagnostic view, or gets hidden by default.
+
+### 5. [ ] Walk-forward backtest of the mirror strategy
+
+The scoring pipeline ranks members; it does not backtest the strategy of *following* them. Those are different questions. A walk-forward loop closes the gap: at each historical date D, using only data filed before D, pick the top-K members by the composite, simulate buying every disclosed purchase from that cohort on D+1 at close, hold under a rule-based exit (same menu as the paper-trading log), track PnL, and compare against the benchmarks from #2 plus a naive "copy everyone" baseline. Without this loop the leaderboard is in-sample — a member who rode a large 2024 move ranks high without that ranking carrying predictive content. Bundled with #4: same design note, same schema cutover, same fixture set.
+
+Design-note questions:
+
+- Rebalance cadence. Weekly, monthly, or event-driven.
+- Cohort size rule. Composite-score threshold vs. fixed K.
+- Survivorship. Include members who have since left Congress during the period they were sitting.
+- Compute budget. Full replay is expensive; decide whether the backtest runs in CI or only on demand.
+- Shared fixtures with #6. Both the log and the backtest consume the same post-file alpha columns from #4; duplication is wasteful.
+
+### 6. [ ] Auto paper-trading log
+
+The only way to get an honest, out-of-sample read on the platform's viability is a paper-trading log that starts the moment any of this is considered live. Every time a signal fires, log the entry price, a rule-based exit, and track the live PnL. After 6–12 months the log becomes the user's own track record rather than a historical backtest. Positioned right after the #4/#5 schema cutover so the log starts accumulating as soon as the post-file composite stabilizes — there is no cost to starting it early and real cost to starting it late. Runs in parallel with #7 onward rather than blocking them.
 
 Design-note questions:
 
@@ -109,18 +124,6 @@ Design-note questions:
 - Storage format. CSV in-repo is simplest; parquet or sqlite become worthwhile once the log is large.
 - Surface. Weekly report, separate page, or the live Cowork artifact in #11 — overlaps decided in the #11 design note rather than here.
 - What happens to entries when the signal source is later retracted or corrected.
-
-### 6. [ ] Walk-forward backtest of the mirror strategy
-
-The scoring pipeline ranks members; it does not backtest the strategy of *following* them. Those are different questions. A walk-forward loop closes the gap: at each historical date D, using only data filed before D, pick the top-K members by the composite, simulate buying every disclosed purchase from that cohort on D+1 at close, hold under a rule-based exit (same menu as the paper-trading log), track PnL, and compare against the benchmarks from #3 plus a naive "copy everyone" baseline. Without this loop the leaderboard is in-sample — a member who rode a large 2024 move ranks high without that ranking carrying predictive content.
-
-Design-note questions:
-
-- Rebalance cadence. Weekly, monthly, or event-driven.
-- Cohort size rule. Composite-score threshold vs. fixed K.
-- Survivorship. Include members who have since left Congress during the period they were sitting.
-- Compute budget. Full replay is expensive; decide whether the backtest runs in CI or only on demand.
-- Shared fixtures with #5. Both the log and the backtest consume the same post-file alpha columns from #2; duplication is wasteful.
 
 ### 7. [ ] Transaction-cost, tax-drag, and position-sizing overlays
 
@@ -133,7 +136,7 @@ Signals without cost models overstate follower returns. Bundled because all thre
 Design-note questions:
 
 - Slippage data source. yfinance provides limited spread coverage; may need a cheaper proxy (bid-ask estimate from daily bars).
-- Scope of the tax toggle. Paper-trading log (#5) only, walk-forward backtest (#6) only, or both.
+- Scope of the tax toggle. Paper-trading log (#6) only, walk-forward backtest (#5) only, or both.
 - Default sizing mode for the curated follow list.
 - Whether the state rate is user-configurable or hardcoded to a sensible default.
 
@@ -146,7 +149,7 @@ Design-note questions:
 - Committee-to-sector jurisdiction mapping. Curated table in the repo vs. pulled from an external source.
 - Window size. 30 days is a starting point; 14 and 60 are defensible alternatives worth noting.
 - Member threshold. 2 minimum, or higher for conviction.
-- Interaction with signal-quality filters (#4). Spouse-filed and options-filed trades should likely be excluded from the consensus count.
+- Interaction with signal-quality filters (#3). Spouse-filed and options-filed trades should likely be excluded from the consensus count.
 
 ### 9. [ ] Hearings correlation
 
@@ -172,7 +175,7 @@ Design-note questions:
 
 ### 11. [ ] Live Cowork artifact
 
-An artifact (in the Cowork sense) that re-queries on open and shows open paper-trade positions, days held, and current PnL against the benchmarks from #3. More actionable than a static HTML report, and a natural home for the paper-trading log from #5. Placed last in priority order because it sits on top of #5 (log), #3 (benchmarks), and ideally #10 (cadence); building it earlier means re-wiring it as each prerequisite lands.
+An artifact (in the Cowork sense) that re-queries on open and shows open paper-trade positions, days held, and current PnL against the benchmarks from #2. More actionable than a static HTML report, and a natural home for the paper-trading log from #6. Placed last in priority order because it sits on top of #6 (log), #2 (benchmarks), and ideally #10 (cadence); building it earlier means re-wiring it as each prerequisite lands.
 
 Design-note questions:
 
@@ -183,6 +186,6 @@ Design-note questions:
 
 ## Descoped / on hold
 
-Items parked here aren't dead — they're off the active queue but preserved in case priorities shift. Revive by moving the full prose back under "Backlog" at the original number and flipping `[-]` → `[ ]`.
+Items parked here aren't dead — they're off the active queue but preserved in case priorities shift. Revive by moving the full prose back under "Backlog" at the next available priority slot and flipping `[-]` → `[ ]`.
 
 _(none yet)_

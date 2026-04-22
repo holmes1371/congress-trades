@@ -32,4 +32,8 @@ Standing references (read as needed, not re-litigated per session):
 
 Active feature notes (paired with an in-flight `[~]` item in `ROADMAP.md`):
 
-- `pytest-ci-suite.md` — ROADMAP #1. Scope, fixtures, and commit plan for the pytest suite + `.github/workflows/tests.yml`. Six-commit sequence; tests target stable primitives, not the churning assemblies that #2–#11 will rewrite.
+- `benchmark-row.md` — ROADMAP #2. Scope and commit plan for the NANC/KRUZ/SPY/QQQ benchmark reference block on the leaderboard page (primary) and the weekly report (secondary, conditional). Four-commit sequence; option (A) — reference row only, not a follow-list mirror-PnL comparison.
+
+Closed feature notes (retained as historical context; matching ROADMAP item lives in `COMPLETED.md`):
+
+- `pytest-ci-suite.md` — ROADMAP #1. Scope, fixtures, and commit plan for the pytest suite + `.github/workflows/tests.yml`. Six-commit sequence; tests target stable primitives, not the churning assemblies that #2–#11 will rewrite. Closed `3022a38`.

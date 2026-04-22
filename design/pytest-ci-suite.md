@@ -12,9 +12,9 @@ ROADMAP #1. Active feature. Flipped to `[~]` alongside this note in the commit t
 
 Test the **primitives**, not the **assembly**.
 
-The #2–#11 backlog churns the assembly: composite weights (#2), ranking basis (#2), leaderboard columns (#4), report surfaces (#3, #10), default-follow output (#2). It does not churn the primitives those assemblies are built from — ticker normalization, money-range parsing, date parsing, the pure math of alpha given prices and dates, the price-cache read contract, transaction-type classification.
+The #2–#11 backlog churns the assembly: composite weights (#4), ranking basis (#4), leaderboard columns (#3), report surfaces (#2, #10), default-follow output (#4). It does not churn the primitives those assemblies are built from — ticker normalization, money-range parsing, date parsing, the pure math of alpha given prices and dates, the price-cache read contract, transaction-type classification.
 
-Tests covering the primitives survive every refactor in the backlog. Tests covering the current assembly would be deleted in the first commit of #2. Writing them now is waste.
+Tests covering the primitives survive every refactor in the backlog. Tests covering the current assembly would be deleted in the first commit of #4. Writing them now is waste.
 
 ## Stable-vs-churning surface map
 
@@ -24,14 +24,14 @@ Tests covering the primitives survive every refactor in the backlog. Tests cover
 |---|---|---|
 | Ticker normalization | `fetch_trades.py`, `scoring/` `normalize_ticker()` | Input-cleaning behavior; foreign-suffix rejection rule is settled |
 | Disclosed-range money parse | `fetch_trades.py` / `compute_analysis.py` | #7 range-weighted sizing consumes the same parser |
-| Date parsing (trade date, publication date) | `fetch_trades.py` | #2 uses publication date but does not redefine the parse |
-| Price-cache read contract | `scoring/price_cache.py` | Every #2/#5/#6/#7 reads through this seam |
-| Alpha math as a pure function of `(prices, entry_date, horizon)` | `scoring/factors.py` | #2 adds new entry-date values; the math itself is unchanged |
+| Date parsing (trade date, publication date) | `fetch_trades.py` | #4 uses publication date but does not redefine the parse |
+| Price-cache read contract | `scoring/price_cache.py` | Every #4/#5/#6/#7 reads through this seam |
+| Alpha math as a pure function of `(prices, entry_date, horizon)` | `scoring/factors.py` | #4 adds new entry-date values; the math itself is unchanged |
 | Composite math (z-score + weighted sum) parameterized over weights | `scoring/factors.py` | Operation is stable; weight tuple may change |
-| Transaction-type classification (buy/sell/exchange) | `fetch_trades.py` | #4 adds tags, does not redefine types |
+| Transaction-type classification (buy/sell/exchange) | `fetch_trades.py` | #3 adds tags, does not redefine types |
 | Single record-parse pass over a capitoltrades fixture | `fetch_trades.py` | Confirms schema contract; no assertion on derived scoring |
 
-**Churning (deliberately skipped in v1):** current composite weights and resulting member ranks (#2 rebalances), default-follow list output (#2 flips the ranking basis), leaderboard / report HTML shape (#3 adds a row; #10 may retire the weekly report), and scoring defaults in `score_members.py` (the defaults are exactly what shifts).
+**Churning (deliberately skipped in v1):** current composite weights and resulting member ranks (#4 rebalances), default-follow list output (#4 flips the ranking basis), leaderboard / report HTML shape (#2 adds a row; #10 may retire the weekly report), and scoring defaults in `score_members.py` (the defaults are exactly what shifts).
 
 ## Locked decisions
 
@@ -83,7 +83,7 @@ worth recording:
 - `test_price_cache.py` — the "concurrent access" case named in the original
   plan was dropped. `_save_cache` writes the CSV non-atomically and the module
   has no locking; there is nothing to assert without first adding the locking,
-  and adding locking is out of scope here. If #5 (paper-trading log) or #10
+  and adding locking is out of scope here. If #6 (paper-trading log) or #10
   (nightly cadence) introduces real concurrency on this seam, file the locking
   work and add the test then.
 - `tests/fixtures/synthetic_alpha_scenarios.py` — Scenario 5 was renamed from
@@ -114,7 +114,7 @@ batch; one was dropped after a code-reality check:
   `test_fetch_trades_normalise.py::test_tx_type_uppercased`). The
   "exchange / options rolls / corporate actions" cases the original plan
   envisioned do not exist in code — the pipeline simply does not classify
-  these types. If ROADMAP #4 (fetch-trades rewrite) introduces a
+  these types. If ROADMAP #3 (signal-quality filters) introduces a
   classification helper, that's when this file gets written. For now the
   type-domain constraint ("every trade's `type` is `BUY` or `SELL`") is
   pinned at the schema-contract level in `test_fetch_trades_parse.py`,
@@ -128,7 +128,7 @@ batch; one was dropped after a code-reality check:
   the 12 cases pin what the scoring pipeline actually depends on:
   envelope keys, member block keys, `tradeCount` vs `len(trades)` parity,
   per-trade required keys, `type ∈ {BUY, SELL}`, `txDate` and `published`
-  ISO-parseability, integer-field types. When #4 re-records the fixture
+  ISO-parseability, integer-field types. When #3 re-records the fixture
   with fresh data, these tests must still pass as long as the schema
   contract holds.
 
@@ -136,10 +136,10 @@ batch; one was dropped after a code-reality check:
 
 Under `tests/fixtures/`:
 
-- `capitoltrades_page_sample.json` — one recorded capitoltrades API page, trimmed to 10 records. Reused by #2/#4/#5/#6/#8/#9.
-- `price_cache_sample.csv` — ~10 tickers × ~2 years of yfinance daily closes. Reused by #2/#5/#6/#7.
+- `capitoltrades_page_sample.json` — one recorded capitoltrades API page, trimmed to 10 records. Reused by #3/#4/#5/#6/#8/#9.
+- `price_cache_sample.csv` — ~10 tickers × ~2 years of yfinance daily closes. Reused by #4/#5/#6/#7.
 - `member_bioguide_sample.json` — ~5 members, both parties, committee-assignment fields present. Reused by #8/#9 plus baseline tests.
-- `synthetic_alpha_scenarios.py` — hand-crafted `(trade_date, publication_date, price_series, expected_alpha)` tuples for edge cases. Python module (not JSON) because the tuples are most readable as Python literals. Reused by #2 and #6 directly.
+- `synthetic_alpha_scenarios.py` — hand-crafted `(trade_date, publication_date, price_series, expected_alpha)` tuples for edge cases. Python module (not JSON) because the tuples are most readable as Python literals. Reused by #4 and #5 directly.
 
 **Not included.** A committee-jurisdiction fixture — #8's responsibility; curating it now means it goes stale before use.
 
