@@ -3,10 +3,10 @@
 Archive for closed items from `ROADMAP.md`. When Tom signs off a `[~]` item, the next session:
 
 1. Flips the ROADMAP entry to `[x]` and records the closing commit SHA.
-2. Moves the full prose of the item (scope, decisions, rationale, commit trail, any visual-QA notes) into this file under its original number.
-3. Leaves a one-line stub in `ROADMAP.md` at that number so past session summaries and commit messages still resolve: e.g. `1\. [x] <Title> — <SHA> — see COMPLETED.md`.
+2. Moves the full prose of the item (scope, decisions, rationale, commit trail, any visual-QA notes) into this file under the item's current ROADMAP number.
+3. Leaves a one-line stub in `ROADMAP.md` at that number: `N\. [x] <Title> — <SHA> — see COMPLETED.md`.
 
-Original numbers are stable — never renumber. When touching territory that overlaps a completed item, read its full entry here before re-deriving decisions.
+Numbers here mirror `ROADMAP.md`'s priority ordering — when the active backlog renumbers, the archive entries renumber in the same commit so the stubs keep resolving. Past references that predate a renumber can be resolved via the renumber commit in git history. When touching territory that overlaps a completed item, read its full entry here before re-deriving decisions.
 
 ## Closed items
 
@@ -47,3 +47,38 @@ Final state: 77 pytest cases green locally and on GHA.
 - Fixture re-recording: `tests/fixtures/_record.py` regenerates capitoltrades and yfinance fixtures. Not run in CI.
 - conftest injects both repo root and `scoring/` onto `sys.path` because `scoring/score_members.py` uses a sibling import (`from price_cache import get_prices`) that works as a script but not as a package member. If any scoring module moves to absolute imports, that sys.path hack can come out.
 - The three "Batch N amendment" paragraphs in `design/pytest-ci-suite.md` are the best entry point for understanding why particular cases are shaped the way they are — read those before editing a batch's test file.
+
+### 2. [x] NANC / KRUZ / SPY / QQQ benchmark row — 6a5b0eb
+
+Closed 2026-04-22 after Tom confirmed the rendered leaderboard page carried the benchmark block above the 365-day table, with the four values spot-checked against Yahoo Finance.
+
+**Goal.** Surface cumulative total-return numbers for four reference instruments (NANC, KRUZ, SPY, QQQ) over the existing 180d and 365d windows, so the value-add question — "is the curated follow list beating these?" — becomes visible rather than implicit. Framing anchor: `design/project-framing.md`'s central-hazard + four-benchmark list.
+
+**Design call (option A over B).** The ROADMAP prose originally described "a cumulative-PnL row comparing the curated follow list's mirror PnL against each benchmark." Code reality on first read showed no mirror-PnL anywhere in the pipeline — per-trade alpha vs. SPY is the only cumulative metric, and no "follow-list mirror PnL" aggregate is computed. Building a simulator here would have duplicated 30–50% of #5 (walk-forward backtest) early, with material scope overlap. Session-2 chose option A (benchmark reference row only; simulator deferred to #5) in the design call before coding started. Full rationale in `design/benchmark-row.md`'s Scope + Locked decisions.
+
+**Commit trail.**
+
+- `0254ef0` — benchmark 1/4: `design/benchmark-row.md` + `[~]` flip on #2. Bundled the first backlog renumber of session 2 (old-#2 post-file alpha → #4; old-#3 benchmarks → #2; old-#4 filters → #3; old-#5 paper log → #6; old-#6 walk-forward → #5) and the cross-ref migration in `design/pytest-ci-suite.md`. Replaced the "original numbers are stable — never renumber" convention with "numbers follow priority order; renumber together on reprioritize; update cross-references in the same commit."
+- `3493a7e` — benchmark 2/4: `scoring/benchmarks.py` (`benchmark_cumulative_return` + `all_benchmark_returns` over the `scoring.price_cache` seam), `tests/test_benchmarks.py` (11 parametrized cases — math, empty/single-row/NaN frames, `price_frame=` injection, ticker-missing, fetch-when-no-frame, `all_benchmark_returns` shape), `tests/fixtures/prices/{NANC,KRUZ,QQQ}.csv` (synthetic fixtures matching `SPY.csv`'s 271-day range with designed total returns +20% / −5% / +15% for exact-value assertions).
+- `2bd1f28` — benchmark 3/4: wired into `build_leaderboard.py` — new `build_benchmark_block(long_returns, short_returns)` helper rendered as a `.weights-card`-styled card with a 4×2 table (ticker × window), `{benchmark_block}` placeholder between the composite-weights card and the 365-day section, and "Benchmark returns above are gross of expense ratios and slippage" appended to the footer. Import shift in `scoring/benchmarks.py` from sibling-style (`from price_cache import get_prices`) to package-style (`from scoring.price_cache import get_prices`) so callers at repo root can resolve it.
+- `6a5b0eb` — benchmark 4/4: `tests/test_leaderboard_benchmark_block.py` (7 schema-contract cases) over two seams — `build_benchmark_block`'s HTML (all four tickers, `fmt_pct` shape, em-dash for `None`, window headers, card class reuse) and `PAGE_TEMPLATE.format(...)` (footer footnote present; benchmark placeholder sits above the 365-day section).
+
+Final state: 95 pytest cases green locally. Leaderboard renders the benchmark block with live yfinance data on rebuild.
+
+**Scope adjustments from the ROADMAP prose.**
+
+- *Primary surface.* ROADMAP said "in the weekly report"; the block landed on `leaderboard.html` because that's where the 180d/365d windows already exist and where "follow the top-K" lives. The weekly report has no cumulative-PnL concept today — adding the block there requires skeleton-fill plumbing. Filed as #12 (weekly-report benchmark strip).
+- *Mirror-PnL comparison.* Deferred to #5 per the option-A design call. The card title reflects the reality: "Benchmark Reference — Cumulative Return," not "Follow-list PnL vs. Benchmarks."
+- *Fixture strategy.* Design note defaulted to recording via `_record.py`; NANC/KRUZ/QQQ weren't present in the sandbox's `scoring/cache/prices/`, so synthetic CSVs were generated instead — primitive math is identical for real or synthetic, and real data only starts mattering when #5 uses the same fixtures for backtest replay.
+- *Sandbox render QA.* Blocked by a pre-existing `scoring/price_cache.py` bug (single-ticker `_bulk_download` branch builds a `pd.DataFrame` from scalar `pd.NA` values when yfinance returns an empty `Close` column). Filed as #10. Tom did the live render-and-spot-check on push; confirmation landed in this session.
+
+**Standing follow-ons filed during #2** (both in `546063d`, sequenced to land before they can bite):
+
+- *#10* — Fix `price_cache.py` single-ticker fallback on empty yfinance response. Before #11 (daily cadence) amplifies exposure.
+- *#12* — Weekly-report benchmark strip. Depends on #10; extends the #2 block into the weekly report's meta area.
+
+**Infra notes for future sessions.**
+
+- `scoring/benchmarks.py` uses package-style imports (`from scoring.price_cache import get_prices`). `score_members.py` still uses sibling-style because it's invoked as a script; new modules in `scoring/` should prefer package-style unless there's a direct-invocation use case.
+- Synthetic benchmark fixtures have designed returns baked in; `test_all_benchmark_returns_covers_four_tickers` asserts exact values. If `_record.py` later pulls real NANC/KRUZ/QQQ data, that assertion needs relaxing to sign-only or fixture-specific anchors.
+- The leaderboard benchmark block is schema-contract tested, not snapshot-tested — visual tweaks (CSS, cell ordering, ticker additions) that preserve the asserted shape don't break the test.

@@ -22,9 +22,9 @@ Strict rules for writing it:
 
 **2026-04-22 (session 2)**
 
-- #2 `[~]` — all four commits landed (1/4 `0254ef0`, 2/4 `3493a7e`, 3/4 `2bd1f28`, 4/4 `6a5b0eb`); awaiting manual QA signoff. Option (A): benchmark reference row only; no follow-list mirror-PnL simulator (that stays with #5). Design note: `design/benchmark-row.md`. Full suite: 95 tests green.
-- Two follow-ons filed this commit: **#10** (fix `price_cache.py` single-ticker fallback on empty yfinance response — surfaced during #2's local-render attempt; sequenced before nightly-cadence #11 amplifies exposure) and **#12** (weekly-report benchmark strip — deferred from #2 commit 3). Daily cadence → **#11**; live Cowork artifact → **#13**. Cross-refs migrated in `COMPLETED.md`, `design/README.md`, and `design/pytest-ci-suite.md`.
-- Next: manual QA checkpoint A — render the leaderboard, spot-check NANC/KRUZ/SPY/QQQ values vs. Yahoo, confirm the block sits above the 365d table and the gross-of-fees footnote is visible. On signoff, next session flips `[~]` → `[x]` with `6a5b0eb` and moves #2 prose into `COMPLETED.md`. Then #3 (filters) is top of queue.
+- #2 closed: `[~]` → `[x]` at `6a5b0eb` after Tom confirmed the rendered leaderboard carried the benchmark block + the four values spot-checked against Yahoo. Full post-mortem + commit trail moved to `COMPLETED.md #2`; one-line stub left at ROADMAP #2 per convention.
+- Side edit this commit: `COMPLETED.md` preface was still carrying the pre-session-2 "original numbers are stable — never renumber" line, which became stale when session 2 adopted priority-order renumbering. Preface text now matches the current convention.
+- Next: #3 (signal-quality filters — ETFs, options, spouse, late filings). Plan-and-wait on the design note before coding; the `[~]` flip goes in #3's first artifact per convention. Standing follow-ons #10 (price_cache bug) and #12 (weekly-report strip) remain queued at their slotted positions.
 
 ## For future agents
 
@@ -56,18 +56,7 @@ Status legend:
 
 ### 1. [x] Pytest suite + CI workflow — 3022a38 — see COMPLETED.md
 
-### 2. [~] NANC / KRUZ / SPY / QQQ benchmark row in the weekly report
-
-In progress — all four commits landed, awaiting manual QA. SHAs: 1/4 `0254ef0` (design note + renumber bundle); 2/4 `3493a7e` (primitive + 11 tests + synthetic fixtures); 3/4 `2bd1f28` (wired into `build_leaderboard.py` + fee-gross footnote; weekly-report strip deferred to a follow-on); 4/4 this commit (`tests/test_leaderboard_benchmark_block.py`, 7 schema-contract cases). Option (A) — reference row only; follow-list mirror-PnL simulator stays with #5. Tom signs off via checkpoint A (render + spot-check against Yahoo); next session flips `[~]` → `[x]` and moves the full prose to `COMPLETED.md`.
-
-The current weekly report presents absolute numbers against an implicit "no benchmark." The four defensible reference points are NANC and KRUZ (both already implement congressional mirroring with institutional execution) and SPY and QQQ (broad-market anchors). Add a cumulative-PnL row comparing the curated follow list's mirror PnL against each benchmark over the report's window, so the value-add question is visible every week rather than deferred. Sequenced first because it is small and additive — a stable reference line in the report makes the #3 universe shrink and the #4 reshuffle interpretable against something fixed rather than a moving target.
-
-Design-note questions:
-
-- Price source. yfinance is consistent with the rest of the pipeline.
-- Window alignment. Reuse the existing 180/365-day windows, or add a distinct "since inception" column for the follow list.
-- Placement. First-class section of the report, or footer strip.
-- Fee/slippage treatment on the benchmark side. ETFs have expense ratios; document whether the report adjusts for them or reports gross.
+### 2. [x] NANC / KRUZ / SPY / QQQ benchmark row — 6a5b0eb — see COMPLETED.md
 
 ### 3. [ ] Signal-quality filters (ETFs, options, spouse, late filings)
 
