@@ -207,3 +207,80 @@ def test_composite_handles_all_nan_factor_column():
     assert (out["concentration_z"] == 0.0).all()
     # Composite still computes finite values for both rows.
     assert out["composite"].notna().all()
+
+
+# ─── aggregate_member_factors: signal-quality tag aggregation (ROADMAP #3) ──
+
+
+def _stock_buy(ticker="AAPL", owner="self", filed_after=5, alpha_20d=0.01):
+    """Minimal trade dict for aggregation tests. Caller can override per case."""
+    return {
+        "ticker": ticker,
+        "type": "BUY",
+        "owner": owner,
+        "filedAfterDays": filed_after,
+        "txDate": "2025-06-02",
+        "alpha_20d": alpha_20d,
+        # Tags that score_members.py::apply_filters would have attached:
+        "non_self_filing": owner.lower() != "self" if owner else False,
+        "late_filing": bool(filed_after and filed_after >= 40),
+    }
+
+
+def test_aggregate_empty_trades_carries_drop_counts():
+    """Empty kept-trades still reports the filter-drop counts that led to it."""
+    result = factors.aggregate_member_factors(
+        [], ticker_adv={}, drop_counts={"etf_drops": 3, "options_drops": 1}
+    )
+    assert result["trade_count"] == 0
+    assert result["non_self_count"] == 0
+    assert result["non_self_share"] is None
+    assert result["late_count"] == 0
+    assert result["late_share"] is None
+    assert result["etf_drops"] == 3
+    assert result["options_drops"] == 1
+
+
+def test_aggregate_non_self_share_matches_tag_count():
+    trades = [
+        _stock_buy(owner="self"),
+        _stock_buy(owner="spouse"),
+        _stock_buy(owner="child"),
+        _stock_buy(owner="self"),
+    ]
+    result = factors.aggregate_member_factors(trades, ticker_adv={})
+    assert result["trade_count"] == 4
+    assert result["non_self_count"] == 2
+    assert result["non_self_share"] == pytest.approx(0.5)
+
+
+def test_aggregate_late_share_matches_tag_count():
+    trades = [
+        _stock_buy(filed_after=10),
+        _stock_buy(filed_after=42),
+        _stock_buy(filed_after=45),
+        _stock_buy(filed_after=5),
+    ]
+    result = factors.aggregate_member_factors(trades, ticker_adv={})
+    assert result["late_count"] == 2
+    assert result["late_share"] == pytest.approx(0.5)
+
+
+def test_aggregate_drop_counts_no_kwarg_defaults_to_zero():
+    """Backward-compat: callers that omit `drop_counts` get zeros."""
+    result = factors.aggregate_member_factors([_stock_buy()], ticker_adv={})
+    assert result["etf_drops"] == 0
+    assert result["options_drops"] == 0
+
+
+def test_aggregate_drop_counts_pass_through_to_output():
+    result = factors.aggregate_member_factors(
+        [_stock_buy(), _stock_buy(owner="spouse")],
+        ticker_adv={},
+        drop_counts={"etf_drops": 7, "options_drops": 2},
+    )
+    assert result["etf_drops"] == 7
+    assert result["options_drops"] == 2
+    # Tag aggregation still correct alongside drop counts.
+    assert result["non_self_count"] == 1
+    assert result["non_self_share"] == pytest.approx(0.5)

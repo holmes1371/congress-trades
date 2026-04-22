@@ -23,8 +23,8 @@ Strict rules for writing it:
 **2026-04-22 (session 2)**
 
 - #2 closed: `[~]` → `[x]` at `6a5b0eb` after Tom confirmed the rendered leaderboard carried the benchmark block + spot-checked values against Yahoo. Full post-mortem in `COMPLETED.md #2`; one-line stub at ROADMAP #2.
-- #3 in flight (`[~]`): signal-quality filters. Design note: `design/signal-quality-filters.md`. SHAs: 1/5 `b22cd02` (design note + `[~]` flip + listing), 2/5 this commit (`scoring/filters.py` with four pure functions + `tests/test_filters.py` with 45 parametrized cases). Options-encoding verification deferred — sandbox has no `scoring/cache/trades/`, so the safe default ships as-is; Tom can tighten from his local run if the filter over-drops.
-- Next: commit 3/5 — wire `apply_filters` into `score_members.py`, extend `aggregate_member_factors` with the six new columns, extend `tests/test_composite_math.py` to cover the new aggregation (discharges the `scoring/factors.py`-extends-its-tests rule). This is the pipeline-mutation commit. Full suite: 140 tests green. Standing follow-ons #10 (price_cache bug) and #12 (weekly-report strip) remain queued.
+- #3 in flight (`[~]`): signal-quality filters. Design note: `design/signal-quality-filters.md`. SHAs: 1/5 `b22cd02` (design note + `[~]` flip + listing), 2/5 `fbd4b82` (filter primitives + 45 tests), 3/5 this commit (`apply_filters` wired into `score_members.py`; `aggregate_member_factors` extended with six columns — `non_self_count/_share`, `late_count/_share`, `etf_drops`, `options_drops`; `test_composite_math.py` gets 5 new aggregation tests — discharges the `scoring/factors.py`-extends-its-tests rule).
+- Next: commit 4/5 — leaderboard xlsx columns + `build_leaderboard.py` rendering updates. Transition-period display (existing columns stay; new filter columns appended). Full suite: 145 tests green. Commit 5/5 is the schema-contract test. Standing follow-ons #10 (price_cache bug) and #12 (weekly-report strip) remain queued.
 
 ## For future agents
 

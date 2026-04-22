@@ -151,6 +151,7 @@ def compute_ticker_adv(prices: pd.DataFrame) -> float:
 def aggregate_member_factors(
     trades: list[dict],
     ticker_adv: dict[str, float],
+    drop_counts: dict[str, int] | None = None,
 ) -> dict[str, Any]:
     """
     Given a list of trades (already enriched with alpha_*d keys for BUYs)
@@ -158,7 +159,18 @@ def aggregate_member_factors(
     one window.
 
     Returns a dict of scalar factor values. None where insufficient data.
+
+    `drop_counts`, if provided, should carry the per-filter drop totals
+    from `score_members.py::apply_filters` (keys: "etf_drops",
+    "options_drops"). These flow straight through to the output for
+    leaderboard visibility; they are NOT scoring inputs in #3. Per-trade
+    `non_self_filing` / `late_filing` boolean tags are read off each
+    trade dict and aggregated into `non_self_share` / `late_share`.
     """
+    drop_counts = drop_counts or {}
+    etf_drops = int(drop_counts.get("etf_drops", 0))
+    options_drops = int(drop_counts.get("options_drops", 0))
+
     total_trades = len(trades)
     if total_trades == 0:
         return {
@@ -173,6 +185,12 @@ def aggregate_member_factors(
             "liq_pass_rate":    None,
             "concentration":    None,
             "buy_sell_balance": None,
+            "non_self_count":   0,
+            "non_self_share":   None,
+            "late_count":       0,
+            "late_share":       None,
+            "etf_drops":        etf_drops,
+            "options_drops":    options_drops,
         }
 
     buys = [t for t in trades if (t.get("type") or "").upper() == "BUY"]
@@ -227,6 +245,16 @@ def aggregate_member_factors(
     else:
         bs_balance = None
 
+    # Signal-quality tag aggregation (ROADMAP #3).
+    # Tags are attached per-trade by `score_members.py::apply_filters`.
+    # Shares are computed over the post-filter trade set (denominator =
+    # kept trades), so they answer "of the trades we scored, what
+    # fraction were non-self / late."
+    non_self_count = sum(1 for t in trades if t.get("non_self_filing"))
+    late_count = sum(1 for t in trades if t.get("late_filing"))
+    non_self_share = non_self_count / total_trades
+    late_share = late_count / total_trades
+
     return {
         "trade_count":      total_trades,
         "buy_count":        len(buys),
@@ -239,6 +267,12 @@ def aggregate_member_factors(
         "liq_pass_rate":    liq_pass_rate,
         "concentration":    concentration,
         "buy_sell_balance": bs_balance,
+        "non_self_count":   non_self_count,
+        "non_self_share":   non_self_share,
+        "late_count":       late_count,
+        "late_share":       late_share,
+        "etf_drops":        etf_drops,
+        "options_drops":    options_drops,
     }
 
 

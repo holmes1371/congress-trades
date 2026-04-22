@@ -54,6 +54,12 @@ from factors import (
     compute_trade_alpha,
     compute_ticker_adv,
 )
+from filters import (
+    is_broad_market_etf,
+    is_late_filing,
+    is_non_self_owner,
+    is_options_trade,
+)
 
 TRADE_CACHE_DIR = Path(__file__).parent / "cache" / "trades"
 OUTPUT_DIR = Path(__file__).parent / "output"
@@ -64,6 +70,32 @@ TRADE_CACHE_TTL_DAYS = 30  # reuse cached trades if fetched within N days
 
 
 # ── Ticker normalization ───────────────────────────────────
+
+def apply_filters(trades: list[dict]) -> tuple[list[dict], dict[str, int]]:
+    """Apply the four signal-quality filters to a member's trades.
+
+    ETF and options trades drop from the scoring universe. Non-self-owner
+    and late-filing trades keep their slot but get a boolean tag attached
+    (`non_self_filing`, `late_filing`) for downstream aggregation.
+
+    Returns (kept_trades, drop_counts). drop_counts is a dict with
+    `etf_drops` and `options_drops` integer keys. See
+    `design/signal-quality-filters.md` for the per-filter rationale.
+    """
+    kept: list[dict] = []
+    drops = {"etf_drops": 0, "options_drops": 0}
+    for t in trades:
+        if is_broad_market_etf(t.get("ticker")):
+            drops["etf_drops"] += 1
+            continue
+        if is_options_trade(t):
+            drops["options_drops"] += 1
+            continue
+        t["non_self_filing"] = is_non_self_owner(t.get("owner"))
+        t["late_filing"] = is_late_filing(t.get("filedAfterDays"))
+        kept.append(t)
+    return kept, drops
+
 
 def normalize_ticker(raw: str | None) -> str | None:
     """
@@ -214,7 +246,15 @@ def build_factor_table(
     rows = []
     for bid, m in members_data.items():
         trades = window_trades(m.get("trades", []) or [], cutoff)
-        factors = aggregate_member_factors(trades, ticker_adv)
+        # Drop counts are set globally by apply_filters (across the full
+        # fetched window, not per-window) so they appear identically on
+        # both the 180d and 365d tables. They are informational, not
+        # scoring inputs.
+        drop_counts = {
+            "etf_drops":     m.get("etf_drops", 0),
+            "options_drops": m.get("options_drops", 0),
+        }
+        factors = aggregate_member_factors(trades, ticker_adv, drop_counts)
         rows.append({
             "bioguideId": bid,
             "fullName":   m.get("fullName", bid),
@@ -275,17 +315,32 @@ def main():
     )
     print(f"\nGot trades for {len(members_data)} members")
 
-    # 3. Collect tickers — normalize in-place on every trade so downstream
-    #    alpha/factor code sees the yfinance-friendly symbol (or None if it's
-    #    non-US / un-mirrorable).
+    # 3. Normalize tickers, apply signal-quality filters, collect tickers.
+    #    Filters run after ticker normalization (so is_broad_market_etf sees
+    #    the normalized symbol) and before price-fetch (so we don't fetch
+    #    prices for trades we're about to drop). See
+    #    design/signal-quality-filters.md for drop-vs-tag rationale.
     unique_tickers: set[str] = set()
+    total_etf_drops = 0
+    total_options_drops = 0
     for m in members_data.values():
-        for t in m.get("trades", []) or []:
-            norm = normalize_ticker(t.get("ticker"))
-            t["ticker"] = norm  # overwrite raw with normalized (or None)
-            if norm:
-                unique_tickers.add(norm)
+        trades = m.get("trades", []) or []
+        for t in trades:
+            t["ticker"] = normalize_ticker(t.get("ticker"))
+        kept, drop_counts = apply_filters(trades)
+        m["trades"] = kept
+        m["etf_drops"] = drop_counts["etf_drops"]
+        m["options_drops"] = drop_counts["options_drops"]
+        total_etf_drops += drop_counts["etf_drops"]
+        total_options_drops += drop_counts["options_drops"]
+        for t in kept:
+            if t["ticker"]:
+                unique_tickers.add(t["ticker"])
     unique_tickers.add("SPY")
+    if total_etf_drops or total_options_drops:
+        print(f"\n--- Signal-quality filters ---")
+        print(f"  Dropped {total_etf_drops} broad-market ETF trades, "
+              f"{total_options_drops} options trades across all members.")
     print(f"\n--- Fetching prices ({len(unique_tickers)} unique tickers) ---")
 
     # Prices: need enough forward history for 60d alpha AFTER the earliest trade
