@@ -89,6 +89,12 @@ def build_table_rows(data, rank_key="rank_long"):
         sharpe = fmt_float(d.get("sharpe_alpha"), 2)
         lag = fmt_float(d.get("mean_lag_days"), 1)
         liq = fmt_pct(d.get("liq_pass_rate"))
+        # Signal-quality filter columns (ROADMAP #3). Backward-compatible
+        # with pre-#3 xlsx files: missing columns surface as None → '—'.
+        non_self = fmt_pct(d.get("non_self_share"))
+        late = fmt_pct(d.get("late_share"))
+        etf_drops = int(d.get("etf_drops") or 0)
+        opt_drops = int(d.get("options_drops") or 0)
 
         # Divergence flag
         div = d.get("divergence_flag")
@@ -110,6 +116,10 @@ def build_table_rows(data, rank_key="rank_long"):
             f"<td>{sharpe}</td>"
             f"<td>{lag}d</td>"
             f"<td>{liq}</td>"
+            f"<td>{non_self}</td>"
+            f"<td>{late}</td>"
+            f"<td>{etf_drops}</td>"
+            f"<td>{opt_drops}</td>"
             f"</tr>"
         )
     return "\n          ".join(rows)
@@ -250,6 +260,10 @@ PAGE_TEMPLATE = """\
       <th>#</th><th>Member</th><th>Party</th><th>Chamber</th><th>State</th>
       <th>Score</th><th>Trades</th><th>Buys</th><th>Sells</th>
       <th>Mean &alpha; 20d</th><th>Hit Rate</th><th>Sharpe</th><th>Lag</th><th>Liq Pass</th>
+      <th title="Share of trades filed by a non-self owner (spouse, child, joint, dependent).">Non-self</th>
+      <th title="Share of trades filed at day 40+ (STOCK Act deadline is 45 days).">Late</th>
+      <th title="Count of broad-market ETF trades dropped from scoring.">ETF drops</th>
+      <th title="Count of options / non-BUY-SELL trades dropped from scoring.">Opt drops</th>
     </tr></thead>
     <tbody>
       {long_rows}
@@ -264,6 +278,10 @@ PAGE_TEMPLATE = """\
       <th>#</th><th>Member</th><th>Party</th><th>Chamber</th><th>State</th>
       <th>Score</th><th>Trades</th><th>Buys</th><th>Sells</th>
       <th>Mean &alpha; 20d</th><th>Hit Rate</th><th>Sharpe</th><th>Lag</th><th>Liq Pass</th>
+      <th title="Share of trades filed by a non-self owner (spouse, child, joint, dependent).">Non-self</th>
+      <th title="Share of trades filed at day 40+ (STOCK Act deadline is 45 days).">Late</th>
+      <th title="Count of broad-market ETF trades dropped from scoring.">ETF drops</th>
+      <th title="Count of options / non-BUY-SELL trades dropped from scoring.">Opt drops</th>
     </tr></thead>
     <tbody>
       {short_rows}

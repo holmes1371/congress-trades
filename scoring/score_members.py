@@ -400,6 +400,11 @@ def main():
         "trade_count", "buy_count", "sell_count",
         "mean_alpha_20d", "median_alpha_20d", "hit_rate", "sharpe_alpha",
         "mean_lag_days", "liq_pass_rate", "concentration", "buy_sell_balance",
+        # Signal-quality filter visibility (ROADMAP #3). Shares carry the
+        # information; per-category counts are omitted from the xlsx to
+        # avoid column bloat — see aggregate_member_factors for the full
+        # per-trade aggregates if needed.
+        "non_self_share", "late_share", "etf_drops", "options_drops",
         "mean_alpha_20d_z", "hit_rate_z", "sharpe_alpha_z",
         "neg_lag_z", "liq_pass_rate_z", "trade_count_u_z", "concentration_z",
         "bioguideId",
