@@ -216,6 +216,50 @@ capture; the two are not the same number.
   the #5 backtest is a real viability test, not a trivial replay of
   #4's sort order.
 
+## Backtest output (recorded at commit 6)
+
+Ran `scoring.backtest.walk_forward` against the same cache (538
+members post-#3 filters, 1024 ticker price CSVs resolved). Defaults:
+K=15, exit_bdays=60, monthly rebalance, min_trades=10. Output
+committed at `scoring/output/backtest_20260423.json`.
+
+| metric | value |
+|---|---:|
+| rebalances | 12 |
+| strategy trades executed | 465 |
+| strategy equal-weight per-trade return | +3.94% |
+| strategy hit rate (alpha_vs_spy > 0) | 40.2% |
+| **strategy alpha_vs_spy (per trade)** | **-1.56%** |
+| strategy alpha_vs_naive_copy_everyone | +0.52% |
+| naive_copy_everyone trades | 1,584 |
+| naive_copy_everyone equal-weight return | +3.41% |
+| SPY cumulative return over span | +30.1% |
+| NANC total return | not cached (see below) |
+
+**Interpretation.** The top-15 composite cohort's per-trade alpha over
+SPY is -1.56% at the 60-business-day horizon, with a hit rate below
+50%. It beats a naive-copy-everyone baseline by 52 bps, so the
+cohort-selection does carry some positive information — but not
+enough to produce positive alpha over the passive benchmark. This is
+exactly the kind of "viability isn't yet demonstrated" finding the
+project-framing note expects the platform to be able to surface
+honestly rather than paper over. Caveats:
+
+- NANC is not in the committed CSV cache (the weekly leaderboard's
+  benchmark block fetches it fresh via yfinance). The recorded
+  backtest therefore has `alpha_vs_nanc = None`. Filling this gap
+  requires a one-off yfinance fetch to seed `NANC.csv`; not in scope
+  for commit 6, but a clean follow-up.
+- The 12-rebalance span reflects the publication-date range in the
+  local cache — roughly the trailing year. A multi-year backtest
+  requires a cache refresh; the current run is a snapshot, not a
+  multi-year out-of-sample study.
+- Strategy total_return (+3.94%) and SPY total_return (+30.1%) are
+  not directly comparable — the former is equal-weight per-trade
+  return at a 60-bday horizon; the latter is cumulative close-to-close
+  over the full backtest span. The meaningful comparison is the
+  per-trade alpha_vs_spy of -1.56%.
+
 ## Out of scope / follow-ups
 
 - **Composite weight re-tuning.** Post-file alpha changes the signal distribution; current z-score weights are inherited from the trade-date regime. Once #5's walk-forward surface exists, a validation-window re-tune is defensible and should be filed as a new ROADMAP item.

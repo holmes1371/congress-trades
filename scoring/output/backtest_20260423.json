@@ -1,0 +1,4928 @@
+{
+  "generated": "2026-04-23",
+  "params": {
+    "cadence": "monthly",
+    "K": 15,
+    "exit_bdays": 60,
+    "window_days": 365,
+    "min_trades": 10,
+    "first_rebalance": "2025-04-30",
+    "last_rebalance": "2026-03-31"
+  },
+  "rebalances": [
+    {
+      "date": "2025-04-30",
+      "cohort": [],
+      "trades": []
+    },
+    {
+      "date": "2025-05-30",
+      "cohort": [
+        "B001236",
+        "M001243",
+        "C001123",
+        "M001217",
+        "S001229",
+        "T000278",
+        "W000821",
+        "F000459",
+        "M001232",
+        "N000189",
+        "G000583",
+        "M001234"
+      ],
+      "trades": [
+        {
+          "bioguide": "B001236",
+          "ticker": "MSFT",
+          "entry_date": "2025-06-02",
+          "entry_close": 459.3018798828125,
+          "exit_date": "2025-08-27",
+          "exit_close": 504.6415100097656,
+          "stock_return": 0.09871422720612677,
+          "alpha_vs_spy": 0.0045171304961408865
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "UNH",
+          "entry_date": "2025-06-02",
+          "entry_close": 296.3630676269531,
+          "exit_date": "2025-08-27",
+          "exit_close": 297.6441345214844,
+          "stock_return": 0.0043226266511176,
+          "alpha_vs_spy": -0.08987447005886828
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "ORCL",
+          "entry_date": "2025-06-02",
+          "entry_close": 165.4914093017578,
+          "exit_date": "2025-08-27",
+          "exit_close": 234.78086853027344,
+          "stock_return": 0.41868916048791927,
+          "alpha_vs_spy": 0.3244920637779334
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "MSFT",
+          "entry_date": "2025-06-02",
+          "entry_close": 459.3018798828125,
+          "exit_date": "2025-08-27",
+          "exit_close": 504.6415100097656,
+          "stock_return": 0.09871422720612677,
+          "alpha_vs_spy": 0.0045171304961408865
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "META",
+          "entry_date": "2025-06-02",
+          "entry_close": 668.8134765625,
+          "exit_date": "2025-08-27",
+          "exit_close": 745.62890625,
+          "stock_return": 0.11485329225467789,
+          "alpha_vs_spy": 0.020656195544692002
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "HYG",
+          "entry_date": "2025-06-02",
+          "entry_close": 75.44509887695312,
+          "exit_date": "2025-08-27",
+          "exit_close": 77.90648651123047,
+          "stock_return": 0.032624884464552695,
+          "alpha_vs_spy": -0.06157221224543319
+        },
+        {
+          "bioguide": "M001243",
+          "ticker": "BITB",
+          "entry_date": "2025-06-02",
+          "entry_close": 56.86000061035156,
+          "exit_date": "2025-08-27",
+          "exit_close": 60.970001220703125,
+          "stock_return": 0.0722828098176862,
+          "alpha_vs_spy": -0.021914286892299684
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "BDRFY",
+          "entry_date": "2025-06-02",
+          "entry_close": 27.059999465942383,
+          "exit_date": "2025-08-27",
+          "exit_close": 23.049999237060547,
+          "stock_return": -0.14818922054779815,
+          "alpha_vs_spy": -0.24238631725778403
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "ALKT",
+          "entry_date": "2025-06-02",
+          "entry_close": 28.38999938964844,
+          "exit_date": "2025-08-27",
+          "exit_close": 25.270000457763672,
+          "stock_return": -0.10989781609584615,
+          "alpha_vs_spy": -0.20409491280583203
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "CNC",
+          "entry_date": "2025-06-02",
+          "entry_close": 54.90999984741211,
+          "exit_date": "2025-08-27",
+          "exit_close": 28.84000015258789,
+          "stock_return": -0.47477690342869105,
+          "alpha_vs_spy": -0.5689740001386769
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "ELV",
+          "entry_date": "2025-06-02",
+          "entry_close": 369.167724609375,
+          "exit_date": "2025-08-27",
+          "exit_close": 304.6705627441406,
+          "stock_return": -0.17470964433166614,
+          "alpha_vs_spy": -0.268906741041652
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "KMI",
+          "entry_date": "2025-06-02",
+          "entry_close": 27.76374626159668,
+          "exit_date": "2025-08-27",
+          "exit_close": 26.27489471435547,
+          "stock_return": -0.0536257439184501,
+          "alpha_vs_spy": -0.14782284062843598
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "LMT",
+          "entry_date": "2025-06-02",
+          "entry_close": 469.2969665527344,
+          "exit_date": "2025-08-27",
+          "exit_close": 445.4312744140625,
+          "stock_return": -0.05085413680378037,
+          "alpha_vs_spy": -0.14505123351376625
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "MCK",
+          "entry_date": "2025-06-02",
+          "entry_close": 719.6190795898438,
+          "exit_date": "2025-08-27",
+          "exit_close": 681.4920043945312,
+          "stock_return": -0.05298230171585161,
+          "alpha_vs_spy": -0.1471793984258375
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "MRK",
+          "entry_date": "2025-06-02",
+          "entry_close": 73.57720184326172,
+          "exit_date": "2025-08-27",
+          "exit_close": 81.93531799316406,
+          "stock_return": 0.11359654812243702,
+          "alpha_vs_spy": 0.01939945141245114
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "MSFT",
+          "entry_date": "2025-06-02",
+          "entry_close": 459.3018798828125,
+          "exit_date": "2025-08-27",
+          "exit_close": 504.6415100097656,
+          "stock_return": 0.09871422720612677,
+          "alpha_vs_spy": 0.0045171304961408865
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "AGIO",
+          "entry_date": "2025-06-02",
+          "entry_close": 32.630001068115234,
+          "exit_date": "2025-08-27",
+          "exit_close": 39.27000045776367,
+          "stock_return": 0.2034936920715209,
+          "alpha_vs_spy": 0.10929659536153502
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "ALKT",
+          "entry_date": "2025-06-02",
+          "entry_close": 28.38999938964844,
+          "exit_date": "2025-08-27",
+          "exit_close": 25.270000457763672,
+          "stock_return": -0.10989781609584615,
+          "alpha_vs_spy": -0.20409491280583203
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "ARMK",
+          "entry_date": "2025-06-02",
+          "entry_close": 39.80350875854492,
+          "exit_date": "2025-08-27",
+          "exit_close": 39.26348876953125,
+          "stock_return": -0.013567145356192745,
+          "alpha_vs_spy": -0.10776424206617863
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "FERG",
+          "entry_date": "2025-06-02",
+          "entry_close": 177.55369567871094,
+          "exit_date": "2025-08-27",
+          "exit_close": 232.45181274414065,
+          "stock_return": 0.30919163273722905,
+          "alpha_vs_spy": 0.21499453602724317
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "IR",
+          "entry_date": "2025-06-02",
+          "entry_close": 81.0013656616211,
+          "exit_date": "2025-08-27",
+          "exit_close": 80.60163116455078,
+          "stock_return": -0.004934910588300201,
+          "alpha_vs_spy": -0.09913200729828608
+        },
+        {
+          "bioguide": "M001217",
+          "ticker": "AMGN",
+          "entry_date": "2025-06-02",
+          "entry_close": 282.1670227050781,
+          "exit_date": "2025-08-27",
+          "exit_close": 283.9630126953125,
+          "stock_return": 0.006364988980698705,
+          "alpha_vs_spy": -0.08783210772928718
+        },
+        {
+          "bioguide": "M001217",
+          "ticker": "AMGN",
+          "entry_date": "2025-06-02",
+          "entry_close": 282.1670227050781,
+          "exit_date": "2025-08-27",
+          "exit_close": 283.9630126953125,
+          "stock_return": 0.006364988980698705,
+          "alpha_vs_spy": -0.08783210772928718
+        },
+        {
+          "bioguide": "M001217",
+          "ticker": "NVDA",
+          "entry_date": "2025-06-02",
+          "entry_close": 137.34764099121094,
+          "exit_date": "2025-08-27",
+          "exit_close": 181.56982421875,
+          "stock_return": 0.3219726448040625,
+          "alpha_vs_spy": 0.22777554809407663
+        },
+        {
+          "bioguide": "M001217",
+          "ticker": "NVDA",
+          "entry_date": "2025-06-02",
+          "entry_close": 137.34764099121094,
+          "exit_date": "2025-08-27",
+          "exit_close": 181.56982421875,
+          "stock_return": 0.3219726448040625,
+          "alpha_vs_spy": 0.22777554809407663
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "A",
+          "entry_date": "2025-06-02",
+          "entry_close": 110.14591217041016,
+          "exit_date": "2025-08-27",
+          "exit_close": 117.97162628173828,
+          "stock_return": 0.0710486114021256,
+          "alpha_vs_spy": -0.02314848530786029
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "AMAT",
+          "entry_date": "2025-06-02",
+          "entry_close": 156.3188018798828,
+          "exit_date": "2025-08-27",
+          "exit_close": 163.86402893066406,
+          "stock_return": 0.04826819909084956,
+          "alpha_vs_spy": -0.04592889761913632
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "ARES",
+          "entry_date": "2025-06-02",
+          "entry_close": 161.37799072265625,
+          "exit_date": "2025-08-27",
+          "exit_close": 174.86106872558594,
+          "stock_return": 0.0835496708228427,
+          "alpha_vs_spy": -0.01064742588714318
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "ADSK",
+          "entry_date": "2025-06-02",
+          "entry_close": 295.260009765625,
+          "exit_date": "2025-08-27",
+          "exit_close": 285.95001220703125,
+          "stock_return": -0.03153152221997135,
+          "alpha_vs_spy": -0.12572861892995724
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "CAT",
+          "entry_date": "2025-06-02",
+          "entry_close": 341.6288757324219,
+          "exit_date": "2025-08-27",
+          "exit_close": 430.4234313964844,
+          "stock_return": 0.2599152529881874,
+          "alpha_vs_spy": 0.16571815627820152
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "CMG",
+          "entry_date": "2025-06-02",
+          "entry_close": 49.84000015258789,
+          "exit_date": "2025-08-27",
+          "exit_close": 42.650001525878906,
+          "stock_return": -0.1442616092435074,
+          "alpha_vs_spy": -0.23845870595349328
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "CSX",
+          "entry_date": "2025-06-02",
+          "entry_close": 30.8992977142334,
+          "exit_date": "2025-08-27",
+          "exit_close": 32.18512344360352,
+          "stock_return": 0.04161342892844533,
+          "alpha_vs_spy": -0.052583667781540555
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "LFUS",
+          "entry_date": "2025-06-02",
+          "entry_close": 201.16380310058597,
+          "exit_date": "2025-08-27",
+          "exit_close": 261.0270080566406,
+          "stock_return": 0.29758437667894877,
+          "alpha_vs_spy": 0.2033872799689629
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "AMGN",
+          "entry_date": "2025-06-02",
+          "entry_close": 282.1670227050781,
+          "exit_date": "2025-08-27",
+          "exit_close": 283.9630126953125,
+          "stock_return": 0.006364988980698705,
+          "alpha_vs_spy": -0.08783210772928718
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "AMAT",
+          "entry_date": "2025-06-02",
+          "entry_close": 156.3188018798828,
+          "exit_date": "2025-08-27",
+          "exit_close": 163.86402893066406,
+          "stock_return": 0.04826819909084956,
+          "alpha_vs_spy": -0.04592889761913632
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "COP",
+          "entry_date": "2025-06-02",
+          "entry_close": 84.56165313720703,
+          "exit_date": "2025-08-27",
+          "exit_close": 96.2509307861328,
+          "stock_return": 0.13823378819190202,
+          "alpha_vs_spy": 0.044036691481916135
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "CCI",
+          "entry_date": "2025-06-02",
+          "entry_close": 95.3927764892578,
+          "exit_date": "2025-08-27",
+          "exit_close": 96.66835021972656,
+          "stock_return": 0.013371806308755563,
+          "alpha_vs_spy": -0.08082529040123032
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "LMT",
+          "entry_date": "2025-06-02",
+          "entry_close": 469.2969665527344,
+          "exit_date": "2025-08-27",
+          "exit_close": 445.4312744140625,
+          "stock_return": -0.05085413680378037,
+          "alpha_vs_spy": -0.14505123351376625
+        },
+        {
+          "bioguide": "S001229",
+          "ticker": "LOW",
+          "entry_date": "2025-06-02",
+          "entry_close": 222.23133850097656,
+          "exit_date": "2025-08-27",
+          "exit_close": 256.25360107421875,
+          "stock_return": 0.1530939011695358,
+          "alpha_vs_spy": 0.05889680445954992
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "FXF",
+          "entry_date": "2025-06-02",
+          "entry_close": 108.6500015258789,
+          "exit_date": "2025-08-27",
+          "exit_close": 110.41000366210938,
+          "stock_return": 0.01619882293155106,
+          "alpha_vs_spy": -0.07799827377843482
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "TLH",
+          "entry_date": "2025-06-02",
+          "entry_close": 95.1010513305664,
+          "exit_date": "2025-08-27",
+          "exit_close": 97.92660522460938,
+          "stock_return": 0.029711068957813058,
+          "alpha_vs_spy": -0.06448602775217283
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "IEI",
+          "entry_date": "2025-06-02",
+          "entry_close": 114.14972686767578,
+          "exit_date": "2025-08-27",
+          "exit_close": 116.73309326171876,
+          "stock_return": 0.022631384804254973,
+          "alpha_vs_spy": -0.07156571190573091
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "REGL",
+          "entry_date": "2025-06-02",
+          "entry_close": 78.94400024414062,
+          "exit_date": "2025-08-27",
+          "exit_close": 84.74054718017578,
+          "stock_return": 0.07342606047462596,
+          "alpha_vs_spy": -0.02077103623535992
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "SPDW",
+          "entry_date": "2025-06-02",
+          "entry_close": 38.90605926513672,
+          "exit_date": "2025-08-27",
+          "exit_close": 41.00972366333008,
+          "stock_return": 0.05407035402525162,
+          "alpha_vs_spy": -0.04012674268473426
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "SPMB",
+          "entry_date": "2025-06-02",
+          "entry_close": 20.929073333740234,
+          "exit_date": "2025-08-27",
+          "exit_close": 21.59469223022461,
+          "stock_return": 0.03180355316598349,
+          "alpha_vs_spy": -0.062393543544002394
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "SPYV",
+          "entry_date": "2025-06-02",
+          "entry_close": 49.91008377075195,
+          "exit_date": "2025-08-27",
+          "exit_close": 53.82637405395508,
+          "stock_return": 0.07846691464577593,
+          "alpha_vs_spy": -0.015730182064209952
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "SDY",
+          "entry_date": "2025-06-02",
+          "entry_close": 131.18711853027344,
+          "exit_date": "2025-08-27",
+          "exit_close": 139.14181518554688,
+          "stock_return": 0.060636263258101675,
+          "alpha_vs_spy": -0.03356083345188421
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "MDYV",
+          "entry_date": "2025-06-02",
+          "entry_close": 75.16669464111328,
+          "exit_date": "2025-08-27",
+          "exit_close": 83.09809875488281,
+          "stock_return": 0.10551753208835879,
+          "alpha_vs_spy": 0.011320435378372906
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "XLP",
+          "entry_date": "2025-06-02",
+          "entry_close": 80.64970397949219,
+          "exit_date": "2025-08-27",
+          "exit_close": 79.13562774658203,
+          "stock_return": -0.018773487789802146,
+          "alpha_vs_spy": -0.11297058449978803
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "GLDM",
+          "entry_date": "2025-06-02",
+          "entry_close": 66.9800033569336,
+          "exit_date": "2025-08-27",
+          "exit_close": 67.25,
+          "stock_return": 0.00403100372550913,
+          "alpha_vs_spy": -0.09016609298447675
+        },
+        {
+          "bioguide": "F000459",
+          "ticker": "TSCO",
+          "entry_date": "2025-06-02",
+          "entry_close": 47.262672424316406,
+          "exit_date": "2025-08-27",
+          "exit_close": 61.832279205322266,
+          "stock_return": 0.3082687887430984,
+          "alpha_vs_spy": 0.2140716920331125
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "TECH",
+          "entry_date": "2025-06-02",
+          "entry_close": 48.40692901611328,
+          "exit_date": "2025-08-27",
+          "exit_close": 56.06882095336914,
+          "stock_return": 0.15828089269421408,
+          "alpha_vs_spy": 0.0640837959842282
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "MKL",
+          "entry_date": "2025-06-02",
+          "entry_close": 1959.4599609375,
+          "exit_date": "2025-08-27",
+          "exit_close": 1958.239990234375,
+          "stock_return": -0.0006226055788051132,
+          "alpha_vs_spy": -0.094819702288791
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "TECH",
+          "entry_date": "2025-06-02",
+          "entry_close": 48.40692901611328,
+          "exit_date": "2025-08-27",
+          "exit_close": 56.06882095336914,
+          "stock_return": 0.15828089269421408,
+          "alpha_vs_spy": 0.0640837959842282
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "BJ",
+          "entry_date": "2025-06-02",
+          "entry_close": 111.6999969482422,
+          "exit_date": "2025-08-27",
+          "exit_close": 97.16999816894533,
+          "stock_return": -0.13008056558882053,
+          "alpha_vs_spy": -0.2242776622988064
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "IDXX",
+          "entry_date": "2025-06-02",
+          "entry_close": 514.7999877929688,
+          "exit_date": "2025-08-27",
+          "exit_close": 640.8599853515625,
+          "stock_return": 0.2448717959358031,
+          "alpha_vs_spy": 0.15067469922581722
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "MKL",
+          "entry_date": "2025-06-02",
+          "entry_close": 1959.4599609375,
+          "exit_date": "2025-08-27",
+          "exit_close": 1958.239990234375,
+          "stock_return": -0.0006226055788051132,
+          "alpha_vs_spy": -0.094819702288791
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "PAYX",
+          "entry_date": "2025-06-02",
+          "entry_close": 153.22462463378906,
+          "exit_date": "2025-08-27",
+          "exit_close": 135.9094696044922,
+          "stock_return": -0.11300504126331234,
+          "alpha_vs_spy": -0.20720213797329823
+        },
+        {
+          "bioguide": "N000189",
+          "ticker": "BAC",
+          "entry_date": "2025-06-02",
+          "entry_close": 43.11035537719727,
+          "exit_date": "2025-08-27",
+          "exit_close": 49.56212615966797,
+          "stock_return": 0.14965710038853652,
+          "alpha_vs_spy": 0.05546000367855064
+        },
+        {
+          "bioguide": "N000189",
+          "ticker": "JPM",
+          "entry_date": "2025-06-02",
+          "entry_close": 259.611083984375,
+          "exit_date": "2025-08-27",
+          "exit_close": 294.9849548339844,
+          "stock_return": 0.13625716709282876,
+          "alpha_vs_spy": 0.042060070382842873
+        },
+        {
+          "bioguide": "N000189",
+          "ticker": "PRU",
+          "entry_date": "2025-06-02",
+          "entry_close": 99.60309600830078,
+          "exit_date": "2025-08-27",
+          "exit_close": 106.5963363647461,
+          "stock_return": 0.0702110741202513,
+          "alpha_vs_spy": -0.02398602258973459
+        },
+        {
+          "bioguide": "N000189",
+          "ticker": "WMT",
+          "entry_date": "2025-06-02",
+          "entry_close": 99.13157653808594,
+          "exit_date": "2025-08-27",
+          "exit_close": 95.68816375732422,
+          "stock_return": -0.03473578148370082,
+          "alpha_vs_spy": -0.1289328781936867
+        },
+        {
+          "bioguide": "G000583",
+          "ticker": "LNG",
+          "entry_date": "2025-06-02",
+          "entry_close": 241.4274444580078,
+          "exit_date": "2025-08-27",
+          "exit_close": 240.3202667236328,
+          "stock_return": -0.0045859646854173874,
+          "alpha_vs_spy": -0.09878306139540327
+        },
+        {
+          "bioguide": "G000583",
+          "ticker": "DHI",
+          "entry_date": "2025-06-02",
+          "entry_close": 115.89667510986328,
+          "exit_date": "2025-08-27",
+          "exit_close": 166.5089111328125,
+          "stock_return": 0.43670136330461395,
+          "alpha_vs_spy": 0.34250426659462807
+        },
+        {
+          "bioguide": "G000583",
+          "ticker": "HD",
+          "entry_date": "2025-06-02",
+          "entry_close": 358.8883056640625,
+          "exit_date": "2025-08-27",
+          "exit_close": 400.6497497558594,
+          "stock_return": 0.1163633460124156,
+          "alpha_vs_spy": 0.02216624930242972
+        },
+        {
+          "bioguide": "M001234",
+          "ticker": "AVGO",
+          "entry_date": "2025-06-02",
+          "entry_close": 246.71099853515625,
+          "exit_date": "2025-08-27",
+          "exit_close": 298.53778076171875,
+          "stock_return": 0.21007082186965076,
+          "alpha_vs_spy": 0.11587372515966488
+        },
+        {
+          "bioguide": "M001234",
+          "ticker": "AVGO",
+          "entry_date": "2025-06-02",
+          "entry_close": 246.71099853515625,
+          "exit_date": "2025-08-27",
+          "exit_close": 298.53778076171875,
+          "stock_return": 0.21007082186965076,
+          "alpha_vs_spy": 0.11587372515966488
+        },
+        {
+          "bioguide": "M001234",
+          "ticker": "META",
+          "entry_date": "2025-06-02",
+          "entry_close": 668.8134765625,
+          "exit_date": "2025-08-27",
+          "exit_close": 745.62890625,
+          "stock_return": 0.11485329225467789,
+          "alpha_vs_spy": 0.020656195544692002
+        },
+        {
+          "bioguide": "M001234",
+          "ticker": "META",
+          "entry_date": "2025-06-02",
+          "entry_close": 668.8134765625,
+          "exit_date": "2025-08-27",
+          "exit_close": 745.62890625,
+          "stock_return": 0.11485329225467789,
+          "alpha_vs_spy": 0.020656195544692002
+        }
+      ]
+    },
+    {
+      "date": "2025-06-30",
+      "cohort": [
+        "B001236",
+        "M001236",
+        "M001243",
+        "T000490",
+        "M001234",
+        "D000617",
+        "M001217",
+        "T000278",
+        "W000821",
+        "J000309",
+        "M001232",
+        "B001327",
+        "C001123",
+        "F000459",
+        "N000189"
+      ],
+      "trades": [
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-07-01",
+          "entry_close": 34.48053359985352,
+          "exit_date": "2025-09-25",
+          "exit_close": 43.823829650878906,
+          "stock_return": 0.2709730701808244,
+          "alpha_vs_spy": 0.20261017605912546
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-07-01",
+          "entry_close": 34.48053359985352,
+          "exit_date": "2025-09-25",
+          "exit_close": 43.823829650878906,
+          "stock_return": 0.2709730701808244,
+          "alpha_vs_spy": 0.20261017605912546
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-07-01",
+          "entry_close": 10.00737190246582,
+          "exit_date": "2025-09-25",
+          "exit_close": 9.909594535827637,
+          "stock_return": -0.009770533921507507,
+          "alpha_vs_spy": -0.07813342804320644
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HOG",
+          "entry_date": "2025-07-01",
+          "entry_close": 24.44727325439453,
+          "exit_date": "2025-09-25",
+          "exit_close": 27.59397315979004,
+          "stock_return": 0.12871373721933876,
+          "alpha_vs_spy": 0.06035084309763983
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCI",
+          "entry_date": "2025-07-01",
+          "entry_close": 47.20000076293945,
+          "exit_date": "2025-09-25",
+          "exit_close": 46.2400016784668,
+          "stock_return": -0.020338963325323256,
+          "alpha_vs_spy": -0.08870185744702219
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "AAL",
+          "entry_date": "2025-07-01",
+          "entry_close": 11.520000457763672,
+          "exit_date": "2025-09-25",
+          "exit_close": 11.390000343322754,
+          "stock_return": -0.011284731707914775,
+          "alpha_vs_spy": -0.07964762582961371
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TQQQ",
+          "entry_date": "2025-07-01",
+          "entry_close": 40.276615142822266,
+          "exit_date": "2025-09-25",
+          "exit_close": 49.864349365234375,
+          "stock_return": 0.23804716926717084,
+          "alpha_vs_spy": 0.1696842751454719
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-07-01",
+          "entry_close": 10.00737190246582,
+          "exit_date": "2025-09-25",
+          "exit_close": 9.909594535827637,
+          "stock_return": -0.009770533921507507,
+          "alpha_vs_spy": -0.07813342804320644
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "AAL",
+          "entry_date": "2025-07-01",
+          "entry_close": 11.520000457763672,
+          "exit_date": "2025-09-25",
+          "exit_close": 11.390000343322754,
+          "stock_return": -0.011284731707914775,
+          "alpha_vs_spy": -0.07964762582961371
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TQQQ",
+          "entry_date": "2025-07-01",
+          "entry_close": 40.276615142822266,
+          "exit_date": "2025-09-25",
+          "exit_close": 49.864349365234375,
+          "stock_return": 0.23804716926717084,
+          "alpha_vs_spy": 0.1696842751454719
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-07-01",
+          "entry_close": 10.00737190246582,
+          "exit_date": "2025-09-25",
+          "exit_close": 9.909594535827637,
+          "stock_return": -0.009770533921507507,
+          "alpha_vs_spy": -0.07813342804320644
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "F",
+          "entry_date": "2025-07-01",
+          "entry_close": 10.952935218811035,
+          "exit_date": "2025-09-25",
+          "exit_close": 11.364072799682615,
+          "stock_return": 0.0375367490684575,
+          "alpha_vs_spy": -0.03082614505324144
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "F",
+          "entry_date": "2025-07-01",
+          "entry_close": 10.952935218811035,
+          "exit_date": "2025-09-25",
+          "exit_close": 11.364072799682615,
+          "stock_return": 0.0375367490684575,
+          "alpha_vs_spy": -0.03082614505324144
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-07-01",
+          "entry_close": 34.48053359985352,
+          "exit_date": "2025-09-25",
+          "exit_close": 43.823829650878906,
+          "stock_return": 0.2709730701808244,
+          "alpha_vs_spy": 0.20261017605912546
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "F",
+          "entry_date": "2025-07-01",
+          "entry_close": 10.952935218811035,
+          "exit_date": "2025-09-25",
+          "exit_close": 11.364072799682615,
+          "stock_return": 0.0375367490684575,
+          "alpha_vs_spy": -0.03082614505324144
+        },
+        {
+          "bioguide": "T000490",
+          "ticker": "CRM",
+          "entry_date": "2025-07-01",
+          "entry_close": 270.9999084472656,
+          "exit_date": "2025-09-25",
+          "exit_close": 240.5616912841797,
+          "stock_return": -0.11231818245801717,
+          "alpha_vs_spy": -0.1806810765797161
+        },
+        {
+          "bioguide": "T000490",
+          "ticker": "IBP",
+          "entry_date": "2025-07-01",
+          "entry_close": 192.57473754882807,
+          "exit_date": "2025-09-25",
+          "exit_close": 246.3634033203125,
+          "stock_return": 0.2793131978582919,
+          "alpha_vs_spy": 0.21095030373659296
+        },
+        {
+          "bioguide": "T000490",
+          "ticker": "AVGO",
+          "entry_date": "2025-07-01",
+          "entry_close": 263.2302551269531,
+          "exit_date": "2025-09-25",
+          "exit_close": 334.75592041015625,
+          "stock_return": 0.2717228125950304,
+          "alpha_vs_spy": 0.20335991847333146
+        },
+        {
+          "bioguide": "T000490",
+          "ticker": "FITB",
+          "entry_date": "2025-07-01",
+          "entry_close": 41.33863067626953,
+          "exit_date": "2025-09-25",
+          "exit_close": 44.10493087768555,
+          "stock_return": 0.06691804145810787,
+          "alpha_vs_spy": -0.0014448526635910675
+        },
+        {
+          "bioguide": "T000490",
+          "ticker": "CRM",
+          "entry_date": "2025-07-01",
+          "entry_close": 270.9999084472656,
+          "exit_date": "2025-09-25",
+          "exit_close": 240.5616912841797,
+          "stock_return": -0.11231818245801717,
+          "alpha_vs_spy": -0.1806810765797161
+        },
+        {
+          "bioguide": "D000617",
+          "ticker": "FPAFY",
+          "entry_date": "2025-07-01",
+          "entry_close": 3.559999942779541,
+          "exit_date": "2025-09-25",
+          "exit_close": 4.139999866485596,
+          "stock_return": 0.16292132950238436,
+          "alpha_vs_spy": 0.09455843538068542
+        },
+        {
+          "bioguide": "M001217",
+          "ticker": "HCA",
+          "entry_date": "2025-07-01",
+          "entry_close": 387.6802368164063,
+          "exit_date": "2025-09-25",
+          "exit_close": 413.6585388183594,
+          "stock_return": 0.06700961136240635,
+          "alpha_vs_spy": -0.0013532827592925845
+        },
+        {
+          "bioguide": "M001217",
+          "ticker": "HCA",
+          "entry_date": "2025-07-01",
+          "entry_close": 387.6802368164063,
+          "exit_date": "2025-09-25",
+          "exit_close": 413.6585388183594,
+          "stock_return": 0.06700961136240635,
+          "alpha_vs_spy": -0.0013532827592925845
+        },
+        {
+          "bioguide": "M001217",
+          "ticker": "CI",
+          "entry_date": "2025-07-01",
+          "entry_close": 329.0384826660156,
+          "exit_date": "2025-09-25",
+          "exit_close": 280.9256591796875,
+          "stock_return": -0.14622248162736684,
+          "alpha_vs_spy": -0.21458537574906578
+        },
+        {
+          "bioguide": "M001217",
+          "ticker": "CI",
+          "entry_date": "2025-07-01",
+          "entry_close": 329.0384826660156,
+          "exit_date": "2025-09-25",
+          "exit_close": 280.9256591796875,
+          "stock_return": -0.14622248162736684,
+          "alpha_vs_spy": -0.21458537574906578
+        },
+        {
+          "bioguide": "J000309",
+          "ticker": "IBM",
+          "entry_date": "2025-07-01",
+          "entry_close": 286.0275573730469,
+          "exit_date": "2025-09-25",
+          "exit_close": 278.3099975585937,
+          "stock_return": -0.026981875051947157,
+          "alpha_vs_spy": -0.0953447691736461
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "MKL",
+          "entry_date": "2025-07-01",
+          "entry_close": 1994.2099609375,
+          "exit_date": "2025-09-25",
+          "exit_close": 1904.31005859375,
+          "stock_return": -0.04508045998400645,
+          "alpha_vs_spy": -0.11344335410570539
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "TSCO",
+          "entry_date": "2025-07-01",
+          "entry_close": 53.40504455566406,
+          "exit_date": "2025-09-25",
+          "exit_close": 55.92460632324219,
+          "stock_return": 0.04717834782352792,
+          "alpha_vs_spy": -0.021184546298171014
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "MKL",
+          "entry_date": "2025-07-01",
+          "entry_close": 1994.2099609375,
+          "exit_date": "2025-09-25",
+          "exit_close": 1904.31005859375,
+          "stock_return": -0.04508045998400645,
+          "alpha_vs_spy": -0.11344335410570539
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "TSCO",
+          "entry_date": "2025-07-01",
+          "entry_close": 53.40504455566406,
+          "exit_date": "2025-09-25",
+          "exit_close": 55.92460632324219,
+          "stock_return": 0.04717834782352792,
+          "alpha_vs_spy": -0.021184546298171014
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "MKL",
+          "entry_date": "2025-07-01",
+          "entry_close": 1994.2099609375,
+          "exit_date": "2025-09-25",
+          "exit_close": 1904.31005859375,
+          "stock_return": -0.04508045998400645,
+          "alpha_vs_spy": -0.11344335410570539
+        },
+        {
+          "bioguide": "M001232",
+          "ticker": "TSCO",
+          "entry_date": "2025-07-01",
+          "entry_close": 53.40504455566406,
+          "exit_date": "2025-09-25",
+          "exit_close": 55.92460632324219,
+          "stock_return": 0.04717834782352792,
+          "alpha_vs_spy": -0.021184546298171014
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "NVDA",
+          "entry_date": "2025-07-01",
+          "entry_close": 153.2745361328125,
+          "exit_date": "2025-09-25",
+          "exit_close": 177.67050170898438,
+          "stock_return": 0.159165156794425,
+          "alpha_vs_spy": 0.09080226267272606
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "VEEV",
+          "entry_date": "2025-07-01",
+          "entry_close": 282.8999938964844,
+          "exit_date": "2025-09-25",
+          "exit_close": 279.92999267578125,
+          "stock_return": -0.010498413873384127,
+          "alpha_vs_spy": -0.07886130799508306
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "NVDA",
+          "entry_date": "2025-07-01",
+          "entry_close": 153.2745361328125,
+          "exit_date": "2025-09-25",
+          "exit_close": 177.67050170898438,
+          "stock_return": 0.159165156794425,
+          "alpha_vs_spy": 0.09080226267272606
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "SNOW",
+          "entry_date": "2025-07-01",
+          "entry_close": 215.97000122070312,
+          "exit_date": "2025-09-25",
+          "exit_close": 221.6000061035156,
+          "stock_return": 0.026068457892256536,
+          "alpha_vs_spy": -0.0422944362294424
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "TSLA",
+          "entry_date": "2025-07-01",
+          "entry_close": 300.7099914550781,
+          "exit_date": "2025-09-25",
+          "exit_close": 423.3900146484375,
+          "stock_return": 0.4079678982388786,
+          "alpha_vs_spy": 0.33960500411717964
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "NVDA",
+          "entry_date": "2025-07-01",
+          "entry_close": 153.2745361328125,
+          "exit_date": "2025-09-25",
+          "exit_close": 177.67050170898438,
+          "stock_return": 0.159165156794425,
+          "alpha_vs_spy": 0.09080226267272606
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "TSLA",
+          "entry_date": "2025-07-01",
+          "entry_close": 300.7099914550781,
+          "exit_date": "2025-09-25",
+          "exit_close": 423.3900146484375,
+          "stock_return": 0.4079678982388786,
+          "alpha_vs_spy": 0.33960500411717964
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "ABBV",
+          "entry_date": "2025-07-01",
+          "entry_close": 185.522216796875,
+          "exit_date": "2025-09-25",
+          "exit_close": 215.24400329589844,
+          "stock_return": 0.16020607672861797,
+          "alpha_vs_spy": 0.09184318260691904
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "APD",
+          "entry_date": "2025-07-01",
+          "entry_close": 279.7870178222656,
+          "exit_date": "2025-09-25",
+          "exit_close": 260.489013671875,
+          "stock_return": -0.06897390844149054,
+          "alpha_vs_spy": -0.13733680256318948
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "BAX",
+          "entry_date": "2025-07-01",
+          "entry_close": 30.980791091918945,
+          "exit_date": "2025-09-25",
+          "exit_close": 21.687862396240234,
+          "stock_return": -0.29995775989408757,
+          "alpha_vs_spy": -0.3683206540157865
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "BDX",
+          "entry_date": "2025-07-01",
+          "entry_close": 137.2937469482422,
+          "exit_date": "2025-09-25",
+          "exit_close": 140.30862426757812,
+          "stock_return": 0.021959319971597058,
+          "alpha_vs_spy": -0.04640357415010188
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "BIIB",
+          "entry_date": "2025-07-01",
+          "entry_close": 130.07000732421875,
+          "exit_date": "2025-09-25",
+          "exit_close": 135.6699981689453,
+          "stock_return": 0.04305366748206407,
+          "alpha_vs_spy": -0.025309226639634863
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "DXCM",
+          "entry_date": "2025-07-01",
+          "entry_close": 83.58000183105469,
+          "exit_date": "2025-09-25",
+          "exit_close": 68.30000305175781,
+          "stock_return": -0.18281883757532402,
+          "alpha_vs_spy": -0.25118173169702296
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "DOW",
+          "entry_date": "2025-07-01",
+          "entry_close": 26.715553283691406,
+          "exit_date": "2025-09-25",
+          "exit_close": 21.61897087097168,
+          "stock_return": -0.19077210786538157,
+          "alpha_vs_spy": -0.2591350019870805
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "EOG",
+          "entry_date": "2025-07-01",
+          "entry_close": 117.9281005859375,
+          "exit_date": "2025-09-25",
+          "exit_close": 115.08732604980467,
+          "stock_return": -0.024089038337920754,
+          "alpha_vs_spy": -0.09245193245961969
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "IDXX",
+          "entry_date": "2025-07-01",
+          "entry_close": 542.6500244140625,
+          "exit_date": "2025-09-25",
+          "exit_close": 618.1699829101562,
+          "stock_return": 0.13916881064851694,
+          "alpha_vs_spy": 0.070805916526818
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "JPM",
+          "entry_date": "2025-07-01",
+          "entry_close": 284.8698425292969,
+          "exit_date": "2025-09-25",
+          "exit_close": 308.9515991210937,
+          "stock_return": 0.08453599853877192,
+          "alpha_vs_spy": 0.01617310441707298
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "LMT",
+          "entry_date": "2025-07-01",
+          "entry_close": 456.6731567382813,
+          "exit_date": "2025-09-25",
+          "exit_close": 478.1704406738281,
+          "stock_return": 0.04707367538107099,
+          "alpha_vs_spy": -0.021289218740627947
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "LYB",
+          "entry_date": "2025-07-01",
+          "entry_close": 57.40481948852539,
+          "exit_date": "2025-09-25",
+          "exit_close": 47.039154052734375,
+          "stock_return": -0.18057134449944579,
+          "alpha_vs_spy": -0.24893423862114472
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "MOH",
+          "entry_date": "2025-07-01",
+          "entry_close": 306.2900085449219,
+          "exit_date": "2025-09-25",
+          "exit_close": 189.3000030517578,
+          "stock_return": -0.38195828211616567,
+          "alpha_vs_spy": -0.4503211762378646
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "REGN",
+          "entry_date": "2025-07-01",
+          "entry_close": 532.7892456054688,
+          "exit_date": "2025-09-25",
+          "exit_close": 554.1478271484375,
+          "stock_return": 0.04008823698889907,
+          "alpha_vs_spy": -0.028274657132799863
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "VLO",
+          "entry_date": "2025-07-01",
+          "entry_close": 135.20632934570312,
+          "exit_date": "2025-09-25",
+          "exit_close": 172.27342224121094,
+          "stock_return": 0.2741520539377458,
+          "alpha_vs_spy": 0.20578915981604684
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "WAT",
+          "entry_date": "2025-07-01",
+          "entry_close": 357.0400085449219,
+          "exit_date": "2025-09-25",
+          "exit_close": 287.7900085449219,
+          "stock_return": -0.19395585464559262,
+          "alpha_vs_spy": -0.26231874876729155
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "AMD",
+          "entry_date": "2025-07-01",
+          "entry_close": 136.11000061035156,
+          "exit_date": "2025-09-25",
+          "exit_close": 161.27000427246094,
+          "stock_return": 0.18485051465201363,
+          "alpha_vs_spy": 0.1164876205303147
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "A",
+          "entry_date": "2025-07-01",
+          "entry_close": 119.72097778320312,
+          "exit_date": "2025-09-25",
+          "exit_close": 121.15225982666016,
+          "stock_return": 0.011955148295304419,
+          "alpha_vs_spy": -0.05640774582639452
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "AMCR",
+          "entry_date": "2025-07-01",
+          "entry_close": 46.73665618896485,
+          "exit_date": "2025-09-25",
+          "exit_close": 39.33380889892578,
+          "stock_return": -0.15839488516482658,
+          "alpha_vs_spy": -0.22675777928652552
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "CAT",
+          "entry_date": "2025-07-01",
+          "entry_close": 387.4707946777344,
+          "exit_date": "2025-09-25",
+          "exit_close": 461.3121948242188,
+          "stock_return": 0.19057281519217328,
+          "alpha_vs_spy": 0.12220992107047435
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "COP",
+          "entry_date": "2025-07-01",
+          "entry_close": 89.70049285888672,
+          "exit_date": "2025-09-25",
+          "exit_close": 95.1792984008789,
+          "stock_return": 0.06107887891553987,
+          "alpha_vs_spy": -0.007284015206159067
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "GEHC",
+          "entry_date": "2025-07-01",
+          "entry_close": 75.81397247314453,
+          "exit_date": "2025-09-25",
+          "exit_close": 71.40449523925781,
+          "stock_return": -0.05816180171074248,
+          "alpha_vs_spy": -0.12652469583244141
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "GIS",
+          "entry_date": "2025-07-01",
+          "entry_close": 51.18390655517578,
+          "exit_date": "2025-09-25",
+          "exit_close": 48.13925552368164,
+          "stock_return": -0.05948453794186337,
+          "alpha_vs_spy": -0.1278474320635623
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "LH",
+          "entry_date": "2025-07-01",
+          "entry_close": 262.2174072265625,
+          "exit_date": "2025-09-25",
+          "exit_close": 274.7137756347656,
+          "stock_return": 0.0476565173165866,
+          "alpha_vs_spy": -0.020706376805112336
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "MPC",
+          "entry_date": "2025-07-01",
+          "entry_close": 167.32391357421875,
+          "exit_date": "2025-09-25",
+          "exit_close": 194.48123168945312,
+          "stock_return": 0.1623038664057328,
+          "alpha_vs_spy": 0.09394097228403386
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "MDT",
+          "entry_date": "2025-07-01",
+          "entry_close": 86.73072814941406,
+          "exit_date": "2025-09-25",
+          "exit_close": 92.15445709228516,
+          "stock_return": 0.06253526355189187,
+          "alpha_vs_spy": -0.005827630569807063
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "MTD",
+          "entry_date": "2025-07-01",
+          "entry_close": 1205.2900390625,
+          "exit_date": "2025-09-25",
+          "exit_close": 1209.5400390625,
+          "stock_return": 0.0035261222297213735,
+          "alpha_vs_spy": -0.06483677189197756
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "OXY",
+          "entry_date": "2025-07-01",
+          "entry_close": 42.185577392578125,
+          "exit_date": "2025-09-25",
+          "exit_close": 46.497806549072266,
+          "stock_return": 0.10222046071254698,
+          "alpha_vs_spy": 0.03385756659084804
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "PFE",
+          "entry_date": "2025-07-01",
+          "entry_close": 23.79080009460449,
+          "exit_date": "2025-09-25",
+          "exit_close": 22.809547424316406,
+          "stock_return": -0.04124504709325094,
+          "alpha_vs_spy": -0.10960794121494988
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "TXN",
+          "entry_date": "2025-07-01",
+          "entry_close": 205.7483673095703,
+          "exit_date": "2025-09-25",
+          "exit_close": 179.2594451904297,
+          "stock_return": -0.12874426400324834,
+          "alpha_vs_spy": -0.19710715812494728
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "HSY",
+          "entry_date": "2025-07-01",
+          "entry_close": 172.01046752929688,
+          "exit_date": "2025-09-25",
+          "exit_close": 182.6443634033203,
+          "stock_return": 0.06182121371312621,
+          "alpha_vs_spy": -0.006541680408572725
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "KHC",
+          "entry_date": "2025-07-01",
+          "entry_close": 25.388975143432617,
+          "exit_date": "2025-09-25",
+          "exit_close": 24.987293243408203,
+          "stock_return": -0.01582111517913387,
+          "alpha_vs_spy": -0.08418400930083281
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "TMO",
+          "entry_date": "2025-07-01",
+          "entry_close": 420.3600158691406,
+          "exit_date": "2025-09-25",
+          "exit_close": 458.4217529296875,
+          "stock_return": 0.09054556956814763,
+          "alpha_vs_spy": 0.022182675446448696
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "ZTS",
+          "entry_date": "2025-07-01",
+          "entry_close": 157.4366912841797,
+          "exit_date": "2025-09-25",
+          "exit_close": 140.0423126220703,
+          "stock_return": -0.11048490996747262,
+          "alpha_vs_spy": -0.17884780408917156
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "META",
+          "entry_date": "2025-07-01",
+          "entry_close": 717.5348510742188,
+          "exit_date": "2025-09-25",
+          "exit_close": 747.6595458984375,
+          "stock_return": 0.04198359811947694,
+          "alpha_vs_spy": -0.026379296002221997
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "NVDA",
+          "entry_date": "2025-07-01",
+          "entry_close": 153.2745361328125,
+          "exit_date": "2025-09-25",
+          "exit_close": 177.67050170898438,
+          "stock_return": 0.159165156794425,
+          "alpha_vs_spy": 0.09080226267272606
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "HOOD",
+          "entry_date": "2025-07-01",
+          "entry_close": 92.33000183105467,
+          "exit_date": "2025-09-25",
+          "exit_close": 122.6500015258789,
+          "stock_return": 0.32838729658322463,
+          "alpha_vs_spy": 0.2600244024615257
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "NVDA",
+          "entry_date": "2025-07-01",
+          "entry_close": 153.2745361328125,
+          "exit_date": "2025-09-25",
+          "exit_close": 177.67050170898438,
+          "stock_return": 0.159165156794425,
+          "alpha_vs_spy": 0.09080226267272606
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "TSLA",
+          "entry_date": "2025-07-01",
+          "entry_close": 300.7099914550781,
+          "exit_date": "2025-09-25",
+          "exit_close": 423.3900146484375,
+          "stock_return": 0.4079678982388786,
+          "alpha_vs_spy": 0.33960500411717964
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "TXN",
+          "entry_date": "2025-07-01",
+          "entry_close": 205.7483673095703,
+          "exit_date": "2025-09-25",
+          "exit_close": 179.2594451904297,
+          "stock_return": -0.12874426400324834,
+          "alpha_vs_spy": -0.19710715812494728
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "MSFT",
+          "entry_date": "2025-07-01",
+          "entry_close": 489.2080993652344,
+          "exit_date": "2025-09-25",
+          "exit_close": 504.9303283691406,
+          "stock_return": 0.03213812082078449,
+          "alpha_vs_spy": -0.03622477330091445
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "OKTA",
+          "entry_date": "2025-07-01",
+          "entry_close": 98.5500030517578,
+          "exit_date": "2025-09-25",
+          "exit_close": 91.19000244140624,
+          "stock_return": -0.07468290596080596,
+          "alpha_vs_spy": -0.1430458000825049
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "TEM",
+          "entry_date": "2025-07-01",
+          "entry_close": 59.44499969482422,
+          "exit_date": "2025-09-25",
+          "exit_close": 77.33000183105469,
+          "stock_return": 0.3008663845243098,
+          "alpha_vs_spy": 0.23250349040261087
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "TTD",
+          "entry_date": "2025-07-01",
+          "entry_close": 73.48999786376953,
+          "exit_date": "2025-09-25",
+          "exit_close": 46.7599983215332,
+          "stock_return": -0.36372295984803915,
+          "alpha_vs_spy": -0.4320858539697381
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "NVDA",
+          "entry_date": "2025-07-01",
+          "entry_close": 153.2745361328125,
+          "exit_date": "2025-09-25",
+          "exit_close": 177.67050170898438,
+          "stock_return": 0.159165156794425,
+          "alpha_vs_spy": 0.09080226267272606
+        },
+        {
+          "bioguide": "B001327",
+          "ticker": "HOOD",
+          "entry_date": "2025-07-01",
+          "entry_close": 92.33000183105467,
+          "exit_date": "2025-09-25",
+          "exit_close": 122.6500015258789,
+          "stock_return": 0.32838729658322463,
+          "alpha_vs_spy": 0.2600244024615257
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "BA",
+          "entry_date": "2025-07-01",
+          "entry_close": 209.7899932861328,
+          "exit_date": "2025-09-25",
+          "exit_close": 213.52999877929688,
+          "stock_return": 0.017827377915318632,
+          "alpha_vs_spy": -0.050535516206380304
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "JNJ",
+          "entry_date": "2025-07-01",
+          "entry_close": 152.99398803710938,
+          "exit_date": "2025-09-25",
+          "exit_close": 175.6747589111328,
+          "stock_return": 0.14824615767596128,
+          "alpha_vs_spy": 0.07988326355426234
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "KMI",
+          "entry_date": "2025-07-01",
+          "entry_close": 27.45364570617676,
+          "exit_date": "2025-09-25",
+          "exit_close": 27.35213661193848,
+          "stock_return": -0.003697472289279302,
+          "alpha_vs_spy": -0.07206036641097824
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "LHX",
+          "entry_date": "2025-07-01",
+          "entry_close": 249.16244506835935,
+          "exit_date": "2025-09-25",
+          "exit_close": 287.040771484375,
+          "stock_return": 0.1520226148271402,
+          "alpha_vs_spy": 0.08365972070544125
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "LEN",
+          "entry_date": "2025-07-01",
+          "entry_close": 113.99285125732422,
+          "exit_date": "2025-09-25",
+          "exit_close": 122.94536590576172,
+          "stock_return": 0.07853575509071486,
+          "alpha_vs_spy": 0.010172860969015929
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "NOC",
+          "entry_date": "2025-07-01",
+          "entry_close": 497.9392395019531,
+          "exit_date": "2025-09-25",
+          "exit_close": 581.5429077148438,
+          "stock_return": 0.16789933706874027,
+          "alpha_vs_spy": 0.09953644294704134
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "PFE",
+          "entry_date": "2025-07-01",
+          "entry_close": 23.79080009460449,
+          "exit_date": "2025-09-25",
+          "exit_close": 22.809547424316406,
+          "stock_return": -0.04124504709325094,
+          "alpha_vs_spy": -0.10960794121494988
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "SLB",
+          "entry_date": "2025-07-01",
+          "entry_close": 34.443721771240234,
+          "exit_date": "2025-09-25",
+          "exit_close": 34.117679595947266,
+          "stock_return": -0.009465939176329319,
+          "alpha_vs_spy": -0.07782883329802825
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "UNH",
+          "entry_date": "2025-07-01",
+          "entry_close": 319.4473571777344,
+          "exit_date": "2025-09-25",
+          "exit_close": 340.60418701171875,
+          "stock_return": 0.0662294721136576,
+          "alpha_vs_spy": -0.0021334220080413413
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "OKTA",
+          "entry_date": "2025-07-01",
+          "entry_close": 98.5500030517578,
+          "exit_date": "2025-09-25",
+          "exit_close": 91.19000244140624,
+          "stock_return": -0.07468290596080596,
+          "alpha_vs_spy": -0.1430458000825049
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "PTC",
+          "entry_date": "2025-07-01",
+          "entry_close": 173.07000732421875,
+          "exit_date": "2025-09-25",
+          "exit_close": 202.7100067138672,
+          "stock_return": 0.17126017296643825,
+          "alpha_vs_spy": 0.10289727884473931
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "RVTY",
+          "entry_date": "2025-07-01",
+          "entry_close": 98.82376098632812,
+          "exit_date": "2025-09-25",
+          "exit_close": 82.92779541015625,
+          "stock_return": -0.16085165569008264,
+          "alpha_vs_spy": -0.22921454981178158
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "NTDOY",
+          "entry_date": "2025-07-01",
+          "entry_close": 23.11000061035156,
+          "exit_date": "2025-09-25",
+          "exit_close": 21.309999465942383,
+          "stock_return": -0.07788840748030568,
+          "alpha_vs_spy": -0.1462513016020046
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "USPH",
+          "entry_date": "2025-07-01",
+          "entry_close": 79.20651245117188,
+          "exit_date": "2025-09-25",
+          "exit_close": 81.51753234863281,
+          "stock_return": 0.02917714498395063,
+          "alpha_vs_spy": -0.039185749137748305
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "FWRG",
+          "entry_date": "2025-07-01",
+          "entry_close": 17.200000762939453,
+          "exit_date": "2025-09-25",
+          "exit_close": 15.670000076293944,
+          "stock_return": -0.08895352434763704,
+          "alpha_vs_spy": -0.15731641846933597
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "UTZ",
+          "entry_date": "2025-07-01",
+          "entry_close": 13.017348289489746,
+          "exit_date": "2025-09-25",
+          "exit_close": 11.995668411254885,
+          "stock_return": -0.07848602153940754,
+          "alpha_vs_spy": -0.14684891566110647
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "IR",
+          "entry_date": "2025-07-01",
+          "entry_close": 85.2383041381836,
+          "exit_date": "2025-09-25",
+          "exit_close": 80.4616928100586,
+          "stock_return": -0.056038319584367,
+          "alpha_vs_spy": -0.12440121370606594
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "PTC",
+          "entry_date": "2025-07-01",
+          "entry_close": 173.07000732421875,
+          "exit_date": "2025-09-25",
+          "exit_close": 202.7100067138672,
+          "stock_return": 0.17126017296643825,
+          "alpha_vs_spy": 0.10289727884473931
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "ENGIY",
+          "entry_date": "2025-07-01",
+          "entry_close": 23.61000061035156,
+          "exit_date": "2025-09-25",
+          "exit_close": 21.229999542236328,
+          "stock_return": -0.1008047863866528,
+          "alpha_vs_spy": -0.16916768050835174
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "KKR",
+          "entry_date": "2025-07-01",
+          "entry_close": 131.83399963378906,
+          "exit_date": "2025-09-25",
+          "exit_close": 135.20440673828125,
+          "stock_return": 0.0255655378267714,
+          "alpha_vs_spy": -0.042797356294927535
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "NEO",
+          "entry_date": "2025-07-01",
+          "entry_close": 7.409999847412109,
+          "exit_date": "2025-09-25",
+          "exit_close": 7.869999885559082,
+          "stock_return": 0.06207827903095353,
+          "alpha_vs_spy": -0.006284615090745405
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "ATRC",
+          "entry_date": "2025-07-01",
+          "entry_close": 32.20000076293945,
+          "exit_date": "2025-09-25",
+          "exit_close": 35.029998779296875,
+          "stock_return": 0.08788813507155568,
+          "alpha_vs_spy": 0.019525240949856748
+        },
+        {
+          "bioguide": "C001123",
+          "ticker": "MTX",
+          "entry_date": "2025-07-01",
+          "entry_close": 57.19888687133789,
+          "exit_date": "2025-09-25",
+          "exit_close": 60.50870132446289,
+          "stock_return": 0.05786501511069675,
+          "alpha_vs_spy": -0.010497879011002187
+        }
+      ]
+    },
+    {
+      "date": "2025-07-31",
+      "cohort": [
+        "B001236",
+        "M001236",
+        "T000490",
+        "F000110",
+        "M001234",
+        "D000617",
+        "M001243",
+        "B001277",
+        "H000273",
+        "C001047",
+        "F000472",
+        "G000603",
+        "T000278",
+        "W000821",
+        "J000309"
+      ],
+      "trades": [
+        {
+          "bioguide": "B001236",
+          "ticker": "TBLL",
+          "entry_date": "2025-08-01",
+          "entry_close": 102.94566345214844,
+          "exit_date": "2025-10-27",
+          "exit_close": 103.97373962402344,
+          "stock_return": 0.009986590375930415,
+          "alpha_vs_spy": -0.09523731497212617
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "AVGO",
+          "entry_date": "2025-08-01",
+          "entry_close": 286.9940185546875,
+          "exit_date": "2025-10-27",
+          "exit_close": 360.6021423339844,
+          "stock_return": 0.25647964424481784,
+          "alpha_vs_spy": 0.15125573889676125
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "RTX",
+          "entry_date": "2025-08-01",
+          "entry_close": 154.99301147460938,
+          "exit_date": "2025-10-27",
+          "exit_close": 177.94334411621094,
+          "stock_return": 0.1480733384250763,
+          "alpha_vs_spy": 0.042849433077019716
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "META",
+          "entry_date": "2025-08-01",
+          "entry_close": 748.2527465820312,
+          "exit_date": "2025-10-27",
+          "exit_close": 749.5663452148438,
+          "stock_return": 0.0017555547090377654,
+          "alpha_vs_spy": -0.10346835063901882
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "HD",
+          "entry_date": "2025-08-01",
+          "entry_close": 366.7127380371094,
+          "exit_date": "2025-10-27",
+          "exit_close": 380.251953125,
+          "stock_return": 0.036920493027762014,
+          "alpha_vs_spy": -0.06830341232029458
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "ATO",
+          "entry_date": "2025-08-01",
+          "entry_close": 153.26756286621094,
+          "exit_date": "2025-10-27",
+          "exit_close": 174.3743133544922,
+          "stock_return": 0.13771179037214543,
+          "alpha_vs_spy": 0.032487885024088836
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "GOOGL",
+          "entry_date": "2025-08-01",
+          "entry_close": 188.7046356201172,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.9046630859375,
+          "stock_return": 0.42500295343709316,
+          "alpha_vs_spy": 0.31977904808903657
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "META",
+          "entry_date": "2025-08-01",
+          "entry_close": 748.2527465820312,
+          "exit_date": "2025-10-27",
+          "exit_close": 749.5663452148438,
+          "stock_return": 0.0017555547090377654,
+          "alpha_vs_spy": -0.10346835063901882
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "HD",
+          "entry_date": "2025-08-01",
+          "entry_close": 366.7127380371094,
+          "exit_date": "2025-10-27",
+          "exit_close": 380.251953125,
+          "stock_return": 0.036920493027762014,
+          "alpha_vs_spy": -0.06830341232029458
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "AMZN",
+          "entry_date": "2025-08-01",
+          "entry_close": 214.75,
+          "exit_date": "2025-10-27",
+          "exit_close": 226.97000122070312,
+          "stock_return": 0.05690338170292497,
+          "alpha_vs_spy": -0.04832052364513162
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "AVGO",
+          "entry_date": "2025-08-01",
+          "entry_close": 286.9940185546875,
+          "exit_date": "2025-10-27",
+          "exit_close": 360.6021423339844,
+          "stock_return": 0.25647964424481784,
+          "alpha_vs_spy": 0.15125573889676125
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TZA",
+          "entry_date": "2025-08-01",
+          "entry_close": 11.717246055603027,
+          "exit_date": "2025-10-27",
+          "exit_close": 7.232869148254394,
+          "stock_return": -0.3827159458859589,
+          "alpha_vs_spy": -0.4879398512340155
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TZA",
+          "entry_date": "2025-08-01",
+          "entry_close": 11.717246055603027,
+          "exit_date": "2025-10-27",
+          "exit_close": 7.232869148254394,
+          "stock_return": -0.3827159458859589,
+          "alpha_vs_spy": -0.4879398512340155
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "AAL",
+          "entry_date": "2025-08-01",
+          "entry_close": 11.029999732971191,
+          "exit_date": "2025-10-27",
+          "exit_close": 13.40999984741211,
+          "stock_return": 0.21577517425739856,
+          "alpha_vs_spy": 0.11055126890934197
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-08-01",
+          "entry_close": 11.644094467163086,
+          "exit_date": "2025-10-27",
+          "exit_close": 10.414584159851074,
+          "stock_return": -0.10559089079698647,
+          "alpha_vs_spy": -0.21081479614504306
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-08-01",
+          "entry_close": 214.75,
+          "exit_date": "2025-10-27",
+          "exit_close": 226.97000122070312,
+          "stock_return": 0.05690338170292497,
+          "alpha_vs_spy": -0.04832052364513162
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "T",
+          "entry_date": "2025-08-01",
+          "entry_close": 27.13627815246582,
+          "exit_date": "2025-10-27",
+          "exit_close": 25.234155654907227,
+          "stock_return": -0.07009518722027663,
+          "alpha_vs_spy": -0.17531909256833322
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "CSCO",
+          "entry_date": "2025-08-01",
+          "entry_close": 65.99453735351562,
+          "exit_date": "2025-10-27",
+          "exit_close": 70.62731170654297,
+          "stock_return": 0.07019936102000046,
+          "alpha_vs_spy": -0.03502454432805613
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "JPM",
+          "entry_date": "2025-08-01",
+          "entry_close": 285.2171630859375,
+          "exit_date": "2025-10-27",
+          "exit_close": 301.2425231933594,
+          "stock_return": 0.056186520944370155,
+          "alpha_vs_spy": -0.049037384403686435
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "META",
+          "entry_date": "2025-08-01",
+          "entry_close": 748.2527465820312,
+          "exit_date": "2025-10-27",
+          "exit_close": 749.5663452148438,
+          "stock_return": 0.0017555547090377654,
+          "alpha_vs_spy": -0.10346835063901882
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "PLTR",
+          "entry_date": "2025-08-01",
+          "entry_close": 154.27000427246094,
+          "exit_date": "2025-10-27",
+          "exit_close": 189.17999267578125,
+          "stock_return": 0.22629148529525356,
+          "alpha_vs_spy": 0.12106757994719697
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-08-01",
+          "entry_close": 188.7046356201172,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.9046630859375,
+          "stock_return": 0.42500295343709316,
+          "alpha_vs_spy": 0.31977904808903657
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-08-01",
+          "entry_close": 214.75,
+          "exit_date": "2025-10-27",
+          "exit_close": 226.97000122070312,
+          "stock_return": 0.05690338170292497,
+          "alpha_vs_spy": -0.04832052364513162
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-08-01",
+          "entry_close": 214.75,
+          "exit_date": "2025-10-27",
+          "exit_close": 226.97000122070312,
+          "stock_return": 0.05690338170292497,
+          "alpha_vs_spy": -0.04832052364513162
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-08-01",
+          "entry_close": 214.75,
+          "exit_date": "2025-10-27",
+          "exit_close": 226.97000122070312,
+          "stock_return": 0.05690338170292497,
+          "alpha_vs_spy": -0.04832052364513162
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MCD",
+          "entry_date": "2025-08-01",
+          "entry_close": 297.720458984375,
+          "exit_date": "2025-10-27",
+          "exit_close": 306.43902587890625,
+          "stock_return": 0.029284406332951374,
+          "alpha_vs_spy": -0.07593949901510522
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MSFT",
+          "entry_date": "2025-08-01",
+          "entry_close": 521.0829467773438,
+          "exit_date": "2025-10-27",
+          "exit_close": 529.3189697265625,
+          "stock_return": 0.015805589110437612,
+          "alpha_vs_spy": -0.08941831623761898
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "PLTR",
+          "entry_date": "2025-08-01",
+          "entry_close": 154.27000427246094,
+          "exit_date": "2025-10-27",
+          "exit_close": 189.17999267578125,
+          "stock_return": 0.22629148529525356,
+          "alpha_vs_spy": 0.12106757994719697
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-08-01",
+          "entry_close": 233.1819610595703,
+          "exit_date": "2025-10-27",
+          "exit_close": 296.6112365722656,
+          "stock_return": 0.27201621954149036,
+          "alpha_vs_spy": 0.16679231419343377
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-08-01",
+          "entry_close": 214.75,
+          "exit_date": "2025-10-27",
+          "exit_close": 226.97000122070312,
+          "stock_return": 0.05690338170292497,
+          "alpha_vs_spy": -0.04832052364513162
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-08-01",
+          "entry_close": 214.75,
+          "exit_date": "2025-10-27",
+          "exit_close": 226.97000122070312,
+          "stock_return": 0.05690338170292497,
+          "alpha_vs_spy": -0.04832052364513162
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-08-01",
+          "entry_close": 188.7046356201172,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.9046630859375,
+          "stock_return": 0.42500295343709316,
+          "alpha_vs_spy": 0.31977904808903657
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-08-01",
+          "entry_close": 214.75,
+          "exit_date": "2025-10-27",
+          "exit_close": 226.97000122070312,
+          "stock_return": 0.05690338170292497,
+          "alpha_vs_spy": -0.04832052364513162
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-08-01",
+          "entry_close": 201.76600646972656,
+          "exit_date": "2025-10-27",
+          "exit_close": 268.2986145019531,
+          "stock_return": 0.3297513252918016,
+          "alpha_vs_spy": 0.22452741994374503
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "CMG",
+          "entry_date": "2025-08-01",
+          "entry_close": 42.52000045776367,
+          "exit_date": "2025-10-27",
+          "exit_close": 41.060001373291016,
+          "stock_return": -0.03433676078914705,
+          "alpha_vs_spy": -0.13956066613720364
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MSFT",
+          "entry_date": "2025-08-01",
+          "entry_close": 521.0829467773438,
+          "exit_date": "2025-10-27",
+          "exit_close": 529.3189697265625,
+          "stock_return": 0.015805589110437612,
+          "alpha_vs_spy": -0.08941831623761898
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MSFT",
+          "entry_date": "2025-08-01",
+          "entry_close": 521.0829467773438,
+          "exit_date": "2025-10-27",
+          "exit_close": 529.3189697265625,
+          "stock_return": 0.015805589110437612,
+          "alpha_vs_spy": -0.08941831623761898
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-08-01",
+          "entry_close": 173.69113159179688,
+          "exit_date": "2025-10-27",
+          "exit_close": 191.46897888183597,
+          "stock_return": 0.10235322395054691,
+          "alpha_vs_spy": -0.002870681397509678
+        },
+        {
+          "bioguide": "B001277",
+          "ticker": "INTR",
+          "entry_date": "2025-08-01",
+          "entry_close": 6.408874988555908,
+          "exit_date": "2025-10-27",
+          "exit_close": 9.025750160217283,
+          "stock_return": 0.4083205205803253,
+          "alpha_vs_spy": 0.3030966152322687
+        },
+        {
+          "bioguide": "G000603",
+          "ticker": "RSP",
+          "entry_date": "2025-08-01",
+          "entry_close": 179.28955078125,
+          "exit_date": "2025-10-27",
+          "exit_close": 190.5333404541016,
+          "stock_return": 0.06271302272696344,
+          "alpha_vs_spy": -0.04251088262109315
+        },
+        {
+          "bioguide": "J000309",
+          "ticker": "IBM",
+          "entry_date": "2025-08-01",
+          "entry_close": 245.60850524902344,
+          "exit_date": "2025-10-27",
+          "exit_close": 309.60797119140625,
+          "stock_return": 0.260575120871704,
+          "alpha_vs_spy": 0.1553512155236474
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "cohort": [
+        "F000472",
+        "M001236",
+        "C001047",
+        "S000510",
+        "B001236",
+        "T000490",
+        "K000383",
+        "M001234",
+        "H000273",
+        "M001243",
+        "T000278",
+        "J000310",
+        "P000608",
+        "A000372",
+        "B001277"
+      ],
+      "trades": [
+        {
+          "bioguide": "F000472",
+          "ticker": "NVO",
+          "entry_date": "2025-09-02",
+          "entry_close": 54.38542556762695,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.3951416015625,
+          "stock_return": -0.16530686065672606,
+          "alpha_vs_spy": -0.2225038175355889
+        },
+        {
+          "bioguide": "F000472",
+          "ticker": "NVO",
+          "entry_date": "2025-09-02",
+          "entry_close": 54.38542556762695,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.3951416015625,
+          "stock_return": -0.16530686065672606,
+          "alpha_vs_spy": -0.2225038175355889
+        },
+        {
+          "bioguide": "F000472",
+          "ticker": "NVO",
+          "entry_date": "2025-09-02",
+          "entry_close": 54.38542556762695,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.3951416015625,
+          "stock_return": -0.16530686065672606,
+          "alpha_vs_spy": -0.2225038175355889
+        },
+        {
+          "bioguide": "F000472",
+          "ticker": "NVO",
+          "entry_date": "2025-09-02",
+          "entry_close": 54.38542556762695,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.3951416015625,
+          "stock_return": -0.16530686065672606,
+          "alpha_vs_spy": -0.2225038175355889
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CNC",
+          "entry_date": "2025-09-02",
+          "entry_close": 29.6200008392334,
+          "exit_date": "2025-11-25",
+          "exit_close": 39.65999984741211,
+          "stock_return": 0.3389601189639453,
+          "alpha_vs_spy": 0.28176316208508245
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HOG",
+          "entry_date": "2025-09-02",
+          "entry_close": 28.58525657653809,
+          "exit_date": "2025-11-25",
+          "exit_close": 23.75575256347656,
+          "stock_return": -0.16895087158411026,
+          "alpha_vs_spy": -0.2261478284629731
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "DNUT",
+          "entry_date": "2025-09-02",
+          "entry_close": 3.3399999141693115,
+          "exit_date": "2025-11-25",
+          "exit_close": 3.9800000190734863,
+          "stock_return": 0.1916168027996339,
+          "alpha_vs_spy": 0.13441984592077105
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CNC",
+          "entry_date": "2025-09-02",
+          "entry_close": 29.6200008392334,
+          "exit_date": "2025-11-25",
+          "exit_close": 39.65999984741211,
+          "stock_return": 0.3389601189639453,
+          "alpha_vs_spy": 0.28176316208508245
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "INTC",
+          "entry_date": "2025-09-02",
+          "entry_close": 24.209999084472656,
+          "exit_date": "2025-11-25",
+          "exit_close": 35.83000183105469,
+          "stock_return": 0.4799670874021076,
+          "alpha_vs_spy": 0.42277013052324475
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "DNUT",
+          "entry_date": "2025-09-02",
+          "entry_close": 3.3399999141693115,
+          "exit_date": "2025-11-25",
+          "exit_close": 3.9800000190734863,
+          "stock_return": 0.1916168027996339,
+          "alpha_vs_spy": 0.13441984592077105
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "V",
+          "entry_date": "2025-09-02",
+          "entry_close": 348.65899658203125,
+          "exit_date": "2025-11-25",
+          "exit_close": 333.8415832519531,
+          "stock_return": -0.04249829625891188,
+          "alpha_vs_spy": -0.09969525313777472
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-09-02",
+          "entry_close": 41.01358413696289,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.13245391845703,
+          "stock_return": 0.1004269650694114,
+          "alpha_vs_spy": 0.04323000819054856
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CNC",
+          "entry_date": "2025-09-02",
+          "entry_close": 29.6200008392334,
+          "exit_date": "2025-11-25",
+          "exit_close": 39.65999984741211,
+          "stock_return": 0.3389601189639453,
+          "alpha_vs_spy": 0.28176316208508245
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CNC",
+          "entry_date": "2025-09-02",
+          "entry_close": 29.6200008392334,
+          "exit_date": "2025-11-25",
+          "exit_close": 39.65999984741211,
+          "stock_return": 0.3389601189639453,
+          "alpha_vs_spy": 0.28176316208508245
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-09-02",
+          "entry_close": 41.01358413696289,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.13245391845703,
+          "stock_return": 0.1004269650694114,
+          "alpha_vs_spy": 0.04323000819054856
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "UNH",
+          "entry_date": "2025-09-02",
+          "entry_close": 302.4631652832031,
+          "exit_date": "2025-11-25",
+          "exit_close": 321.6006774902344,
+          "stock_return": 0.0632722076723371,
+          "alpha_vs_spy": 0.006075250793474263
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CNC",
+          "entry_date": "2025-09-02",
+          "entry_close": 29.6200008392334,
+          "exit_date": "2025-11-25",
+          "exit_close": 39.65999984741211,
+          "stock_return": 0.3389601189639453,
+          "alpha_vs_spy": 0.28176316208508245
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-09-02",
+          "entry_close": 41.01358413696289,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.13245391845703,
+          "stock_return": 0.1004269650694114,
+          "alpha_vs_spy": 0.04323000819054856
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "UNH",
+          "entry_date": "2025-09-02",
+          "entry_close": 302.4631652832031,
+          "exit_date": "2025-11-25",
+          "exit_close": 321.6006774902344,
+          "stock_return": 0.0632722076723371,
+          "alpha_vs_spy": 0.006075250793474263
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CNC",
+          "entry_date": "2025-09-02",
+          "entry_close": 29.6200008392334,
+          "exit_date": "2025-11-25",
+          "exit_close": 39.65999984741211,
+          "stock_return": 0.3389601189639453,
+          "alpha_vs_spy": 0.28176316208508245
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-09-02",
+          "entry_close": 41.01358413696289,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.13245391845703,
+          "stock_return": 0.1004269650694114,
+          "alpha_vs_spy": 0.04323000819054856
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-09-02",
+          "entry_close": 41.01358413696289,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.13245391845703,
+          "stock_return": 0.1004269650694114,
+          "alpha_vs_spy": 0.04323000819054856
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-09-02",
+          "entry_close": 41.01358413696289,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.13245391845703,
+          "stock_return": 0.1004269650694114,
+          "alpha_vs_spy": 0.04323000819054856
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TNA",
+          "entry_date": "2025-09-02",
+          "entry_close": 41.01358413696289,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.13245391845703,
+          "stock_return": 0.1004269650694114,
+          "alpha_vs_spy": 0.04323000819054856
+        },
+        {
+          "bioguide": "C001047",
+          "ticker": "META",
+          "entry_date": "2025-09-02",
+          "entry_close": 733.3875732421875,
+          "exit_date": "2025-11-25",
+          "exit_close": 635.1576538085938,
+          "stock_return": -0.13393998346513458,
+          "alpha_vs_spy": -0.19113694034399742
+        },
+        {
+          "bioguide": "C001047",
+          "ticker": "GOOGL",
+          "entry_date": "2025-09-02",
+          "entry_close": 210.8746795654297,
+          "exit_date": "2025-11-25",
+          "exit_close": 323.0011901855469,
+          "stock_return": 0.5317210717341094,
+          "alpha_vs_spy": 0.4745241148552466
+        },
+        {
+          "bioguide": "C001047",
+          "ticker": "AXP",
+          "entry_date": "2025-09-02",
+          "entry_close": 328.572021484375,
+          "exit_date": "2025-11-25",
+          "exit_close": 360.6959228515625,
+          "stock_return": 0.09776821904087507,
+          "alpha_vs_spy": 0.040571262162012234
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "WMT",
+          "entry_date": "2025-09-02",
+          "entry_close": 97.45094299316406,
+          "exit_date": "2025-11-25",
+          "exit_close": 106.56362915039062,
+          "stock_return": 0.09351049745989415,
+          "alpha_vs_spy": 0.03631354058103131
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "GE",
+          "entry_date": "2025-09-02",
+          "entry_close": 274.340087890625,
+          "exit_date": "2025-11-25",
+          "exit_close": 292.6784362792969,
+          "stock_return": 0.0668453106130924,
+          "alpha_vs_spy": 0.009648353734229564
+        },
+        {
+          "bioguide": "B001236",
+          "ticker": "GIGB",
+          "entry_date": "2025-09-02",
+          "entry_close": 44.648712158203125,
+          "exit_date": "2025-11-25",
+          "exit_close": 45.879390716552734,
+          "stock_return": 0.027563584678298447,
+          "alpha_vs_spy": -0.02963337220056439
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "AMD",
+          "entry_date": "2025-09-02",
+          "entry_close": 162.32000732421875,
+          "exit_date": "2025-11-25",
+          "exit_close": 206.1300048828125,
+          "stock_return": 0.2698989377882879,
+          "alpha_vs_spy": 0.21270198090942505
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "GOOGL",
+          "entry_date": "2025-09-02",
+          "entry_close": 210.8746795654297,
+          "exit_date": "2025-11-25",
+          "exit_close": 323.0011901855469,
+          "stock_return": 0.5317210717341094,
+          "alpha_vs_spy": 0.4745241148552466
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "AMAT",
+          "entry_date": "2025-09-02",
+          "entry_close": 157.06585693359375,
+          "exit_date": "2025-11-25",
+          "exit_close": 242.15798950195312,
+          "stock_return": 0.541760852610607,
+          "alpha_vs_spy": 0.4845638957317442
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "ANET",
+          "entry_date": "2025-09-02",
+          "entry_close": 135.8699951171875,
+          "exit_date": "2025-11-25",
+          "exit_close": 125.04000091552734,
+          "stock_return": -0.07970850512152672,
+          "alpha_vs_spy": -0.13690546200038956
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "ADSK",
+          "entry_date": "2025-09-02",
+          "entry_close": 319.1600036621094,
+          "exit_date": "2025-11-25",
+          "exit_close": 294.42999267578125,
+          "stock_return": -0.07748468073245629,
+          "alpha_vs_spy": -0.13468163761131913
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "BAC",
+          "entry_date": "2025-09-02",
+          "entry_close": 49.60147476196289,
+          "exit_date": "2025-11-25",
+          "exit_close": 51.91519927978516,
+          "stock_return": 0.04664628479144661,
+          "alpha_vs_spy": -0.010550672087416224
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "BX",
+          "entry_date": "2025-09-02",
+          "entry_close": 166.1276397705078,
+          "exit_date": "2025-11-25",
+          "exit_close": 141.78213500976562,
+          "stock_return": -0.14654698516377873,
+          "alpha_vs_spy": -0.20374394204264157
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "XOM",
+          "entry_date": "2025-09-02",
+          "entry_close": 112.9427490234375,
+          "exit_date": "2025-11-25",
+          "exit_close": 113.75180053710938,
+          "stock_return": 0.007163377203648347,
+          "alpha_vs_spy": -0.05003357967521449
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "JPM",
+          "entry_date": "2025-09-02",
+          "entry_close": 295.3989562988281,
+          "exit_date": "2025-11-25",
+          "exit_close": 300.103515625,
+          "stock_return": 0.01592612033947982,
+          "alpha_vs_spy": -0.041270836539383016
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "KEX",
+          "entry_date": "2025-09-02",
+          "entry_close": 95.01000213623048,
+          "exit_date": "2025-11-25",
+          "exit_close": 112.08000183105467,
+          "stock_return": 0.17966529113796148,
+          "alpha_vs_spy": 0.12246833425909864
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "LOW",
+          "entry_date": "2025-09-02",
+          "entry_close": 256.32293701171875,
+          "exit_date": "2025-11-25",
+          "exit_close": 237.0354766845703,
+          "stock_return": -0.07524672021944978,
+          "alpha_vs_spy": -0.13244367709831262
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "MRVL",
+          "entry_date": "2025-09-02",
+          "entry_close": 64.51083374023438,
+          "exit_date": "2025-11-25",
+          "exit_close": 83.37001037597656,
+          "stock_return": 0.2923412323530399,
+          "alpha_vs_spy": 0.23514427547417704
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "META",
+          "entry_date": "2025-09-02",
+          "entry_close": 733.3875732421875,
+          "exit_date": "2025-11-25",
+          "exit_close": 635.1576538085938,
+          "stock_return": -0.13393998346513458,
+          "alpha_vs_spy": -0.19113694034399742
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "MSFT",
+          "entry_date": "2025-09-02",
+          "entry_close": 503.0282287597656,
+          "exit_date": "2025-11-25",
+          "exit_close": 475.90374755859375,
+          "stock_return": -0.053922383775654614,
+          "alpha_vs_spy": -0.11111934065451745
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "NFLX",
+          "entry_date": "2025-09-02",
+          "entry_close": 121.41100311279295,
+          "exit_date": "2025-11-25",
+          "exit_close": 104.4000015258789,
+          "stock_return": -0.14011087257973254,
+          "alpha_vs_spy": -0.19730782945859537
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "NVDA",
+          "entry_date": "2025-09-02",
+          "entry_close": 170.75161743164062,
+          "exit_date": "2025-11-25",
+          "exit_close": 177.80047607421875,
+          "stock_return": 0.0412813579666389,
+          "alpha_vs_spy": -0.01591559891222394
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "ONON",
+          "entry_date": "2025-09-02",
+          "entry_close": 44.790000915527344,
+          "exit_date": "2025-11-25",
+          "exit_close": 41.7599983215332,
+          "stock_return": -0.06764908533287683,
+          "alpha_vs_spy": -0.12484604221173967
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "PYPL",
+          "entry_date": "2025-09-02",
+          "entry_close": 68.88172912597656,
+          "exit_date": "2025-11-25",
+          "exit_close": 61.03520584106445,
+          "stock_return": -0.11391298366743585,
+          "alpha_vs_spy": -0.1711099405462987
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "PWR",
+          "entry_date": "2025-09-02",
+          "entry_close": 374.41839599609375,
+          "exit_date": "2025-11-25",
+          "exit_close": 449.9342956542969,
+          "stock_return": 0.201688540055043,
+          "alpha_vs_spy": 0.14449158317618016
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "UBER",
+          "entry_date": "2025-09-02",
+          "entry_close": 92.80999755859376,
+          "exit_date": "2025-11-25",
+          "exit_close": 83.69000244140625,
+          "stock_return": -0.098265223112734,
+          "alpha_vs_spy": -0.15546217999159684
+        },
+        {
+          "bioguide": "K000383",
+          "ticker": "VRT",
+          "entry_date": "2025-09-02",
+          "entry_close": 123.89932250976562,
+          "exit_date": "2025-11-25",
+          "exit_close": 169.5296630859375,
+          "stock_return": 0.36828563427031913,
+          "alpha_vs_spy": 0.3110886773914563
+        },
+        {
+          "bioguide": "J000310",
+          "ticker": "CVX",
+          "entry_date": "2025-09-02",
+          "entry_close": 158.4921417236328,
+          "exit_date": "2025-11-25",
+          "exit_close": 147.09109497070312,
+          "stock_return": -0.07193446078109045,
+          "alpha_vs_spy": -0.12913141765995328
+        },
+        {
+          "bioguide": "J000310",
+          "ticker": "PKG",
+          "entry_date": "2025-09-02",
+          "entry_close": 212.6316680908203,
+          "exit_date": "2025-11-25",
+          "exit_close": 198.86502075195312,
+          "stock_return": -0.0647441063811206,
+          "alpha_vs_spy": -0.12194106325998344
+        },
+        {
+          "bioguide": "J000310",
+          "ticker": "CME",
+          "entry_date": "2025-09-02",
+          "entry_close": 256.7858581542969,
+          "exit_date": "2025-11-25",
+          "exit_close": 269.2719116210937,
+          "stock_return": 0.04862438125114443,
+          "alpha_vs_spy": -0.008572575627718404
+        },
+        {
+          "bioguide": "J000310",
+          "ticker": "PKG",
+          "entry_date": "2025-09-02",
+          "entry_close": 212.6316680908203,
+          "exit_date": "2025-11-25",
+          "exit_close": 198.86502075195312,
+          "stock_return": -0.0647441063811206,
+          "alpha_vs_spy": -0.12194106325998344
+        },
+        {
+          "bioguide": "J000310",
+          "ticker": "BK",
+          "entry_date": "2025-09-02",
+          "entry_close": 103.72667694091795,
+          "exit_date": "2025-11-25",
+          "exit_close": 108.6487274169922,
+          "stock_return": 0.047452117634866564,
+          "alpha_vs_spy": -0.009744839243996273
+        },
+        {
+          "bioguide": "A000372",
+          "ticker": "SCHW",
+          "entry_date": "2025-09-02",
+          "entry_close": 95.52526092529295,
+          "exit_date": "2025-11-25",
+          "exit_close": 90.43460845947266,
+          "stock_return": -0.05329116525315247,
+          "alpha_vs_spy": -0.11048812213201531
+        }
+      ]
+    },
+    {
+      "date": "2025-09-30",
+      "cohort": [
+        "F000472",
+        "M001236",
+        "D000032",
+        "C001047",
+        "S000510",
+        "K000383",
+        "H000273",
+        "W000802",
+        "F000110",
+        "F000479",
+        "C001129",
+        "M001243",
+        "A000372",
+        "T000278",
+        "M001234"
+      ],
+      "trades": [
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-10-01",
+          "entry_close": 10.700531005859377,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.905232906341553,
+          "stock_return": -0.35468315520412974,
+          "alpha_vs_spy": -0.3904371829352026
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TZA",
+          "entry_date": "2025-10-01",
+          "entry_close": 8.05075454711914,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.981553554534912,
+          "stock_return": -0.1328075506868891,
+          "alpha_vs_spy": -0.16856157841796193
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TZA",
+          "entry_date": "2025-10-01",
+          "entry_close": 8.05075454711914,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.981553554534912,
+          "stock_return": -0.1328075506868891,
+          "alpha_vs_spy": -0.16856157841796193
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-10-01",
+          "entry_close": 10.700531005859377,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.905232906341553,
+          "stock_return": -0.35468315520412974,
+          "alpha_vs_spy": -0.3904371829352026
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "MSTY",
+          "entry_date": "2025-10-01",
+          "entry_close": 47.09465408325195,
+          "exit_date": "2025-12-26",
+          "exit_close": 25.110021591186523,
+          "stock_return": -0.46681800556814623,
+          "alpha_vs_spy": -0.5025720332992191
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-10-01",
+          "entry_close": 10.700531005859377,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.905232906341553,
+          "stock_return": -0.35468315520412974,
+          "alpha_vs_spy": -0.3904371829352026
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TZA",
+          "entry_date": "2025-10-01",
+          "entry_close": 8.05075454711914,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.981553554534912,
+          "stock_return": -0.1328075506868891,
+          "alpha_vs_spy": -0.16856157841796193
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "TZA",
+          "entry_date": "2025-10-01",
+          "entry_close": 8.05075454711914,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.981553554534912,
+          "stock_return": -0.1328075506868891,
+          "alpha_vs_spy": -0.16856157841796193
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2025-10-01",
+          "entry_close": 36.13860702514648,
+          "exit_date": "2025-12-26",
+          "exit_close": 30.707624435424805,
+          "stock_return": -0.150282012417983,
+          "alpha_vs_spy": -0.18603604014905584
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "INTC",
+          "entry_date": "2025-10-01",
+          "entry_close": 35.939998626708984,
+          "exit_date": "2025-12-26",
+          "exit_close": 36.20000076293945,
+          "stock_return": 0.007234339069708495,
+          "alpha_vs_spy": -0.02851968866136434
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "MSTY",
+          "entry_date": "2025-10-01",
+          "entry_close": 47.09465408325195,
+          "exit_date": "2025-12-26",
+          "exit_close": 25.110021591186523,
+          "stock_return": -0.46681800556814623,
+          "alpha_vs_spy": -0.5025720332992191
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CNC",
+          "entry_date": "2025-10-01",
+          "entry_close": 35.7400016784668,
+          "exit_date": "2025-12-26",
+          "exit_close": 40.5099983215332,
+          "stock_return": 0.13346380579328043,
+          "alpha_vs_spy": 0.0977097780622076
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "INTC",
+          "entry_date": "2025-10-01",
+          "entry_close": 35.939998626708984,
+          "exit_date": "2025-12-26",
+          "exit_close": 36.20000076293945,
+          "stock_return": 0.007234339069708495,
+          "alpha_vs_spy": -0.02851968866136434
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "UNH",
+          "entry_date": "2025-10-01",
+          "entry_close": 343.3049011230469,
+          "exit_date": "2025-12-26",
+          "exit_close": 329.2701416015625,
+          "stock_return": -0.040881325828943105,
+          "alpha_vs_spy": -0.07663535356001594
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CNC",
+          "entry_date": "2025-10-01",
+          "entry_close": 35.7400016784668,
+          "exit_date": "2025-12-26",
+          "exit_close": 40.5099983215332,
+          "stock_return": 0.13346380579328043,
+          "alpha_vs_spy": 0.0977097780622076
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2025-10-01",
+          "entry_close": 36.13860702514648,
+          "exit_date": "2025-12-26",
+          "exit_close": 30.707624435424805,
+          "stock_return": -0.150282012417983,
+          "alpha_vs_spy": -0.18603604014905584
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-10-01",
+          "entry_close": 10.700531005859377,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.905232906341553,
+          "stock_return": -0.35468315520412974,
+          "alpha_vs_spy": -0.3904371829352026
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "SMCY",
+          "entry_date": "2025-10-01",
+          "entry_close": 10.700531005859377,
+          "exit_date": "2025-12-26",
+          "exit_close": 6.905232906341553,
+          "stock_return": -0.35468315520412974,
+          "alpha_vs_spy": -0.3904371829352026
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "DNUT",
+          "entry_date": "2025-10-01",
+          "entry_close": 3.829999923706055,
+          "exit_date": "2025-12-26",
+          "exit_close": 4.28000020980835,
+          "stock_return": 0.11749354962567637,
+          "alpha_vs_spy": 0.08173952189460354
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "INTC",
+          "entry_date": "2025-10-01",
+          "entry_close": 35.939998626708984,
+          "exit_date": "2025-12-26",
+          "exit_close": 36.20000076293945,
+          "stock_return": 0.007234339069708495,
+          "alpha_vs_spy": -0.02851968866136434
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "DNUT",
+          "entry_date": "2025-10-01",
+          "entry_close": 3.829999923706055,
+          "exit_date": "2025-12-26",
+          "exit_close": 4.28000020980835,
+          "stock_return": 0.11749354962567637,
+          "alpha_vs_spy": 0.08173952189460354
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "UNH",
+          "entry_date": "2025-10-01",
+          "entry_close": 343.3049011230469,
+          "exit_date": "2025-12-26",
+          "exit_close": 329.2701416015625,
+          "stock_return": -0.040881325828943105,
+          "alpha_vs_spy": -0.07663535356001594
+        },
+        {
+          "bioguide": "D000032",
+          "ticker": "LRCX",
+          "entry_date": "2025-10-01",
+          "entry_close": 142.3847198486328,
+          "exit_date": "2025-12-26",
+          "exit_close": 177.85691833496094,
+          "stock_return": 0.24912925013328757,
+          "alpha_vs_spy": 0.21337522240221474
+        },
+        {
+          "bioguide": "D000032",
+          "ticker": "LRCX",
+          "entry_date": "2025-10-01",
+          "entry_close": 142.3847198486328,
+          "exit_date": "2025-12-26",
+          "exit_close": 177.85691833496094,
+          "stock_return": 0.24912925013328757,
+          "alpha_vs_spy": 0.21337522240221474
+        },
+        {
+          "bioguide": "C001047",
+          "ticker": "SHW",
+          "entry_date": "2025-10-01",
+          "entry_close": 339.6733703613281,
+          "exit_date": "2025-12-26",
+          "exit_close": 324.72198486328125,
+          "stock_return": -0.04401694923020405,
+          "alpha_vs_spy": -0.07977097696127688
+        },
+        {
+          "bioguide": "C001047",
+          "ticker": "PLD",
+          "entry_date": "2025-10-01",
+          "entry_close": 114.65718841552734,
+          "exit_date": "2025-12-26",
+          "exit_close": 127.68278503417967,
+          "stock_return": 0.11360470981938331,
+          "alpha_vs_spy": 0.07785068208831047
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMD",
+          "entry_date": "2025-10-01",
+          "entry_close": 164.00999450683594,
+          "exit_date": "2025-12-26",
+          "exit_close": 214.9900054931641,
+          "stock_return": 0.31083478259736963,
+          "alpha_vs_spy": 0.2750807548662968
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-10-01",
+          "entry_close": 220.6300048828125,
+          "exit_date": "2025-12-26",
+          "exit_close": 232.5200042724609,
+          "stock_return": 0.053891125986983424,
+          "alpha_vs_spy": 0.01813709825591059
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-10-01",
+          "entry_close": 220.6300048828125,
+          "exit_date": "2025-12-26",
+          "exit_close": 232.5200042724609,
+          "stock_return": 0.053891125986983424,
+          "alpha_vs_spy": 0.01813709825591059
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AVGO",
+          "entry_date": "2025-10-01",
+          "entry_close": 332.0567626953125,
+          "exit_date": "2025-12-26",
+          "exit_close": 351.39288330078125,
+          "stock_return": 0.058231371192434045,
+          "alpha_vs_spy": 0.02247734346136121
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AVGO",
+          "entry_date": "2025-10-01",
+          "entry_close": 332.0567626953125,
+          "exit_date": "2025-12-26",
+          "exit_close": 351.39288330078125,
+          "stock_return": 0.058231371192434045,
+          "alpha_vs_spy": 0.02247734346136121
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-10-01",
+          "entry_close": 286.88494873046875,
+          "exit_date": "2025-12-26",
+          "exit_close": 301.9890441894531,
+          "stock_return": 0.05264861585044267,
+          "alpha_vs_spy": 0.016894588119369836
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-10-01",
+          "entry_close": 286.88494873046875,
+          "exit_date": "2025-12-26",
+          "exit_close": 301.9890441894531,
+          "stock_return": 0.05264861585044267,
+          "alpha_vs_spy": 0.016894588119369836
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-10-01",
+          "entry_close": 254.9640350341797,
+          "exit_date": "2025-12-26",
+          "exit_close": 273.1444091796875,
+          "stock_return": 0.07130564176657539,
+          "alpha_vs_spy": 0.035551614035502555
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AVGO",
+          "entry_date": "2025-10-01",
+          "entry_close": 332.0567626953125,
+          "exit_date": "2025-12-26",
+          "exit_close": 351.39288330078125,
+          "stock_return": 0.058231371192434045,
+          "alpha_vs_spy": 0.02247734346136121
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "META",
+          "entry_date": "2025-10-01",
+          "entry_close": 716.1422729492188,
+          "exit_date": "2025-12-26",
+          "exit_close": 662.7225952148438,
+          "stock_return": -0.07459366630373876,
+          "alpha_vs_spy": -0.1103476940348116
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "PLTR",
+          "entry_date": "2025-10-01",
+          "entry_close": 184.9499969482422,
+          "exit_date": "2025-12-26",
+          "exit_close": 188.7100067138672,
+          "stock_return": 0.02032987200684966,
+          "alpha_vs_spy": -0.015424155724223176
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-10-01",
+          "entry_close": 286.88494873046875,
+          "exit_date": "2025-12-26",
+          "exit_close": 301.9890441894531,
+          "stock_return": 0.05264861585044267,
+          "alpha_vs_spy": 0.016894588119369836
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-10-01",
+          "entry_close": 286.88494873046875,
+          "exit_date": "2025-12-26",
+          "exit_close": 301.9890441894531,
+          "stock_return": 0.05264861585044267,
+          "alpha_vs_spy": 0.016894588119369836
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-10-01",
+          "entry_close": 286.88494873046875,
+          "exit_date": "2025-12-26",
+          "exit_close": 301.9890441894531,
+          "stock_return": 0.05264861585044267,
+          "alpha_vs_spy": 0.016894588119369836
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMD",
+          "entry_date": "2025-10-01",
+          "entry_close": 164.00999450683594,
+          "exit_date": "2025-12-26",
+          "exit_close": 214.9900054931641,
+          "stock_return": 0.31083478259736963,
+          "alpha_vs_spy": 0.2750807548662968
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-10-01",
+          "entry_close": 244.5677490234375,
+          "exit_date": "2025-12-26",
+          "exit_close": 313.2894592285156,
+          "stock_return": 0.28099252857126467,
+          "alpha_vs_spy": 0.24523850084019183
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-10-01",
+          "entry_close": 220.6300048828125,
+          "exit_date": "2025-12-26",
+          "exit_close": 232.5200042724609,
+          "stock_return": 0.053891125986983424,
+          "alpha_vs_spy": 0.01813709825591059
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-10-01",
+          "entry_close": 254.9640350341797,
+          "exit_date": "2025-12-26",
+          "exit_close": 273.1444091796875,
+          "stock_return": 0.07130564176657539,
+          "alpha_vs_spy": 0.035551614035502555
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "FIG",
+          "entry_date": "2025-10-01",
+          "entry_close": 50.29999923706055,
+          "exit_date": "2025-12-26",
+          "exit_close": 38.540000915527344,
+          "stock_return": -0.2337971868768648,
+          "alpha_vs_spy": -0.26955121460793763
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "FIG",
+          "entry_date": "2025-10-01",
+          "entry_close": 50.29999923706055,
+          "exit_date": "2025-12-26",
+          "exit_close": 38.540000915527344,
+          "stock_return": -0.2337971868768648,
+          "alpha_vs_spy": -0.26955121460793763
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "META",
+          "entry_date": "2025-10-01",
+          "entry_close": 716.1422729492188,
+          "exit_date": "2025-12-26",
+          "exit_close": 662.7225952148438,
+          "stock_return": -0.07459366630373876,
+          "alpha_vs_spy": -0.1103476940348116
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "META",
+          "entry_date": "2025-10-01",
+          "entry_close": 716.1422729492188,
+          "exit_date": "2025-12-26",
+          "exit_close": 662.7225952148438,
+          "stock_return": -0.07459366630373876,
+          "alpha_vs_spy": -0.1103476940348116
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MSFT",
+          "entry_date": "2025-10-01",
+          "entry_close": 517.557861328125,
+          "exit_date": "2025-12-26",
+          "exit_close": 486.599365234375,
+          "stock_return": -0.059816492815520594,
+          "alpha_vs_spy": -0.09557052054659343
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MSFT",
+          "entry_date": "2025-10-01",
+          "entry_close": 517.557861328125,
+          "exit_date": "2025-12-26",
+          "exit_close": 486.599365234375,
+          "stock_return": -0.059816492815520594,
+          "alpha_vs_spy": -0.09557052054659343
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MSFT",
+          "entry_date": "2025-10-01",
+          "entry_close": 517.557861328125,
+          "exit_date": "2025-12-26",
+          "exit_close": 486.599365234375,
+          "stock_return": -0.059816492815520594,
+          "alpha_vs_spy": -0.09557052054659343
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-10-01",
+          "entry_close": 187.21945190429688,
+          "exit_date": "2025-12-26",
+          "exit_close": 190.51968383789065,
+          "stock_return": 0.017627612408996907,
+          "alpha_vs_spy": -0.01812641532207593
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-10-01",
+          "entry_close": 286.88494873046875,
+          "exit_date": "2025-12-26",
+          "exit_close": 301.9890441894531,
+          "stock_return": 0.05264861585044267,
+          "alpha_vs_spy": 0.016894588119369836
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-10-01",
+          "entry_close": 286.88494873046875,
+          "exit_date": "2025-12-26",
+          "exit_close": 301.9890441894531,
+          "stock_return": 0.05264861585044267,
+          "alpha_vs_spy": 0.016894588119369836
+        },
+        {
+          "bioguide": "A000372",
+          "ticker": "ATO",
+          "entry_date": "2025-10-01",
+          "entry_close": 167.48239135742188,
+          "exit_date": "2025-12-26",
+          "exit_close": 167.20095825195312,
+          "stock_return": -0.0016803742959947687,
+          "alpha_vs_spy": -0.037434402027067604
+        }
+      ]
+    },
+    {
+      "date": "2025-10-31",
+      "cohort": [
+        "F000472",
+        "D000032",
+        "M001236",
+        "S000510",
+        "C001047",
+        "K000383",
+        "M001222",
+        "W000802",
+        "F000110",
+        "F000479",
+        "C001129",
+        "M001234",
+        "M001243",
+        "A000372",
+        "T000278"
+      ],
+      "trades": [
+        {
+          "bioguide": "F000472",
+          "ticker": "UNP",
+          "entry_date": "2025-11-03",
+          "entry_close": 216.4164581298828,
+          "exit_date": "2026-01-30",
+          "exit_close": 233.87779235839844,
+          "stock_return": 0.08068394788180178,
+          "alpha_vs_spy": 0.0650626855456864
+        },
+        {
+          "bioguide": "F000472",
+          "ticker": "UNP",
+          "entry_date": "2025-11-03",
+          "entry_close": 216.4164581298828,
+          "exit_date": "2026-01-30",
+          "exit_close": 233.87779235839844,
+          "stock_return": 0.08068394788180178,
+          "alpha_vs_spy": 0.0650626855456864
+        },
+        {
+          "bioguide": "F000472",
+          "ticker": "UNP",
+          "entry_date": "2025-11-03",
+          "entry_close": 216.4164581298828,
+          "exit_date": "2026-01-30",
+          "exit_close": 233.87779235839844,
+          "stock_return": 0.08068394788180178,
+          "alpha_vs_spy": 0.0650626855456864
+        },
+        {
+          "bioguide": "D000032",
+          "ticker": "IDXX",
+          "entry_date": "2025-11-03",
+          "entry_close": 722.9400024414062,
+          "exit_date": "2026-01-30",
+          "exit_close": 670.4600219726562,
+          "stock_return": -0.07259244237630003,
+          "alpha_vs_spy": -0.08821370471241541
+        },
+        {
+          "bioguide": "D000032",
+          "ticker": "IDXX",
+          "entry_date": "2025-11-03",
+          "entry_close": 722.9400024414062,
+          "exit_date": "2026-01-30",
+          "exit_close": 670.4600219726562,
+          "stock_return": -0.07259244237630003,
+          "alpha_vs_spy": -0.08821370471241541
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "COIN",
+          "entry_date": "2025-11-03",
+          "entry_close": 330.4200134277344,
+          "exit_date": "2026-01-30",
+          "exit_close": 194.7400054931641,
+          "stock_return": -0.41062890388219364,
+          "alpha_vs_spy": -0.426250166218309
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2025-11-03",
+          "entry_close": 34.85702896118164,
+          "exit_date": "2026-01-30",
+          "exit_close": 33.134517669677734,
+          "stock_return": -0.04941646901180741,
+          "alpha_vs_spy": -0.06503773134792279
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-11-03",
+          "entry_close": 283.3350830078125,
+          "exit_date": "2026-01-30",
+          "exit_close": 337.7622375488281,
+          "stock_return": 0.19209465331024633,
+          "alpha_vs_spy": 0.17647339097413095
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-11-03",
+          "entry_close": 283.3350830078125,
+          "exit_date": "2026-01-30",
+          "exit_close": 337.7622375488281,
+          "stock_return": 0.19209465331024633,
+          "alpha_vs_spy": 0.17647339097413095
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "CRWV",
+          "entry_date": "2025-11-03",
+          "entry_close": 126.31999969482422,
+          "exit_date": "2026-01-30",
+          "exit_close": 93.19000244140624,
+          "stock_return": -0.2622704032097575,
+          "alpha_vs_spy": -0.27789166554587286
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "FIG",
+          "entry_date": "2025-11-03",
+          "entry_close": 48.16999816894531,
+          "exit_date": "2026-01-30",
+          "exit_close": 25.920000076293945,
+          "stock_return": -0.46190572842902256,
+          "alpha_vs_spy": -0.47752699076513794
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "IREN",
+          "entry_date": "2025-11-03",
+          "entry_close": 67.75,
+          "exit_date": "2026-01-30",
+          "exit_close": 53.7400016784668,
+          "stock_return": -0.20678964312226134,
+          "alpha_vs_spy": -0.22241090545837672
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "IREN",
+          "entry_date": "2025-11-03",
+          "entry_close": 67.75,
+          "exit_date": "2026-01-30",
+          "exit_close": 53.7400016784668,
+          "stock_return": -0.20678964312226134,
+          "alpha_vs_spy": -0.22241090545837672
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "PLTR",
+          "entry_date": "2025-11-03",
+          "entry_close": 207.17999267578125,
+          "exit_date": "2026-01-30",
+          "exit_close": 146.58999633789062,
+          "stock_return": -0.29245100144736813,
+          "alpha_vs_spy": -0.3080722637834835
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "CRWV",
+          "entry_date": "2025-11-03",
+          "entry_close": 126.31999969482422,
+          "exit_date": "2026-01-30",
+          "exit_close": 93.19000244140624,
+          "stock_return": -0.2622704032097575,
+          "alpha_vs_spy": -0.27789166554587286
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "ORCL",
+          "entry_date": "2025-11-03",
+          "entry_close": 257.1701965332031,
+          "exit_date": "2026-01-30",
+          "exit_close": 164.5800018310547,
+          "stock_return": -0.36003470056140097,
+          "alpha_vs_spy": -0.37565596289751635
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "OPEN",
+          "entry_date": "2025-11-03",
+          "entry_close": 7.590000152587891,
+          "exit_date": "2026-01-30",
+          "exit_close": 5.150000095367432,
+          "stock_return": -0.3214756268994955,
+          "alpha_vs_spy": -0.3370968892356109
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "ORCL",
+          "entry_date": "2025-11-03",
+          "entry_close": 257.1701965332031,
+          "exit_date": "2026-01-30",
+          "exit_close": 164.5800018310547,
+          "stock_return": -0.36003470056140097,
+          "alpha_vs_spy": -0.37565596289751635
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-11-03",
+          "entry_close": 283.3350830078125,
+          "exit_date": "2026-01-30",
+          "exit_close": 337.7622375488281,
+          "stock_return": 0.19209465331024633,
+          "alpha_vs_spy": 0.17647339097413095
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-11-03",
+          "entry_close": 283.3350830078125,
+          "exit_date": "2026-01-30",
+          "exit_close": 337.7622375488281,
+          "stock_return": 0.19209465331024633,
+          "alpha_vs_spy": 0.17647339097413095
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-11-03",
+          "entry_close": 283.3350830078125,
+          "exit_date": "2026-01-30",
+          "exit_close": 337.7622375488281,
+          "stock_return": 0.19209465331024633,
+          "alpha_vs_spy": 0.17647339097413095
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-11-03",
+          "entry_close": 254.0,
+          "exit_date": "2026-01-30",
+          "exit_close": 239.3000030517578,
+          "stock_return": -0.05787400373323692,
+          "alpha_vs_spy": -0.0734952660693523
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AVGO",
+          "entry_date": "2025-11-03",
+          "entry_close": 361.1001281738281,
+          "exit_date": "2026-01-30",
+          "exit_close": 330.6064758300781,
+          "stock_return": -0.08444652871757174,
+          "alpha_vs_spy": -0.10006779105368713
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "META",
+          "entry_date": "2025-11-03",
+          "entry_close": 636.645263671875,
+          "exit_date": "2026-01-30",
+          "exit_close": 715.8870849609375,
+          "stock_return": 0.12446777791455221,
+          "alpha_vs_spy": 0.10884651557843683
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "ORCL",
+          "entry_date": "2025-11-03",
+          "entry_close": 257.1701965332031,
+          "exit_date": "2026-01-30",
+          "exit_close": 164.5800018310547,
+          "stock_return": -0.36003470056140097,
+          "alpha_vs_spy": -0.37565596289751635
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-11-03",
+          "entry_close": 254.0,
+          "exit_date": "2026-01-30",
+          "exit_close": 239.3000030517578,
+          "stock_return": -0.05787400373323692,
+          "alpha_vs_spy": -0.0734952660693523
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-11-03",
+          "entry_close": 268.53814697265625,
+          "exit_date": "2026-01-30",
+          "exit_close": 259.2374267578125,
+          "stock_return": -0.03463463317854354,
+          "alpha_vs_spy": -0.05025589551465892
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "FIG",
+          "entry_date": "2025-11-03",
+          "entry_close": 48.16999816894531,
+          "exit_date": "2026-01-30",
+          "exit_close": 25.920000076293945,
+          "stock_return": -0.46190572842902256,
+          "alpha_vs_spy": -0.47752699076513794
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MCD",
+          "entry_date": "2025-11-03",
+          "entry_close": 292.965576171875,
+          "exit_date": "2026-01-30",
+          "exit_close": 313.2501220703125,
+          "stock_return": 0.06923866675222312,
+          "alpha_vs_spy": 0.05361740441610774
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "META",
+          "entry_date": "2025-11-03",
+          "entry_close": 636.645263671875,
+          "exit_date": "2026-01-30",
+          "exit_close": 715.8870849609375,
+          "stock_return": 0.12446777791455221,
+          "alpha_vs_spy": 0.10884651557843683
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "QCOM",
+          "entry_date": "2025-11-03",
+          "entry_close": 178.6542510986328,
+          "exit_date": "2026-01-30",
+          "exit_close": 150.6229248046875,
+          "stock_return": -0.15690265482946475,
+          "alpha_vs_spy": -0.17252391716558013
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "UBER",
+          "entry_date": "2025-11-03",
+          "entry_close": 99.72000122070312,
+          "exit_date": "2026-01-30",
+          "exit_close": 80.05000305175781,
+          "stock_return": -0.19725228568149655,
+          "alpha_vs_spy": -0.21287354801761194
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-11-03",
+          "entry_close": 283.3350830078125,
+          "exit_date": "2026-01-30",
+          "exit_close": 337.7622375488281,
+          "stock_return": 0.19209465331024633,
+          "alpha_vs_spy": 0.17647339097413095
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AMZN",
+          "entry_date": "2025-11-03",
+          "entry_close": 254.0,
+          "exit_date": "2026-01-30",
+          "exit_close": 239.3000030517578,
+          "stock_return": -0.05787400373323692,
+          "alpha_vs_spy": -0.0734952660693523
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-11-03",
+          "entry_close": 268.53814697265625,
+          "exit_date": "2026-01-30",
+          "exit_close": 259.2374267578125,
+          "stock_return": -0.03463463317854354,
+          "alpha_vs_spy": -0.05025589551465892
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-11-03",
+          "entry_close": 206.85728454589844,
+          "exit_date": "2026-01-30",
+          "exit_close": 191.11965942382807,
+          "stock_return": -0.07607962734606255,
+          "alpha_vs_spy": -0.09170088968217793
+        },
+        {
+          "bioguide": "F000479",
+          "ticker": "ARCC",
+          "entry_date": "2025-11-03",
+          "entry_close": 19.41045188903809,
+          "exit_date": "2026-01-30",
+          "exit_close": 19.36165428161621,
+          "stock_return": -0.002513986160694981,
+          "alpha_vs_spy": -0.018135248496810363
+        }
+      ]
+    },
+    {
+      "date": "2025-11-28",
+      "cohort": [
+        "F000472",
+        "M001236",
+        "W000829",
+        "S000510",
+        "C001047",
+        "K000383",
+        "M001222",
+        "W000802",
+        "H001082",
+        "F000479",
+        "C001129",
+        "M001243",
+        "F000110",
+        "M001234",
+        "A000372"
+      ],
+      "trades": [
+        {
+          "bioguide": "M001236",
+          "ticker": "VZ",
+          "entry_date": "2025-12-01",
+          "entry_close": 40.04522705078125,
+          "exit_date": "2026-02-27",
+          "exit_close": 50.13999938964844,
+          "stock_return": 0.2520842827552465,
+          "alpha_vs_spy": 0.24069608665402686
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "LGIH",
+          "entry_date": "2025-12-01",
+          "entry_close": 52.33000183105469,
+          "exit_date": "2026-02-27",
+          "exit_close": 51.900001525878906,
+          "stock_return": -0.008217089434929159,
+          "alpha_vs_spy": -0.01960528553614882
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "GNPX",
+          "entry_date": "2025-12-01",
+          "entry_close": 2.8499999046325684,
+          "exit_date": "2026-02-27",
+          "exit_close": 2.0,
+          "stock_return": -0.29824559055280153,
+          "alpha_vs_spy": -0.3096337866540212
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2025-12-01",
+          "entry_close": 28.35007095336914,
+          "exit_date": "2026-02-27",
+          "exit_close": 36.83000183105469,
+          "stock_return": 0.2991149789936518,
+          "alpha_vs_spy": 0.28772678289243214
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2025-12-01",
+          "entry_close": 28.35007095336914,
+          "exit_date": "2026-02-27",
+          "exit_close": 36.83000183105469,
+          "stock_return": 0.2991149789936518,
+          "alpha_vs_spy": 0.28772678289243214
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "VZ",
+          "entry_date": "2025-12-01",
+          "entry_close": 40.04522705078125,
+          "exit_date": "2026-02-27",
+          "exit_close": 50.13999938964844,
+          "stock_return": 0.2520842827552465,
+          "alpha_vs_spy": 0.24069608665402686
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2025-12-01",
+          "entry_close": 28.35007095336914,
+          "exit_date": "2026-02-27",
+          "exit_close": 36.83000183105469,
+          "stock_return": 0.2991149789936518,
+          "alpha_vs_spy": 0.28772678289243214
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "VZ",
+          "entry_date": "2025-12-01",
+          "entry_close": 40.04522705078125,
+          "exit_date": "2026-02-27",
+          "exit_close": 50.13999938964844,
+          "stock_return": 0.2520842827552465,
+          "alpha_vs_spy": 0.24069608665402686
+        },
+        {
+          "bioguide": "W000829",
+          "ticker": "CRM",
+          "entry_date": "2025-12-01",
+          "entry_close": 232.4547882080078,
+          "exit_date": "2026-02-27",
+          "exit_close": 194.7899932861328,
+          "stock_return": -0.16203062630902387,
+          "alpha_vs_spy": -0.17341882241024353
+        },
+        {
+          "bioguide": "W000829",
+          "ticker": "NOW",
+          "entry_date": "2025-12-01",
+          "entry_close": 164.41400146484375,
+          "exit_date": "2026-02-27",
+          "exit_close": 108.01000213623048,
+          "stock_return": -0.3430608027666914,
+          "alpha_vs_spy": -0.35444899886791104
+        },
+        {
+          "bioguide": "W000829",
+          "ticker": "HUBS",
+          "entry_date": "2025-12-01",
+          "entry_close": 373.3999938964844,
+          "exit_date": "2026-02-27",
+          "exit_close": 264.510009765625,
+          "stock_return": -0.29161753055905604,
+          "alpha_vs_spy": -0.3030057266602757
+        },
+        {
+          "bioguide": "W000829",
+          "ticker": "ANET",
+          "entry_date": "2025-12-01",
+          "entry_close": 128.11000061035156,
+          "exit_date": "2026-02-27",
+          "exit_close": 133.5,
+          "stock_return": 0.04207321336327374,
+          "alpha_vs_spy": 0.030685017262054082
+        },
+        {
+          "bioguide": "W000829",
+          "ticker": "DIS",
+          "entry_date": "2025-12-01",
+          "entry_close": 106.05245971679688,
+          "exit_date": "2026-02-27",
+          "exit_close": 106.04000091552734,
+          "stock_return": -0.000117477720958159,
+          "alpha_vs_spy": -0.01150567382217782
+        },
+        {
+          "bioguide": "W000829",
+          "ticker": "FIVE",
+          "entry_date": "2025-12-01",
+          "entry_close": 161.7899932861328,
+          "exit_date": "2026-02-27",
+          "exit_close": 223.52999877929688,
+          "stock_return": 0.38160583506530044,
+          "alpha_vs_spy": 0.3702176389640808
+        },
+        {
+          "bioguide": "W000829",
+          "ticker": "LCII",
+          "entry_date": "2025-12-01",
+          "entry_close": 113.22429656982422,
+          "exit_date": "2026-02-27",
+          "exit_close": 131.9579620361328,
+          "stock_return": 0.16545623186765157,
+          "alpha_vs_spy": 0.1540680357664319
+        },
+        {
+          "bioguide": "C001047",
+          "ticker": "LLY",
+          "entry_date": "2025-12-01",
+          "entry_close": 1056.1273193359375,
+          "exit_date": "2026-02-27",
+          "exit_close": 1051.989990234375,
+          "stock_return": -0.003917452967852286,
+          "alpha_vs_spy": -0.015305649069071947
+        },
+        {
+          "bioguide": "H001082",
+          "ticker": "RY",
+          "entry_date": "2025-12-01",
+          "entry_close": 152.88999938964844,
+          "exit_date": "2026-02-27",
+          "exit_close": 167.22999572753906,
+          "stock_return": 0.09379289943840186,
+          "alpha_vs_spy": 0.0824047033371822
+        },
+        {
+          "bioguide": "H001082",
+          "ticker": "RY",
+          "entry_date": "2025-12-01",
+          "entry_close": 152.88999938964844,
+          "exit_date": "2026-02-27",
+          "exit_close": 167.22999572753906,
+          "stock_return": 0.09379289943840186,
+          "alpha_vs_spy": 0.0824047033371822
+        },
+        {
+          "bioguide": "M001243",
+          "ticker": "BITB",
+          "entry_date": "2025-12-01",
+          "entry_close": 46.470001220703125,
+          "exit_date": "2026-02-27",
+          "exit_close": 35.630001068115234,
+          "stock_return": -0.23326877271004887,
+          "alpha_vs_spy": -0.24465696881126853
+        },
+        {
+          "bioguide": "M001243",
+          "ticker": "BITB",
+          "entry_date": "2025-12-01",
+          "entry_close": 46.470001220703125,
+          "exit_date": "2026-02-27",
+          "exit_close": 35.630001068115234,
+          "stock_return": -0.23326877271004887,
+          "alpha_vs_spy": -0.24465696881126853
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-12-01",
+          "entry_close": 282.8353576660156,
+          "exit_date": "2026-02-27",
+          "exit_close": 264.17999267578125,
+          "stock_return": -0.0659583905781096,
+          "alpha_vs_spy": -0.07734658667932925
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "CLS",
+          "entry_date": "2025-12-01",
+          "entry_close": 318.3699951171875,
+          "exit_date": "2026-02-27",
+          "exit_close": 277.6300048828125,
+          "stock_return": -0.12796428953481997,
+          "alpha_vs_spy": -0.13935248563603964
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NFLX",
+          "entry_date": "2025-12-01",
+          "entry_close": 109.12999725341795,
+          "exit_date": "2026-02-27",
+          "exit_close": 96.23999786376952,
+          "stock_return": -0.11811600581016901,
+          "alpha_vs_spy": -0.12950420191138867
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NFLX",
+          "entry_date": "2025-12-01",
+          "entry_close": 109.12999725341795,
+          "exit_date": "2026-02-27",
+          "exit_close": 96.23999786376952,
+          "stock_return": -0.11811600581016901,
+          "alpha_vs_spy": -0.12950420191138867
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "CLS",
+          "entry_date": "2025-12-01",
+          "entry_close": 318.3699951171875,
+          "exit_date": "2026-02-27",
+          "exit_close": 277.6300048828125,
+          "stock_return": -0.12796428953481997,
+          "alpha_vs_spy": -0.13935248563603964
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NFLX",
+          "entry_date": "2025-12-01",
+          "entry_close": 109.12999725341795,
+          "exit_date": "2026-02-27",
+          "exit_close": 96.23999786376952,
+          "stock_return": -0.11811600581016901,
+          "alpha_vs_spy": -0.12950420191138867
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-12-01",
+          "entry_close": 282.8353576660156,
+          "exit_date": "2026-02-27",
+          "exit_close": 264.17999267578125,
+          "stock_return": -0.0659583905781096,
+          "alpha_vs_spy": -0.07734658667932925
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-12-01",
+          "entry_close": 179.90025329589844,
+          "exit_date": "2026-02-27",
+          "exit_close": 177.180419921875,
+          "stock_return": -0.015118563338262114,
+          "alpha_vs_spy": -0.026506759439481775
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NVDA",
+          "entry_date": "2025-12-01",
+          "entry_close": 179.90025329589844,
+          "exit_date": "2026-02-27",
+          "exit_close": 177.180419921875,
+          "stock_return": -0.015118563338262114,
+          "alpha_vs_spy": -0.026506759439481775
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-12-01",
+          "entry_close": 314.4627990722656,
+          "exit_date": "2026-02-27",
+          "exit_close": 311.54071044921875,
+          "stock_return": -0.009292318937781152,
+          "alpha_vs_spy": -0.020680515039000813
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2025-12-01",
+          "entry_close": 314.4627990722656,
+          "exit_date": "2026-02-27",
+          "exit_close": 311.54071044921875,
+          "stock_return": -0.009292318937781152,
+          "alpha_vs_spy": -0.020680515039000813
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "AAPL",
+          "entry_date": "2025-12-01",
+          "entry_close": 282.8353576660156,
+          "exit_date": "2026-02-27",
+          "exit_close": 264.17999267578125,
+          "stock_return": -0.0659583905781096,
+          "alpha_vs_spy": -0.07734658667932925
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "TSM",
+          "entry_date": "2025-12-01",
+          "entry_close": 286.0992736816406,
+          "exit_date": "2026-02-27",
+          "exit_close": 373.5274658203125,
+          "stock_return": 0.30558690699773794,
+          "alpha_vs_spy": 0.2941987108965183
+        }
+      ]
+    },
+    {
+      "date": "2025-12-31",
+      "cohort": [
+        "F000472",
+        "W000829",
+        "M001236",
+        "F000479",
+        "S000510",
+        "C001047",
+        "K000383",
+        "W000802",
+        "M001222",
+        "S001201",
+        "H001082",
+        "N000189",
+        "M001243",
+        "C001129",
+        "F000110"
+      ],
+      "trades": [
+        {
+          "bioguide": "M001236",
+          "ticker": "CBRL",
+          "entry_date": "2026-01-02",
+          "entry_close": 26.66709899902344,
+          "exit_date": "2026-03-31",
+          "exit_close": 28.11000061035156,
+          "stock_return": 0.05410793320191898,
+          "alpha_vs_spy": 0.09956349666883324
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "VZ",
+          "entry_date": "2026-01-02",
+          "entry_close": 39.82897567749024,
+          "exit_date": "2026-03-31",
+          "exit_close": 50.20000076293945,
+          "stock_return": 0.26038894822270064,
+          "alpha_vs_spy": 0.3058445116896149
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CBRL",
+          "entry_date": "2026-01-02",
+          "entry_close": 26.66709899902344,
+          "exit_date": "2026-03-31",
+          "exit_close": 28.11000061035156,
+          "stock_return": 0.05410793320191898,
+          "alpha_vs_spy": 0.09956349666883324
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HOG",
+          "entry_date": "2026-01-02",
+          "entry_close": 20.42442512512207,
+          "exit_date": "2026-03-31",
+          "exit_close": 20.21999931335449,
+          "stock_return": -0.010008889381965425,
+          "alpha_vs_spy": 0.03544667408494884
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HOG",
+          "entry_date": "2026-01-02",
+          "entry_close": 20.42442512512207,
+          "exit_date": "2026-03-31",
+          "exit_close": 20.21999931335449,
+          "stock_return": -0.010008889381965425,
+          "alpha_vs_spy": 0.03544667408494884
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "CBRL",
+          "entry_date": "2026-01-02",
+          "entry_close": 26.66709899902344,
+          "exit_date": "2026-03-31",
+          "exit_close": 28.11000061035156,
+          "stock_return": 0.05410793320191898,
+          "alpha_vs_spy": 0.09956349666883324
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2026-01-02",
+          "entry_close": 29.78639411926269,
+          "exit_date": "2026-03-31",
+          "exit_close": 32.5099983215332,
+          "stock_return": 0.09143786224560735,
+          "alpha_vs_spy": 0.1368934257125216
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2026-01-02",
+          "entry_close": 29.78639411926269,
+          "exit_date": "2026-03-31",
+          "exit_close": 32.5099983215332,
+          "stock_return": 0.09143786224560735,
+          "alpha_vs_spy": 0.1368934257125216
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2026-01-02",
+          "entry_close": 29.78639411926269,
+          "exit_date": "2026-03-31",
+          "exit_close": 32.5099983215332,
+          "stock_return": 0.09143786224560735,
+          "alpha_vs_spy": 0.1368934257125216
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "GNPX",
+          "entry_date": "2026-01-02",
+          "entry_close": 1.7899999618530271,
+          "exit_date": "2026-03-31",
+          "exit_close": 1.809999942779541,
+          "stock_return": 0.011173173940076442,
+          "alpha_vs_spy": 0.0566287374069907
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2026-01-02",
+          "entry_close": 29.78639411926269,
+          "exit_date": "2026-03-31",
+          "exit_close": 32.5099983215332,
+          "stock_return": 0.09143786224560735,
+          "alpha_vs_spy": 0.1368934257125216
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "VZ",
+          "entry_date": "2026-01-02",
+          "entry_close": 39.82897567749024,
+          "exit_date": "2026-03-31",
+          "exit_close": 50.20000076293945,
+          "stock_return": 0.26038894822270064,
+          "alpha_vs_spy": 0.3058445116896149
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "LGIH",
+          "entry_date": "2026-01-02",
+          "entry_close": 41.709999084472656,
+          "exit_date": "2026-03-31",
+          "exit_close": 39.52999877929688,
+          "stock_return": -0.05226565219435164,
+          "alpha_vs_spy": -0.00681008872743738
+        },
+        {
+          "bioguide": "M001236",
+          "ticker": "HY",
+          "entry_date": "2026-01-02",
+          "entry_close": 29.78639411926269,
+          "exit_date": "2026-03-31",
+          "exit_close": 32.5099983215332,
+          "stock_return": 0.09143786224560735,
+          "alpha_vs_spy": 0.1368934257125216
+        },
+        {
+          "bioguide": "F000479",
+          "ticker": "GXO",
+          "entry_date": "2026-01-02",
+          "entry_close": 54.29999923706055,
+          "exit_date": "2026-03-31",
+          "exit_close": 51.84999847412109,
+          "stock_return": -0.04511972002510267,
+          "alpha_vs_spy": 0.00033584344181158965
+        },
+        {
+          "bioguide": "C001047",
+          "ticker": "META",
+          "entry_date": "2026-01-02",
+          "entry_close": 649.8535766601562,
+          "exit_date": "2026-03-31",
+          "exit_close": 572.1300048828125,
+          "stock_return": -0.11960166808159256,
+          "alpha_vs_spy": -0.0741461046146783
+        },
+        {
+          "bioguide": "W000802",
+          "ticker": "HSY",
+          "entry_date": "2026-01-02",
+          "entry_close": 181.2200469970703,
+          "exit_date": "2026-03-31",
+          "exit_close": 207.88999938964844,
+          "stock_return": 0.14716888575251996,
+          "alpha_vs_spy": 0.19262444921943422
+        },
+        {
+          "bioguide": "W000802",
+          "ticker": "KO",
+          "entry_date": "2026-01-02",
+          "entry_close": 68.64797973632812,
+          "exit_date": "2026-03-31",
+          "exit_close": 76.05000305175781,
+          "stock_return": 0.10782579973744766,
+          "alpha_vs_spy": 0.15328136320436192
+        },
+        {
+          "bioguide": "W000802",
+          "ticker": "GH",
+          "entry_date": "2026-01-02",
+          "entry_close": 101.73999786376952,
+          "exit_date": "2026-03-31",
+          "exit_close": 92.37000274658205,
+          "stock_return": -0.09209745738086172,
+          "alpha_vs_spy": -0.04664189391394746
+        },
+        {
+          "bioguide": "M001243",
+          "ticker": "BITB",
+          "entry_date": "2026-01-02",
+          "entry_close": 48.79999923706055,
+          "exit_date": "2026-03-31",
+          "exit_close": 36.810001373291016,
+          "stock_return": -0.24569668137748413,
+          "alpha_vs_spy": -0.20024111791056987
+        },
+        {
+          "bioguide": "M001243",
+          "ticker": "BITB",
+          "entry_date": "2026-01-02",
+          "entry_close": 48.79999923706055,
+          "exit_date": "2026-03-31",
+          "exit_close": 36.810001373291016,
+          "stock_return": -0.24569668137748413,
+          "alpha_vs_spy": -0.20024111791056987
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2026-01-02",
+          "entry_close": 314.9283142089844,
+          "exit_date": "2026-03-31",
+          "exit_close": 287.5599975585937,
+          "stock_return": -0.08690332185320515,
+          "alpha_vs_spy": -0.04144775838629089
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2026-01-02",
+          "entry_close": 314.9283142089844,
+          "exit_date": "2026-03-31",
+          "exit_close": 287.5599975585937,
+          "stock_return": -0.08690332185320515,
+          "alpha_vs_spy": -0.04144775838629089
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2026-01-02",
+          "entry_close": 314.9283142089844,
+          "exit_date": "2026-03-31",
+          "exit_close": 287.5599975585937,
+          "stock_return": -0.08690332185320515,
+          "alpha_vs_spy": -0.04144775838629089
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MSFT",
+          "entry_date": "2026-01-02",
+          "entry_close": 471.8630065917969,
+          "exit_date": "2026-03-31",
+          "exit_close": 370.1700134277344,
+          "stock_return": -0.21551380748954518,
+          "alpha_vs_spy": -0.17005824402263092
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "MSFT",
+          "entry_date": "2026-01-02",
+          "entry_close": 471.8630065917969,
+          "exit_date": "2026-03-31",
+          "exit_close": 370.1700134277344,
+          "stock_return": -0.21551380748954518,
+          "alpha_vs_spy": -0.17005824402263092
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2026-01-02",
+          "entry_close": 314.9283142089844,
+          "exit_date": "2026-03-31",
+          "exit_close": 287.5599975585937,
+          "stock_return": -0.08690332185320515,
+          "alpha_vs_spy": -0.04144775838629089
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "IREN",
+          "entry_date": "2026-01-02",
+          "entry_close": 42.70000076293945,
+          "exit_date": "2026-03-31",
+          "exit_close": 34.279998779296875,
+          "stock_return": -0.19718973848240628,
+          "alpha_vs_spy": -0.15173417501549202
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NFLX",
+          "entry_date": "2026-01-02",
+          "entry_close": 90.98999786376952,
+          "exit_date": "2026-03-31",
+          "exit_close": 96.1500015258789,
+          "stock_return": 0.05670957009840749,
+          "alpha_vs_spy": 0.10216513356532175
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NFLX",
+          "entry_date": "2026-01-02",
+          "entry_close": 90.98999786376952,
+          "exit_date": "2026-03-31",
+          "exit_close": 96.1500015258789,
+          "stock_return": 0.05670957009840749,
+          "alpha_vs_spy": 0.10216513356532175
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "GOOGL",
+          "entry_date": "2026-01-02",
+          "entry_close": 314.9283142089844,
+          "exit_date": "2026-03-31",
+          "exit_close": 287.5599975585937,
+          "stock_return": -0.08690332185320515,
+          "alpha_vs_spy": -0.04144775838629089
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NFLX",
+          "entry_date": "2026-01-02",
+          "entry_close": 90.98999786376952,
+          "exit_date": "2026-03-31",
+          "exit_close": 96.1500015258789,
+          "stock_return": 0.05670957009840749,
+          "alpha_vs_spy": 0.10216513356532175
+        },
+        {
+          "bioguide": "F000110",
+          "ticker": "NFLX",
+          "entry_date": "2026-01-02",
+          "entry_close": 90.98999786376952,
+          "exit_date": "2026-03-31",
+          "exit_close": 96.1500015258789,
+          "stock_return": 0.05670957009840749,
+          "alpha_vs_spy": 0.10216513356532175
+        }
+      ]
+    },
+    {
+      "date": "2026-01-30",
+      "cohort": [
+        "F000472",
+        "L000560",
+        "M001236",
+        "W000829",
+        "F000479",
+        "K000383",
+        "D000399",
+        "D000032",
+        "C001047",
+        "S000510",
+        "W000802",
+        "H001082",
+        "T000278",
+        "S001201",
+        "M001222"
+      ],
+      "trades": []
+    },
+    {
+      "date": "2026-02-27",
+      "cohort": [
+        "F000472",
+        "L000560",
+        "M001236",
+        "W000829",
+        "F000479",
+        "K000383",
+        "D000399",
+        "D000032",
+        "C001047",
+        "S000510",
+        "H001082",
+        "W000802",
+        "S001201",
+        "T000278",
+        "M001222"
+      ],
+      "trades": []
+    },
+    {
+      "date": "2026-03-31",
+      "cohort": [
+        "F000472",
+        "L000560",
+        "M001236",
+        "F000479",
+        "W000829",
+        "D000032",
+        "K000383",
+        "D000399",
+        "S000510",
+        "C001047",
+        "H001082",
+        "S001201",
+        "T000278",
+        "M001222",
+        "W000802"
+      ],
+      "trades": []
+    }
+  ],
+  "summary": {
+    "strategy": {
+      "total_return": 0.03935174549469706,
+      "alpha_vs_spy": -0.01559427644733162,
+      "alpha_vs_nanc": null,
+      "alpha_vs_naive_copy_everyone": 0.005208533141736943,
+      "hit_rate": 0.4021505376344086,
+      "sharpe": -0.09052076916590299,
+      "n_rebalances": 12,
+      "n_trades": 465
+    },
+    "naive_copy_everyone": {
+      "total_return": 0.03414321235296012,
+      "hit_rate": 0.4513888888888889,
+      "n_trades": 1584
+    },
+    "NANC": {
+      "total_return": null
+    },
+    "SPY": {
+      "total_return": 0.30076385795420046
+    }
+  }
+}
