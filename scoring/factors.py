@@ -49,6 +49,7 @@ MIN_TRADES_QUALIFY     = 10        # total trades in 365d window to be scored
 MIN_BUYS_FOR_ALPHA     = 5         # min buy trades to produce alpha factors
 LIQUIDITY_ADV_FLOOR    = 10_000_000  # $10M average daily $-volume
 ALPHA_HORIZONS         = [5, 20, 60]  # business days forward
+ENTRY_BUFFER_BDAYS     = 2         # post-file entry = max(txDate, published) + N bdays
 TRADE_COUNT_SWEET_SPOT = 25        # peak of the inverted-U
 TRADE_COUNT_HALF_WIDTH = 25        # score → 0 at ±HALF_WIDTH from peak
 
@@ -131,6 +132,72 @@ def compute_trade_alpha(
         stock_ret = exit_stock / entry_stock - 1.0
         spy_ret = exit_spy / entry_spy - 1.0
         result[f"alpha_{h}d"] = stock_ret - spy_ret
+    return result
+
+
+def compute_trade_alpha_postfile(
+    trade: dict,
+    stock_prices: pd.DataFrame,
+    spy_prices: pd.DataFrame,
+) -> dict[str, float | None]:
+    """
+    Compute post-file alpha (alpha_postfile_5d/20d/60d) for a single BUY trade.
+
+    Entry = max(txDate, published) + BDay(ENTRY_BUFFER_BDAYS), then
+    `_next_close_at_or_after` forward-fill to the first available close.
+    This is the follower-facing alpha metric per ROADMAP #4's shared
+    design note (`design/postfile-alpha-and-backtest.md`); the
+    difference against trade-date alpha captures the STOCK Act
+    disclosure drag.
+
+    Returns all-None when `published` is missing or unparseable — without
+    a publication date we cannot characterize the follower path, and
+    falling back to txDate would silently re-introduce the trade-date
+    confound the post-file metric exists to eliminate.
+
+    Only BUYs are scored; sells are not predictive alpha signals.
+    """
+    result: dict[str, float | None] = {f"alpha_postfile_{h}d": None for h in ALPHA_HORIZONS}
+    if not trade or (trade.get("type") or "").upper() != "BUY":
+        return result
+
+    tx_date_str = trade.get("txDate")
+    pub_date_str = trade.get("published")
+    if not tx_date_str or not pub_date_str:
+        return result
+    try:
+        tx_date = date.fromisoformat(tx_date_str)
+        pub_date = date.fromisoformat(pub_date_str)
+    except Exception:
+        return result
+
+    anchor = max(tx_date, pub_date)
+    target_entry_date = (
+        pd.Timestamp(anchor) + pd.offsets.BDay(ENTRY_BUFFER_BDAYS)
+    ).date()
+
+    entry_stock = _next_close_at_or_after(stock_prices, target_entry_date)
+    entry_spy = _next_close_at_or_after(spy_prices, target_entry_date)
+    if entry_stock is None or entry_spy is None:
+        return result
+
+    stock_fwd = stock_prices.index[stock_prices.index.date >= target_entry_date]
+    spy_fwd = spy_prices.index[spy_prices.index.date >= target_entry_date]
+    if len(stock_fwd) == 0 or len(spy_fwd) == 0:
+        return result
+    stock_entry_idx = stock_fwd[0]
+    spy_entry_idx = spy_fwd[0]
+
+    for h in ALPHA_HORIZONS:
+        exit_stock = _close_n_bdays_later(stock_prices, stock_entry_idx.date(), h)
+        exit_spy = _close_n_bdays_later(spy_prices, spy_entry_idx.date(), h)
+        if exit_stock is None or exit_spy is None:
+            continue
+        if entry_stock <= 0 or entry_spy <= 0:
+            continue
+        stock_ret = exit_stock / entry_stock - 1.0
+        spy_ret = exit_spy / entry_spy - 1.0
+        result[f"alpha_postfile_{h}d"] = stock_ret - spy_ret
     return result
 
 
