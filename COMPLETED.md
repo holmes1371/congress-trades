@@ -194,3 +194,43 @@ Final state: 179 pytest cases green locally. Recorded run shape: 12 monthly reba
 - Summary stats: `strategy.total_return` is equal-weight per-trade mean return (not time-weighted cumulative); `SPY.total_return` is close-to-close cumulative over the span. The meaningful comparison is `alpha_vs_spy` (per-trade). Don't compare `total_return` values directly across the two series.
 - `naive_copy_everyone` executes the same entry / exit mechanic as the strategy, just without the top-K cohort filter. So `alpha_vs_naive_copy_everyone` isolates the *cohort-selection* contribution — small positive (~+0.5%) on the recorded run suggests the composite ranks non-trivially but not strongly enough to beat SPY after the disclosure-lag confound is removed.
 - Recorded backtest output is committed (`scoring/output/backtest_20260423.json`). Future runs write to `scoring/output/backtest_<YYYYMMDD>.json`; the committed sample is a reference snapshot, not a live artifact.
+
+### 6. [x] Auto paper-trading log — baefa44
+
+Closed 2026-04-23 after Tom confirmed the paper-log page renders correctly, the ledger CSV advances cleanly across workflow runs, and the landing-page nav link resolves.
+
+**Goal.** Stand up an append-only, prospective ledger that records what a follower would have done at every pipeline run and tracks the resulting PnL as positions close. The walk-forward backtest from #5 is retrospective; #6 is the same mechanic run forward — starts empty, accumulates a real out-of-sample track record over 6–12 months. Positioned right after the #4/#5 schema cutover so the log starts accumulating on the post-file composite, not the pre-cutover trade-date one.
+
+**Guiding principle.** The live log is the continuation of the recorded backtest, not a parallel implementation — reuse `scoring/backtest.py` primitives (`close_at_or_after`, `close_n_positions_later`, `select_cohort`) rather than duplicating them, promoting helpers from underscore-prefixed to public in commit 2 so the paper log imports from a stable surface. Gross PnL only in v1; transaction costs / tax drag / sizing variants are #7 territory, plug into the existing schema without rewriting it.
+
+**Design note.** `design/paper-log.md` — complexity classified medium → think hard. Locked nine decisions before coding: entry at first close ≥ open_date + 1, fixed 60-bday exit, top-K=15 cohort snapshotted at entry, CSV at `scoring/paper_log/positions.csv`, equal-weight sizing, new `site/paper_log.html` page, retraction keeps the row with `status=retracted`, pipeline wiring between `score_members.py` and `build_site.py`, no historical backfill.
+
+**Commit trail.**
+
+- `3530a14` — paperlog 1/5: design note + `[~]` flip on #6.
+- `ae1cf23` — paperlog 2/5: `scoring/paper_log.py` `PaperLog` core (open/close/mark-to-market, `walk_from` loop driver, CSV I/O); empty `scoring/paper_log/positions.csv` with header-only row; 14 unit tests in `tests/test_paper_log.py` pinning each operation against the synthetic-member fixture. Promoted `close_at_or_after`, `close_n_positions_later`, `select_cohort` from underscore-prefixed to public in `scoring/backtest.py` so paper_log imports from a stable surface.
+- `ca0cddb` — paperlog 3/5: retraction detection. Extended synthetic fixture with a retracted-trade member; added `_detect_retractions` / `_apply_retraction` to `paper_log.py`; 5 property tests covering row preservation, status flip to `retracted`, `retracted_at` population, and PnL-update short-circuit.
+- `008b963` — paperlog 4/5: `build_paper_log.py` HTML render paralleling `build_leaderboard.py` — three sections (open positions with days-held + mark-to-market PnL, recently-closed last 30d, lifetime summary with total return / hit rate / alpha_vs_spy). 18 schema-contract tests in `tests/test_paper_log_page.py`.
+- `baefa44` — paperlog 5/5: pipeline wiring + landing-page nav link. `update-leaderboard.yml` gained ledger-advance → auto-commit of the CSV (so state survives across runs) → paper-log page render. `update-report.yml` also rebuilds the page daily so Pages carries the current ledger between monthly leaderboard rebuilds. `build_site.py` nav row gained the "Paper-Trading Log" link alongside "Member Leaderboard". (Intermediate `fad9d55` was the first 5/5 attempt before workflow iteration; `baefa44` is the landing SHA.)
+
+Final state: pytest suite green with paper-log coverage added; landing page carries the paper-log link; the ledger CSV exists as a header-only seed ready to start accumulating positions on the next pipeline run.
+
+**Scope adjustments from the ROADMAP prose.**
+
+- *Entry rule.* ROADMAP listed "next-day open / next-day close / hold until nightly pipeline" as open. Plan locked first close ≥ `open_date + 1 calendar day` — matches #5's D+1 close semantics exactly, invariant under cadence change (#11 nightly doesn't require re-deriving the mechanic), and "the next close a follower reading the morning digest can execute against" is the most defensible retail-follower assumption.
+- *Exit rule.* ROADMAP listed "fixed horizon / trailing stop / sell-on-subsequent-disclosure / configurable modes." Plan locked fixed 60 bdays to match #5. Trailing stops and event-driven exits moved to #7-adjacent scope — they need a cost model to evaluate meaningfully.
+- *Storage format.* ROADMAP listed "CSV / parquet / sqlite." Plan locked CSV at `scoring/paper_log/positions.csv` for diff-friendliness. Each pipeline run's append shows as a visible commit diff; parquet is binary; sqlite overkill for append-only. Auto-commit of the CSV from the workflow is how state persists across GHA runs.
+- *Surface.* ROADMAP listed "weekly report / separate page / Cowork artifact." Plan locked a new `site/paper_log.html` page. Cowork artifact stays gated on #13.
+- *Retraction handling.* ROADMAP flagged this as an open question. Plan locked "keep the row, flip status to `retracted`, freeze PnL, stop advancing." Deletion would destroy track-record fidelity — "we acted on this signal at the time" is a real data point even if the underlying disclosure later vanishes.
+- *Position sizing.* Equal-weight across signals in v1. Range-weighted sizing folded explicitly into #7's overlay bundle, not re-litigated here.
+
+**Standing follow-ons.** None new from #6. #7 picks up the cost/tax/sizing overlays that this bundle deferred. #13 (live Cowork artifact) will read the same CSV when it lands.
+
+**Infra notes for future sessions.**
+
+- `scoring/paper_log.py::PaperLog.walk_from(start, end, today)` takes `today` as an explicit parameter so tests pass synthetic dates and the CLI passes `date.today()`. Don't monkey-patch `date.today()` in tests.
+- `(bioguide, tx_id)` is the identity key for retraction detection. capitoltrades `txId` is stable per disclosure; an edit that re-publishes with a new txId would double-log and surface as a visible duplicate row — preferred over silent corruption.
+- The pipeline wiring is order-sensitive: paper-log advance runs *after* `score_members.py` (composite + cohort must be current) and *before* `build_site.py` (page must render with fresh data). `update-leaderboard.yml` and `update-report.yml` both respect this ordering; if a new workflow adds pipeline steps, preserve the sequence.
+- CSV auto-commit in the workflow uses a `[skip ci]` message suffix so the commit doesn't retrigger the same workflow. Removing that suffix creates an infinite loop.
+- The synthetic-member fixture (`tests/fixtures/backtest_synthetic_member.py`) is shared with #5; extending it with a retracted-trade member in paperlog 3/5 adds coverage for both features. Don't fork the fixture — if a future feature needs a third synthetic member, extend in place.
+- `build_paper_log.py`'s render is schema-contract tested, not snapshot-tested. CSS tweaks and cell-ordering changes that preserve the asserted shape don't break the test.

@@ -22,10 +22,9 @@ Strict rules for writing it:
 
 **2026-04-23 (session 3)**
 
-- **#4 + #5 closed** (SHAs `829c345` / `9851bd0`); full prose in `COMPLETED.md`. Session continues on **#6 auto paper-trading log**.
-- **#6 complete (5/5 commits landed).** Pipeline wired into the monthly `update-leaderboard.yml` workflow (ledger advance → auto-commit of the CSV so state survives across runs → paper-log page render); `update-report.yml` also rebuilds the page daily so Pages carries the current ledger. Landing-page nav gained a Paper-Trading Log link. Awaiting Tom's manual verification before flipping `[x]`.
+- **#4 / #5 / #6 closed** (SHAs `829c345` / `9851bd0` / `baefa44`); full prose in `COMPLETED.md`. Session now in **planning phase for #7** (transaction-cost, tax-drag, and position-sizing overlays) — plan pending approval, no code yet.
 - Non-#4/#5/#6 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
-- Standing backlog unchanged: **#7** onward; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
+- Standing backlog: **#7** (in plan), **#8–#13** open; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON, filed session 3), **#15** (RSS feed removal, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
 
 ## For future agents
 
@@ -65,20 +64,7 @@ Status legend:
 
 ### 5. [x] Walk-forward backtest of the mirror strategy (bundled with #4) — 9851bd0 — see COMPLETED.md
 
-### 6. [~] Auto paper-trading log
-
-_In progress — plan approved session 3 (2026-04-23). Design note: `design/paper-log.md`. 5-commit sequence complete: design note + ROADMAP flip → core PaperLog + ledger → retraction detection → HTML render → pipeline wiring into `update-leaderboard.yml` + `update-report.yml` + landing-page nav link. Awaiting Tom's manual verification before flipping `[x]`._
-
-
-The only way to get an honest, out-of-sample read on the platform's viability is a paper-trading log that starts the moment any of this is considered live. Every time a signal fires, log the entry price, a rule-based exit, and track the live PnL. After 6–12 months the log becomes the user's own track record rather than a historical backtest. Positioned right after the #4/#5 schema cutover so the log starts accumulating as soon as the post-file composite stabilizes — there is no cost to starting it early and real cost to starting it late. Runs in parallel with #7 onward rather than blocking them.
-
-Design-note questions:
-
-- Entry rule. Next-day open, next-day close, or hold-out until the nightly pipeline runs.
-- Exit rule. Fixed horizon (N days), trailing stop, sell-on-subsequent-disclosure, or all three as configurable modes.
-- Storage format. CSV in-repo is simplest; parquet or sqlite become worthwhile once the log is large.
-- Surface. Weekly report, separate page, or the live Cowork artifact in #13 — overlaps decided in the #13 design note rather than here.
-- What happens to entries when the signal source is later retracted or corrected.
+### 6. [x] Auto paper-trading log — baefa44 — see COMPLETED.md
 
 ### 7. [ ] Transaction-cost, tax-drag, and position-sizing overlays
 
@@ -171,6 +157,23 @@ Design-note questions:
 - Coexistence vs. hard cutover. Emit both xlsx and JSON for a transition window, or flip `build_leaderboard.py` and drop the xlsx write in the same commit.
 - Test impact. `test_leaderboard_filter_columns.py` is string-level on the rendered HTML — unaffected. Any tests that read the xlsx directly (currently none) would migrate.
 - CI workflow. `.github/workflows/update-report.yml` gates on `ls scoring/output/leaderboard_*.xlsx`; updates to the glob or the presence-check.
+
+### 15. [ ] Remove RSS feed button and functionality from landing page
+
+The `site/index.html` footer ships an "RSS Feed" link and the `<head>` advertises an `application/rss+xml` alternate, backed by `build_site.py::build_rss` writing `site/rss.xml` on every report build. Tom doesn't use it, no downstream consumer is known, and keeping it forces the monthly/daily workflows to regenerate an artifact nobody reads. Rip it out end-to-end rather than leaving a dead link.
+
+Scope — all in one commit since the pieces are tightly coupled:
+
+- `build_site.py`: drop `build_rss()` (around lines 88–120), the `<link rel="alternate" type="application/rss+xml">` in the head template (~line 130), the footer anchor `<a href="rss.xml">RSS Feed</a>` (~line 225), the `build_rss(reports, out_dir)` call in `main()` (~line 298), and update the module docstring (lines 6, 9) to stop advertising the feed.
+- `tests/test_site_index.py`: remove `test_index_nav_has_rss_link` (line 31) and trim the module docstring's RSS references (lines 6, 10).
+- `site/rss.xml`: delete if committed; otherwise rely on the build step no longer emitting it.
+- `.github/workflows/update-report.yml` (line 146) and `.github/workflows/update-leaderboard.yml` (line 95): rename the "Build site index and RSS feed" step to "Build site index".
+
+Design-note questions:
+
+- Does `site/rss.xml` currently exist in the tracked tree? If yes, include the `git rm` in the cleanup commit; if it's only a build artifact, a `.gitignore` entry is unnecessary.
+- Is a 301/410 or README note warranted for any external subscriber, or is the feed truly unused? Framing: no evidence of consumers — silent removal is fine.
+- Any other `rss` / `feed` references elsewhere in the repo (README, design notes) that should be scrubbed in the same commit.
 
 ## Descoped / on hold
 
