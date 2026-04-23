@@ -80,8 +80,14 @@ from pathlib import Path
 from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+SCORING_DIR = Path(__file__).resolve().parent
+# Expose both repo root and scoring/ on sys.path so the sibling-style
+# `from factors import ...` / `from backtest import ...` imports
+# resolve whether this module is run as a script or imported via
+# `from scoring.paper_log` (e.g. from build_paper_log.py or tests).
+for _p in (PROJECT_ROOT, SCORING_DIR):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
 
 import pandas as pd
 
