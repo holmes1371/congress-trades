@@ -22,11 +22,11 @@ Strict rules for writing it:
 
 **2026-04-23 (session 3)**
 
-- Session 3 opens on the **#4 + #5 bundle** (post-file alpha + walk-forward backtest). Plan approved; tier classified **large → ultrathink**.
-- Shared design note landed at `design/postfile-alpha-and-backtest.md` — Tom-approved decisions recorded verbatim so a cold pickup works from note + last commit.
-- All 6 commits of the #4+#5 bundle have landed. Final: `scoring/backtest.py` + `tests/test_backtest.py` + recorded `scoring/output/backtest_20260423.json`. Against the cached universe (465 trades across 12 monthly rebalances) the curated top-15 cohort's alpha_vs_spy is **-1.56% per trade**, alpha_vs_naive_copy_everyone +0.52%. Full numbers and caveats in the design note's "Backtest output" section.
-- Both items remain `[~]` pending Tom's manual verification per session discipline (pushes the branch, eyeballs the updated `leaderboard.html` and the backtest JSON, signs off or returns feedback). Next session flips to `[x]` with the final SHAs preserved.
-- Raised in-session: **leaderboard xlsx → JSON interchange migration**, to be filed as a new backlog item at session end. Standing follow-ons unchanged: **#10** (price_cache), **#12** (weekly-report benchmark strip).
+- **#4 + #5 bundle (post-file alpha + walk-forward backtest) shipped in 6 commits** under the shared design note `design/postfile-alpha-and-backtest.md`. Final SHA `9851bd0`. Both items `[~]` pending Tom's manual verification — push branch, eyeball the updated `leaderboard.html` and `scoring/output/backtest_20260423.json`, sign off or return feedback.
+- Backtest-vs-SPY headline: curated top-15 cohort alpha_vs_spy = **-1.56% per trade** at a 60-bday horizon, alpha_vs_naive_copy_everyone = +0.52%. An honest "not yet viable" finding — details and caveats in the design note's "Backtest output" section.
+- New backlog item filed at session end: **#14 leaderboard xlsx → JSON interchange migration**. Came up mid-plan when Tom flagged xlsx's machine-only use; kept out of the bundle to bound blast radius.
+- Open follow-ups noted in the design note (not filed as standalone items): composite re-tune using the walk-forward surface; NANC seed into the committed price cache (blocks the backtest's `alpha_vs_nanc`).
+- Standing items unchanged at their slotted positions: **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip).
 
 ## For future agents
 
@@ -185,6 +185,17 @@ Design-note questions:
 - State. In-memory only (Cowork artifact constraint) or persisted via a backing file in the mount.
 - Default view on open. Leaderboard vs. open positions vs. benchmark row.
 - Refresh rate. Every open, or cached for N minutes.
+
+### 14. [ ] Leaderboard xlsx → JSON interchange migration
+
+`scoring/output/leaderboard_*.xlsx` is a machine-only artifact today — `build_leaderboard.py` reads it via `openpyxl.load_workbook` to render `site/leaderboard.html`, and no human opens it. The xlsx wrapper imposes cost without value: openpyxl round-trips, the Windows-cowork-mount EOCD-truncation workaround in `scoring/score_members.py::main`, a three-sheet workbook where a flat JSON would do. Swap the interchange format to JSON. Filed session 3 after the xlsx format came up mid-plan for the #4/#5 bundle; the bundle itself kept xlsx to minimize blast radius, so this is the dedicated follow-up.
+
+Design-note questions:
+
+- File shape. One JSON with `{ "long": [...], "short": [...], "weights": [...] }` top-level keys, or separate `leaderboard_long_*.json` + `leaderboard_short_*.json` + `weights.json`.
+- Coexistence vs. hard cutover. Emit both xlsx and JSON for a transition window, or flip `build_leaderboard.py` and drop the xlsx write in the same commit.
+- Test impact. `test_leaderboard_filter_columns.py` is string-level on the rendered HTML — unaffected. Any tests that read the xlsx directly (currently none) would migrate.
+- CI workflow. `.github/workflows/update-report.yml` gates on `ls scoring/output/leaderboard_*.xlsx`; updates to the glob or the presence-check.
 
 ## Descoped / on hold
 
