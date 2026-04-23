@@ -88,7 +88,7 @@ def parse_args():
                    help="Path to analysis_skeleton JSON (to extract required keys)")
     p.add_argument("--out", type=str, default="fills.json",
                    help="Output path for fills.json")
-    p.add_argument("--model", type=str, default="claude-sonnet-4-20250514",
+    p.add_argument("--model", type=str, default="claude-sonnet-4-6",
                    help="Claude model to use")
     p.add_argument("--max-tokens", type=int, default=4096,
                    help="Max tokens for response")
