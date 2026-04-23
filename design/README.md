@@ -32,9 +32,10 @@ Standing references (read as needed, not re-litigated per session):
 
 Active feature notes (paired with an in-flight `[~]` item in `ROADMAP.md`):
 
-- `signal-quality-filters.md` — ROADMAP #3. Scope and commit plan for four signal-quality filters (broad-market ETF drop, options drop, non-self-owner tag, late-filing tag). Five-commit sequence; `scoring/filters.py` as a new module with four pure functions composed in `score_members.py`, factor aggregation extended with six new columns.
+_(none currently)_
 
 Closed feature notes (retained as historical context; matching ROADMAP item lives in `COMPLETED.md`):
 
 - `pytest-ci-suite.md` — ROADMAP #1. Scope, fixtures, and commit plan for the pytest suite + `.github/workflows/tests.yml`. Six-commit sequence; tests target stable primitives, not the churning assemblies that #2–#13 will rewrite. Closed `3022a38`.
 - `benchmark-row.md` — ROADMAP #2. Scope and commit plan for the NANC/KRUZ/SPY/QQQ benchmark reference block on the leaderboard page (primary) and the weekly report (secondary, deferred to #12). Four-commit sequence; option (A) — reference row only, not a follow-list mirror-PnL comparison. Closed `6a5b0eb`.
+- `signal-quality-filters.md` — ROADMAP #3. Scope, 10 locked decisions, and five-commit plan for the four signal-quality filters (broad-market ETF drop, options drop, non-self-owner tag, late-filing tag). `scoring/filters.py` as a new module with four pure functions composed in `score_members.py`; factor aggregation extended with six new columns; leaderboard surface gains four new columns in both 180d and 365d tables. Closed `ae1f56a`.

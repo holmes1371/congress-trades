@@ -82,3 +82,38 @@ Final state: 95 pytest cases green locally. Leaderboard renders the benchmark bl
 - `scoring/benchmarks.py` uses package-style imports (`from scoring.price_cache import get_prices`). `score_members.py` still uses sibling-style because it's invoked as a script; new modules in `scoring/` should prefer package-style unless there's a direct-invocation use case.
 - Synthetic benchmark fixtures have designed returns baked in; `test_all_benchmark_returns_covers_four_tickers` asserts exact values. If `_record.py` later pulls real NANC/KRUZ/QQQ data, that assertion needs relaxing to sign-only or fixture-specific anchors.
 - The leaderboard benchmark block is schema-contract tested, not snapshot-tested — visual tweaks (CSS, cell ordering, ticker additions) that preserve the asserted shape don't break the test.
+
+### 3. [x] Signal-quality filters (ETFs, options, spouse, late filings) — ae1f56a
+
+Closed 2026-04-22 after Tom confirmed the reshuffle direction (ETF-heavy members dropped in rank as expected) and that the four new leaderboard columns (Non-self / Late / ETF drops / Opt drops) render cleanly on `leaderboard.html`.
+
+**Goal.** Stop treating all disclosed transactions as equivalent signals. ETF rebalances and options trades lack information content for retail followers and should drop from scoring; non-self-owner and late-filed trades carry different empirical properties and should be tagged rather than thrown away. Framing: filter when information content is zero; classify when it's different.
+
+**Guiding principle.** Four independent filters over normalized trade records, composed in `scoring/score_members.py` between ticker normalization and alpha attachment. ETF + options → drop from the scoring universe. Non-self owner + late filing → attach a boolean tag per trade; aggregated per-member as shares. Drop counts thread through `aggregate_member_factors` without influencing composite scores — visibility first, weight re-tuning is #4's concern.
+
+**Commit trail.**
+
+- `b22cd02` — filters 1/5: `design/signal-quality-filters.md` + `[~]` flip + design/README.md listing. Locked 10 decisions covering module shape, drop-vs-tag per filter, ETF list contents, late-filing threshold, composition order, factor schema extensions, and test fixture strategy.
+- `fbd4b82` — filters 2/5: `scoring/filters.py` with four pure functions (`is_broad_market_etf`, `is_options_trade`, `is_non_self_owner`, `is_late_filing`). `BROAD_MARKET_ETFS = frozenset(14 tickers)` — US broad-market only; NANC / KRUZ intentionally excluded as niche congressional-tracking signals; sector ETFs excluded because they may carry member-informed signal. `tests/test_filters.py` with 45 parametrized cases.
+- `8bcb1a6` — filters 3/5: pipeline mutation. `apply_filters` helper in `score_members.py` runs after `normalize_ticker`; drops attach as `m["etf_drops"]` / `m["options_drops"]` on each member dict, tags attach per-trade. `aggregate_member_factors` extended with six output fields (`non_self_count / _share`, `late_count / _share`, `etf_drops`, `options_drops`); `drop_counts` kwarg added with `None` default for backward compatibility. `tests/test_composite_math.py` gains 5 aggregation-side cases — discharges the `scoring/factors.py`-extends-its-tests rule.
+- `69dc685` — filters 4/5: leaderboard surface. `display_cols` in `score_members.py` gains four entries (shares + drop counts; per-category counts retained in the factor dict but omitted from xlsx to avoid column bloat). `build_leaderboard.py` renders four new cells per row with `fmt_pct` for shares and integers for drop counts; pre-#3 xlsx files stay backward-compatible via `d.get(...) -> None` → `"—"` fallback. Both 365d and 180d table headers gain columns with tooltip text.
+- `ae1f56a` — filters 5/5: `tests/test_leaderboard_filter_columns.py` (4 schema-contract cases) pinning the rendered HTML shape.
+
+Final state: 149 pytest cases green locally. `score_members.py` reports drop totals on each run; `leaderboard.html` carries the four new filter columns alongside the existing ones (transition-period display).
+
+**Scope adjustments from the ROADMAP prose.**
+
+- *Drop-vs-tag per filter.* The ROADMAP described the bundle but didn't prescribe each filter's disposition. Session-3 design call (recorded in `design/signal-quality-filters.md` locked decision 2) committed: ETF + options → drop; non-self + late → tag. Matches "treating all transactions equivalently inflates noise" without discarding the spouse/late signal — tagged trades still score, just with visible categorization.
+- *Options encoding verification.* Design note flagged a commit-2 pre-step of scanning `scoring/cache/trades/` for distinct `type` / `typeExtended` values, but the sandbox had no local cache. Safe default shipped: `type.upper() not in {BUY, SELL}` OR `typeExtended` non-empty. If Tom's real run shows `options_drops` implausibly high across the board, the safe default is over-dropping (e.g. `typeExtended` carrying non-options metadata) and `is_options_trade` should tighten — file a follow-on commit at that point.
+- *ETF list scope.* Broad-market US only (14 funds). NANC / KRUZ deliberately excluded because a member buying those ETFs signals a bet on Congress's own consensus, which is scoreable information. Sector ETFs (XLE, XLF, XLK, etc.) also excluded because they may carry member-informed signal — e.g. an Energy Committee member buying XLE. Additions are one-line PRs.
+- *Per-category counts in xlsx.* Considered adding `spouse_count` / `child_count` / `joint_count` etc. as separate columns. Ruled out — the single `non_self_share` is the actionable surface for followability scoring; per-owner-type breakdown can be added later if research warrants it.
+- *Drop counts per window.* Drops are computed globally (across the full 365d fetched window) and appear identically on both 180d and 365d leaderboard tables. Informational, not scoring inputs, so per-window attribution wasn't worth the plumbing for v1.
+
+**Standing follow-ons.** None new from #3. The earlier-filed #10 (price_cache single-ticker bug — surfaced during #2) and #12 (weekly-report strip — deferred from #2 commit 3) remain queued at their slotted positions.
+
+**Infra notes for future sessions.**
+
+- `apply_filters` mutates each member's `trades` list in place — replaces it with the kept subset and attaches drop counts as member-dict keys. Downstream code (alpha attach, factor aggregation) sees only kept trades. When #4 / #5 land, they read filtered trades by default; if a feature needs unfiltered trades, it'll need to re-fetch or plumb an "unfiltered" path through.
+- `aggregate_member_factors` gained a `drop_counts` kwarg with `None` default for backward compatibility. Tests that construct synthetic trade lists don't need to pass drop_counts.
+- The xlsx column order inserts filter columns between the pre-z-score factor cluster and the z-score cluster. `build_leaderboard.py` reads by column name, not position, so xlsx-writer reordering doesn't break rendering; but analyst readability depends on the current grouping.
+- `test_leaderboard_filter_columns.py` is schema-contract, not snapshot. CSS / tooltip tweaks that preserve column labels and cell shapes are safe. Adding a fifth filter column would need the test's per-header `count == 2` assertions extended.

@@ -23,8 +23,9 @@ Strict rules for writing it:
 **2026-04-22 (session 2)**
 
 - #2 closed: `[~]` → `[x]` at `6a5b0eb` after Tom confirmed the rendered leaderboard carried the benchmark block + spot-checked values against Yahoo. Full post-mortem in `COMPLETED.md #2`; one-line stub at ROADMAP #2.
-- #3 `[~]` — all five commits landed, awaiting manual QA. SHAs: 1/5 `b22cd02` (design note + `[~]` flip), 2/5 `fbd4b82` (primitives + 45 tests), 3/5 `8bcb1a6` (wire into pipeline + 5 aggregation tests), 4/5 `69dc685` (leaderboard xlsx + HTML columns), 5/5 this commit (`tests/test_leaderboard_filter_columns.py`, 4 schema-contract cases). Transition-period display preserves all existing leaderboard columns.
-- Next: manual QA. Tom pushes, reruns `score_members.py` locally (expect a reshuffle: ETF-heavy members drop in rank; non-self-heavy members unchanged but tagged), then re-renders `build_leaderboard.py` to confirm the four new columns (Non-self / Late / ETF drops / Opt drops) appear cleanly on the HTML page. On signoff, next session flips `[~]` → `[x]` with `<5/5 SHA>` and moves #3 prose into `COMPLETED.md`. Full suite: 149 tests green. Standing follow-ons #10 (price_cache bug) and #12 (weekly-report strip) remain queued.
+- #3 closed: `[~]` → `[x]` at `ae1f56a` after Tom confirmed the reshuffle direction (ETF-heavy members dropped in rank as expected) + the four new leaderboard columns (Non-self / Late / ETF drops / Opt drops) render cleanly on `leaderboard.html`. Full post-mortem + commit trail in `COMPLETED.md #3`; one-line stub at ROADMAP #3.
+- Session 2 wraps here. Next session opens on **#4 + #5** — post-file alpha recomputation bundled with the walk-forward backtest (shared design note, single schema cutover, per the bundling recorded in `0254ef0` and #2's design note). This is the heaviest rework of the remaining backlog; plan-and-wait on the design note before coding starts.
+- Standing follow-ons at their slotted positions: **#10** (price_cache single-ticker bug) and **#12** (weekly-report benchmark strip). Neither is urgent; #10 should land before #11 (daily cadence) amplifies exposure; #12 depends on #10.
 
 ## For future agents
 
@@ -58,24 +59,7 @@ Status legend:
 
 ### 2. [x] NANC / KRUZ / SPY / QQQ benchmark row — 6a5b0eb — see COMPLETED.md
 
-### 3. [~] Signal-quality filters (ETFs, options, spouse, late filings)
-
-In progress — all five commits landed, awaiting manual QA. SHAs: 1/5 `b22cd02` (design note + renumber bundle); 2/5 `fbd4b82` (primitives + 45 tests); 3/5 `8bcb1a6` (wire into `score_members.py` + extend `aggregate_member_factors` + 5 aggregation tests); 4/5 `69dc685` (leaderboard xlsx + HTML columns); 5/5 this commit (`tests/test_leaderboard_filter_columns.py`, 4 schema-contract cases). Tom signs off after push + `score_members.py` rerun + visual leaderboard QA (reshuffle direction correct; new columns render cleanly).
-
-
-A non-trivial fraction of disclosed transactions are ETF rebalances in managed accounts, options rolls, corporate actions, and spouse-directed trades. Treating all transactions equivalently inflates noise in both the scoring and signal-generation layers. Sequenced before #4 so the post-file alpha reshuffle runs on a filter-clean universe rather than a polluted one. Bundled because they share the same fixtures and the same place in the pipeline:
-
-- Exclude broad-market ETFs (SPY, VOO, QQQ, IVV, etc.) from scoring and signal generation. A member buying SPY is not an informed signal.
-- Separate options trades into their own stream rather than mixing them into the mirror universe. Their risk profile differs from spot equities and most retail followers cannot copy them.
-- Tag spouse-filed vs. member-filed transactions as separate signals. The empirical evidence treats these differently.
-- Tag late filings (filed at day 40+). Persistent late-filing is itself a signal-quality variable worth surfacing rather than swallowing.
-
-Design-note questions:
-
-- Filter module shape. Is this one `filters.py` with four functions, or four separate hooks in the existing pipeline.
-- Drop vs. flag-and-keep. Whether filtered-out transactions are removed or retained with a column marking the filter that fired.
-- Source of truth for the broad-market ETF exclusion list. Hardcoded in the repo vs. pulled from a provider.
-- Impact on existing leaderboard windows. Filters will shrink transaction counts; decide whether to show the filter-aware and filter-unaware counts side by side for a transition period.
+### 3. [x] Signal-quality filters (ETFs, options, spouse, late filings) — ae1f56a — see COMPLETED.md
 
 ### 4. [ ] Post-file alpha recomputation (bundled with #5)
 
