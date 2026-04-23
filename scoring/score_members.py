@@ -411,13 +411,20 @@ def main():
     leaderboard_path = OUTPUT_DIR / f"leaderboard_{stamp}.xlsx"
     follow_path = OUTPUT_DIR / f"default_follow_{stamp}.json"
 
-    # Column order for the xlsx
+    # Column order for the xlsx. Post-#4, the unsuffixed alpha columns
+    # (mean_alpha_20d, hit_rate, sharpe_alpha) carry post-file semantics;
+    # `_tradedate`-suffixed columns are additive diagnostics and
+    # disclosure_drag_20d is the signed follower-cost of disclosure lag.
     display_cols = [
         "rank_long", "rank_short", "divergence_flag",
         "fullName", "party", "chamber", "state",
         "composite",
         "trade_count", "buy_count", "sell_count",
         "mean_alpha_20d", "median_alpha_20d", "hit_rate", "sharpe_alpha",
+        # Post-file vs trade-date diagnostics (ROADMAP #4).
+        "disclosure_drag_20d",
+        "mean_alpha_20d_tradedate", "median_alpha_20d_tradedate",
+        "hit_rate_tradedate", "sharpe_alpha_tradedate",
         "mean_lag_days", "liq_pass_rate", "concentration", "buy_sell_balance",
         # Signal-quality filter visibility (ROADMAP #3). Shares carry the
         # information; per-category counts are omitted from the xlsx to

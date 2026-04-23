@@ -89,6 +89,11 @@ def build_table_rows(data, rank_key="rank_long"):
         sharpe = fmt_float(d.get("sharpe_alpha"), 2)
         lag = fmt_float(d.get("mean_lag_days"), 1)
         liq = fmt_pct(d.get("liq_pass_rate"))
+        # Disclosure-lag cost column (ROADMAP #4). Signed: negative
+        # means the follower's post-file entry captured less than the
+        # member's trade-date anchor — expected sign for informed
+        # trades. Backward-compatible with pre-#4 xlsx: missing → '—'.
+        drag = fmt_pct(d.get("disclosure_drag_20d"))
         # Signal-quality filter columns (ROADMAP #3). Backward-compatible
         # with pre-#3 xlsx files: missing columns surface as None → '—'.
         non_self = fmt_pct(d.get("non_self_share"))
@@ -112,6 +117,7 @@ def build_table_rows(data, rank_key="rank_long"):
             f"<td class='green'>{buys}</td>"
             f"<td class='red'>{sells}</td>"
             f"<td>{alpha}</td>"
+            f"<td>{drag}</td>"
             f"<td>{hit}</td>"
             f"<td>{sharpe}</td>"
             f"<td>{lag}d</td>"
@@ -259,7 +265,9 @@ PAGE_TEMPLATE = """\
     <thead><tr>
       <th>#</th><th>Member</th><th>Party</th><th>Chamber</th><th>State</th>
       <th>Score</th><th>Trades</th><th>Buys</th><th>Sells</th>
-      <th>Mean &alpha; 20d</th><th>Hit Rate</th><th>Sharpe</th><th>Lag</th><th>Liq Pass</th>
+      <th title="Mean 20-business-day market-adjusted return on BUYs, entered at max(txDate, published) + 2 business days (ROADMAP #4). This is what a follower could capture — not what the member captured.">Mean &alpha; 20d</th>
+      <th title="Disclosure drag: post-file mean alpha minus trade-date mean alpha. Negative means the follower missed runup to the publication lag — expected sign for informed trades.">Drag 20d</th>
+      <th>Hit Rate</th><th>Sharpe</th><th>Lag</th><th>Liq Pass</th>
       <th title="Share of trades filed by a non-self owner (spouse, child, joint, dependent).">Non-self</th>
       <th title="Share of trades filed at day 40+ (STOCK Act deadline is 45 days).">Late</th>
       <th title="Count of broad-market ETF trades dropped from scoring.">ETF drops</th>
@@ -277,7 +285,9 @@ PAGE_TEMPLATE = """\
     <thead><tr>
       <th>#</th><th>Member</th><th>Party</th><th>Chamber</th><th>State</th>
       <th>Score</th><th>Trades</th><th>Buys</th><th>Sells</th>
-      <th>Mean &alpha; 20d</th><th>Hit Rate</th><th>Sharpe</th><th>Lag</th><th>Liq Pass</th>
+      <th title="Mean 20-business-day market-adjusted return on BUYs, entered at max(txDate, published) + 2 business days (ROADMAP #4). This is what a follower could capture — not what the member captured.">Mean &alpha; 20d</th>
+      <th title="Disclosure drag: post-file mean alpha minus trade-date mean alpha. Negative means the follower missed runup to the publication lag — expected sign for informed trades.">Drag 20d</th>
+      <th>Hit Rate</th><th>Sharpe</th><th>Lag</th><th>Liq Pass</th>
       <th title="Share of trades filed by a non-self owner (spouse, child, joint, dependent).">Non-self</th>
       <th title="Share of trades filed at day 40+ (STOCK Act deadline is 45 days).">Late</th>
       <th title="Count of broad-market ETF trades dropped from scoring.">ETF drops</th>
@@ -290,11 +300,14 @@ PAGE_TEMPLATE = """\
 </div>
 
 <div class="footer">
-  Composite scores are z-score-weighted aggregates of per-trade alpha (buy trades
-  measured against SPY at 5/20/60-day horizons), hit rate, Sharpe ratio of alpha,
-  reporting lag, liquidity pass rate, and trade count. Benchmark returns above
-  are gross of expense ratios and slippage. This is for informational purposes
-  only and does not constitute investment advice.
+  Composite scores are z-score-weighted aggregates of per-trade post-file alpha
+  (BUYs measured against SPY at 5/20/60-day horizons, entered at max(txDate,
+  published) + 2 business days per ROADMAP #4), hit rate, Sharpe ratio of alpha,
+  reporting lag, liquidity pass rate, and trade count. The "Drag 20d" column
+  shows post-file mean alpha minus trade-date mean alpha — the share of member
+  alpha a follower loses to the STOCK Act disclosure lag. Benchmark returns
+  above are gross of expense ratios and slippage. This is for informational
+  purposes only and does not constitute investment advice.
   <br>Last built: {build_time}
 </div>
 
