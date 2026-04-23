@@ -117,3 +117,80 @@ Final state: 149 pytest cases green locally. `score_members.py` reports drop tot
 - `aggregate_member_factors` gained a `drop_counts` kwarg with `None` default for backward compatibility. Tests that construct synthetic trade lists don't need to pass drop_counts.
 - The xlsx column order inserts filter columns between the pre-z-score factor cluster and the z-score cluster. `build_leaderboard.py` reads by column name, not position, so xlsx-writer reordering doesn't break rendering; but analyst readability depends on the current grouping.
 - `test_leaderboard_filter_columns.py` is schema-contract, not snapshot. CSS / tooltip tweaks that preserve column labels and cell shapes are safe. Adding a fifth filter column would need the test's per-header `count == 2` assertions extended.
+
+### 4. [x] Post-file alpha recomputation (bundled with #5) — 829c345
+
+Closed 2026-04-23 after Tom confirmed the reshuffle rendered correctly on `leaderboard.html` and the recorded backtest JSON looked sane.
+
+**Goal.** Reframe the composite from trade-date alpha (what the member captured) to post-file alpha (what a follower can capture), per `design/project-framing.md`'s central hazard: the STOCK Act's 45-day disclosure window means the two metrics diverge materially, and follower-facing rankings must be built on the latter. Bundled with #5 because post-file alpha without an out-of-sample loop is a column change, not a viability test.
+
+**Guiding principle.** Re-point the unsuffixed alpha column names (`alpha_*d`, `mean_alpha_20d`, `hit_rate`, `sharpe_alpha`) to carry post-file semantics so `aggregate_member_factors` and `compute_composite` pick them up without a name change; preserve trade-date alpha under `_tradedate`-suffixed diagnostic columns; expose the gap as a first-class `disclosure_drag_20d` column so the follower-cost of disclosure lag reads off the leaderboard directly. Minimizes consumer churn — `build_leaderboard.py` needs no code change at the schema seam because it reads by column name.
+
+**Shared design note.** `design/postfile-alpha-and-backtest.md` covers both #4 and #5 — entry rule (`max(txDate, published) + BDay(2)`, forward-filled), horizons unchanged (5/20/60), weights unchanged (re-tuning deferred since it needs #5's validation surface), full backfill, trade-date retained as diagnostic, single schema cutover rather than two.
+
+**Commit trail (shared with #5).**
+
+- `7e33876` — postfile+backtest 1/6: design note + `[~]` flip on #4 and #5.
+- `5cfe2c8` — postfile+backtest 2/6: fixture extension. Every scenario in `synthetic_alpha_scenarios.py` gains `expected_alpha_post_file_approx`; price series extended through `publication_date + BDay(2) + horizon`. Scenario 3's legacy `expected_alpha_trade_date_approx` key preserved as an alias. `backtest_synthetic_member.py` added (24 monthly BUYs on SYNTH, deterministic price ladder +$0.10/bday, SPY flat, pd.bdate_range calendar — used by #5's unit test).
+- `3ad35d3` — postfile+backtest 3/6: `compute_trade_alpha_postfile` primitive in `scoring/factors.py` alongside the existing `compute_trade_alpha`; `ENTRY_BUFFER_BDAYS = 2` constant. `tests/test_alpha_math.py` extended with 10 cases — 5 parametrized scenarios on the post-file path + 5 property tests (missing / malformed `published`, missing `txDate`, non-BUY, `max(tx, pub)` anchor). Same-commit test coverage per the `scoring/factors.py` discipline (ROADMAP line 47).
+- `22f244f` — postfile+backtest 4/6: composite cutover. `aggregate_member_factors` gains a shared `_alpha_quartet(buys, key)` helper and emits both post-file (primary unsuffixed columns) and trade-date (`_tradedate`-suffixed diagnostics) factor quartets, plus `disclosure_drag_20d = mean_alpha_20d (post-file) - mean_alpha_20d_tradedate`. `attach_alphas` dual-computes — post-file lands at `alpha_{h}d` (primary), trade-date at `alpha_{h}d_tradedate` (diagnostic). `test_composite_math.py` extended with 5 new aggregation tests. Dry-run section of the design note filled in (538 members → 59 qualified → 30% top-30 churn; Fleischmann featured as the adverse-mover exemplar).
+- `829c345` — postfile+backtest 5/6: leaderboard xlsx + HTML. `display_cols` in `score_members.py` extended with the five new diagnostic columns. `build_leaderboard.py` renders a new `disclosure_drag_20d` cell (fmt_pct) and header (`Drag 20d`) with a tooltip explaining the sign convention; the existing `Mean α 20d` header gains a tooltip clarifying post-file entry; footer rewritten to reference post-file semantics so a reader understands what the composite measures without opening the code. `test_leaderboard_filter_columns.py` extended with 4 schema-contract cases (drag cell, pre-#4 backward compat, drag header count, footer references post-file).
+
+Final state: 168 pytest cases green locally after commit 5; 179 after #5's commit 6 lands.
+
+**Dry-run result.** 59 qualified members (post-#3 filters + 365d ≥10 trades). 30% top-30 composition churn pre vs. post cutover; median |rank shift| = 3, max = 53; 22/59 members shift > 10 places. Top disclosure-drag members (David Taylor, Valerie Hoyle, Shelley Moore Capito, Katie Britt, Nancy Pelosi) all have negative drag — the expected sign for informed trades losing runup to filing lag. Charles Fleischmann featured as the archetypal adverse rank mover: trade-date α₂₀ = +1.8% → post-file α₂₀ = -0.8%; composite +0.713 (rank 5) → -0.394 (rank 50). Magnitude flagged in the commit 4 message as larger than "a handful of places" but aligned with the bundle's explicit purpose — not re-tuned. Full table in the design note's "Dry run" section.
+
+**Scope adjustments from the ROADMAP prose.**
+
+- *Entry buffer choice.* ROADMAP listed "1, 2, or 3 bdays" as open. Plan locked in 2 bdays and hard-coded it rather than exposing a `--entry-buffer` flag; capitoltrades timestamps lag intra-day and 2bd is what a retail follower reading the morning digest can plausibly execute.
+- *Composite weight re-tuning.* ROADMAP listed "reuse existing weights or re-tune" as open. Plan deferred re-tuning — re-tuning needs a validation window, which is what #5 produces; folding it into this bundle would have been a self-reference. Filed as an explicit out-of-scope follow-up in the design note.
+- *Trade-date column disposition.* ROADMAP listed three options (secondary column / separate view / hidden). Plan kept trade-date in the xlsx under `_tradedate` suffix and dropped the headline on `leaderboard.html`; surfaced `disclosure_drag_20d` (not the raw trade-date values) as the user-visible diagnostic. Raw `_tradedate` columns remain available for xlsx consumers who want them.
+- *Format of the leaderboard xlsx.* Tom flagged xlsx as machine-only during plan. Kept xlsx for this bundle (build_leaderboard.py reads by column name, so rename-via-suffix was backward-compatible without renderer changes) but filed the xlsx → JSON interchange migration as #14.
+
+**Standing follow-ons.** Filed in `a0f09ae` (session wrap):
+
+- *#14* — Leaderboard xlsx → JSON interchange migration. Pure refactor; surfaced in session 3 plan; kept out of the bundle to bound blast radius.
+- *Composite weight re-tuning* (not filed as a numbered item yet). Noted in the design note's Out-of-scope section; will file when Tom wants to act on #5's validation surface.
+- *NANC price-cache seed* (not filed as a numbered item). The committed CSV cache doesn't include NANC, so the #5 backtest's `alpha_vs_nanc` came out as None; a one-off yfinance fetch to seed `scoring/cache/prices/NANC.csv` would fill it.
+
+**Infra notes for future sessions.**
+
+- The unsuffixed alpha column names (`alpha_5d`, `mean_alpha_20d`, `hit_rate`, `sharpe_alpha`) carry post-file semantics across the entire pipeline now — not just at the composite. Any new consumer that reads them gets follower-facing alpha by default. Trade-date values live under `_tradedate` suffix everywhere.
+- `attach_alphas` dual-computes on every BUY. Members with no publication date on a trade get `alpha_{h}d = None` (post-file) but may still have `alpha_{h}d_tradedate` populated — the aggregator's `_alpha_quartet` handles this asymmetrically (each quartet short-circuits on its own key's None-count).
+- `_alpha_quartet(buys, key)` is the factor-math primitive. If a new alpha variant lands in the future (e.g. entry-buffer sensitivity), it plugs in by passing a different key and adding a `_buffer3bd` suffix to the factor dict — no structural change needed.
+- `ENTRY_BUFFER_BDAYS = 2` is module-scoped in `scoring/factors.py`. Changing it is a one-line edit but requires re-running against the full cache to see the effect — don't ship that without a re-record dry run.
+
+### 5. [x] Walk-forward backtest of the mirror strategy (bundled with #4) — 9851bd0
+
+Closed 2026-04-23 alongside #4 after Tom confirmed the recorded `scoring/output/backtest_20260423.json` looked plausible.
+
+**Goal.** Close the gap between "the scoring pipeline ranks members" and "the strategy of following them produces alpha vs. benchmarks." Without a walk-forward loop, the leaderboard is in-sample — a member who rode a single 2024 move ranks high without that ranking carrying predictive content. Bundled with #4 because post-file alpha and the backtest share fixtures, a schema cutover, and a design note.
+
+**Guiding principle.** Monthly rebalance, fixed top-K = 15, 60-bday horizon exit, include-while-sitting survivorship, three baselines (naive_copy_everyone, NANC, SPY). On-demand only — replay is expensive; correctness comes from the synthetic-member unit test and the committed sample JSON output. The composite at each rebalance date D is computed on trades with `published < D`, so cohort selection is causal.
+
+**Shared design note.** Same as #4 — `design/postfile-alpha-and-backtest.md`.
+
+**Commit trail (shared with #4).** Commits 1/6–5/6 are above in #4's entry. The #5-specific landing is:
+
+- `9851bd0` — postfile+backtest 6/6: `scoring/backtest.py` (new module) — `monthly_rebalance_dates`, `_trades_before` causal filter, `_select_cohort` (re-aggregates factors + composite at every rebalance D), `walk_forward` (main replay loop: iterate rebalances, execute BUYs from the cohort at D+1 close, 60-bday horizon exit), and a `main()` CLI that loads the cached universe via `fetch_all_members` → `apply_filters` → `attach_alphas` → `walk_forward` → writes `scoring/output/backtest_<YYYYMMDD>.json`. 11 unit tests in `tests/test_backtest.py` — 4 calendar / filter helpers + 7 full-replay assertions on the synthetic-member fixture (shape, 24 trades execute, every trade positive-alpha on the rising ladder, strategy ≡ naive with one member, flat benchmarks → zero total return, first trade's entry date pinned to Mar 1 2022, null-path when no qualifiers). Recorded run against the main-worktree cached universe committed as `scoring/output/backtest_20260423.json`.
+
+Final state: 179 pytest cases green locally. Recorded run shape: 12 monthly rebalances, 465 strategy trades, strategy alpha_vs_spy = **-1.56%** per trade, strategy alpha_vs_naive_copy_everyone = +0.52%. Honest "not yet viable" finding — exactly the output the project-framing note expects the platform to be able to produce.
+
+**Scope adjustments from the ROADMAP prose.**
+
+- *Rebalance cadence.* ROADMAP listed "weekly / monthly / event-driven" as open. Plan locked monthly — matches literature convention, comparable against NANC/KRUZ baselines, parameter not structural so reversible.
+- *Cohort size rule.* ROADMAP listed "threshold vs. fixed K" as open. Plan locked fixed K = 15 to match the existing `--top-n` default so the backtest evaluates the same follow list `default_follow_*.json` publishes.
+- *Compute budget.* Plan locked "on-demand only, not CI-wired." Full-universe replay is too expensive for CI; determinism is covered by the synthetic-member unit test and the committed sample output.
+- *Shared fixtures with #6.* ROADMAP bundled fixture sharing with #6 (paper-trading log). Unused in this bundle — #6 doesn't exist yet. When it lands, it can read the same `alpha_*d` / `alpha_*d_tradedate` columns.
+- *Causality caveat documented, not fixed.* The composite at D uses alphas pre-attached to trades, which themselves used price data extending past D. A strictly causal backtest would recompute alphas per rebalance with only then-available prices. The forward-looking bias is small (only trades published within the last 60 bdays at D have unresolved horizons) and fixing it doubles the compute. Filed as a deferred follow-up in the module docstring rather than as a blocker.
+- *NANC benchmark unavailable.* Committed CSV cache lacks NANC, so `alpha_vs_nanc` came out as None on the recorded run. Filed above as an infra follow-on.
+
+**Standing follow-ons.** None new from #5 beyond #4's (xlsx → JSON migration #14, composite weight re-tuning, NANC seed). The backtest primitive is positioned so #6 (paper-trading log) can reuse `_close_at_or_after`, `_close_n_positions_later`, and `_total_return` without re-implementation.
+
+**Infra notes for future sessions.**
+
+- `walk_forward` takes `members_data` and `price_frames` pre-prepared (normalized tickers, apply_filters run, attach_alphas run). Callers that re-use it in-process should follow `main()`'s preparation order; the synthetic-member test fixture does this in its module-level setup.
+- Rebalance calendar uses `pd.bdate_range` semantics (Mon-Fri, no holidays) — same convention as the synthetic fixture. Real yfinance data has holiday gaps; `_close_at_or_after` forward-fills at the entry, so holiday-boundary trades don't skip execution, but exits use positional indexing which is immune to holidays by construction.
+- Summary stats: `strategy.total_return` is equal-weight per-trade mean return (not time-weighted cumulative); `SPY.total_return` is close-to-close cumulative over the span. The meaningful comparison is `alpha_vs_spy` (per-trade). Don't compare `total_return` values directly across the two series.
+- `naive_copy_everyone` executes the same entry / exit mechanic as the strategy, just without the top-K cohort filter. So `alpha_vs_naive_copy_everyone` isolates the *cohort-selection* contribution — small positive (~+0.5%) on the recorded run suggests the composite ranks non-trivially but not strongly enough to beat SPY after the disclosure-lag confound is removed.
+- Recorded backtest output is committed (`scoring/output/backtest_20260423.json`). Future runs write to `scoring/output/backtest_<YYYYMMDD>.json`; the committed sample is a reference snapshot, not a live artifact.

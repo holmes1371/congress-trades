@@ -22,11 +22,11 @@ Strict rules for writing it:
 
 **2026-04-23 (session 3)**
 
-- **#4 + #5 bundle (post-file alpha + walk-forward backtest) shipped in 6 commits** under the shared design note `design/postfile-alpha-and-backtest.md`. Final SHA `9851bd0`. Both items `[~]` pending Tom's manual verification — push branch, eyeball the updated `leaderboard.html` and `scoring/output/backtest_20260423.json`, sign off or return feedback.
-- Backtest-vs-SPY headline: curated top-15 cohort alpha_vs_spy = **-1.56% per trade** at a 60-bday horizon, alpha_vs_naive_copy_everyone = +0.52%. An honest "not yet viable" finding — details and caveats in the design note's "Backtest output" section.
-- New backlog item filed at session end: **#14 leaderboard xlsx → JSON interchange migration**. Came up mid-plan when Tom flagged xlsx's machine-only use; kept out of the bundle to bound blast radius.
-- Open follow-ups noted in the design note (not filed as standalone items): composite re-tune using the walk-forward surface; NANC seed into the committed price cache (blocks the backtest's `alpha_vs_nanc`).
-- Standing items unchanged at their slotted positions: **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip).
+- **#4 + #5 closed** after Tom's signoff on the rendered leaderboard and recorded backtest JSON. Prose archived to `COMPLETED.md`; one-line stubs left at their numbers. Closing SHAs `829c345` (#4's leaderboard cutover) and `9851bd0` (#5's backtest module).
+- Post-session follow-ons that landed in the same session but aren't #4/#5 proper: `c4ff52b` (ET timestamp fix on the report archive — filenames are UTC, were rendering as naive-local), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before its 2026-06-15 EOL).
+- Next session opens on **#6 auto paper-trading log**. Plan-and-wait per session discipline before coding.
+- Standing backlog unchanged at its slotted positions: **#7** onward; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON migration, filed session 3).
+- Open follow-ups captured in `COMPLETED.md #4` and `#5` rather than filed as numbered items: composite weight re-tune against #5's surface; NANC price-cache seed for the backtest's `alpha_vs_nanc`.
 
 ## For future agents
 
@@ -62,36 +62,9 @@ Status legend:
 
 ### 3. [x] Signal-quality filters (ETFs, options, spouse, late filings) — ae1f56a — see COMPLETED.md
 
-### 4. [~] Post-file alpha recomputation (bundled with #5)
+### 4. [x] Post-file alpha recomputation (bundled with #5) — 829c345 — see COMPLETED.md
 
-_In progress — plan approved session 3 (2026-04-23). Shared design note: `design/postfile-alpha-and-backtest.md`. 6-commit sequence complete (session 3): final code commit for #4 lands the composite + leaderboard cutover; #5 wraps with `scoring/backtest.py` + unit tests + a recorded `backtest_20260423.json` run. Awaiting Tom's manual verification before either flips to `[x]`._
-
-
-Trade-date alpha is what the member captured; post-file alpha is what a follower can capture. The STOCK Act's 45-day disclosure window means the two diverge materially, and `design/project-framing.md` makes the case that follower-facing rankings must be built on post-file alpha. Rework `scoring/factors.py` so the composite is built on post-file alpha — `alpha_postfile_5d/20d/60d` measured from the later of publication date or trade date + a small entry buffer. Trade-date alpha drops from co-headline to a diagnostic column: still emitted so a member's capture can be characterized, not used to rank follow candidates. Bundle the walk-forward backtest (#5) into the same design note — post-file alpha without an out-of-sample loop is a column change, not a viability test — and plan a single schema cutover rather than two. Sequenced after #2 (stable benchmark reference in place before the reshuffle) and #3 (filter-clean universe before the composite is re-fit).
-
-Design-note questions to resolve before coding:
-
-- Entry buffer size. "+2 business days" is a reasonable starting point; worth confirming whether 1 or 3 is more defensible given how often capitoltrades files late in the trading day.
-- Composite weights. Reuse the existing 5/20/60-day weights on the post-file side, or re-tune against a validation window.
-- Backfill policy. Recompute history end-to-end, or only apply post-file alpha going forward and note the cutover in the leaderboard.
-- Test fixtures. Need a trimmed price-cache sample plus a synthetic member with a known trade/publication date gap so the alpha math is unit-testable without live network. Same fixture set should cover the #5 walk-forward loop to avoid duplication.
-- Expected reshuffle magnitude. Worth an exploratory dry run on a single member before committing to the schema change, so the composite change is sized honestly. Post-#3 the member universe will already have shrunk; do the dry run against the filtered dataset, not the raw one.
-- Trade-date column deprecation. Whether trade-date alpha stays in the leaderboard UI as a secondary column, moves to a separate diagnostic view, or gets hidden by default.
-
-### 5. [~] Walk-forward backtest of the mirror strategy
-
-_In progress — bundled with #4 under the shared design note `design/postfile-alpha-and-backtest.md`. See #4's status note for the commit sequence. `scoring/backtest.py` + `tests/test_backtest.py` + recorded `scoring/output/backtest_20260423.json` landed in commit 6/6. Awaiting Tom's manual verification._
-
-
-The scoring pipeline ranks members; it does not backtest the strategy of *following* them. Those are different questions. A walk-forward loop closes the gap: at each historical date D, using only data filed before D, pick the top-K members by the composite, simulate buying every disclosed purchase from that cohort on D+1 at close, hold under a rule-based exit (same menu as the paper-trading log), track PnL, and compare against the benchmarks from #2 plus a naive "copy everyone" baseline. Without this loop the leaderboard is in-sample — a member who rode a large 2024 move ranks high without that ranking carrying predictive content. Bundled with #4: same design note, same schema cutover, same fixture set.
-
-Design-note questions:
-
-- Rebalance cadence. Weekly, monthly, or event-driven.
-- Cohort size rule. Composite-score threshold vs. fixed K.
-- Survivorship. Include members who have since left Congress during the period they were sitting.
-- Compute budget. Full replay is expensive; decide whether the backtest runs in CI or only on demand.
-- Shared fixtures with #6. Both the log and the backtest consume the same post-file alpha columns from #4; duplication is wasteful.
+### 5. [x] Walk-forward backtest of the mirror strategy (bundled with #4) — 9851bd0 — see COMPLETED.md
 
 ### 6. [ ] Auto paper-trading log
 
