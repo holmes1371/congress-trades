@@ -24,8 +24,8 @@ Strict rules for writing it:
 
 - Session 3 opens on the **#4 + #5 bundle** (post-file alpha + walk-forward backtest). Plan approved; tier classified **large → ultrathink**.
 - Shared design note landed at `design/postfile-alpha-and-backtest.md` — Tom-approved decisions recorded verbatim so a cold pickup works from note + last commit.
-- #4 and #5 flipped `[ ]` → `[~]` in the same commit as the design note (1/6 of the commit sequence).
-- Next commits: fixture extension → `compute_trade_alpha_postfile` primitive → composite cutover + dry run → leaderboard schema → backtest module.
+- Commits landed so far: 1/6 design note + ROADMAP flip (#4/#5 `[ ]` → `[~]`), 2/6 fixture extension + backtest synthetic-member fixture.
+- Next commits: `compute_trade_alpha_postfile` primitive → composite cutover + dry run → leaderboard schema → backtest module.
 - Raised in-session: **leaderboard xlsx → JSON interchange migration**, to be filed as a new backlog item at session end. Standing follow-ons unchanged: **#10** (price_cache), **#12** (weekly-report benchmark strip).
 
 ## For future agents
@@ -64,7 +64,7 @@ Status legend:
 
 ### 4. [~] Post-file alpha recomputation (bundled with #5)
 
-_In progress — plan approved session 3 (2026-04-23). Shared design note: `design/postfile-alpha-and-backtest.md`. 6-commit sequence; 1/6 landed (design note + ROADMAP flip). Remaining: fixture extension, `compute_trade_alpha_postfile`, composite cutover + dry run, leaderboard schema, backtest module (#5)._
+_In progress — plan approved session 3 (2026-04-23). Shared design note: `design/postfile-alpha-and-backtest.md`. 6-commit sequence; 2/6 landed (design note + ROADMAP flip, fixture extension). Remaining: `compute_trade_alpha_postfile`, composite cutover + dry run, leaderboard schema, backtest module (#5)._
 
 
 Trade-date alpha is what the member captured; post-file alpha is what a follower can capture. The STOCK Act's 45-day disclosure window means the two diverge materially, and `design/project-framing.md` makes the case that follower-facing rankings must be built on post-file alpha. Rework `scoring/factors.py` so the composite is built on post-file alpha — `alpha_postfile_5d/20d/60d` measured from the later of publication date or trade date + a small entry buffer. Trade-date alpha drops from co-headline to a diagnostic column: still emitted so a member's capture can be characterized, not used to rank follow candidates. Bundle the walk-forward backtest (#5) into the same design note — post-file alpha without an out-of-sample loop is a column change, not a viability test — and plan a single schema cutover rather than two. Sequenced after #2 (stable benchmark reference in place before the reshuffle) and #3 (filter-clean universe before the composite is re-fit).
