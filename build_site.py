@@ -17,14 +17,21 @@ import argparse
 import os
 import re
 import shutil
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape
+from zoneinfo import ZoneInfo
 
 
 PROJ = Path(__file__).resolve().parent
 REPORTS_DIR = PROJ / "reports"
 SITE_URL = os.environ.get("SITE_URL", "https://holmes1371.github.io/congress-trades")
+
+# Report filenames encode UTC timestamps (GitHub Actions runs in UTC).
+# Display in Eastern Time — congressional trade content has a natural
+# ET reference and it matches when US markets + congressional
+# disclosure filings post. zoneinfo handles DST (EDT/EST) transitions.
+DISPLAY_TZ = ZoneInfo("America/New_York")
 
 
 def find_reports():
@@ -40,7 +47,10 @@ def find_reports():
             continue
         date_str = m.group(1)
         time_str = m.group(2)
-        dt = datetime.strptime(date_str + time_str, "%Y%m%d%H%M%S")
+        # Filename timestamp is UTC (GH Actions runs in UTC); attach the
+        # tz explicitly so downstream conversions are unambiguous.
+        dt_utc = datetime.strptime(date_str + time_str, "%Y%m%d%H%M%S").replace(tzinfo=timezone.utc)
+        dt_display = dt_utc.astimezone(DISPLAY_TZ)
         size_kb = html.stat().st_size / 1024
 
         # Pretty lineage name
@@ -51,9 +61,9 @@ def find_reports():
             "filename": html.name,
             "lineage": lineage,
             "pretty_lineage": pretty,
-            "dt": dt,
-            "date_display": dt.strftime("%b %d, %Y"),
-            "time_display": dt.strftime("%I:%M %p"),
+            "dt": dt_utc,  # UTC for RSS pubDate
+            "date_display": dt_display.strftime("%b %d, %Y"),
+            "time_display": dt_display.strftime("%I:%M %p ET"),
             "size_kb": f"{size_kb:.0f}",
         })
 
@@ -99,7 +109,7 @@ def build_rss(reports, out_dir, max_items=20):
     <link>{SITE_URL}</link>
     <description>Automated tracking and analysis of stock trades disclosed by members of Congress.</description>
     <language>en-us</language>
-    <lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S +0000")}</lastBuildDate>
+    <lastBuildDate>{datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")}</lastBuildDate>
     <atom:link href="{SITE_URL}/rss.xml" rel="self" type="application/rss+xml"/>
 {chr(10).join(items)}
   </channel>
@@ -276,7 +286,7 @@ def main():
         latest_size=latest["size_kb"],
         latest_path=latest["path"],
         archive_rows=build_archive_rows(reports),
-        build_time=datetime.now().strftime("%b %d, %Y at %I:%M %p"),
+        build_time=datetime.now(timezone.utc).astimezone(DISPLAY_TZ).strftime("%b %d, %Y at %I:%M %p ET"),
     )
 
     index_path = out_dir / "index.html"

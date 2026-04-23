@@ -15,8 +15,15 @@ import argparse
 import glob
 import os
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
+
+
+# Same ET display convention as build_site.py: GitHub Actions runs in
+# UTC, but report times render in ET to match the congressional trade
+# audience's natural reference.
+DISPLAY_TZ = ZoneInfo("America/New_York")
 
 try:
     import openpyxl
@@ -362,7 +369,7 @@ def main():
         benchmark_block=benchmark_block,
         long_rows=long_rows,
         short_rows=short_rows,
-        build_time=datetime.now().strftime("%b %d, %Y at %I:%M %p"),
+        build_time=datetime.now(timezone.utc).astimezone(DISPLAY_TZ).strftime("%b %d, %Y at %I:%M %p ET"),
     )
 
     out_path = out_dir / "leaderboard.html"
