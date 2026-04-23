@@ -32,9 +32,11 @@ Standing references (read as needed, not re-litigated per session):
 
 Active feature notes (paired with an in-flight `[~]` item in `ROADMAP.md`):
 
-- `paper-log.md` — ROADMAP #6. Scope, 9 locked decisions, CSV schema, and five-commit plan for the auto paper-trading log. New `scoring/paper_log.py` module with `PaperLog` class (open/close/mark-to-market/retraction); persistent CSV ledger at `scoring/paper_log/positions.csv`; new `build_paper_log.py` rendering a three-section `site/paper_log.html`; pipeline wiring between `score_members` and `build_site`. Reuses `scoring/backtest.py` primitives (`_close_at_or_after`, `_close_n_positions_later`, `_select_cohort`) so the live log is the continuation of #5's retrospective backtest.
+- `cost-tax-sizing-overlays.md` — ROADMAP #7. Scope, 9 locked decisions, and five-commit plan for the cost / tax / sizing overlay bundle. New `scoring/costs.py` pure-math module (tiered slippage bps, gain-only tax haircut, equal vs. range sizing); reporting-layer only — paper-log CSV and backtest per-trade rows stay gross. Backtest JSON's `summary.strategy` gains `*_net` fields + `overlays` config; paper-log lifetime summary gains `Gross | Net` columns. Defaults: tiered slippage, tax 0.2975 (federal short-term 24% + VA 5.75%), equal-weight sizing.
 
 Closed feature notes (retained as historical context; matching ROADMAP item lives in `COMPLETED.md`):
+
+- `paper-log.md` — ROADMAP #6. Scope, 9 locked decisions, CSV schema, and five-commit plan for the auto paper-trading log. New `scoring/paper_log.py` module with `PaperLog` class (open/close/mark-to-market/retraction); persistent CSV ledger at `scoring/paper_log/positions.csv`; new `build_paper_log.py` rendering a three-section `site/paper_log.html`; pipeline wiring between `score_members` and `build_site`. Reuses `scoring/backtest.py` primitives (`close_at_or_after`, `close_n_positions_later`, `select_cohort`) so the live log is the continuation of #5's retrospective backtest. Closed `baefa44`.
 
 - `pytest-ci-suite.md` — ROADMAP #1. Scope, fixtures, and commit plan for the pytest suite + `.github/workflows/tests.yml`. Six-commit sequence; tests target stable primitives, not the churning assemblies that #2–#13 will rewrite. Closed `3022a38`.
 - `benchmark-row.md` — ROADMAP #2. Scope and commit plan for the NANC/KRUZ/SPY/QQQ benchmark reference block on the leaderboard page (primary) and the weekly report (secondary, deferred to #12). Four-commit sequence; option (A) — reference row only, not a follow-list mirror-PnL comparison. Closed `6a5b0eb`.

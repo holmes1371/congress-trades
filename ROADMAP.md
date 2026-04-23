@@ -22,7 +22,7 @@ Strict rules for writing it:
 
 **2026-04-23 (session 3)**
 
-- **#4 / #5 / #6 closed** (SHAs `829c345` / `9851bd0` / `baefa44`); full prose in `COMPLETED.md`. Session now in **planning phase for #7** (transaction-cost, tax-drag, and position-sizing overlays) — plan pending approval, no code yet.
+- **#4 / #5 / #6 closed** (SHAs `829c345` / `9851bd0` / `baefa44`); full prose in `COMPLETED.md`. Session continues on **#7 cost / tax / sizing overlays** (plan approved 2026-04-23; design note `design/cost-tax-sizing-overlays.md`; five-commit sequence in flight).
 - Non-#4/#5/#6 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
 - Standing backlog: **#7** (in plan), **#8–#13** open; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON, filed session 3), **#15** (RSS feed removal, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
 
@@ -66,20 +66,17 @@ Status legend:
 
 ### 6. [x] Auto paper-trading log — baefa44 — see COMPLETED.md
 
-### 7. [ ] Transaction-cost, tax-drag, and position-sizing overlays
+### 7. [~] Transaction-cost, tax-drag, and position-sizing overlays
+
+_In progress — plan approved session 3 (2026-04-23). Design note: `design/cost-tax-sizing-overlays.md`. Five-commit sequence: design note + ROADMAP flip → `scoring/costs.py` pure-math module + tests → backtest summary gains net-of-overlay stats → paper-log HTML gains Gross/Net columns → pipeline defaults wired into the two workflows._
 
 Signals without cost models overstate follower returns. Bundled because all three live in the same PnL-accounting layer and share fixtures:
 
-- Slippage estimate per ticker: average spread × configurable fill factor (1× large cap, 2–3× small cap).
-- After-tax view at short-term federal + state rates, toggleable, since congressional trades skew short-horizon and the headline alpha looks materially different on an after-tax basis.
-- Position-sizing modes — equal-weight across signals versus range-weighted using the disclosed transaction range as a weak conviction proxy — selected explicitly rather than left implicit.
+- Slippage estimate per ticker: ADV-tiered round-trip bps haircut (5 / 25 / 75 bps for large / mid / small by ADV), CLI-overridable.
+- After-tax view at short-term federal + VA state (24% + 5.75% = 29.75% combined default), toggleable via `--tax-rate`, since congressional trades skew short-horizon and the headline alpha looks materially different on an after-tax basis.
+- Position-sizing modes — equal-weight across signals (default) versus range-weighted using the disclosed `value` field as a weak conviction proxy — selected explicitly rather than left implicit.
 
-Design-note questions:
-
-- Slippage data source. yfinance provides limited spread coverage; may need a cheaper proxy (bid-ask estimate from daily bars).
-- Scope of the tax toggle. Paper-trading log (#6) only, walk-forward backtest (#5) only, or both.
-- Default sizing mode for the curated follow list.
-- Whether the state rate is user-configurable or hardcoded to a sensible default.
+All decisions locked in `design/cost-tax-sizing-overlays.md`. Overlays apply to strategy PnL only (both the #5 backtest and the #6 paper-log HTML); the composite still ranks on gross alpha — net-of-costs composite scoring is an explicit v2 follow-up.
 
 ### 8. [ ] Committee-relevant consensus signals
 
