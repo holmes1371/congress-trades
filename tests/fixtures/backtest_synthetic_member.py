@@ -125,6 +125,52 @@ SYNTH_MEMBER: dict = {
 }
 
 
+# ── Retractor member (ROADMAP #6 retraction-handling fixture) ──
+
+RETRACTOR_BIOGUIDE = "RETRACT0"
+RETRACTOR_TXID = 30_000_000_000
+RETRACTOR_TRADE_DATE = date(2022, 2, 1)  # Tuesday, no bday adjustment needed
+
+
+def make_retractor_member(retracted: bool = False) -> dict:
+    """Synthetic second member with a single Feb-2022 BUY. Pass
+    `retracted=True` to simulate the disclosure disappearing from
+    capitoltrades between pipeline runs — `SYNTH_PRICES` still covers
+    the date range, so the position's price lookup doesn't change when
+    the trade vanishes from the member's trades list.
+
+    Used by tests/test_paper_log.py to exercise retraction detection
+    without touching the primary SYNTH_MEMBER fixture (which tests
+    rely on for deterministic 24-trade accumulation)."""
+    if retracted:
+        trades: list[dict] = []
+    else:
+        close = SYNTH_PRICES[RETRACTOR_TRADE_DATE]
+        trades = [{
+            "txId":           RETRACTOR_TXID,
+            "ticker":         "SYNTH",
+            "type":           "BUY",
+            "typeExtended":   None,
+            "txDate":         RETRACTOR_TRADE_DATE.isoformat(),
+            "published":      (RETRACTOR_TRADE_DATE + timedelta(days=30)).isoformat(),
+            "filedAfterDays": 30,
+            "value":          int(100 * close),
+            "price":          close,
+            "size":           100,
+            "owner":          "self",
+            "sector":         "Technology",
+        }]
+    return {
+        "bioguideId": RETRACTOR_BIOGUIDE,
+        "fullName":   "Retractor Member",
+        "party":      "Independent",
+        "chamber":    "House",
+        "state":      "YY",
+        "trades":     trades,
+        "tradeCount": len(trades),
+    }
+
+
 def make_prices_frame(
     price_map: dict[date, float], volume: float = 1_000_000_000
 ) -> pd.DataFrame:

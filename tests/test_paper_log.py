@@ -2,7 +2,7 @@
 Unit + integration tests for `scoring.paper_log` — ROADMAP #6, under
 `design/paper-log.md`.
 
-Three slices:
+Four slices:
 
   1. PaperLog I/O — load empty file, write round-trips, headers pinned.
   2. PaperLog mutations — open_position / close_position /
@@ -10,11 +10,11 @@ Three slices:
   3. Full `walk` integration on the synthetic-member fixture
      (`tests/fixtures/backtest_synthetic_member.py`). Tests drive the
      loop across multiple simulated pipeline-run dates with a fixed
-     `now=` so the `last_updated` column is deterministic, and verify
-     the accumulating ledger matches expectations.
-
-Retraction-path tests land in commit 3 — this file stays focused on
-the open / close / mark-to-market surface.
+     `now=` so the `last_updated` column is deterministic.
+  4. Retraction handling — `make_retractor_member()` emits a single
+     Feb-2022 BUY by default and `make_retractor_member(retracted=True)`
+     drops it, simulating a capitoltrades disclosure correction between
+     runs. Tests drive the full detect/apply/persist path.
 """
 
 from __future__ import annotations
@@ -28,11 +28,14 @@ import pytest
 from scoring.paper_log import CSV_HEADERS, PaperLog
 from scoring.score_members import attach_alphas
 from tests.fixtures.backtest_synthetic_member import (
+    RETRACTOR_BIOGUIDE,
+    RETRACTOR_TXID,
     SPY_PRICES,
     SYNTH_MEMBER,
     SYNTH_PRICES,
     TRADE_DATES,
     make_prices_frame,
+    make_retractor_member,
 )
 
 
@@ -312,6 +315,124 @@ def test_walk_accumulates_across_multiple_months(synthetic_world, tmp_path):
     for row in log.closed_rows():
         assert float(row["pnl_pct"]) > 0
         assert float(row["alpha_vs_spy"]) > 0
+
+
+def _world_with_retractor(retracted: bool) -> dict:
+    """Synthetic world carrying both SYNTH_MEMBER and a retractor
+    member (with or without the retracted trade present). Share
+    price frames / post-file alphas across the two members."""
+    members_data = {
+        SYNTH_MEMBER["bioguideId"]: {
+            **SYNTH_MEMBER,
+            "trades": [dict(t) for t in SYNTH_MEMBER["trades"]],
+        },
+    }
+    for t in members_data[SYNTH_MEMBER["bioguideId"]]["trades"]:
+        t["ticker"] = (t.get("ticker") or "").upper()
+
+    retractor = make_retractor_member(retracted=retracted)
+    retractor["trades"] = [dict(t) for t in retractor["trades"]]
+    for t in retractor["trades"]:
+        t["ticker"] = (t.get("ticker") or "").upper()
+    members_data[RETRACTOR_BIOGUIDE] = retractor
+
+    price_frames = {
+        "SYNTH": make_prices_frame(SYNTH_PRICES),
+        "SPY":   make_prices_frame(SPY_PRICES),
+    }
+    attach_alphas(members_data, price_frames, price_frames["SPY"])
+    return {
+        "members_data": members_data,
+        "price_frames": price_frames,
+        "spy":          price_frames["SPY"],
+    }
+
+
+def test_walk_detects_retraction_between_runs(tmp_path):
+    """Run 1 sees RETRACTOR_TXID and opens the position. Between runs
+    the trade vanishes from capitoltrades. Run 2 detects this and
+    flips the row to status=retracted with retracted_at stamped."""
+    log = PaperLog(tmp_path / "log.csv")
+    # Run 1 at Mar 31 2022: Feb trade published Mar 3, opens here.
+    _walk_at(log, _world_with_retractor(retracted=False), today=date(2022, 3, 31))
+    row = next(r for r in log.rows if r["bioguide"] == RETRACTOR_BIOGUIDE)
+    assert row["status"] == "open"
+
+    # Run 2 at Apr 29 2022: retractor trade is gone; position retracts.
+    _walk_at(log, _world_with_retractor(retracted=True), today=date(2022, 4, 29))
+    row = next(r for r in log.rows if r["bioguide"] == RETRACTOR_BIOGUIDE)
+    assert row["status"] == "retracted"
+    assert row["retracted_at"] == "2022-04-29"
+    # Row is still present — retraction is a status flip, not a delete.
+    assert row["tx_id"] == str(RETRACTOR_TXID)
+    assert row["entry_close"] != ""  # entry data preserved
+
+
+def test_retracted_row_skipped_by_mark_to_market(tmp_path):
+    """After retraction, subsequent pipeline runs must not bump the
+    retracted row's pnl_abs/pnl_pct — it's frozen at the last mark."""
+    log = PaperLog(tmp_path / "log.csv")
+    _walk_at(log, _world_with_retractor(retracted=False), today=date(2022, 3, 31))
+    # Capture pre-retraction pnl (may have been mark-to-marketed at this point).
+    row_before = next(r for r in log.rows if r["bioguide"] == RETRACTOR_BIOGUIDE)
+    pnl_before_retraction_open = row_before["pnl_abs"]
+
+    _walk_at(log, _world_with_retractor(retracted=True), today=date(2022, 4, 29))
+    row_after_retraction = next(r for r in log.rows if r["bioguide"] == RETRACTOR_BIOGUIDE)
+    pnl_at_retraction = row_after_retraction["pnl_abs"]
+
+    # Subsequent walk: pnl must not change (retracted rows skip mark_to_market).
+    _walk_at(log, _world_with_retractor(retracted=True), today=date(2022, 5, 31))
+    row_later = next(r for r in log.rows if r["bioguide"] == RETRACTOR_BIOGUIDE)
+    assert row_later["status"] == "retracted"
+    assert row_later["pnl_abs"] == pnl_at_retraction
+
+
+def test_retraction_does_not_reopen_same_tx_id(tmp_path):
+    """If the retracted trade reappears in capitoltrades on a later
+    run (paranoid case), `has_trade` still matches the retracted row
+    and the position does not re-open."""
+    log = PaperLog(tmp_path / "log.csv")
+    _walk_at(log, _world_with_retractor(retracted=False), today=date(2022, 3, 31))
+    _walk_at(log, _world_with_retractor(retracted=True), today=date(2022, 4, 29))
+
+    # Trade reappears after retraction.
+    _walk_at(log, _world_with_retractor(retracted=False), today=date(2022, 5, 31))
+    retractor_rows = [r for r in log.rows if r["bioguide"] == RETRACTOR_BIOGUIDE]
+    assert len(retractor_rows) == 1  # no duplicate open
+    assert retractor_rows[0]["status"] == "retracted"  # still retracted
+
+
+def test_detect_retractions_skips_members_missing_from_data(tmp_path):
+    """If a member drops out of members_data entirely (e.g. just
+    not fetched this run), their open positions must not be marked
+    retracted — absence-from-data isn't retraction."""
+    log = PaperLog(tmp_path / "log.csv")
+    # Open a position from the full world.
+    _walk_at(log, _world_with_retractor(retracted=False), today=date(2022, 3, 31))
+    row = next(r for r in log.rows if r["bioguide"] == RETRACTOR_BIOGUIDE)
+    assert row["status"] == "open"
+
+    # Build a world where the retractor member is entirely absent.
+    world = _world_with_retractor(retracted=False)
+    del world["members_data"][RETRACTOR_BIOGUIDE]
+
+    retracted_ids = log.detect_retractions(world["members_data"])
+    assert row["position_id"] not in retracted_ids
+
+
+def test_apply_retraction_no_op_on_closed_position(tmp_path):
+    """Once a position has closed with realized PnL, retraction must
+    not rewrite it — close-first semantics."""
+    log = PaperLog(tmp_path / "log.csv")
+    row = _sample_open(log, bioguide="M0", tx_id=1, ticker="TKR", entry_close=100.0)
+    log.close_position(
+        row["position_id"],
+        exit_date=date(2024, 3, 1), exit_close=110.0, alpha_vs_spy=0.10, now=_NOW,
+    )
+    log.apply_retraction(row["position_id"], retracted_at=date(2024, 3, 15), now=_NOW)
+    assert log.rows[0]["status"] == "closed"
+    assert log.rows[0]["retracted_at"] == ""
 
 
 def test_walk_persists_across_reloads(synthetic_world, tmp_path):

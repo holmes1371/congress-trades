@@ -46,10 +46,28 @@ throwaway `PaperLog(path=tmp_path/"positions.csv")` instances.
 
 ## Retraction
 
-Detection / handling lands in commit 3 under this ROADMAP item.
-For this commit, the module provides the open / close / mark-to-market
-surface; `status` enum accommodates `retracted` in advance, but
-`walk` does not yet look for disappeared `tx_id`s.
+Detection compares open log positions against the current capitoltrades
+trades in `members_data` by `(bioguide, tx_id)`. If the member is
+present in `members_data` and the tx_id is not in their trades, the
+position's `status` flips to `retracted` and `retracted_at` gets
+stamped with `today`. The row stays in the ledger — deletion would
+destroy the "we acted on this signal at the time" track-record
+fidelity; retraction is metadata, not an erase.
+
+Retracted positions:
+  * Stop participating in mark-to-market (status != "open").
+  * Stop participating in close-on-horizon (ditto).
+  * Are not re-opened if the same tx_id later reappears — `has_trade`
+    is a pure identity check and doesn't inspect status.
+
+Retraction is applied *after* horizon-close but *before*
+mark-to-market — a position whose target_exit already elapsed at
+today closes with realized PnL first; the disclosure-correction can't
+rewrite a close that would already have fired.
+
+If the member drops out of `members_data` entirely (e.g. not fetched
+this run), their open positions are left alone — missing data isn't
+retraction.
 """
 
 from __future__ import annotations
@@ -208,6 +226,42 @@ class PaperLog:
             "last_updated": now.isoformat(timespec="seconds"),
         })
 
+    def detect_retractions(self, members_data: dict[str, dict]) -> list[str]:
+        """Return position_ids of open positions whose (bioguide, tx_id)
+        no longer appears in `members_data`. Members missing from
+        `members_data` entirely are skipped — absence-from-data isn't
+        grounds for retraction. See the module docstring for the full
+        policy."""
+        retracted: list[str] = []
+        for row in self.rows:
+            if row.get("status") != "open":
+                continue
+            m = members_data.get(row["bioguide"])
+            if m is None:
+                continue
+            tx_ids = {str(t.get("txId")) for t in (m.get("trades") or [])}
+            if str(row["tx_id"]) not in tx_ids:
+                retracted.append(row["position_id"])
+        return retracted
+
+    def apply_retraction(
+        self, position_id: str, *,
+        retracted_at: date,
+        now: datetime | None = None,
+    ) -> None:
+        """Flip an open position to status=retracted and stamp
+        retracted_at. No-op on non-open rows — closed or
+        already-retracted positions are left alone."""
+        now = now or datetime.utcnow()
+        row = self._find_by_id(position_id)
+        if row is None or row.get("status") != "open":
+            return
+        row.update({
+            "status":       "retracted",
+            "retracted_at": retracted_at.isoformat(),
+            "last_updated": now.isoformat(timespec="seconds"),
+        })
+
     def mark_to_market(
         self, price_frames: dict[str, pd.DataFrame], today: date,
         *, now: datetime | None = None,
@@ -284,15 +338,22 @@ class PaperLog:
                 now=now,
             )
 
-        # 2. Mark-to-market remaining open positions.
+        # 2. Retraction: detect + flag disclosures that have
+        #    disappeared from members_data since we opened them.
+        #    After step 1 so horizon-closed positions (already
+        #    realized) aren't rewritten by a late retraction.
+        for pid in self.detect_retractions(members_data):
+            self.apply_retraction(pid, retracted_at=today, now=now)
+
+        # 3. Mark-to-market remaining open positions.
         self.mark_to_market(price_frames, today, now=now)
 
-        # 3. Cohort as of today.
+        # 4. Cohort as of today.
         cohort = select_cohort(
             members_data, ticker_adv, today, window_days, min_trades, K
         )
 
-        # 4. Open new positions for unseen cohort BUYs.
+        # 5. Open new positions for unseen cohort BUYs.
         for bid in cohort:
             m = members_data.get(bid)
             if m is None:
