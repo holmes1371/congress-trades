@@ -138,9 +138,83 @@ Module-level `SYNTH_MEMBER` dict + `SYNTH_PRICES` dict keyed by date → close. 
 
 Each commit leaves `pytest` green and the worktree buildable. Commits 3–6 can each slip to a new session; commits 1–2 are self-sufficient design-and-fixture artifacts that don't introduce half-finished production state.
 
-## Dry run (commit 4 fills this in)
+## Dry run (recorded at commit 4)
 
-Empty until commit 4 lands. Target content: before/after composite for one member with material filing lag (candidate: Hoyer or Pelosi — high filing lag, meaningful trade count post-#3 filters), plus rank-shift magnitude across the top-30. If the dry-run reshuffle is smaller than a handful of places, or larger than 10+, flag it in the commit message — surprising magnitude warrants re-reading the framing note before shipping.
+Ran the commit-4 composite cutover against the main-worktree trade cache
+(538 members, pruned by post-#3 filters + the 365d / ≥10-trades qualify
+floor → 59 qualified members). Prices loaded from the committed CSV
+cache (1024 of 1063 tickers resolvable; the rest foreign or delisted,
+no impact on the qualified universe). No yfinance calls.
+
+### Rank-shift distribution across the qualified universe
+
+| metric | value |
+|---|---|
+| qualified members | 59 |
+| median absolute rank shift | 3 places |
+| max absolute rank shift | 53 places |
+| members shifting > 10 places | 22 / 59 |
+| members shifting > 20 places | 14 / 59 |
+| members shifting > 30 places | 7 / 59 |
+| top-30 overlap (pre vs post) | 21 / 30 |
+
+Top-30 composition churn of ~30% is in the "larger than 10+" territory
+the plan flagged as worth noting. This is the expected direction — the
+cutover removes the disclosure-lag confound, so members whose
+trade-date alpha was driven by pre-publication price moves (which a
+follower can't capture) drop out, and members whose trades have
+post-publication persistence rise. The magnitude validates that this
+bundle is a *ranking change*, not just a column rename, and justifies
+Tom's signoff on a six-commit migration rather than an inline tweak.
+
+### Top disclosure-drag members (where a follower loses most to lag)
+
+| member | post-file α₂₀ | trade-date α₂₀ | drag | mean lag (d) |
+|---|---:|---:|---:|---:|
+| David Taylor | -1.5% | +1.9% | -3.4pp | 13.7 |
+| Valerie Hoyle | +1.0% | +4.3% | -3.2pp | 20.4 |
+| Shelley Moore Capito | +1.7% | +4.8% | -3.1pp | 16.2 |
+| Richard McCormick | -0.8% | +2.2% | -3.0pp | 28.9 |
+| Katie Britt | -1.1% | +1.9% | -2.9pp | 153.0 |
+| Nancy Pelosi | -3.7% | -1.9% | -1.8pp | 18.2 |
+
+Every top-10 drag member's post-file alpha is lower than their
+trade-date alpha — the expected sign for informed trades whose alpha
+decays before a follower can act. Britt's 153-day mean lag is a
+filter flag on its own (late_filing ≥ 40 days covers it); the
+composite already dings her for it via `neg_lag_z`.
+
+### Featured example — large adverse rank mover
+
+**Charles Fleischmann** (TN-3, R, 38 trades in 365d, mean lag 24.7d):
+
+| metric | pre-cutover | post-cutover |
+|---|---:|---:|
+| mean_alpha_20d | +1.8% (trade-date) | -0.8% (post-file) |
+| composite | +0.713 | -0.394 |
+| rank | 5 / 59 | 50 / 59 |
+
+Fleischmann's trade-date alpha was positive (+1.8%) — his picks
+captured market-adjusted gains in the 20 bdays after he traded. But by
+the time the 24-day publication lag cleared plus a 2-bday follower
+entry buffer, the runup was spent: post-file alpha is -0.8%. He drops
+from the top 10% of qualified members to the bottom 20%. This is the
+project-framing note's central hazard rendered numerically: trade-date
+alpha is what he captured; post-file alpha is what a follower can
+capture; the two are not the same number.
+
+### Notes for downstream commits
+
+- Commit 5 updates `leaderboard_*.xlsx` column names and the HTML
+  renderer's headline metric to reflect the post-file semantics. The
+  Fleischmann example above is the kind of story the HTML page should
+  surface visibly (via `disclosure_drag_20d` column) so a reader
+  understands why rankings differ from trade-date-era intuitions.
+- Commit 6 wires the walk-forward backtest. The rank churn above is
+  evidence the post-file composite is a materially different signal
+  to backtest against; the fact that it reshuffles the universe means
+  the #5 backtest is a real viability test, not a trivial replay of
+  #4's sort order.
 
 ## Out of scope / follow-ups
 

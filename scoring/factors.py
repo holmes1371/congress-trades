@@ -215,17 +215,46 @@ def compute_ticker_adv(prices: pd.DataFrame) -> float:
 
 # ── Per-member factor aggregation ──────────────────────────
 
+def _alpha_quartet(
+    buys: list[dict], key: str
+) -> tuple[float | None, float | None, float | None, float | None]:
+    """Given a BUY list and the trade-dict key to read alpha from,
+    return (mean, median, hit_rate, sharpe). `None` where fewer than
+    MIN_BUYS_FOR_ALPHA non-None samples.
+
+    Same math for both the post-file primary (`alpha_20d`) and the
+    trade-date diagnostic (`alpha_20d_tradedate`) paths — only the
+    input column name changes.
+    """
+    samples = [t.get(key) for t in buys if t.get(key) is not None]
+    if len(samples) < MIN_BUYS_FOR_ALPHA:
+        return (None, None, None, None)
+    mean_a = float(np.mean(samples))
+    median_a = float(np.median(samples))
+    hit = float(np.mean([1.0 if a > 0 else 0.0 for a in samples]))
+    sd = float(np.std(samples, ddof=1)) if len(samples) > 1 else 0.0
+    sharpe = float(mean_a / sd) if sd > 0 else None
+    return (mean_a, median_a, hit, sharpe)
+
+
 def aggregate_member_factors(
     trades: list[dict],
     ticker_adv: dict[str, float],
     drop_counts: dict[str, int] | None = None,
 ) -> dict[str, Any]:
     """
-    Given a list of trades (already enriched with alpha_*d keys for BUYs)
-    and a ticker → ADV map, compute all factor values for one member over
-    one window.
+    Given a list of trades (already enriched with alpha_*d and
+    alpha_*d_tradedate keys for BUYs) and a ticker → ADV map, compute
+    all factor values for one member over one window.
 
     Returns a dict of scalar factor values. None where insufficient data.
+
+    Per ROADMAP #4's shared design note
+    (`design/postfile-alpha-and-backtest.md`), the primary alpha
+    factor columns (`mean_alpha_20d`, `hit_rate`, `sharpe_alpha`)
+    carry **post-file** semantics. The `_tradedate`-suffixed columns
+    are additive diagnostics preserved so the disclosure-drag gap is
+    visible per member; they are NOT inputs to the composite.
 
     `drop_counts`, if provided, should carry the per-filter drop totals
     from `score_members.py::apply_filters` (keys: "etf_drops",
@@ -241,41 +270,50 @@ def aggregate_member_factors(
     total_trades = len(trades)
     if total_trades == 0:
         return {
-            "trade_count":      0,
-            "buy_count":        0,
-            "sell_count":       0,
-            "mean_alpha_20d":   None,
-            "median_alpha_20d": None,
-            "hit_rate":         None,
-            "sharpe_alpha":     None,
-            "mean_lag_days":    None,
-            "liq_pass_rate":    None,
-            "concentration":    None,
-            "buy_sell_balance": None,
-            "non_self_count":   0,
-            "non_self_share":   None,
-            "late_count":       0,
-            "late_share":       None,
-            "etf_drops":        etf_drops,
-            "options_drops":    options_drops,
+            "trade_count":                0,
+            "buy_count":                  0,
+            "sell_count":                 0,
+            "mean_alpha_20d":             None,
+            "median_alpha_20d":           None,
+            "hit_rate":                   None,
+            "sharpe_alpha":               None,
+            "mean_alpha_20d_tradedate":   None,
+            "median_alpha_20d_tradedate": None,
+            "hit_rate_tradedate":         None,
+            "sharpe_alpha_tradedate":     None,
+            "disclosure_drag_20d":        None,
+            "mean_lag_days":              None,
+            "liq_pass_rate":              None,
+            "concentration":              None,
+            "buy_sell_balance":           None,
+            "non_self_count":             0,
+            "non_self_share":             None,
+            "late_count":                 0,
+            "late_share":                 None,
+            "etf_drops":                  etf_drops,
+            "options_drops":              options_drops,
         }
 
     buys = [t for t in trades if (t.get("type") or "").upper() == "BUY"]
     sells = [t for t in trades if (t.get("type") or "").upper() == "SELL"]
 
-    # Return-quality factors (on BUYs only)
-    alpha_20d = [t.get("alpha_20d") for t in buys if t.get("alpha_20d") is not None]
-    mean_alpha = float(np.mean(alpha_20d)) if len(alpha_20d) >= MIN_BUYS_FOR_ALPHA else None
-    median_alpha = float(np.median(alpha_20d)) if len(alpha_20d) >= MIN_BUYS_FOR_ALPHA else None
-    hit_rate = (
-        float(np.mean([1.0 if a > 0 else 0.0 for a in alpha_20d]))
-        if len(alpha_20d) >= MIN_BUYS_FOR_ALPHA else None
+    # Return-quality factors (BUYs only).
+    # Primary: post-file alpha, stored at `alpha_20d` by `attach_alphas`.
+    mean_alpha, median_alpha, hit_rate, sharpe = _alpha_quartet(buys, "alpha_20d")
+    # Diagnostic: trade-date alpha, stored at `alpha_20d_tradedate`.
+    (
+        mean_alpha_td, median_alpha_td, hit_rate_td, sharpe_td,
+    ) = _alpha_quartet(buys, "alpha_20d_tradedate")
+
+    # disclosure_drag_20d = post-file mean - trade-date mean. Negative
+    # means the follower missed runup (expected for informed trades);
+    # positive means post-file entry captured more than the trade-date
+    # anchor would have implied (rare). None if either side is None.
+    disclosure_drag_20d = (
+        mean_alpha - mean_alpha_td
+        if (mean_alpha is not None and mean_alpha_td is not None)
+        else None
     )
-    if len(alpha_20d) >= MIN_BUYS_FOR_ALPHA:
-        sd = float(np.std(alpha_20d, ddof=1)) if len(alpha_20d) > 1 else 0.0
-        sharpe = float(np.mean(alpha_20d) / sd) if sd > 0 else None
-    else:
-        sharpe = None
 
     # Disclosure lag (all trades)
     lags = [t.get("filedAfterDays") for t in trades if isinstance(t.get("filedAfterDays"), (int, float))]
@@ -323,23 +361,28 @@ def aggregate_member_factors(
     late_share = late_count / total_trades
 
     return {
-        "trade_count":      total_trades,
-        "buy_count":        len(buys),
-        "sell_count":       len(sells),
-        "mean_alpha_20d":   mean_alpha,
-        "median_alpha_20d": median_alpha,
-        "hit_rate":         hit_rate,
-        "sharpe_alpha":     sharpe,
-        "mean_lag_days":    mean_lag,
-        "liq_pass_rate":    liq_pass_rate,
-        "concentration":    concentration,
-        "buy_sell_balance": bs_balance,
-        "non_self_count":   non_self_count,
-        "non_self_share":   non_self_share,
-        "late_count":       late_count,
-        "late_share":       late_share,
-        "etf_drops":        etf_drops,
-        "options_drops":    options_drops,
+        "trade_count":                total_trades,
+        "buy_count":                  len(buys),
+        "sell_count":                 len(sells),
+        "mean_alpha_20d":             mean_alpha,
+        "median_alpha_20d":           median_alpha,
+        "hit_rate":                   hit_rate,
+        "sharpe_alpha":               sharpe,
+        "mean_alpha_20d_tradedate":   mean_alpha_td,
+        "median_alpha_20d_tradedate": median_alpha_td,
+        "hit_rate_tradedate":         hit_rate_td,
+        "sharpe_alpha_tradedate":     sharpe_td,
+        "disclosure_drag_20d":        disclosure_drag_20d,
+        "mean_lag_days":              mean_lag,
+        "liq_pass_rate":              liq_pass_rate,
+        "concentration":              concentration,
+        "buy_sell_balance":           bs_balance,
+        "non_self_count":             non_self_count,
+        "non_self_share":             non_self_share,
+        "late_count":                 late_count,
+        "late_share":                 late_share,
+        "etf_drops":                  etf_drops,
+        "options_drops":              options_drops,
     }
 
 

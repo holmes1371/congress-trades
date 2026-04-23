@@ -52,6 +52,7 @@ from factors import (
     aggregate_member_factors,
     compute_composite,
     compute_trade_alpha,
+    compute_trade_alpha_postfile,
     compute_ticker_adv,
 )
 from filters import (
@@ -206,7 +207,17 @@ def attach_alphas(
     price_frames: dict[str, pd.DataFrame],
     spy: pd.DataFrame,
 ) -> None:
-    """In-place: annotate every BUY trade with alpha_5d/20d/60d."""
+    """In-place: annotate every BUY trade with post-file primary alphas
+    (`alpha_{5,20,60}d`) and trade-date diagnostic alphas
+    (`alpha_{5,20,60}d_tradedate`).
+
+    Per ROADMAP #4's shared design note
+    (`design/postfile-alpha-and-backtest.md`), the unsuffixed
+    `alpha_*d` keys carry post-file semantics so
+    `aggregate_member_factors` picks them up as the follower-facing
+    signal without a name change. Trade-date alpha is preserved under
+    the `_tradedate` suffix for per-member disclosure-drag visibility.
+    """
     for bid, m in members_data.items():
         for trade in m.get("trades", []) or []:
             if (trade.get("type") or "").upper() != "BUY":
@@ -217,8 +228,16 @@ def attach_alphas(
             stock_px = price_frames.get(tkr)
             if stock_px is None or stock_px.empty:
                 continue
-            alphas = compute_trade_alpha(trade, stock_px, spy)
-            trade.update(alphas)
+
+            # Post-file (primary) → unsuffixed keys.
+            postfile = compute_trade_alpha_postfile(trade, stock_px, spy)
+            for h in ALPHA_HORIZONS:
+                trade[f"alpha_{h}d"] = postfile[f"alpha_postfile_{h}d"]
+
+            # Trade-date (diagnostic) → _tradedate suffix.
+            tradedate = compute_trade_alpha(trade, stock_px, spy)
+            for h in ALPHA_HORIZONS:
+                trade[f"alpha_{h}d_tradedate"] = tradedate[f"alpha_{h}d"]
 
 
 # ── Dual-window factor aggregation ─────────────────────────

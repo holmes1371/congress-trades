@@ -212,8 +212,21 @@ def test_composite_handles_all_nan_factor_column():
 # ─── aggregate_member_factors: signal-quality tag aggregation (ROADMAP #3) ──
 
 
-def _stock_buy(ticker="AAPL", owner="self", filed_after=5, alpha_20d=0.01):
-    """Minimal trade dict for aggregation tests. Caller can override per case."""
+def _stock_buy(
+    ticker="AAPL",
+    owner="self",
+    filed_after=5,
+    alpha_20d=0.01,
+    alpha_20d_tradedate=None,
+):
+    """Minimal trade dict for aggregation tests. Caller can override per case.
+
+    Post-#4 schema: both `alpha_20d` (post-file, primary) and
+    `alpha_20d_tradedate` (trade-date, diagnostic) keys are populated.
+    `alpha_20d_tradedate` defaults to matching `alpha_20d` so existing
+    tests see a zero disclosure_drag_20d; callers exercising divergence
+    pass an explicit value.
+    """
     return {
         "ticker": ticker,
         "type": "BUY",
@@ -221,6 +234,9 @@ def _stock_buy(ticker="AAPL", owner="self", filed_after=5, alpha_20d=0.01):
         "filedAfterDays": filed_after,
         "txDate": "2025-06-02",
         "alpha_20d": alpha_20d,
+        "alpha_20d_tradedate": (
+            alpha_20d_tradedate if alpha_20d_tradedate is not None else alpha_20d
+        ),
         # Tags that score_members.py::apply_filters would have attached:
         "non_self_filing": owner.lower() != "self" if owner else False,
         "late_filing": bool(filed_after and filed_after >= 40),
@@ -284,3 +300,78 @@ def test_aggregate_drop_counts_pass_through_to_output():
     # Tag aggregation still correct alongside drop counts.
     assert result["non_self_count"] == 1
     assert result["non_self_share"] == pytest.approx(0.5)
+
+
+# ── aggregate_member_factors: post-file vs trade-date alpha (ROADMAP #4) ──
+
+
+def test_aggregate_post_file_and_tradedate_alpha_independent():
+    # 5 BUYs with post-file alpha 0.02 and trade-date alpha 0.05 each →
+    # both sets of factors computable; post-file mean = 0.02,
+    # trade-date mean = 0.05, disclosure_drag = -0.03 (follower missed
+    # 3 points of runup on average — expected sign for informed trades).
+    trades = [
+        _stock_buy(alpha_20d=0.02, alpha_20d_tradedate=0.05)
+        for _ in range(5)
+    ]
+    result = factors.aggregate_member_factors(trades, ticker_adv={})
+    assert result["mean_alpha_20d"] == pytest.approx(0.02)
+    assert result["mean_alpha_20d_tradedate"] == pytest.approx(0.05)
+    assert result["hit_rate"] == pytest.approx(1.0)           # all post-file positive
+    assert result["hit_rate_tradedate"] == pytest.approx(1.0)  # all trade-date positive
+    assert result["disclosure_drag_20d"] == pytest.approx(-0.03)
+
+
+def test_aggregate_disclosure_drag_positive_when_postfile_beats_tradedate():
+    # Mirror image: follower's post-file entry outperformed the member's
+    # trade-date capture. Rare in practice; positive disclosure_drag_20d.
+    trades = [
+        _stock_buy(alpha_20d=0.08, alpha_20d_tradedate=0.03)
+        for _ in range(5)
+    ]
+    result = factors.aggregate_member_factors(trades, ticker_adv={})
+    assert result["disclosure_drag_20d"] == pytest.approx(0.05)
+
+
+def test_aggregate_tradedate_factors_none_when_insufficient_buys():
+    # Under MIN_BUYS_FOR_ALPHA = 5, neither quartet computes; both the
+    # post-file and trade-date factor blocks are None; disclosure_drag
+    # is None too.
+    trades = [_stock_buy(alpha_20d=0.02, alpha_20d_tradedate=0.05)] * 3
+    result = factors.aggregate_member_factors(trades, ticker_adv={})
+    assert result["mean_alpha_20d"] is None
+    assert result["mean_alpha_20d_tradedate"] is None
+    assert result["sharpe_alpha_tradedate"] is None
+    assert result["disclosure_drag_20d"] is None
+
+
+def test_aggregate_disclosure_drag_none_when_tradedate_missing():
+    # Post-file alpha present on all 5 BUYs; trade-date explicitly None
+    # (simulates a member whose trades couldn't compute trade-date
+    # alpha, e.g. price cache gap at the trade date). Post-file
+    # factors compute; trade-date factors all None; drag None.
+    trades = [
+        _stock_buy(alpha_20d=0.04, alpha_20d_tradedate=None)
+        for _ in range(5)
+    ]
+    # _stock_buy's default fallback means `alpha_20d_tradedate` = 0.04
+    # when the caller passes None; override explicitly here so the
+    # trade-date path legitimately has no data.
+    for t in trades:
+        t["alpha_20d_tradedate"] = None
+
+    result = factors.aggregate_member_factors(trades, ticker_adv={})
+    assert result["mean_alpha_20d"] == pytest.approx(0.04)
+    assert result["mean_alpha_20d_tradedate"] is None
+    assert result["disclosure_drag_20d"] is None
+
+
+def test_aggregate_empty_trades_carries_new_postfile_keys():
+    """Empty kept-trades still exposes the new _tradedate and
+    disclosure_drag keys as None — downstream consumers (leaderboard
+    builder) must not KeyError on members with no kept trades."""
+    result = factors.aggregate_member_factors([], ticker_adv={})
+    assert result["mean_alpha_20d_tradedate"] is None
+    assert result["hit_rate_tradedate"] is None
+    assert result["sharpe_alpha_tradedate"] is None
+    assert result["disclosure_drag_20d"] is None
