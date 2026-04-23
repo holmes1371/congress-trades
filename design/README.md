@@ -32,10 +32,11 @@ Standing references (read as needed, not re-litigated per session):
 
 Active feature notes (paired with an in-flight `[~]` item in `ROADMAP.md`):
 
-_(none currently)_
+- `paper-log.md` — ROADMAP #6. Scope, 9 locked decisions, CSV schema, and five-commit plan for the auto paper-trading log. New `scoring/paper_log.py` module with `PaperLog` class (open/close/mark-to-market/retraction); persistent CSV ledger at `scoring/paper_log/positions.csv`; new `build_paper_log.py` rendering a three-section `site/paper_log.html`; pipeline wiring between `score_members` and `build_site`. Reuses `scoring/backtest.py` primitives (`_close_at_or_after`, `_close_n_positions_later`, `_select_cohort`) so the live log is the continuation of #5's retrospective backtest.
 
 Closed feature notes (retained as historical context; matching ROADMAP item lives in `COMPLETED.md`):
 
 - `pytest-ci-suite.md` — ROADMAP #1. Scope, fixtures, and commit plan for the pytest suite + `.github/workflows/tests.yml`. Six-commit sequence; tests target stable primitives, not the churning assemblies that #2–#13 will rewrite. Closed `3022a38`.
 - `benchmark-row.md` — ROADMAP #2. Scope and commit plan for the NANC/KRUZ/SPY/QQQ benchmark reference block on the leaderboard page (primary) and the weekly report (secondary, deferred to #12). Four-commit sequence; option (A) — reference row only, not a follow-list mirror-PnL comparison. Closed `6a5b0eb`.
 - `signal-quality-filters.md` — ROADMAP #3. Scope, 10 locked decisions, and five-commit plan for the four signal-quality filters (broad-market ETF drop, options drop, non-self-owner tag, late-filing tag). `scoring/filters.py` as a new module with four pure functions composed in `score_members.py`; factor aggregation extended with six new columns; leaderboard surface gains four new columns in both 180d and 365d tables. Closed `ae1f56a`.
+- `postfile-alpha-and-backtest.md` — ROADMAP #4 + #5 (bundled). Scope, decisions, schema cutover, dry-run results, and backtest output for the post-file alpha recomputation + walk-forward backtest bundle. Six-commit sequence; composite re-pointed from trade-date to post-file alpha under the same column names; new `scoring/backtest.py` module + recorded run at `scoring/output/backtest_20260423.json`. Closed `829c345` / `9851bd0`.

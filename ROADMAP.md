@@ -22,11 +22,11 @@ Strict rules for writing it:
 
 **2026-04-23 (session 3)**
 
-- **#4 + #5 closed** after Tom's signoff on the rendered leaderboard and recorded backtest JSON. Prose archived to `COMPLETED.md`; one-line stubs left at their numbers. Closing SHAs `829c345` (#4's leaderboard cutover) and `9851bd0` (#5's backtest module).
-- Post-session follow-ons that landed in the same session but aren't #4/#5 proper: `c4ff52b` (ET timestamp fix on the report archive — filenames are UTC, were rendering as naive-local), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before its 2026-06-15 EOL).
-- Next session opens on **#6 auto paper-trading log**. Plan-and-wait per session discipline before coding.
-- Standing backlog unchanged at its slotted positions: **#7** onward; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON migration, filed session 3).
-- Open follow-ups captured in `COMPLETED.md #4` and `#5` rather than filed as numbered items: composite weight re-tune against #5's surface; NANC price-cache seed for the backtest's `alpha_vs_nanc`.
+- **#4 + #5 closed** (SHAs `829c345` / `9851bd0`); full prose in `COMPLETED.md`. Session continues on **#6 auto paper-trading log**.
+- **#6 plan approved; design note landed.** `design/paper-log.md` + `[ ]` → `[~]` flip in the opening commit of a 5-commit sequence. Reuses `scoring/backtest.py` primitives; persistence via append-only CSV at `scoring/paper_log/positions.csv`; new `site/paper_log.html` surface.
+- Next commits in sequence: core module + empty ledger → retraction handling + tests → HTML render + schema-contract test → pipeline wiring + landing-page link.
+- Non-#4/#5/#6 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
+- Standing backlog unchanged: **#7** onward; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
 
 ## For future agents
 
@@ -66,7 +66,10 @@ Status legend:
 
 ### 5. [x] Walk-forward backtest of the mirror strategy (bundled with #4) — 9851bd0 — see COMPLETED.md
 
-### 6. [ ] Auto paper-trading log
+### 6. [~] Auto paper-trading log
+
+_In progress — plan approved session 3 (2026-04-23). Design note: `design/paper-log.md`. 5-commit sequence; 1/5 landed (design note + ROADMAP flip). Remaining: core module + empty ledger, retraction handling + tests, HTML render + schema-contract test, pipeline wiring + landing-page link._
+
 
 The only way to get an honest, out-of-sample read on the platform's viability is a paper-trading log that starts the moment any of this is considered live. Every time a signal fires, log the entry price, a rule-based exit, and track the live PnL. After 6–12 months the log becomes the user's own track record rather than a historical backtest. Positioned right after the #4/#5 schema cutover so the log starts accumulating as soon as the post-file composite stabilizes — there is no cost to starting it early and real cost to starting it late. Runs in parallel with #7 onward rather than blocking them.
 
