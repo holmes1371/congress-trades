@@ -221,6 +221,7 @@ INDEX_HTML = """\
   Congress. Reports are generated from public filings on Capitol Trades and
   updated automatically.
   &nbsp;&middot;&nbsp; <a href="leaderboard.html">Member Leaderboard</a>
+  &nbsp;&middot;&nbsp; <a href="paper_log.html">Paper-Trading Log</a>
   &nbsp;&middot;&nbsp; <a href="rss.xml" style="color:var(--accent);">RSS Feed</a>
 </p>
 

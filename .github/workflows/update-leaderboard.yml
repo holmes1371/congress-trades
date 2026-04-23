@@ -67,6 +67,31 @@ jobs:
         run: |
           python3 build_leaderboard.py --out site
 
+      - name: Advance paper-trading log (ROADMAP #6)
+        run: |
+          python3 scoring/paper_log.py 2>&1 | tail -10
+
+      - name: Commit paper-log ledger if changed
+        # scoring/paper_log/positions.csv is the persistent ledger.
+        # CI needs to commit it back so the next run continues
+        # accumulating rather than resetting. Cron-scheduled runs are
+        # immune to [skip ci] loops (cron ignores commit messages), but
+        # the token annotation still helps manual re-runs.
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet scoring/paper_log/positions.csv; then
+            echo "No ledger changes to commit."
+          else
+            git add scoring/paper_log/positions.csv
+            git commit -m "chore(paper-log): auto-update ledger [skip ci]"
+            git push
+          fi
+
+      - name: Build paper-trading log page
+        run: |
+          python3 build_paper_log.py --out site
+
       - name: Build site index and RSS feed
         run: |
           python3 build_site.py --out site
