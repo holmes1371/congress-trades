@@ -23,8 +23,7 @@ Strict rules for writing it:
 **2026-04-23 (session 3)**
 
 - **#4 + #5 closed** (SHAs `829c345` / `9851bd0`); full prose in `COMPLETED.md`. Session continues on **#6 auto paper-trading log**.
-- **#6 in flight.** Through commit 4/5: design note + flip, core PaperLog + empty ledger, retraction detection, `build_paper_log.py` rendering `site/paper_log.html` (open positions + recently-closed last 30d + lifetime summary + retracted-disclosures section when applicable). Reuses promoted `scoring/backtest.py` helpers.
-- Next commit: 5/5 — pipeline wiring into `run_pipeline.py` + landing-page nav link.
+- **#6 complete (5/5 commits landed).** Pipeline wired into the monthly `update-leaderboard.yml` workflow (ledger advance → auto-commit of the CSV so state survives across runs → paper-log page render); `update-report.yml` also rebuilds the page daily so Pages carries the current ledger. Landing-page nav gained a Paper-Trading Log link. Awaiting Tom's manual verification before flipping `[x]`.
 - Non-#4/#5/#6 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
 - Standing backlog unchanged: **#7** onward; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
 
@@ -68,7 +67,7 @@ Status legend:
 
 ### 6. [~] Auto paper-trading log
 
-_In progress — plan approved session 3 (2026-04-23). Design note: `design/paper-log.md`. 5-commit sequence; 4/5 landed (design note + ROADMAP flip, core PaperLog + ledger, retraction detection, HTML render + schema-contract test). Remaining: pipeline wiring + landing-page link._
+_In progress — plan approved session 3 (2026-04-23). Design note: `design/paper-log.md`. 5-commit sequence complete: design note + ROADMAP flip → core PaperLog + ledger → retraction detection → HTML render → pipeline wiring into `update-leaderboard.yml` + `update-report.yml` + landing-page nav link. Awaiting Tom's manual verification before flipping `[x]`._
 
 
 The only way to get an honest, out-of-sample read on the platform's viability is a paper-trading log that starts the moment any of this is considered live. Every time a signal fires, log the entry price, a rule-based exit, and track the live PnL. After 6–12 months the log becomes the user's own track record rather than a historical backtest. Positioned right after the #4/#5 schema cutover so the log starts accumulating as soon as the post-file composite stabilizes — there is no cost to starting it early and real cost to starting it late. Runs in parallel with #7 onward rather than blocking them.

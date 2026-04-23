@@ -135,6 +135,14 @@ jobs:
             echo "No leaderboard data — skipping."
           fi
 
+      - name: Rebuild paper-trading log page
+        # Renders whatever's already in scoring/paper_log/positions.csv
+        # — ledger writes happen in update-leaderboard.yml (monthly);
+        # this step just ensures the daily site build carries the
+        # current ledger state to Pages.
+        run: |
+          python3 build_paper_log.py --out site
+
       - name: Build site index and RSS feed
         run: |
           python3 build_site.py --out site
