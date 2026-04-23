@@ -180,9 +180,15 @@ net stats were computed:
 }
 ```
 
-No change to `rebalances[].trades[]` — per-trade rows remain gross so
-a future consumer can re-compute net stats at any rate without re-running
-the replay.
+Per-trade rows in `rebalances[].trades[]` gain two additive fields —
+`spy_return` (the per-trade SPY return over the same 60-bday window,
+needed so `alpha_vs_spy_net` can be re-derived without re-resolving
+prices) and `value` (the capitoltrades disclosed midpoint, needed by
+range-weighted sizing). Both are reference data, not overlay output;
+the existing `stock_return` / `alpha_vs_spy` stay gross so a consumer
+can re-compute net stats at any rate without re-running the replay.
+The same additive expansion applies to `naive_trades` so the naive
+baseline can be re-aggregated under alternative overlay configs.
 
 ### `scoring/paper_log.py::main()` + `build_paper_log.py` (commit 4)
 

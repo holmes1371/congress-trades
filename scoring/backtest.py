@@ -74,6 +74,13 @@ from factors import (
     compute_composite,
     compute_ticker_adv,
 )
+from costs import (
+    DEFAULT_TAX_RATE,
+    apply_sizing,
+    apply_slippage,
+    apply_tax,
+    slippage_bps_for_ticker,
+)
 
 
 OUTPUT_DIR = Path(__file__).parent / "output"
@@ -222,6 +229,9 @@ def walk_forward(
     ticker_adv: dict[str, float] | None = None,
     first_rebalance: date | None = None,
     last_rebalance: date | None = None,
+    slippage_mode: str = "tiered",
+    tax_rate: float = DEFAULT_TAX_RATE,
+    sizing_mode: str = "equal",
 ) -> dict[str, Any]:
     """Run the walk-forward replay. Returns the JSON-ready dict
     shape specified in the design note."""
@@ -298,7 +308,9 @@ def walk_forward(
                     "exit_date":    exit_[0].isoformat(),
                     "exit_close":   exit_[1],
                     "stock_return": stock_ret,
+                    "spy_return":   spy_ret,
                     "alpha_vs_spy": stock_ret - spy_ret,
+                    "value":        t.get("value"),
                 })
         all_executed.extend(executed_this_rebalance)
         rebalance_log.append({
@@ -358,9 +370,14 @@ def walk_forward(
             exit_spy = close_n_positions_later(spy, entry_spy[0], exit_bdays)
             if exit_ is None or exit_spy is None or entry[1] <= 0:
                 continue
+            stock_ret = exit_[1] / entry[1] - 1.0
+            spy_ret = exit_spy[1] / entry_spy[1] - 1.0
             naive_trades.append({
-                "stock_return": exit_[1] / entry[1] - 1.0,
-                "alpha_vs_spy": (exit_[1] / entry[1] - 1.0) - (exit_spy[1] / entry_spy[1] - 1.0),
+                "ticker":       ticker,
+                "stock_return": stock_ret,
+                "spy_return":   spy_ret,
+                "alpha_vs_spy": stock_ret - spy_ret,
+                "value":        t.get("value"),
             })
     if naive_trades:
         naive_total = sum(r["stock_return"] for r in naive_trades) / len(naive_trades)
@@ -377,6 +394,50 @@ def walk_forward(
         strategy_total - nanc_total if nanc_total is not None else None
     )
     alpha_vs_naive = strategy_total - naive_total
+
+    # ── Net-of-overlay stats (ROADMAP #7) ────────────────────
+    # Benchmarks stay gross per design note decision 8; the strategy
+    # and the naive baseline both pay slippage + tax, re-aggregated
+    # under the selected sizing mode.
+    def _net_trades(trades: list[dict]) -> list[dict]:
+        """Attach net_pnl_pct and net_alpha per trade. Slippage on
+        stock_return only; tax on the post-slippage stock return;
+        net_alpha = net stock return - (gross) spy_return."""
+        out = []
+        for tr in trades:
+            bps = slippage_bps_for_ticker(tr["ticker"], ticker_adv, mode=slippage_mode)
+            net_stock = apply_tax(apply_slippage(tr["stock_return"], bps), tax_rate)
+            out.append({
+                "pnl_pct":   net_stock,
+                "alpha_net": net_stock - tr["spy_return"],
+                "value":     tr.get("value"),
+            })
+        return out
+
+    strat_net = _net_trades(all_executed)
+    naive_net = _net_trades(naive_trades)
+
+    if strat_net:
+        total_return_net = apply_sizing(strat_net, mode=sizing_mode)
+        alpha_rows = [{"pnl_pct": t["alpha_net"], "value": t["value"]} for t in strat_net]
+        alpha_vs_spy_net = apply_sizing(alpha_rows, mode=sizing_mode)
+        hit_rate_net = sum(1 for t in strat_net if t["alpha_net"] > 0) / len(strat_net)
+    else:
+        total_return_net = 0.0
+        alpha_vs_spy_net = 0.0
+        hit_rate_net = None
+
+    naive_total_net = apply_sizing(naive_net, mode=sizing_mode) if naive_net else 0.0
+    alpha_vs_nanc_net = (
+        total_return_net - nanc_total if nanc_total is not None else None
+    )
+    alpha_vs_naive_net = total_return_net - naive_total_net
+
+    tickers_in_play = sorted({t["ticker"] for t in all_executed})
+    slippage_bps_by_ticker = {
+        tk: slippage_bps_for_ticker(tk, ticker_adv, mode=slippage_mode)
+        for tk in tickers_in_play
+    }
 
     return {
         "generated": date.today().isoformat(),
@@ -400,11 +461,23 @@ def walk_forward(
                 "sharpe":                      sharpe,
                 "n_rebalances":                len(rebalances),
                 "n_trades":                    len(all_executed),
+                "total_return_net":             total_return_net,
+                "alpha_vs_spy_net":             alpha_vs_spy_net,
+                "alpha_vs_nanc_net":            alpha_vs_nanc_net,
+                "alpha_vs_naive_copy_everyone_net": alpha_vs_naive_net,
+                "hit_rate_net":                 hit_rate_net,
+                "overlays": {
+                    "slippage_mode":          slippage_mode,
+                    "tax_rate":               tax_rate,
+                    "sizing_mode":            sizing_mode,
+                    "slippage_bps_by_ticker": slippage_bps_by_ticker,
+                },
             },
             "naive_copy_everyone": {
-                "total_return": naive_total,
-                "hit_rate":     naive_hit,
-                "n_trades":     len(naive_trades),
+                "total_return":     naive_total,
+                "total_return_net": naive_total_net,
+                "hit_rate":         naive_hit,
+                "n_trades":         len(naive_trades),
             },
             "NANC": {"total_return": nanc_total},
             "SPY":  {"total_return": spy_total},
@@ -425,6 +498,12 @@ def main():
                     help="Explicit bioguide IDs to include (default: full cached universe).")
     ap.add_argument("--out", type=str, default=None,
                     help="Output JSON path (default: scoring/output/backtest_<YYYYMMDD>.json).")
+    ap.add_argument("--slippage-mode", type=str, default="tiered",
+                    help="Slippage model: 'off' | 'tiered' (5/25/75 bps by ADV) | 'flat_bps:<N>'. Default: tiered.")
+    ap.add_argument("--tax-rate", type=float, default=DEFAULT_TAX_RATE,
+                    help=f"Gain-only short-term tax rate; default {DEFAULT_TAX_RATE} (federal 24% + VA 5.75%).")
+    ap.add_argument("--sizing-mode", type=str, default="equal", choices=["equal", "range"],
+                    help="Portfolio sizing: 'equal' (default) or 'range' (value-weighted by capitoltrades 'value').")
     args = ap.parse_args()
 
     # Lazy imports of the score_members utilities so the module can be
@@ -476,6 +555,8 @@ def main():
         members_data, price_frames, spy,
         nanc=nanc, K=args.K, exit_bdays=args.exit_bdays,
         window_days=args.window_days, min_trades=args.min_trades,
+        slippage_mode=args.slippage_mode, tax_rate=args.tax_rate,
+        sizing_mode=args.sizing_mode,
     )
 
     stamp = datetime.now().strftime("%Y%m%d")
@@ -486,11 +567,13 @@ def main():
     s = result["summary"]["strategy"]
     print(f"wrote {out_path}")
     print(f"rebalances={s['n_rebalances']}  trades={s['n_trades']}")
-    print(f"strategy total_return = {s['total_return']:+.4f}")
-    print(f"alpha_vs_spy          = {s['alpha_vs_spy']:+.4f}")
+    print(f"strategy total_return = {s['total_return']:+.4f}  (net {s['total_return_net']:+.4f})")
+    print(f"alpha_vs_spy          = {s['alpha_vs_spy']:+.4f}  (net {s['alpha_vs_spy_net']:+.4f})")
     if s['alpha_vs_nanc'] is not None:
-        print(f"alpha_vs_nanc         = {s['alpha_vs_nanc']:+.4f}")
-    print(f"alpha_vs_naive        = {s['alpha_vs_naive_copy_everyone']:+.4f}")
+        print(f"alpha_vs_nanc         = {s['alpha_vs_nanc']:+.4f}  (net {s['alpha_vs_nanc_net']:+.4f})")
+    print(f"alpha_vs_naive        = {s['alpha_vs_naive_copy_everyone']:+.4f}  (net {s['alpha_vs_naive_copy_everyone_net']:+.4f})")
+    o = s["overlays"]
+    print(f"overlays: slippage={o['slippage_mode']}  tax={o['tax_rate']:.4f}  sizing={o['sizing_mode']}")
 
 
 if __name__ == "__main__":
