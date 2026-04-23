@@ -90,12 +90,16 @@ TRADE_DATES: list[date] = [
 ]
 
 
-def _make_trade(d: date) -> dict:
+def _make_trade(d: date, idx: int) -> dict:
     """Synthesize a single BUY trade on date `d`. Shape mirrors what
     `fetch_trades._normalise_trade` emits, but only the fields the
-    scoring pipeline reads are populated."""
+    scoring pipeline reads are populated. `idx` seeds a stable, unique
+    `txId` — capitoltrades supplies integer txIds in production, and
+    ROADMAP #6's paper log uses (bioguide, txId) as the identity key
+    for retraction detection."""
     close = SYNTH_PRICES[d]
     return {
+        "txId":           20_000_000_000 + idx,
         "ticker":         "SYNTH",
         "type":           "BUY",
         "typeExtended":   None,
@@ -116,7 +120,7 @@ SYNTH_MEMBER: dict = {
     "party":      "Independent",
     "chamber":    "House",
     "state":      "XX",
-    "trades":     [_make_trade(d) for d in TRADE_DATES],
+    "trades":     [_make_trade(d, i) for i, d in enumerate(TRADE_DATES)],
     "tradeCount": len(TRADE_DATES),
 }
 

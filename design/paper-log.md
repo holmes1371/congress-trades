@@ -20,29 +20,34 @@ closes positions whose horizon came due — writing to an append-only
 ledger that builds a live track record over 6–12 months.
 
 Because the mechanic matches #5, this bundle reuses `scoring/backtest.py`
-primitives rather than re-implementing them: `_close_at_or_after`,
-`_close_n_positions_later`, `_select_cohort`. The live log is exactly
+primitives rather than re-implementing them: `close_at_or_after`,
+`close_n_positions_later`, `select_cohort` (promoted from
+underscore-prefixed in paper-log commit 2). The live log is exactly
 the continuation of the recorded backtest.
 
 ## Decisions settled
 
 All Tom-approved at plan time. Don't re-litigate without a new prompt.
 
-1. **Entry rule.** Buy at **next pipeline-run close** for every BUY
-   from a cohort member whose `published` date has fallen since the
-   last run. Matches #5's D+1 close semantics and what a follower
-   reading the morning digest could execute. Under today's weekly
-   cadence the "next run" is next week; once #11 (daily cadence)
-   lands it becomes next-day. The rule is invariant under cadence —
-   the ledger records what a follower *could* do given the pipeline's
-   current cadence, not a hypothetical faster one.
+1. **Entry rule.** Buy at **first available close on or after
+   `today + 1 calendar day`** for every BUY from a cohort member
+   whose `published` date has fallen since the last pipeline run.
+   The "+1" exists because the pipeline runs after market close —
+   today's close is historical by run-time; the earliest close a
+   follower reading the next morning's digest can execute against is
+   the next trading day's. Matches #5's D+1 close semantics exactly.
+   Invariant under cadence — under today's weekly cadence the next
+   close is typically ~1 trading day after the run; once #11 (daily
+   cadence) lands that gap becomes predictably next-day. The ledger
+   records what a follower *could* do given the pipeline's current
+   cadence, not a hypothetical faster one.
 2. **Exit rule.** Fixed horizon = **60 business days**, matching #5.
    Trailing stops / sell-on-subsequent-disclosure belong to later
    scope expansion (#7 territory — they need a cost model). v1
    stays tight.
 3. **Cohort selection.** **Top-K = 15** by composite, computed the
    same way as `default_follow_*.json`. Reuses
-   `scoring/backtest.py::_select_cohort` directly. **Cohort is
+   `scoring/backtest.py::select_cohort` directly. **Cohort is
    snapshotted at the moment the BUY enters the log** — subsequent
    rank changes don't retroactively close positions. A member losing
    cohort status tomorrow doesn't cancel today's executed trade.
@@ -161,11 +166,11 @@ self-sufficient (design note + a working but unwired core module).
 
 `scoring/paper_log.py` imports from `scoring/backtest.py`:
 
-- `_close_at_or_after(prices, target)` — entry-day resolution.
-- `_close_n_positions_later(prices, entry_day, n)` — target-exit
+- `close_at_or_after(prices, target)` — entry-day resolution.
+- `close_n_positions_later(prices, entry_day, n)` — target-exit
   resolution. Also used for mark-to-market when the current date is
   less than `n` positions from entry.
-- `_select_cohort(members_data, ticker_adv, D, window_days, min_trades, K)`
+- `select_cohort(members_data, ticker_adv, D, window_days, min_trades, K)`
   — cohort selection at pipeline-run time.
 - `monthly_rebalance_dates(start, end)` — unused by the paper log
   itself (which runs whenever the pipeline fires, not on a monthly

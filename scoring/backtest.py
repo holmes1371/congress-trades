@@ -114,7 +114,7 @@ def monthly_rebalance_dates(start: date, end: date) -> list[date]:
 # ── Price-frame helpers ────────────────────────────────────
 
 
-def _close_at_or_after(prices: pd.DataFrame, target: date) -> tuple[date, float] | None:
+def close_at_or_after(prices: pd.DataFrame, target: date) -> tuple[date, float] | None:
     """First (trading_day, close) on or after `target`, or None."""
     if prices is None or prices.empty:
         return None
@@ -126,7 +126,7 @@ def _close_at_or_after(prices: pd.DataFrame, target: date) -> tuple[date, float]
     return idx.date(), float(forward["close"].iloc[0])
 
 
-def _close_n_positions_later(
+def close_n_positions_later(
     prices: pd.DataFrame, entry_day: date, n: int
 ) -> tuple[date, float] | None:
     """(trading_day, close) `n` rows after the row for `entry_day`, or None."""
@@ -142,8 +142,8 @@ def _close_n_positions_later(
 def _total_return(prices: pd.DataFrame, start: date, end: date) -> float | None:
     """Cumulative close-to-close return over [start, end], forward-filled
     at both ends. Returns None if the span can't be resolved."""
-    s = _close_at_or_after(prices, start)
-    e = _close_at_or_after(prices, end)
+    s = close_at_or_after(prices, start)
+    e = close_at_or_after(prices, end)
     if s is None or e is None:
         return None
     if s[1] <= 0:
@@ -171,7 +171,7 @@ def _trades_before(trades: list[dict], cutoff: date) -> list[dict]:
     return out
 
 
-def _select_cohort(
+def select_cohort(
     members_data: dict[str, dict],
     ticker_adv: dict[str, float],
     rebalance_date: date,
@@ -251,7 +251,7 @@ def walk_forward(
     prev_rebalance = start - timedelta(days=1)
 
     for D in rebalances:
-        cohort = _select_cohort(
+        cohort = select_cohort(
             members_data, ticker_adv, D, window_days, min_trades, K
         )
         executed_this_rebalance: list[dict] = []
@@ -277,12 +277,12 @@ def walk_forward(
                 stock_px = price_frames[ticker]
 
                 entry_target = D + timedelta(days=1)
-                entry = _close_at_or_after(stock_px, entry_target)
-                entry_spy = _close_at_or_after(spy, entry_target)
+                entry = close_at_or_after(stock_px, entry_target)
+                entry_spy = close_at_or_after(spy, entry_target)
                 if entry is None or entry_spy is None:
                     continue
-                exit_ = _close_n_positions_later(stock_px, entry[0], exit_bdays)
-                exit_spy = _close_n_positions_later(spy, entry_spy[0], exit_bdays)
+                exit_ = close_n_positions_later(stock_px, entry[0], exit_bdays)
+                exit_spy = close_n_positions_later(spy, entry_spy[0], exit_bdays)
                 if exit_ is None or exit_spy is None:
                     continue
                 if entry[1] <= 0 or entry_spy[1] <= 0:
@@ -350,12 +350,12 @@ def walk_forward(
             if target_rebalance is None:
                 continue
             stock_px = price_frames[ticker]
-            entry = _close_at_or_after(stock_px, target_rebalance + timedelta(days=1))
-            entry_spy = _close_at_or_after(spy, target_rebalance + timedelta(days=1))
+            entry = close_at_or_after(stock_px, target_rebalance + timedelta(days=1))
+            entry_spy = close_at_or_after(spy, target_rebalance + timedelta(days=1))
             if entry is None or entry_spy is None:
                 continue
-            exit_ = _close_n_positions_later(stock_px, entry[0], exit_bdays)
-            exit_spy = _close_n_positions_later(spy, entry_spy[0], exit_bdays)
+            exit_ = close_n_positions_later(stock_px, entry[0], exit_bdays)
+            exit_spy = close_n_positions_later(spy, entry_spy[0], exit_bdays)
             if exit_ is None or exit_spy is None or entry[1] <= 0:
                 continue
             naive_trades.append({
