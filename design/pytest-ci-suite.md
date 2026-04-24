@@ -4,7 +4,7 @@ ROADMAP #1. Active feature. Flipped to `[~]` alongside this note in the commit t
 
 ## Scope
 
-**In scope.** A `tests/` directory with a pytest suite covering the stable primitives in the codebase (ticker normalization, record-level trade parse, price-cache read contract, alpha math, composite math, transaction classification, end-to-end parse of one capitoltrades record set). Money-range parsing and a dedicated date parser were in the original plan but were dropped from v1 after a code-reality check — neither exists as a standalone primitive in current code; see "Batch 1 amendment" under Test plan. Shared fixtures under `tests/fixtures/` designed for compounding reuse across ROADMAP items #2–#13. A `requirements-dev.txt` declaring dev dependencies (`pytest`, `responses`). A GitHub Actions workflow at `.github/workflows/tests.yml` running pytest on every push, on Python 3.11. Two "extend tests with the feature" clauses appended to `ROADMAP.md`'s "For future agents" section in the final commit of this feature.
+**In scope.** A `tests/` directory with a pytest suite covering the stable primitives in the codebase (ticker normalization, record-level trade parse, price-cache read contract, alpha math, composite math, transaction classification, end-to-end parse of one capitoltrades record set). Money-range parsing and a dedicated date parser were in the original plan but were dropped from v1 after a code-reality check — neither exists as a standalone primitive in current code; see "Batch 1 amendment" under Test plan. Shared fixtures under `tests/fixtures/` designed for compounding reuse across ROADMAP items #2–#14. A `requirements-dev.txt` declaring dev dependencies (`pytest`, `responses`). A GitHub Actions workflow at `.github/workflows/tests.yml` running pytest on every push, on Python 3.11. Two "extend tests with the feature" clauses appended to `ROADMAP.md`'s "For future agents" section in the final commit of this feature.
 
 **Out of scope.** Coverage reporting, linting (ruff / black / mypy), matrix builds, integration tests against live capitoltrades or live yfinance, pull-request triggers on the workflow (Tom works on `main` directly; see "Batch 4 amendment" under Commit plan), branch protection rules (dropped alongside the PR path — same amendment), and any snapshot tests pinning current composite weights, ranking output, or leaderboard shape (see "Guiding principle").
 
@@ -12,7 +12,7 @@ ROADMAP #1. Active feature. Flipped to `[~]` alongside this note in the commit t
 
 Test the **primitives**, not the **assembly**.
 
-The #2–#13 backlog churns the assembly: composite weights (#4), ranking basis (#4), leaderboard columns (#3), report surfaces (#2, #11), default-follow output (#4). It does not churn the primitives those assemblies are built from — ticker normalization, money-range parsing, date parsing, the pure math of alpha given prices and dates, the price-cache read contract, transaction-type classification.
+The #2–#14 backlog churns the assembly: composite weights (#4, #8), ranking basis (#4, #8), leaderboard columns (#3), report surfaces (#2, #12), default-follow output (#4, #8). It does not churn the primitives those assemblies are built from — ticker normalization, money-range parsing, date parsing, the pure math of alpha given prices and dates, the price-cache read contract, transaction-type classification.
 
 Tests covering the primitives survive every refactor in the backlog. Tests covering the current assembly would be deleted in the first commit of #4. Writing them now is waste.
 
@@ -31,13 +31,13 @@ Tests covering the primitives survive every refactor in the backlog. Tests cover
 | Transaction-type classification (buy/sell/exchange) | `fetch_trades.py` | #3 adds tags, does not redefine types |
 | Single record-parse pass over a capitoltrades fixture | `fetch_trades.py` | Confirms schema contract; no assertion on derived scoring |
 
-**Churning (deliberately skipped in v1):** current composite weights and resulting member ranks (#4 rebalances), default-follow list output (#4 flips the ranking basis), leaderboard / report HTML shape (#2 adds a row; #11 may retire the weekly report), and scoring defaults in `score_members.py` (the defaults are exactly what shifts).
+**Churning (deliberately skipped in v1):** current composite weights and resulting member ranks (#4 rebalances, #8 reranks on net), default-follow list output (#4 flips the ranking basis, #8 reframes it on net-of-costs), leaderboard / report HTML shape (#2 adds a row; #12 may retire the weekly report), and scoring defaults in `score_members.py` (the defaults are exactly what shifts).
 
 ## Locked decisions
 
 1. **Python 3.11.** Matches `update-leaderboard.yml` and `update-report.yml`. No matrix.
 2. **`pytest` only for v1.** No coverage, no lint, no mypy.
-3. **capitoltrades mocking: `responses` library.** Fixtures stay as human-readable JSON, which future sessions can diff; the pattern extends cleanly into #8, #9, and #11 without retroactive rewrites.
+3. **capitoltrades mocking: `responses` library.** Fixtures stay as human-readable JSON, which future sessions can diff; the pattern extends cleanly into #9, #10, and #12 without retroactive rewrites.
 4. **yfinance mocking: mock at the `scoring/price_cache.py` adapter, not at yfinance itself.** yfinance has broken its schema multiple times historically; the cache layer is the seam we control.
 5. **Fixture source for capitoltrades: a live-recorded page, trimmed to ~10 records.** Faithful to the real schema; data is public, so no scrubbing.
 6. **Price-cache fixture: a real yfinance snapshot, committed once.** ~10 tickers × ~2 years of daily closes.
@@ -83,7 +83,7 @@ worth recording:
 - `test_price_cache.py` — the "concurrent access" case named in the original
   plan was dropped. `_save_cache` writes the CSV non-atomically and the module
   has no locking; there is nothing to assert without first adding the locking,
-  and adding locking is out of scope here. If #6 (paper-trading log) or #11
+  and adding locking is out of scope here. If #6 (paper-trading log) or #12
   (nightly cadence) introduces real concurrency on this seam, file the locking
   work and add the test then.
 - `tests/fixtures/synthetic_alpha_scenarios.py` — Scenario 5 was renamed from
@@ -136,12 +136,12 @@ batch; one was dropped after a code-reality check:
 
 Under `tests/fixtures/`:
 
-- `capitoltrades_page_sample.json` — one recorded capitoltrades API page, trimmed to 10 records. Reused by #3/#4/#5/#6/#8/#9.
+- `capitoltrades_page_sample.json` — one recorded capitoltrades API page, trimmed to 10 records. Reused by #3/#4/#5/#6/#9/#10.
 - `price_cache_sample.csv` — ~10 tickers × ~2 years of yfinance daily closes. Reused by #4/#5/#6/#7.
-- `member_bioguide_sample.json` — ~5 members, both parties, committee-assignment fields present. Reused by #8/#9 plus baseline tests.
+- `member_bioguide_sample.json` — ~5 members, both parties, committee-assignment fields present. Reused by #9/#10 plus baseline tests.
 - `synthetic_alpha_scenarios.py` — hand-crafted `(trade_date, publication_date, price_series, expected_alpha)` tuples for edge cases. Python module (not JSON) because the tuples are most readable as Python literals. Reused by #4 and #5 directly.
 
-**Not included.** A committee-jurisdiction fixture — #8's responsibility; curating it now means it goes stale before use.
+**Not included.** A committee-jurisdiction fixture — #9's responsibility; curating it now means it goes stale before use.
 
 ## Fixture-recording helper
 

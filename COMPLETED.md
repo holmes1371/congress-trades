@@ -14,7 +14,7 @@ Numbers here mirror `ROADMAP.md`'s priority ordering — when the active backlog
 
 Closed 2026-04-21 after Tom confirmed the first green pytest run on GitHub Actions.
 
-**Goal.** Stand up a pytest suite over the stable primitives of the congress-trades pipeline and wire it into CI, without pinning any of the assembly-level surfaces (composite weights, ranking output, leaderboard columns) that ROADMAP items #2–#13 are expected to rewrite. Get the "add tests with the feature" discipline into the session standing order so the suite stays load-bearing as the backlog progresses.
+**Goal.** Stand up a pytest suite over the stable primitives of the congress-trades pipeline and wire it into CI, without pinning any of the assembly-level surfaces (composite weights, ranking output, leaderboard columns) that ROADMAP items #2–#14 are expected to rewrite. Get the "add tests with the feature" discipline into the session standing order so the suite stays load-bearing as the backlog progresses.
 
 **Guiding principle.** Test the primitives, not the assembly. Covered in v1: ticker normalization, trade-dict `_normalise_trade`, price-cache read contract, alpha math, composite math, schema contract of the recorded capitoltrades fixture. Deliberately skipped: current composite weights, default-follow list output, leaderboard/report HTML shape, `score_members.py` defaults. Full rationale in `design/pytest-ci-suite.md` (Guiding principle + Stable-vs-churning surface map).
 
@@ -39,7 +39,7 @@ Final state: 77 pytest cases green locally and on GHA.
 **Standing-order additions.** Three bullets added to ROADMAP's "For future agents" section:
 
 1. Tests run on every push; don't close a feature with red tests — check the commit's test run before calling it done.
-2. **Ship tests with the feature, not after.** New primitive (parser, adapter, pure-math function, schema transform, cache seam) → pytest coverage for it in the same commit. Assembly-level code expected to be rewritten by #2–#13 is deliberately skipped per the Guiding Principle; if skipping, say so in the commit message.
+2. **Ship tests with the feature, not after.** New primitive (parser, adapter, pure-math function, schema transform, cache seam) → pytest coverage for it in the same commit. Assembly-level code expected to be rewritten by #2–#14 is deliberately skipped per the Guiding Principle; if skipping, say so in the commit message.
 3. `scoring/factors.py` is coupled hard to `test_alpha_math.py` / `test_composite_math.py` — any change to that file extends those tests in the same commit. Other modules with existing test coverage extend their fixtures in step with the change, not after.
 
 **Infra notes for future sessions.**
@@ -67,15 +67,15 @@ Final state: 95 pytest cases green locally. Leaderboard renders the benchmark bl
 
 **Scope adjustments from the ROADMAP prose.**
 
-- *Primary surface.* ROADMAP said "in the weekly report"; the block landed on `leaderboard.html` because that's where the 180d/365d windows already exist and where "follow the top-K" lives. The weekly report has no cumulative-PnL concept today — adding the block there requires skeleton-fill plumbing. Filed as #12 (weekly-report benchmark strip).
+- *Primary surface.* ROADMAP said "in the weekly report"; the block landed on `leaderboard.html` because that's where the 180d/365d windows already exist and where "follow the top-K" lives. The weekly report has no cumulative-PnL concept today — adding the block there requires skeleton-fill plumbing. Filed as #13 (weekly-report benchmark strip).
 - *Mirror-PnL comparison.* Deferred to #5 per the option-A design call. The card title reflects the reality: "Benchmark Reference — Cumulative Return," not "Follow-list PnL vs. Benchmarks."
 - *Fixture strategy.* Design note defaulted to recording via `_record.py`; NANC/KRUZ/QQQ weren't present in the sandbox's `scoring/cache/prices/`, so synthetic CSVs were generated instead — primitive math is identical for real or synthetic, and real data only starts mattering when #5 uses the same fixtures for backtest replay.
-- *Sandbox render QA.* Blocked by a pre-existing `scoring/price_cache.py` bug (single-ticker `_bulk_download` branch builds a `pd.DataFrame` from scalar `pd.NA` values when yfinance returns an empty `Close` column). Filed as #10. Tom did the live render-and-spot-check on push; confirmation landed in this session.
+- *Sandbox render QA.* Blocked by a pre-existing `scoring/price_cache.py` bug (single-ticker `_bulk_download` branch builds a `pd.DataFrame` from scalar `pd.NA` values when yfinance returns an empty `Close` column). Filed as #11. Tom did the live render-and-spot-check on push; confirmation landed in this session.
 
 **Standing follow-ons filed during #2** (both in `546063d`, sequenced to land before they can bite):
 
-- *#10* — Fix `price_cache.py` single-ticker fallback on empty yfinance response. Before #11 (daily cadence) amplifies exposure.
-- *#12* — Weekly-report benchmark strip. Depends on #10; extends the #2 block into the weekly report's meta area.
+- *#11* — Fix `price_cache.py` single-ticker fallback on empty yfinance response. Before #12 (daily cadence) amplifies exposure.
+- *#13* — Weekly-report benchmark strip. Depends on #11; extends the #2 block into the weekly report's meta area.
 
 **Infra notes for future sessions.**
 
@@ -109,7 +109,7 @@ Final state: 149 pytest cases green locally. `score_members.py` reports drop tot
 - *Per-category counts in xlsx.* Considered adding `spouse_count` / `child_count` / `joint_count` etc. as separate columns. Ruled out — the single `non_self_share` is the actionable surface for followability scoring; per-owner-type breakdown can be added later if research warrants it.
 - *Drop counts per window.* Drops are computed globally (across the full 365d fetched window) and appear identically on both 180d and 365d leaderboard tables. Informational, not scoring inputs, so per-window attribution wasn't worth the plumbing for v1.
 
-**Standing follow-ons.** None new from #3. The earlier-filed #10 (price_cache single-ticker bug — surfaced during #2) and #12 (weekly-report strip — deferred from #2 commit 3) remain queued at their slotted positions.
+**Standing follow-ons.** None new from #3. The earlier-filed #11 (price_cache single-ticker bug — surfaced during #2) and #13 (weekly-report strip — deferred from #2 commit 3) remain queued at their slotted positions.
 
 **Infra notes for future sessions.**
 
@@ -145,11 +145,11 @@ Final state: 168 pytest cases green locally after commit 5; 179 after #5's commi
 - *Entry buffer choice.* ROADMAP listed "1, 2, or 3 bdays" as open. Plan locked in 2 bdays and hard-coded it rather than exposing a `--entry-buffer` flag; capitoltrades timestamps lag intra-day and 2bd is what a retail follower reading the morning digest can plausibly execute.
 - *Composite weight re-tuning.* ROADMAP listed "reuse existing weights or re-tune" as open. Plan deferred re-tuning — re-tuning needs a validation window, which is what #5 produces; folding it into this bundle would have been a self-reference. Filed as an explicit out-of-scope follow-up in the design note.
 - *Trade-date column disposition.* ROADMAP listed three options (secondary column / separate view / hidden). Plan kept trade-date in the xlsx under `_tradedate` suffix and dropped the headline on `leaderboard.html`; surfaced `disclosure_drag_20d` (not the raw trade-date values) as the user-visible diagnostic. Raw `_tradedate` columns remain available for xlsx consumers who want them.
-- *Format of the leaderboard xlsx.* Tom flagged xlsx as machine-only during plan. Kept xlsx for this bundle (build_leaderboard.py reads by column name, so rename-via-suffix was backward-compatible without renderer changes) but filed the xlsx → JSON interchange migration as #14.
+- *Format of the leaderboard xlsx.* Tom flagged xlsx as machine-only during plan. Kept xlsx for this bundle (build_leaderboard.py reads by column name, so rename-via-suffix was backward-compatible without renderer changes) but filed the xlsx → JSON interchange migration as #15.
 
 **Standing follow-ons.** Filed in `a0f09ae` (session wrap):
 
-- *#14* — Leaderboard xlsx → JSON interchange migration. Pure refactor; surfaced in session 3 plan; kept out of the bundle to bound blast radius.
+- *#15* — Leaderboard xlsx → JSON interchange migration. Pure refactor; surfaced in session 3 plan; kept out of the bundle to bound blast radius.
 - *Composite weight re-tuning* (not filed as a numbered item yet). Noted in the design note's Out-of-scope section; will file when Tom wants to act on #5's validation surface.
 - *NANC price-cache seed* (not filed as a numbered item). The committed CSV cache doesn't include NANC, so the #5 backtest's `alpha_vs_nanc` came out as None; a one-off yfinance fetch to seed `scoring/cache/prices/NANC.csv` would fill it.
 
@@ -185,7 +185,7 @@ Final state: 179 pytest cases green locally. Recorded run shape: 12 monthly reba
 - *Causality caveat documented, not fixed.* The composite at D uses alphas pre-attached to trades, which themselves used price data extending past D. A strictly causal backtest would recompute alphas per rebalance with only then-available prices. The forward-looking bias is small (only trades published within the last 60 bdays at D have unresolved horizons) and fixing it doubles the compute. Filed as a deferred follow-up in the module docstring rather than as a blocker.
 - *NANC benchmark unavailable.* Committed CSV cache lacks NANC, so `alpha_vs_nanc` came out as None on the recorded run. Filed above as an infra follow-on.
 
-**Standing follow-ons.** None new from #5 beyond #4's (xlsx → JSON migration #14, composite weight re-tuning, NANC seed). The backtest primitive is positioned so #6 (paper-trading log) can reuse `_close_at_or_after`, `_close_n_positions_later`, and `_total_return` without re-implementation.
+**Standing follow-ons.** None new from #5 beyond #4's (xlsx → JSON migration #15, composite weight re-tuning, NANC seed). The backtest primitive is positioned so #6 (paper-trading log) can reuse `_close_at_or_after`, `_close_n_positions_later`, and `_total_return` without re-implementation.
 
 **Infra notes for future sessions.**
 
@@ -217,14 +217,14 @@ Final state: pytest suite green with paper-log coverage added; landing page carr
 
 **Scope adjustments from the ROADMAP prose.**
 
-- *Entry rule.* ROADMAP listed "next-day open / next-day close / hold until nightly pipeline" as open. Plan locked first close ≥ `open_date + 1 calendar day` — matches #5's D+1 close semantics exactly, invariant under cadence change (#11 nightly doesn't require re-deriving the mechanic), and "the next close a follower reading the morning digest can execute against" is the most defensible retail-follower assumption.
+- *Entry rule.* ROADMAP listed "next-day open / next-day close / hold until nightly pipeline" as open. Plan locked first close ≥ `open_date + 1 calendar day` — matches #5's D+1 close semantics exactly, invariant under cadence change (#12 nightly doesn't require re-deriving the mechanic), and "the next close a follower reading the morning digest can execute against" is the most defensible retail-follower assumption.
 - *Exit rule.* ROADMAP listed "fixed horizon / trailing stop / sell-on-subsequent-disclosure / configurable modes." Plan locked fixed 60 bdays to match #5. Trailing stops and event-driven exits moved to #7-adjacent scope — they need a cost model to evaluate meaningfully.
 - *Storage format.* ROADMAP listed "CSV / parquet / sqlite." Plan locked CSV at `scoring/paper_log/positions.csv` for diff-friendliness. Each pipeline run's append shows as a visible commit diff; parquet is binary; sqlite overkill for append-only. Auto-commit of the CSV from the workflow is how state persists across GHA runs.
-- *Surface.* ROADMAP listed "weekly report / separate page / Cowork artifact." Plan locked a new `site/paper_log.html` page. Cowork artifact stays gated on #13.
+- *Surface.* ROADMAP listed "weekly report / separate page / Cowork artifact." Plan locked a new `site/paper_log.html` page. Cowork artifact stays gated on #14.
 - *Retraction handling.* ROADMAP flagged this as an open question. Plan locked "keep the row, flip status to `retracted`, freeze PnL, stop advancing." Deletion would destroy track-record fidelity — "we acted on this signal at the time" is a real data point even if the underlying disclosure later vanishes.
 - *Position sizing.* Equal-weight across signals in v1. Range-weighted sizing folded explicitly into #7's overlay bundle, not re-litigated here.
 
-**Standing follow-ons.** None new from #6. #7 picks up the cost/tax/sizing overlays that this bundle deferred. #13 (live Cowork artifact) will read the same CSV when it lands.
+**Standing follow-ons.** None new from #6. #7 picks up the cost/tax/sizing overlays that this bundle deferred. #14 (live Cowork artifact) will read the same CSV when it lands.
 
 **Infra notes for future sessions.**
 

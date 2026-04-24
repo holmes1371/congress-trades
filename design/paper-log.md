@@ -37,7 +37,7 @@ All Tom-approved at plan time. Don't re-litigate without a new prompt.
    follower reading the next morning's digest can execute against is
    the next trading day's. Matches #5's D+1 close semantics exactly.
    Invariant under cadence — under today's weekly cadence the next
-   close is typically ~1 trading day after the run; once #11 (daily
+   close is typically ~1 trading day after the run; once #12 (daily
    cadence) lands that gap becomes predictably next-day. The ledger
    records what a follower *could* do given the pipeline's current
    cadence, not a hypothetical faster one.
@@ -64,7 +64,7 @@ All Tom-approved at plan time. Don't re-litigate without a new prompt.
    recently-closed (last 30 days + realized PnL), lifetime summary
    (total return, hit rate, alpha_vs_spy). Landing-page nav in
    `build_site.py` gets a link alongside "Member Leaderboard." No
-   Cowork artifact in v1 — #13 remains gated on prerequisites.
+   Cowork artifact in v1 — #14 remains gated on prerequisites.
 7. **Retraction handling.** Each pipeline run compares open log
    positions against the member's current capitoltrades trades by
    `tx_id`. If a logged position's `tx_id` no longer appears, mark
@@ -192,8 +192,8 @@ duplicating — file the refactor as its own item.
   field is populated from the 60-bday rule today; adding rule variants
   means extending the `status` enum and the exit logic but doesn't
   rewrite the schema.
-- **Cowork artifact surface.** #13 — live-refreshing view of the
-  same ledger. When #13 lands, it reads the same CSV the HTML page
+- **Cowork artifact surface.** #14 — live-refreshing view of the
+  same ledger. When #14 lands, it reads the same CSV the HTML page
   reads; no separate data pipeline.
 - **Position sizing by disclosed value range.** #7 territory (position
   sizing overlays). Equal-weight is the v1 baseline.
