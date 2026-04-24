@@ -24,9 +24,10 @@ Strict rules for writing it:
 
 - **#4 / #5 / #6 closed** (SHAs `829c345` / `9851bd0` / `baefa44`); full prose in `COMPLETED.md`. Session continues on **#7 cost / tax / sizing overlays** (plan approved 2026-04-23; design note `design/cost-tax-sizing-overlays.md`; five-commit sequence in flight).
 - **#7 code complete (5/5 commits landed).** `d35c68a` design note → `ccbb55b` `scoring/costs.py` + 40 tests → `2b48e22` backtest net-of-overlay summary → `73b3186` paper-log sidecar + Gross/Net HTML → `8edf339` pipeline wiring in `update-leaderboard.yml`.
-- **#10 fix landed** after the first monthly-workflow dispatch under #7 surfaced the single-ticker empty-response crash in `build_leaderboard.py` (NANC fetch path). Guard applied to both `_bulk_download` branches; 3 regression tests added. 273 tests green locally. Both #7 and #10 await Tom's manual verification (re-dispatch the workflow + inspect `paper_log.html`'s Gross/Net columns).
+- **#11 (was #10) fix landed `a458c63`** after the first monthly-workflow dispatch under #7 surfaced the single-ticker empty-response crash in `build_leaderboard.py` (NANC fetch path). Guard applied to both `_bulk_download` branches; 3 regression tests added. 273 tests green locally. Both #7 and #11 await Tom's manual verification (re-dispatch the workflow + inspect `paper_log.html`'s Gross/Net columns).
 - Non-#4/#5/#6 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
-- Standing backlog: **#7** (in plan), **#8–#13** open; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON, filed session 3), **#15** (RSS feed removal, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
+- **Backlog renumber:** filed **new #8** (dynamic net-of-costs default-follow list — direct #7 follow-on Tom flagged). Old→new map: `#8→#9, #9→#10, #10→#11, #11→#12, #12→#13, #13→#14, #14→#15, #15→#16`. In-repo cross-references (`#8` in #9-Extends, `#10`/`#11` in #13-Dependency, `#11` in #12, `#13` in #12, `#2–#13` in standing guidance) updated in the same commit; past references in commit messages resolve via this commit in git history.
+- Standing backlog: **#7** (code complete, awaiting verification), **#8** (net-of-costs ranking, just filed), **#9–#14** open; plus **#11** (price_cache single-ticker bug, fix landed), **#13** (weekly-report benchmark strip), **#15** (leaderboard xlsx → JSON, filed session 3), **#16** (RSS feed removal, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
 
 ## For future agents
 
@@ -44,7 +45,7 @@ Session discipline:
 - **Closed items live in `COMPLETED.md`, not here.** When Tom signs off a `[~]` item, the next session moves its full prose into `COMPLETED.md` and leaves a one-line stub at its current item number in this file. **Numbers follow priority order, not historical identity.** When the backlog is reprioritized, physically move the blocks *and* renumber so top-to-bottom matches 1, 2, 3, …; update all in-repo cross-references (this file, `design/*.md`, `COMPLETED.md`) in the same commit; record the old→new map in the session summary and commit message so past references remain resolvable via git history. When touching territory that overlaps a completed item, read its full entry in `COMPLETED.md` before re-deriving decisions.
 - Honor the standing order: deterministic work lives in Python scripts; the agent does only judgment and interpretation. If a feature tempts you to move mechanical work into agent-handled text, push back.
 - Tests live in `tests/` and run on every push via `.github/workflows/tests.yml`. Do not mark a feature done with tests failing; check the commit's test run before calling a feature closed.
-- **Ship tests with the feature, not after.** When a commit adds a new primitive (parser, adapter, pure-math function, schema transform, cache seam), the same commit adds pytest coverage for it. Assembly-level code that ROADMAP #2–#13 is expected to rewrite is deliberately skipped per `design/pytest-ci-suite.md`'s "Guiding principle" — if you skip, say so in the commit message so a reviewer sees the trade-off, not a miss.
+- **Ship tests with the feature, not after.** When a commit adds a new primitive (parser, adapter, pure-math function, schema transform, cache seam), the same commit adds pytest coverage for it. Assembly-level code that ROADMAP #2–#14 is expected to rewrite is deliberately skipped per `design/pytest-ci-suite.md`'s "Guiding principle" — if you skip, say so in the commit message so a reviewer sees the trade-off, not a miss.
 - Any change to `scoring/factors.py` must extend `tests/test_alpha_math.py` or `tests/test_composite_math.py` in the same commit. Other modules with existing test coverage extend their fixtures in step with the change, not after.
 
 Status legend:
@@ -78,9 +79,24 @@ Signals without cost models overstate follower returns. Bundled because all thre
 - After-tax view at short-term federal + VA state (24% + 5.75% = 29.75% combined default), toggleable via `--tax-rate`, since congressional trades skew short-horizon and the headline alpha looks materially different on an after-tax basis.
 - Position-sizing modes — equal-weight across signals (default) versus range-weighted using the disclosed `value` field as a weak conviction proxy — selected explicitly rather than left implicit.
 
-All decisions locked in `design/cost-tax-sizing-overlays.md`. Overlays apply to strategy PnL only (both the #5 backtest and the #6 paper-log HTML); the composite still ranks on gross alpha — net-of-costs composite scoring is an explicit v2 follow-up.
+All decisions locked in `design/cost-tax-sizing-overlays.md`. Overlays apply to strategy PnL only (both the #5 backtest and the #6 paper-log HTML); the composite still ranks on gross alpha — net-of-costs composite scoring is an explicit v2 follow-up, filed as #8 below.
 
-### 8. [ ] Committee-relevant consensus signals
+### 8. [ ] Dynamic net-of-costs default-follow list
+
+Direct #7 follow-on (also referenced in `design/cost-tax-sizing-overlays.md`'s out-of-scope section). Today's `score_members.py --top-n 20` ranks members by gross composite alpha and writes `default_follow_*.json`; #7's overlays exposed the asymmetry that small-cap-heavy members look good gross but pay more slippage and the same tax hit, so their net-of-costs alpha is materially lower. The default-follow list should rank on net, not gross — otherwise the list tells the follower "these are the best signals" when the honest claim is "these are the best signals before costs you're actually going to pay."
+
+Explicit v2 item rather than a #7 commit 6/5 because reframing what the composite measures (signal quality → follower profitability) is a meaningful scope shift: #7's locked decision 4 was to keep the composite gross and overlay only strategy PnL; this item inverts that at the ranking seam. Sequenced after #7's verification closes so the gross-composite baseline is stable before the cutover.
+
+Design-note questions:
+
+- Composite cutover vs. parallel column. Re-point the unsuffixed composite to net-of-overlay (matches the #4 post-file cutover shape), or emit a `composite_net` alongside the existing gross `composite` and pick top-K on the net. Follower-facing ranking shifts either way; parallel column keeps the gross diagnostic legible.
+- Slippage input at ranking time. Composite is computed on a historical trade window; which ADV snapshot drives the tier classification — current-run (cheapest), window-mean (middle path), or trade-time (most honest, requires per-trade ADV attach)?
+- Tax rate. Inherit from the #7 CLI default (0.2975 = federal 24% + VA 5.75%), or separate knob. Single rate keeps the composite reproducible across sessions; splitting adds another degree of freedom to re-litigate.
+- Interaction with the #6 paper-log track record. Once the ledger has 6+ months of closed positions, per-member net-of-costs paper-log alpha is a direct measurement — optionally blend into the composite. v3 territory; not v2.
+- Dry-run expectations. Small-cap-heavy members drop in rank; large-cap-heavy members rise. Churn magnitude matters — commit a before/after table in the design note's dry-run section (mirroring `postfile-alpha-and-backtest.md`'s dry-run shape) before the cutover lands.
+- Sensitivity report. Standing `design/net-composite-sensitivity.md` showing rank churn under the `{slippage_mode, tax_rate}` grid so the cutover's behavior is legible rather than opaque.
+
+### 9. [ ] Committee-relevant consensus signals
 
 Persistent congressional alpha in the academic literature tends to cluster in two places: trades clustered near relevant committee hearings, and trades where multiple members take the same side within a tight window. The project already has committee-mode analysis; the next step is to fuse it with consensus detection. Compute a composite signal where ≥2 members of a committee with jurisdiction over the ticker's sector trade the same direction within 30 days, and surface those at the top of the weekly report in their own section, separate from aggregate consensus.
 
@@ -91,9 +107,9 @@ Design-note questions:
 - Member threshold. 2 minimum, or higher for conviction.
 - Interaction with signal-quality filters (#3). Spouse-filed and options-filed trades should likely be excluded from the consensus count.
 
-### 9. [ ] Hearings correlation
+### 10. [ ] Hearings correlation
 
-Extends #8. The House Clerk and Senate publish hearing schedules. Correlating disclosed trade dates with hearings the member attended is high-signal and mechanically achievable from public data: a member buying a defense contractor the week before an HASC briefing is a different signal than the same purchase three months later. Adds a "hearings-proximal trade" tag to the signal layer and threads it into the composite where committee jurisdiction matches.
+Extends #9. The House Clerk and Senate publish hearing schedules. Correlating disclosed trade dates with hearings the member attended is high-signal and mechanically achievable from public data: a member buying a defense contractor the week before an HASC briefing is a different signal than the same purchase three months later. Adds a "hearings-proximal trade" tag to the signal layer and threads it into the composite where committee jurisdiction matches.
 
 Design-note questions:
 
@@ -102,13 +118,13 @@ Design-note questions:
 - Proximity window. 7, 14, or 30 days.
 - Failure mode when a member sits on multiple committees. Is the tag "any relevant hearing within window," or restricted to the committee whose jurisdiction matches the ticker.
 
-### 10. [~] Fix `price_cache.py` single-ticker fallback on empty yfinance response
+### 11. [~] Fix `price_cache.py` single-ticker fallback on empty yfinance response
 
 _Code complete — surfaced in live CI on the session-3 monthly workflow run after #7 landed: `build_leaderboard.py:360 → all_benchmark_returns(180d) → get_prices([NANC, KRUZ, SPY, QQQ]) → _bulk_download([NANC])` (NANC is the cache-missing ticker per the session-3 standing follow-up; yfinance returned a non-empty frame without `Close`/`Volume`). Fix guards both the single-ticker and multi-ticker branches of `_bulk_download`: if the post-download frame lacks a `Close` column, the ticker is dropped (single-ticker returns `{}`, multi-ticker `continue`s), matching the module's existing missing-data convention. Three regression tests added in `tests/test_price_cache.py`. Awaiting Tom's manual verification (re-dispatch the workflow) before flipping `[x]`._
 
-### 11. [ ] Daily / on-disclosure cadence
+### 12. [ ] Daily / on-disclosure cadence
 
-Weekly cadence gives up several days of post-disclosure drift that the research suggests is capturable. A nightly run with a short "new signals since last run" digest tightens the loop. The existing no-changes short-circuit makes this cheap to operate. Paired with the live artifact in #13, this changes the platform from a weekly snapshot into something closer to an event-driven stream.
+Weekly cadence gives up several days of post-disclosure drift that the research suggests is capturable. A nightly run with a short "new signals since last run" digest tightens the loop. The existing no-changes short-circuit makes this cheap to operate. Paired with the live artifact in #14, this changes the platform from a weekly snapshot into something closer to an event-driven stream.
 
 Design-note questions:
 
@@ -117,7 +133,7 @@ Design-note questions:
 - Whether the weekly report persists as a digest-of-digests or is retired once the nightly stream is stable.
 - CI vs. local run. The nightly cadence implies GitHub Actions on a schedule; cost and rate-limit implications for capitoltrades need sizing.
 
-### 12. [ ] Weekly-report benchmark strip
+### 13. [ ] Weekly-report benchmark strip
 
 Extend #2's benchmark reference block to the weekly report (`generate_report.py`) as a compact four-cell strip near the top meta area, so NANC/KRUZ/SPY/QQQ cumulative returns are visible every week rather than only on the monthly leaderboard rebuild. Deferred from #2's commit 3 because the wiring path — `compute_analysis.py` → `build_skeleton.py` → `fill_skeleton.py` → `generate_report.py` — is non-trivial, and the leaderboard surface already delivers the core value-add question. The strip adds cadence: weekly visibility for a reader who only looks at the latest report, not the monthly ranking page.
 
@@ -127,11 +143,11 @@ Design-note questions:
 - Window alignment. Match the leaderboard's 180d/365d anchors for continuity with #2, or use the weekly report's trade-window. Framing favors 180d/365d.
 - Placement. Compact four-cell strip in the meta area directly below the title, or a full card below the Executive Summary section.
 - Fallback when benchmark data is unavailable in a given CI run (empty price cache, yfinance unreachable). Show dashes, omit the strip, or fail-closed?
-- Dependency on #10. The strip adds a new caller of `scoring.benchmarks.all_benchmark_returns`, which fans into single-ticker `get_prices` calls in fallback paths. #10 should land first so the strip-generation path isn't a crash vector.
+- Dependency on #11. The strip adds a new caller of `scoring.benchmarks.all_benchmark_returns`, which fans into single-ticker `get_prices` calls in fallback paths. #11 should land first so the strip-generation path isn't a crash vector.
 
-### 13. [ ] Live Cowork artifact
+### 14. [ ] Live Cowork artifact
 
-An artifact (in the Cowork sense) that re-queries on open and shows open paper-trade positions, days held, and current PnL against the benchmarks from #2. More actionable than a static HTML report, and a natural home for the paper-trading log from #6. Placed last in priority order because it sits on top of #6 (log), #2 (benchmarks), and ideally #11 (cadence); building it earlier means re-wiring it as each prerequisite lands.
+An artifact (in the Cowork sense) that re-queries on open and shows open paper-trade positions, days held, and current PnL against the benchmarks from #2. More actionable than a static HTML report, and a natural home for the paper-trading log from #6. Placed last in priority order because it sits on top of #6 (log), #2 (benchmarks), and ideally #12 (cadence); building it earlier means re-wiring it as each prerequisite lands.
 
 Design-note questions:
 
@@ -140,7 +156,7 @@ Design-note questions:
 - Default view on open. Leaderboard vs. open positions vs. benchmark row.
 - Refresh rate. Every open, or cached for N minutes.
 
-### 14. [ ] Leaderboard xlsx → JSON interchange migration
+### 15. [ ] Leaderboard xlsx → JSON interchange migration
 
 `scoring/output/leaderboard_*.xlsx` is a machine-only artifact today — `build_leaderboard.py` reads it via `openpyxl.load_workbook` to render `site/leaderboard.html`, and no human opens it. The xlsx wrapper imposes cost without value: openpyxl round-trips, the Windows-cowork-mount EOCD-truncation workaround in `scoring/score_members.py::main`, a three-sheet workbook where a flat JSON would do. Swap the interchange format to JSON. Filed session 3 after the xlsx format came up mid-plan for the #4/#5 bundle; the bundle itself kept xlsx to minimize blast radius, so this is the dedicated follow-up.
 
@@ -151,7 +167,7 @@ Design-note questions:
 - Test impact. `test_leaderboard_filter_columns.py` is string-level on the rendered HTML — unaffected. Any tests that read the xlsx directly (currently none) would migrate.
 - CI workflow. `.github/workflows/update-report.yml` gates on `ls scoring/output/leaderboard_*.xlsx`; updates to the glob or the presence-check.
 
-### 15. [ ] Remove RSS feed button and functionality from landing page
+### 16. [ ] Remove RSS feed button and functionality from landing page
 
 The `site/index.html` footer ships an "RSS Feed" link and the `<head>` advertises an `application/rss+xml` alternate, backed by `build_site.py::build_rss` writing `site/rss.xml` on every report build. Tom doesn't use it, no downstream consumer is known, and keeping it forces the monthly/daily workflows to regenerate an artifact nobody reads. Rip it out end-to-end rather than leaving a dead link.
 

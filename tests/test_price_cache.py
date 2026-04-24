@@ -144,7 +144,7 @@ def test_partial_coverage_triggers_refetch(monkeypatch, tmp_path):
     assert len(result["AAPL"]) == 4  # 6/2, 6/3, 6/4, 6/5 all inside window
 
 
-# ── _bulk_download empty-column regression (ROADMAP #10) ──
+# ── _bulk_download empty-column regression (ROADMAP #11) ──
 
 class _FakeYF:
     """Minimal yfinance stand-in. Each instance returns a fixed frame
