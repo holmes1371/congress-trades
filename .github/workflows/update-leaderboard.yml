@@ -67,24 +67,35 @@ jobs:
         run: |
           python3 build_leaderboard.py --out site
 
-      - name: Advance paper-trading log (ROADMAP #6)
+      - name: Advance paper-trading log (ROADMAP #6 + #7 overlays)
+        # Explicit overlay flags match the scoring/costs.py defaults
+        # (tiered slippage by ADV, combined federal 24% + VA 5.75%
+        # short-term tax, equal-weight sizing). Kept explicit so a
+        # future module-default change doesn't silently alter CI output
+        # — any drift is a visible workflow diff.
         run: |
-          python3 scoring/paper_log.py 2>&1 | tail -10
+          python3 scoring/paper_log.py \
+            --slippage-mode tiered \
+            --tax-rate 0.2975 \
+            --sizing-mode equal \
+            2>&1 | tail -10
 
-      - name: Commit paper-log ledger if changed
-        # scoring/paper_log/positions.csv is the persistent ledger.
-        # CI needs to commit it back so the next run continues
-        # accumulating rather than resetting. Cron-scheduled runs are
-        # immune to [skip ci] loops (cron ignores commit messages), but
-        # the token annotation still helps manual re-runs.
+      - name: Commit paper-log ledger + overlays if changed
+        # scoring/paper_log/positions.csv is the persistent ledger;
+        # scoring/paper_log/overlays.json is the #7 sidecar consumed
+        # by build_paper_log.py on the daily update-report.yml run.
+        # Both need to persist across runs, so both get committed if
+        # either changed. Cron-scheduled runs are immune to [skip ci]
+        # loops (cron ignores commit messages), but the token
+        # annotation still helps manual re-runs.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet scoring/paper_log/positions.csv; then
-            echo "No ledger changes to commit."
+          if git diff --quiet scoring/paper_log/; then
+            echo "No ledger or overlay changes to commit."
           else
-            git add scoring/paper_log/positions.csv
-            git commit -m "chore(paper-log): auto-update ledger [skip ci]"
+            git add scoring/paper_log/positions.csv scoring/paper_log/overlays.json
+            git commit -m "chore(paper-log): auto-update ledger + overlays [skip ci]"
             git push
           fi
 
