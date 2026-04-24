@@ -122,30 +122,35 @@ def _bulk_download(tickers: list[str], start: date, end: date) -> dict[str, pd.D
     out: dict[str, pd.DataFrame] = {}
     if len(tickers) == 1:
         # Single-ticker result is NOT multi-index; synthesize one.
+        # When yfinance returns a non-empty frame without a Close
+        # column (rate-limit fallback, delisted / unknown ticker,
+        # malformed response), drop the ticker rather than constructing
+        # a DataFrame from scalar pd.NA values — matches the existing
+        # "missing data skips the ticker" convention.
         t = tickers[0]
-        if raw.empty:
+        if raw.empty or "Close" not in raw.columns:
             return {}
-        sub = pd.DataFrame({
-            "close":  raw["Close"] if "Close" in raw.columns else pd.NA,
-            "volume": raw["Volume"] if "Volume" in raw.columns else pd.NA,
-        })
+        close = raw["Close"]
+        volume = raw["Volume"] if "Volume" in raw.columns else pd.Series(pd.NA, index=close.index)
+        sub = pd.DataFrame({"close": close, "volume": volume})
         sub.index = pd.to_datetime(sub.index)
         sub.index.name = "date"
         sub = sub.dropna(subset=["close"])
         out[t] = sub
         return out
 
-    # Multi-ticker: columns are a MultiIndex of (ticker, field).
+    # Multi-ticker: columns are a MultiIndex of (ticker, field). Same
+    # guard as the single-ticker branch — no Close column means no
+    # usable data, skip the ticker.
     for t in tickers:
         if t not in raw.columns.get_level_values(0):
             continue
         sub_raw = raw[t]
-        if sub_raw.empty:
+        if sub_raw.empty or "Close" not in sub_raw.columns:
             continue
-        sub = pd.DataFrame({
-            "close":  sub_raw["Close"]  if "Close"  in sub_raw.columns else pd.NA,
-            "volume": sub_raw["Volume"] if "Volume" in sub_raw.columns else pd.NA,
-        })
+        close = sub_raw["Close"]
+        volume = sub_raw["Volume"] if "Volume" in sub_raw.columns else pd.Series(pd.NA, index=close.index)
+        sub = pd.DataFrame({"close": close, "volume": volume})
         sub.index = pd.to_datetime(sub.index)
         sub.index.name = "date"
         sub = sub.dropna(subset=["close"])

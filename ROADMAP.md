@@ -23,7 +23,8 @@ Strict rules for writing it:
 **2026-04-23 (session 3)**
 
 - **#4 / #5 / #6 closed** (SHAs `829c345` / `9851bd0` / `baefa44`); full prose in `COMPLETED.md`. Session continues on **#7 cost / tax / sizing overlays** (plan approved 2026-04-23; design note `design/cost-tax-sizing-overlays.md`; five-commit sequence in flight).
-- **#7 code complete (5/5 commits landed).** `d35c68a` design note → `ccbb55b` `scoring/costs.py` + 40 tests → `2b48e22` backtest net-of-overlay summary → `73b3186` paper-log sidecar + Gross/Net HTML → `8edf339` pipeline wiring in `update-leaderboard.yml`. 270 tests green locally. Awaiting Tom's manual verification (monthly workflow dispatch + inspect the rendered `paper_log.html` Gross/Net columns) before flipping `[x]`.
+- **#7 code complete (5/5 commits landed).** `d35c68a` design note → `ccbb55b` `scoring/costs.py` + 40 tests → `2b48e22` backtest net-of-overlay summary → `73b3186` paper-log sidecar + Gross/Net HTML → `8edf339` pipeline wiring in `update-leaderboard.yml`.
+- **#10 fix landed** after the first monthly-workflow dispatch under #7 surfaced the single-ticker empty-response crash in `build_leaderboard.py` (NANC fetch path). Guard applied to both `_bulk_download` branches; 3 regression tests added. 273 tests green locally. Both #7 and #10 await Tom's manual verification (re-dispatch the workflow + inspect `paper_log.html`'s Gross/Net columns).
 - Non-#4/#5/#6 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
 - Standing backlog: **#7** (in plan), **#8–#13** open; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON, filed session 3), **#15** (RSS feed removal, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
 
@@ -101,15 +102,9 @@ Design-note questions:
 - Proximity window. 7, 14, or 30 days.
 - Failure mode when a member sits on multiple committees. Is the tag "any relevant hearing within window," or restricted to the committee whose jurisdiction matches the ticker.
 
-### 10. [ ] Fix `price_cache.py` single-ticker fallback on empty yfinance response
+### 10. [~] Fix `price_cache.py` single-ticker fallback on empty yfinance response
 
-When `scoring/price_cache.py::_bulk_download` is called with a single ticker and yfinance returns a frame with no `Close` / `Volume` columns (empty response, rate-limit fallback, delisted or unknown ticker, etc.), the single-ticker branch builds a `pd.DataFrame` from scalar `pd.NA` values (around line 128) and crashes with `ValueError: If using all scalar values, you must pass an index`. Surfaced during #2's local-render attempt in the sandbox: `get_prices([ticker], ...)` calls from `scoring/benchmarks.py::benchmark_cumulative_return`'s fallback path tripped the bug. Effect: the pipeline aborts rather than gracefully dropping the missing ticker; the nightly cadence in #11 amplifies exposure and the weekly-report strip in #12 is a new caller. Fix: detect the empty-column shape upstream of the DataFrame construction and return an empty dict for that ticker, matching the module's existing dropped-ticker convention. Ship a regression test alongside: a `responses`-mocked `_bulk_download` call returning an empty-column frame, asserting `get_prices` returns `{}` without raising.
-
-Design-note questions:
-
-- Whether the multi-ticker branch (lines 139-154) needs the same guard. It has a `"Close" in sub_raw.columns` check but then still builds a DataFrame with `pd.NA` for the Volume column — same hazard if Close exists but Volume is absent.
-- Whether to persist a "no data" marker per ticker to avoid repeated yfinance hits on the same missing symbol. Favor not persisting — simple, and a missing ticker is rare enough that retry-on-every-query is cheap.
-- Reproducibility of yfinance's exact empty-column shape in a regression test. May need to capture a live example once and codify the shape in a fixture.
+_Code complete — surfaced in live CI on the session-3 monthly workflow run after #7 landed: `build_leaderboard.py:360 → all_benchmark_returns(180d) → get_prices([NANC, KRUZ, SPY, QQQ]) → _bulk_download([NANC])` (NANC is the cache-missing ticker per the session-3 standing follow-up; yfinance returned a non-empty frame without `Close`/`Volume`). Fix guards both the single-ticker and multi-ticker branches of `_bulk_download`: if the post-download frame lacks a `Close` column, the ticker is dropped (single-ticker returns `{}`, multi-ticker `continue`s), matching the module's existing missing-data convention. Three regression tests added in `tests/test_price_cache.py`. Awaiting Tom's manual verification (re-dispatch the workflow) before flipping `[x]`._
 
 ### 11. [ ] Daily / on-disclosure cadence
 

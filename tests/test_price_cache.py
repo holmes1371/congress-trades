@@ -144,6 +144,68 @@ def test_partial_coverage_triggers_refetch(monkeypatch, tmp_path):
     assert len(result["AAPL"]) == 4  # 6/2, 6/3, 6/4, 6/5 all inside window
 
 
+# ── _bulk_download empty-column regression (ROADMAP #10) ──
+
+class _FakeYF:
+    """Minimal yfinance stand-in. Each instance returns a fixed frame
+    from download(); the monkeypatch swap lets us exercise
+    _bulk_download's post-fetch handling without a network call."""
+
+    def __init__(self, frame: pd.DataFrame):
+        self._frame = frame
+
+    def download(self, **kwargs) -> pd.DataFrame:
+        return self._frame
+
+
+def test_bulk_download_single_ticker_missing_close_returns_empty(monkeypatch):
+    """yfinance returns a non-empty frame without a Close column
+    (rate-limit fallback, delisted / unknown ticker). Pre-fix this
+    crashed `pd.DataFrame({"close": pd.NA, "volume": pd.NA})` with
+    'If using all scalar values, you must pass an index'. The guard
+    drops the ticker instead."""
+    # Shape yfinance sometimes returns: a frame that has rows (so
+    # raw.empty is False) but no Close column.
+    idx = pd.to_datetime(["2025-06-02", "2025-06-03"])
+    bad = pd.DataFrame({"Adj Close": [100.0, 101.0]}, index=idx)
+    monkeypatch.setattr(price_cache, "yf", _FakeYF(bad))
+
+    out = price_cache._bulk_download(["MISSING"], date(2025, 6, 1), date(2025, 6, 10))
+    assert out == {}
+
+
+def test_bulk_download_single_ticker_missing_volume_still_builds_frame(monkeypatch):
+    """Close present, Volume absent — keep the ticker with NaN volume
+    rather than crashing. Mirrors the existing dropna(subset=['close'])
+    contract downstream."""
+    idx = pd.to_datetime(["2025-06-02", "2025-06-03"])
+    good = pd.DataFrame({"Close": [200.0, 201.0]}, index=idx)
+    monkeypatch.setattr(price_cache, "yf", _FakeYF(good))
+
+    out = price_cache._bulk_download(["NOVOL"], date(2025, 6, 1), date(2025, 6, 10))
+    assert "NOVOL" in out
+    assert len(out["NOVOL"]) == 2
+    assert out["NOVOL"]["close"].tolist() == [200.0, 201.0]
+    assert out["NOVOL"]["volume"].isna().all()
+
+
+def test_bulk_download_multi_ticker_skips_tickers_without_close(monkeypatch):
+    """In a multi-ticker response, one ticker's sub-frame can lack a
+    Close column while another's has full data. Skip the bad one,
+    keep the good one — same guard as the single-ticker branch."""
+    idx = pd.to_datetime(["2025-06-02", "2025-06-03"])
+    aapl_cols = pd.DataFrame({"Close": [200.0, 201.0], "Volume": [1_000_000, 1_100_000]}, index=idx)
+    # BADTKR has Adj Close only — no usable Close for our schema.
+    bad_cols = pd.DataFrame({"Adj Close": [50.0, 51.0]}, index=idx)
+    raw = pd.concat({"AAPL": aapl_cols, "BADTKR": bad_cols}, axis=1)
+    monkeypatch.setattr(price_cache, "yf", _FakeYF(raw))
+
+    out = price_cache._bulk_download(["AAPL", "BADTKR"], date(2025, 6, 1), date(2025, 6, 10))
+    assert "AAPL" in out
+    assert "BADTKR" not in out
+    assert len(out["AAPL"]) == 2
+
+
 def test_corrupt_cache_file_is_swallowed(monkeypatch, tmp_path):
     """Garbage CSV → _load_cached returns empty, refetch proceeds."""
     monkeypatch.setattr(price_cache, "CACHE_DIR", tmp_path)
