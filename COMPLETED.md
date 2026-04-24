@@ -234,3 +234,82 @@ Final state: pytest suite green with paper-log coverage added; landing page carr
 - CSV auto-commit in the workflow uses a `[skip ci]` message suffix so the commit doesn't retrigger the same workflow. Removing that suffix creates an infinite loop.
 - The synthetic-member fixture (`tests/fixtures/backtest_synthetic_member.py`) is shared with #5; extending it with a retracted-trade member in paperlog 3/5 adds coverage for both features. Don't fork the fixture — if a future feature needs a third synthetic member, extend in place.
 - `build_paper_log.py`'s render is schema-contract tested, not snapshot-tested. CSS tweaks and cell-ordering changes that preserve the asserted shape don't break the test.
+
+### 7. [x] Transaction-cost, tax-drag, and position-sizing overlays — 8edf339
+
+Closed 2026-04-23 after Tom confirmed the live monthly workflow dispatch rendered `site/paper_log.html` with Gross/Net columns and the overlay-config footer. The first dispatch surfaced the adjacent #11 (price_cache empty-response crash) in the leaderboard benchmarks path; #11 was fixed inline and #7 verified on the re-dispatch.
+
+**Goal.** Add a single overlay layer on top of the gross per-trade PnL produced by `scoring/backtest.py::walk_forward` and `scoring/paper_log.py::PaperLog`, giving a net-of-costs view without rewriting either engine. Three overlays in one bundle — slippage (ADV-tiered bps haircut), tax drag (gain-only short-term), and sizing (equal vs. range-weighted) — because they live in the same PnL-accounting seam and share fixtures.
+
+**Guiding principle.** Reporting-layer only. Stored rows (ledger CSV, per-trade backtest JSON) stay gross; the overlay math lives in a new pure-math module `scoring/costs.py` that the backtest summary and the paper-log HTML render consume on-the-fly. A future consumer can re-compute net stats at any rate without re-running the replay. The composite still ranks on gross alpha by locked decision; net-of-costs composite scoring was filed as #8 below (direct v2 follow-on).
+
+**Design note.** `design/cost-tax-sizing-overlays.md` — complexity classified medium → think hard. Locked 9 decisions covering slippage tiers (5/25/75 bps keyed to ADV at $100M/$10M thresholds), gain-only tax haircut (default 0.2975 = federal short-term 24% + VA state 5.75%), equal-weight sizing default with range-weighted opt-in, round-trip slippage (one haircut per trade, not two legs), benchmarks stay gross, and per-row paper-log entries untouched by overlays (the render computes net at display time from the same gross rows).
+
+**Commit trail.**
+
+- `d35c68a` — overlays 1/5: design note + ROADMAP flip #7 to `[~]`.
+- `ccbb55b` — overlays 2/5: `scoring/costs.py` pure-math module (`classify_tier`, `slippage_bps_for_ticker`, `apply_slippage`, `apply_tax`, `apply_sizing`). No I/O, no coupling to paper_log / backtest. Full unit tests in `tests/test_costs.py` — 40 parametrized cases covering tier boundaries, slippage-mode resolution including the `flat_bps:<N>` parse and malformed / unknown-mode raises, tax gain-only with invalid-rate guards, sizing equal / range / median-fallback / all-missing-degrades-to-equal paths.
+- `2b48e22` — overlays 3/5: backtest hook. `walk_forward` gains `slippage_mode` / `tax_rate` / `sizing_mode` kwargs (defaults tiered / 0.2975 / equal). `summary.strategy` gains 5 net fields (`total_return_net`, `alpha_vs_spy_net`, `alpha_vs_nanc_net`, `alpha_vs_naive_copy_everyone_net`, `hit_rate_net`) plus an `overlays` config dict with the slippage_bps_by_ticker audit map. `summary.naive_copy_everyone` gains `total_return_net`. Per-trade rows in `rebalances[].trades[]` gain two additive fields (`spy_return` + `value`) needed by the reporting layer — PnL fields stay gross so consumers can re-derive net under alternative overlay configs. 5 new backtest tests. CLI prints gross + (net) side by side.
+- `73b3186` — overlays 4/5: paper-log + HTML render. `paper_log.py::main()` gains the three CLI flags and, after each walk, writes a sidecar `scoring/paper_log/overlays.json` with the overlay config and a resolved `slippage_bps_by_ticker` map (computed while `ticker_adv` is still in scope — the renderer stays price-cache-free). `build_paper_log.py` loads the sidecar at CLI time and threads it through `render_page` → `build_summary_card` → `lifetime_summary`. Each per-trade summary metric renders as "Gross X% · Net Y%"; a small overlay-config footer declares the mode / rate / mode applied. When the sidecar is absent (pre-first-walk), net columns em-dash and the page still builds. Unknown tickers in the sidecar fall back to the small-cap tier (75 bps) — matches `classify_tier(None) → 'small'`, conservative. 6 new page tests.
+- `8edf339` — overlays 5/5: pipeline wiring. `update-leaderboard.yml` passes explicit `--slippage-mode tiered --tax-rate 0.2975 --sizing-mode equal` to the paper_log.py invocation (defaults match the module; explicit so a future module-default tweak doesn't silently alter CI output). Auto-commit step extended from `positions.csv` to the whole `scoring/paper_log/` directory so the sidecar persists across runs. `update-report.yml` needs no change — `build_paper_log.py` reads the sidecar from the repo without invoking paper_log.
+
+Final state: 273 pytest cases green locally (219 prior + 40 costs + 5 backtest + 6 page + 3 #11 regression). Paper-log page renders Gross/Net side-by-side on every pipeline run; backtest JSON carries net stats + overlays audit alongside gross.
+
+**Scope adjustments from the ROADMAP prose.**
+
+- *Slippage model.* ROADMAP listed "average spread × configurable fill factor (1× large cap, 2–3× small cap)" as the sketch. Plan locked ADV-tiered bps (5 / 25 / 75 for large / mid / small at $100M / $10M thresholds) instead — cleaner, data-source-free, single number per tier. CLI `--slippage-mode off | tiered | flat_bps:<N>` for override.
+- *Tax scope.* ROADMAP asked "paper log only / backtest only / both." Plan locked both — the same combined federal + VA short-term rate is meaningful in both surfaces. Default 0.2975 (federal 24% + VA 5.75%); `--tax-rate 0.0` disables.
+- *Sizing default.* ROADMAP asked for the default. Plan locked equal-weight (matches today's backtest and paper-log aggregation). Range-weighted uses capitoltrades' pre-bucketed `value` field (single midpoint, not low/high — fixture confirmed) with median fallback for missing values.
+- *State tax rate.* ROADMAP asked "user-configurable or hardcoded." Plan locked a single `--tax-rate` knob defaulting to VA (since Tom lives there); no per-state lookup table. A follower in a different state overrides via CLI.
+- *Composite scoring stays gross.* Not in ROADMAP but flagged explicitly in the locked decisions: overlays apply to *strategy PnL*, not to the composite. Filed as #8 (dynamic net-of-costs default-follow list) — reframing what the composite measures is a scope shift beyond an overlay bundle.
+- *Paper-log CSV schema unchanged.* Per-row `pnl_pct` stays gross; overlays live in a sidecar `overlays.json` alongside the ledger. Adds one committed file to the repo but keeps the CSV schema from #6 intact — a future consumer of the CSV doesn't need to learn a new column.
+- *Per-trade row additive fields.* `rebalances[].trades[]` in the backtest JSON gained `spy_return` and `value` (both reference data, not overlay output) so range-sizing and net-alpha re-aggregation work from stored rows. Documented as an amendment in the design note's Hook-in points section.
+
+**Standing follow-ons.** Filed in `1747a21` (session wrap):
+
+- *#8* — Dynamic net-of-costs default-follow list. The ranking-time v2 question that this bundle explicitly left out. Slotted immediately after #7 because Tom flagged it as a direct follow-on, with the accompanying backlog renumber (old #8–#15 → #9–#16) and cross-reference sweep across ROADMAP, design/*.md, and COMPLETED.md.
+
+**Infra notes for future sessions.**
+
+- `scoring/costs.py` is pure math — no I/O, no coupling. New overlays (loss harvesting, yfinance-derived dynamic slippage, per-state tax tables) plug in as additional primitives here without touching paper_log / backtest.
+- `slippage_bps_for_ticker(ticker, ticker_adv, mode=)` resolves the per-trade bps. Unknown ticker → small-cap tier by design. Call sites always pass a `ticker_adv` dict; don't pass a raw ADV number.
+- `apply_sizing(trades, mode)` expects dicts with `pnl_pct` (and `value` for range mode). The backtest/paper-log wrappers shape their rows into this contract before calling; don't reach for `apply_sizing` from arbitrary callers without that shape.
+- `scoring/paper_log/overlays.json` is the persistence seam between `paper_log.py::main()` (writer) and `build_paper_log.py::main()` (reader). CI commits it alongside positions.csv; if a manual run locally writes a different overlay config, the sidecar diff shows up in git — don't strip it from the commit.
+- `summary.strategy.overlays.slippage_bps_by_ticker` is an audit trail, not a live config. It records what bps each ticker in `all_executed` paid during this run; editing it after the fact won't change anything. Re-run the backtest with `--slippage-mode flat_bps:<N>` if you need different numbers.
+- Tax is applied to `stock_return`, not to `alpha_vs_spy`. Follower-side tax mechanics: the follower realizes stock PnL, not a hedge. Benchmarks (SPY / NANC) stay gross per locked decision 8; `alpha_vs_spy_net = net_stock_return - gross_spy_return` per trade.
+- `--tax-rate` domain is `[0, 1)` — validated. Passing `1.0` or higher raises rather than silently zeroing everything; pass `0.9999` if you need "nearly 100%".
+- Workflow-side: `update-leaderboard.yml` commits the `scoring/paper_log/` directory with a `[skip ci]` tag. Cron-scheduled runs ignore the tag (cron fires regardless); manual re-dispatches respect it. Don't strip the `[skip ci]` without understanding the retrigger loop.
+
+### 11. [x] Fix `price_cache.py` single-ticker fallback on empty yfinance response — a458c63
+
+Closed 2026-04-23 after Tom confirmed the re-dispatched monthly workflow ran to completion, the NANC fetch path no longer crashed, and `site/paper_log.html` rendered with #7's Gross/Net columns intact.
+
+**Goal.** When `scoring/price_cache.py::_bulk_download` is called and yfinance returns a frame with no `Close` column (empty response, rate-limit fallback, delisted or unknown ticker), the pre-fix code constructed `pd.DataFrame({"close": pd.NA, "volume": pd.NA})` from two scalar values — crash with `ValueError: If using all scalar values, you must pass an index`. Fix: detect the empty-column shape upstream of the DataFrame construction and drop the ticker, matching the module's existing missing-data convention.
+
+**Live trigger.** Surfaced the first time #7's monthly workflow ran: `build_leaderboard.py:360` → `all_benchmark_returns(today - timedelta(days=180), today)` → `get_prices([NANC, KRUZ, SPY, QQQ], ...)` → cache-miss on NANC (the committed CSV cache lacks NANC per the session-3 standing follow-up) → single-ticker `_bulk_download([NANC])` → empty-Close frame → crash. The latent bug, filed in session 2 as a known hazard, bit the first time a rebuild actually tried to fetch NANC mid-pipeline.
+
+**Commit trail.** Single commit `a458c63`:
+
+- `scoring/price_cache.py::_bulk_download` — both branches now guard `"Close" not in raw.columns` / `"Close" not in sub_raw.columns`:
+  * Single-ticker: returns `{}` immediately (ticker dropped).
+  * Multi-ticker: `continue`s to the next ticker, preserving any others with usable data.
+  * Follow-on for the Volume column: when Close is present but Volume isn't, build an explicit `pd.Series(pd.NA, index=close.index)` rather than a scalar. Avoids the same DataFrame-from-scalars failure mode if yfinance ever returns that shape.
+- `tests/test_price_cache.py` — 3 regression tests via a `_FakeYF` stand-in that monkeypatches the `yf` module attribute:
+  * Single-ticker missing Close → `_bulk_download` returns `{}` (not raises).
+  * Single-ticker Close-present-Volume-absent → frame builds with NaN volume, ticker kept.
+  * Multi-ticker with one Adj-Close-only ticker and one full ticker → bad dropped, good kept.
+
+Final state: 273 pytest cases green locally (270 pre-fix + 3 regression).
+
+**Scope adjustments from the ROADMAP prose.**
+
+- *Single-ticker vs. multi-ticker guard.* ROADMAP listed the multi-ticker branch's same-hazard question as open ("Close exists but Volume is absent"). On deeper read, the "Close present + Volume absent" case actually works in either branch (pandas broadcasts the scalar against the Series index); the genuine hazard is "Close absent" where both keys fall back to scalars and the DataFrame constructor raises. Applied the guard to both branches anyway for symmetry and as forward insurance if the single-leg-scalar path ever regresses.
+- *No "no data" marker persistence.* ROADMAP noted the option to cache a per-ticker "no data" flag to avoid repeated yfinance hits on known-missing tickers. Ruled out — retry-on-every-query is cheap (the empty-Close path now short-circuits in microseconds) and persistence would introduce cache-invalidation questions (when does a newly-listed ticker become fetchable again?).
+- *Fixture recording.* ROADMAP suggested capturing a live example of yfinance's empty-column response. Used a synthetic `_FakeYF` monkeypatch instead — the exact shape yfinance returns on rate limit isn't load-bearing for the regression; what matters is that any non-empty frame lacking `Close` routes through the guard. The test builds that shape explicitly and is stable against yfinance API changes.
+
+**Standing follow-ons.** None new from #11. The "seed NANC into the committed price cache" item from session 3 (originating with #4/#5 wrap) remains open in `COMPLETED.md`'s #4 standing-follow-ons — would eliminate the trigger that surfaced this bug but doesn't subsume the underlying fix; other cache-missing tickers would still hit the same code path.
+
+**Infra notes for future sessions.**
+
+- The `_FakeYF` pattern in `tests/test_price_cache.py` is the template for any future yfinance-response-shape regression: monkeypatch the module's `yf` attribute with a stand-in whose `.download()` returns a hand-built DataFrame. Don't try to mock `yf.download` directly — `price_cache` imports the whole `yf` module and references `yf.download` as an attribute, so the module-level swap is the right seam.
+- Both branches of `_bulk_download` now share the "no Close → drop" contract. If a future caller of `_bulk_download` needs to distinguish "no data" from "never fetched," it should check the returned dict's keyset; don't route through `_bulk_download`'s return for that signal — it would change the contract both branches depend on.

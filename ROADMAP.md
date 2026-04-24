@@ -22,12 +22,10 @@ Strict rules for writing it:
 
 **2026-04-23 (session 3)**
 
-- **#4 / #5 / #6 closed** (SHAs `829c345` / `9851bd0` / `baefa44`); full prose in `COMPLETED.md`. Session continues on **#7 cost / tax / sizing overlays** (plan approved 2026-04-23; design note `design/cost-tax-sizing-overlays.md`; five-commit sequence in flight).
-- **#7 code complete (5/5 commits landed).** `d35c68a` design note → `ccbb55b` `scoring/costs.py` + 40 tests → `2b48e22` backtest net-of-overlay summary → `73b3186` paper-log sidecar + Gross/Net HTML → `8edf339` pipeline wiring in `update-leaderboard.yml`.
-- **#11 (was #10) fix landed `a458c63`** after the first monthly-workflow dispatch under #7 surfaced the single-ticker empty-response crash in `build_leaderboard.py` (NANC fetch path). Guard applied to both `_bulk_download` branches; 3 regression tests added. 273 tests green locally. Both #7 and #11 await Tom's manual verification (re-dispatch the workflow + inspect `paper_log.html`'s Gross/Net columns).
-- Non-#4/#5/#6 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
-- **Backlog renumber:** filed **new #8** (dynamic net-of-costs default-follow list — direct #7 follow-on Tom flagged). Old→new map: `#8→#9, #9→#10, #10→#11, #11→#12, #12→#13, #13→#14, #14→#15, #15→#16`. In-repo cross-references (`#8` in #9-Extends, `#10`/`#11` in #13-Dependency, `#11` in #12, `#13` in #12, `#2–#13` in standing guidance) updated in the same commit; past references in commit messages resolve via this commit in git history.
-- Standing backlog: **#7** (code complete, awaiting verification), **#8** (net-of-costs ranking, just filed), **#9–#14** open; plus **#11** (price_cache single-ticker bug, fix landed), **#13** (weekly-report benchmark strip), **#15** (leaderboard xlsx → JSON, filed session 3), **#16** (RSS feed removal, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
+- **#4 / #5 / #6 / #7 / #11 closed** (SHAs `829c345` / `9851bd0` / `baefa44` / `8edf339` / `a458c63`); full prose in `COMPLETED.md`. Session-3 work wraps with #7's overlays verified live on `site/paper_log.html` (Gross/Net columns rendering against the committed sidecar) and #11's empty-response guard re-dispatched cleanly.
+- Non-#4/#5/#6/#7/#11 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
+- **Session-3 backlog renumber (commit `1747a21`):** filed **new #8** (dynamic net-of-costs default-follow list — direct #7 follow-on Tom flagged). Old→new map: `#8→#9, #9→#10, #10→#11, #11→#12, #12→#13, #13→#14, #14→#15, #15→#16`. Cross-references updated across `ROADMAP.md`, `COMPLETED.md`, and `design/*.md` (retrofit in `f9191f1`). Past references in commit messages resolve via those commits in git history.
+- Standing backlog: **#8** (net-of-costs ranking, next in priority), **#9–#10** (committee-consensus, hearings), **#12–#14** (cadence, weekly-report strip, Cowork artifact); plus cleanup **#15** (xlsx → JSON), **#16** (RSS removal). 273 tests green. Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
 
 ## For future agents
 
@@ -69,17 +67,7 @@ Status legend:
 
 ### 6. [x] Auto paper-trading log — baefa44 — see COMPLETED.md
 
-### 7. [~] Transaction-cost, tax-drag, and position-sizing overlays
-
-_Code complete — plan approved session 3 (2026-04-23). Design note: `design/cost-tax-sizing-overlays.md`. Five-commit sequence landed: design note + ROADMAP flip → `scoring/costs.py` pure-math module + tests → backtest summary gains net-of-overlay stats → paper-log HTML gains Gross/Net columns → pipeline defaults wired into `update-leaderboard.yml`. Awaiting Tom's manual verification before flipping `[x]`._
-
-Signals without cost models overstate follower returns. Bundled because all three live in the same PnL-accounting layer and share fixtures:
-
-- Slippage estimate per ticker: ADV-tiered round-trip bps haircut (5 / 25 / 75 bps for large / mid / small by ADV), CLI-overridable.
-- After-tax view at short-term federal + VA state (24% + 5.75% = 29.75% combined default), toggleable via `--tax-rate`, since congressional trades skew short-horizon and the headline alpha looks materially different on an after-tax basis.
-- Position-sizing modes — equal-weight across signals (default) versus range-weighted using the disclosed `value` field as a weak conviction proxy — selected explicitly rather than left implicit.
-
-All decisions locked in `design/cost-tax-sizing-overlays.md`. Overlays apply to strategy PnL only (both the #5 backtest and the #6 paper-log HTML); the composite still ranks on gross alpha — net-of-costs composite scoring is an explicit v2 follow-up, filed as #8 below.
+### 7. [x] Transaction-cost, tax-drag, and position-sizing overlays — 8edf339 — see COMPLETED.md
 
 ### 8. [ ] Dynamic net-of-costs default-follow list
 
@@ -118,9 +106,7 @@ Design-note questions:
 - Proximity window. 7, 14, or 30 days.
 - Failure mode when a member sits on multiple committees. Is the tag "any relevant hearing within window," or restricted to the committee whose jurisdiction matches the ticker.
 
-### 11. [~] Fix `price_cache.py` single-ticker fallback on empty yfinance response
-
-_Code complete — surfaced in live CI on the session-3 monthly workflow run after #7 landed: `build_leaderboard.py:360 → all_benchmark_returns(180d) → get_prices([NANC, KRUZ, SPY, QQQ]) → _bulk_download([NANC])` (NANC is the cache-missing ticker per the session-3 standing follow-up; yfinance returned a non-empty frame without `Close`/`Volume`). Fix guards both the single-ticker and multi-ticker branches of `_bulk_download`: if the post-download frame lacks a `Close` column, the ticker is dropped (single-ticker returns `{}`, multi-ticker `continue`s), matching the module's existing missing-data convention. Three regression tests added in `tests/test_price_cache.py`. Awaiting Tom's manual verification (re-dispatch the workflow) before flipping `[x]`._
+### 11. [x] Fix `price_cache.py` single-ticker fallback on empty yfinance response — a458c63 — see COMPLETED.md
 
 ### 12. [ ] Daily / on-disclosure cadence
 
