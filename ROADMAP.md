@@ -23,7 +23,7 @@ Strict rules for writing it:
 **2026-04-23 (session 3)**
 
 - **#4 / #5 / #6 closed** (SHAs `829c345` / `9851bd0` / `baefa44`); full prose in `COMPLETED.md`. Session continues on **#7 cost / tax / sizing overlays** (plan approved 2026-04-23; design note `design/cost-tax-sizing-overlays.md`; five-commit sequence in flight).
-- **#7 progress.** Commits 1/5 `d35c68a` (design note + ROADMAP flip), 2/5 `ccbb55b` (`scoring/costs.py` + 40 tests), 3/5 in progress (backtest overlay hook: `walk_forward` gains slippage/tax/sizing kwargs, `summary.strategy` gains `*_net` fields + `overlays` config, 5 new tests). 264 tests green locally. Remaining: paper-log + HTML hook (4/5), pipeline wiring (5/5).
+- **#7 progress.** Commits 1/5 `d35c68a` (design note + ROADMAP flip), 2/5 `ccbb55b` (`scoring/costs.py` + 40 tests), 3/5 `2b48e22` (backtest `walk_forward` gains `*_net` fields + `overlays` config), 4/5 in progress (paper-log + HTML: `paper_log.py` writes `scoring/paper_log/overlays.json` sidecar; `build_paper_log.py` lifetime-summary gains Gross/Net columns; 6 new page tests). 270 tests green locally. Remaining: pipeline wiring (5/5).
 - Non-#4/#5/#6 landings in session 3: `c4ff52b` (ET timestamp fix on the report archive), `f8e9866` (auto_fill.py default model Sonnet 4 → 4.6 before 2026-06-15 EOL). Both are small follow-ons, not backlog items.
 - Standing backlog: **#7** (in plan), **#8–#13** open; plus **#10** (price_cache single-ticker bug), **#12** (weekly-report benchmark strip), **#14** (leaderboard xlsx → JSON, filed session 3), **#15** (RSS feed removal, filed session 3). Open non-numbered follow-ups from #4/#5 (composite re-tune, NANC price-cache seed) captured in `COMPLETED.md`.
 

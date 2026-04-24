@@ -192,17 +192,36 @@ baseline can be re-aggregated under alternative overlay configs.
 
 ### `scoring/paper_log.py::main()` + `build_paper_log.py` (commit 4)
 
-Paper-log CLI gains the same three flags. `paper_log.main()` passes
-them to `PaperLog.walk(...)` via a new `overlays: dict | None = None`
-kwarg — the walk loop doesn't apply overlays (ledger stays gross) but
-stashes the config so the HTML renderer can read it off the saved run.
+Paper-log CLI gains the same three flags. After the walk, `paper_log.main()`
+writes a sidecar `scoring/paper_log/overlays.json` with the overlay
+config plus a resolved `slippage_bps_by_ticker` map (computed while
+`ticker_adv` is still in scope — the renderer doesn't depend on
+yfinance or price_cache). The ledger CSV itself stays unchanged.
+Sidecar schema:
+
+```json
+{
+  "slippage_mode":          "tiered",
+  "tax_rate":               0.2975,
+  "sizing_mode":            "equal",
+  "slippage_bps_by_ticker": { "AAPL": 5.0, "NVDA": 5.0, ... },
+  "generated":              "2026-04-23"
+}
+```
 
 `build_paper_log.py`'s lifetime-summary section gets a second column
 showing the net-of-overlay view alongside the existing gross metrics.
+`render_page(log, today, name_lookup, *, overlays=None)` loads the
+sidecar at CLI time; when `overlays is None` (e.g. before the first
+walk has run), the net columns show em-dash and the page builds
+cleanly. When a closed row's ticker is absent from
+`slippage_bps_by_ticker`, the renderer falls back to the small-cap
+tier (75 bps) — matches `classify_tier(None) → 'small'`, conservative.
+
 Schema-contract test in `tests/test_paper_log_page.py` pins the new
-headers (`Gross`, `Net`) and at least one assertion that the net total
-is less than the gross total when slippage is on and the lifetime PnL
-is positive.
+`Gross | Net` labels in the summary card, at least one assertion that
+the net total is less than the gross total when slippage is on and
+the lifetime PnL is positive, and the no-overlays em-dash path.
 
 ### Pipeline wiring (commit 5)
 
@@ -324,5 +343,6 @@ self-sufficient (design note + a pure-math module with no callers).
 | Net-of-overlay aggregates | `scoring/costs.py::apply_*` invoked from `walk_forward` summary + `build_paper_log.py` render | Reporting layer. |
 | Paper-log CSV schema | `scoring/paper_log.py::CSV_HEADERS` | Unchanged by #7. |
 | Backtest JSON schema | `scoring/backtest.py::walk_forward` return | Gains `summary.strategy.*_net` and `summary.strategy.overlays`. |
+| Paper-log overlay sidecar | `scoring/paper_log/overlays.json` | Written by `paper_log.main()`, read by `build_paper_log.main()`. CSV ledger itself unchanged. |
 | Pipeline defaults | `.github/workflows/update-leaderboard.yml` + `.../update-report.yml` | Explicit flags so defaults don't drift silently. |
 | Net-of-costs composite | None / deferred | Explicit out-of-scope v2 item. |

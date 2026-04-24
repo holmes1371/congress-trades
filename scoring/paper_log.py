@@ -74,6 +74,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -97,10 +98,15 @@ from backtest import (
     close_n_positions_later,
     select_cohort,
 )
+from costs import (
+    DEFAULT_TAX_RATE,
+    slippage_bps_for_ticker,
+)
 
 
 LOG_DIR = Path(__file__).parent / "paper_log"
 LOG_PATH = LOG_DIR / "positions.csv"
+OVERLAYS_PATH = LOG_DIR / "overlays.json"  # ROADMAP #7 — sidecar config for build_paper_log.py
 
 HORIZON_BDAYS = 60          # match #5 backtest exit rule
 COHORT_K = 15               # match default_follow_*.json top-N
@@ -427,6 +433,12 @@ def main():
                     help="CSV ledger path (default: scoring/paper_log/positions.csv)")
     ap.add_argument("--today", type=str, default=None,
                     help="Override 'today' (YYYY-MM-DD). Default: current date.")
+    ap.add_argument("--slippage-mode", type=str, default="tiered",
+                    help="Slippage model: 'off' | 'tiered' (5/25/75 bps by ADV) | 'flat_bps:<N>'. Default: tiered.")
+    ap.add_argument("--tax-rate", type=float, default=DEFAULT_TAX_RATE,
+                    help=f"Gain-only short-term tax rate; default {DEFAULT_TAX_RATE} (federal 24% + VA 5.75%).")
+    ap.add_argument("--sizing-mode", type=str, default="equal", choices=["equal", "range"],
+                    help="Portfolio sizing: 'equal' (default) or 'range' (value-weighted by capitoltrades 'value').")
     args = ap.parse_args()
 
     # Lazy imports so the module can be unit-tested without the CLI
@@ -473,6 +485,7 @@ def main():
     attach_alphas(members_data, price_frames, spy)
 
     log = PaperLog(Path(args.log_path))
+    ticker_adv = {t: compute_ticker_adv(df) for t, df in price_frames.items()}
     log.walk(
         members_data=members_data,
         price_frames=price_frames,
@@ -480,13 +493,34 @@ def main():
         today=today,
         K=args.K, exit_bdays=args.exit_bdays,
         window_days=args.window_days, min_trades=args.min_trades,
+        ticker_adv=ticker_adv,
     )
     log.save()
+
+    # Sidecar for build_paper_log.py's net-of-overlay render. Overlays
+    # don't mutate the CSV — per-ticker slippage bps are captured here
+    # so the render doesn't need price-cache access. Covers every
+    # ticker that ever opened a position plus every currently-in-play
+    # cohort ticker, so a rename / new ticker on the next walk doesn't
+    # leave stale positions unpriced.
+    slippage_bps_by_ticker = {
+        tk: slippage_bps_for_ticker(tk, ticker_adv, mode=args.slippage_mode)
+        for tk in sorted({r["ticker"] for r in log.rows} | set(ticker_adv))
+        if tk
+    }
+    overlays_path = Path(args.log_path).parent / OVERLAYS_PATH.name
+    overlays_path.write_text(json.dumps({
+        "slippage_mode":          args.slippage_mode,
+        "tax_rate":               args.tax_rate,
+        "sizing_mode":            args.sizing_mode,
+        "slippage_bps_by_ticker": slippage_bps_by_ticker,
+        "generated":              today.isoformat(),
+    }, indent=2), encoding="utf-8")
 
     n_open = len(log.open_rows())
     n_closed = len(log.closed_rows())
     print(f"paper_log updated at {today.isoformat()}: {len(log.rows)} rows "
-          f"({n_open} open, {n_closed} closed)")
+          f"({n_open} open, {n_closed} closed); overlays written to {overlays_path.name}")
 
 
 if __name__ == "__main__":

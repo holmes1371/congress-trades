@@ -294,3 +294,90 @@ def test_render_page_data_date_matches_today(tmp_path):
     log = _log_with_rows(tmp_path, [])
     html = render_page(log, _TODAY, _NAME_LOOKUP)
     assert "Mar 15, 2024" in html                 # fmt of _TODAY
+
+
+# ── Overlays (ROADMAP #7) ──────────────────────────────────
+
+
+_OVERLAYS_FIXTURE = {
+    "slippage_mode":          "flat_bps:100",     # 1% round-trip — easy to verify
+    "tax_rate":               0.25,                # gain-only 25% haircut
+    "sizing_mode":            "equal",
+    "slippage_bps_by_ticker": {"NVDA": 100.0, "MSFT": 100.0},
+    "generated":              "2024-03-15",
+}
+
+
+def test_lifetime_summary_no_overlays_leaves_net_fields_none(tmp_path):
+    """Before the first paper_log.py walk writes an overlays sidecar,
+    the renderer shouldn't fabricate a net view."""
+    log = _log_with_rows(tmp_path, [_closed_row()])
+    s = lifetime_summary(log)
+    assert s["mean_return_net"] is None
+    assert s["mean_alpha_vs_spy_net"] is None
+    assert s["hit_rate_net"] is None
+
+
+def test_lifetime_summary_applies_slippage_and_tax(tmp_path):
+    """Flat 100bps + 25% tax on a +10% gain:
+      net_pnl = apply_tax(apply_slippage(0.10, 100), 0.25)
+              = apply_tax(0.10 - 0.01, 0.25) = 0.09 * 0.75 = 0.0675"""
+    log = _log_with_rows(tmp_path, [
+        _closed_row(pnl_pct="0.100000", alpha_vs_spy="0.080000"),
+    ])
+    s = lifetime_summary(log, overlays=_OVERLAYS_FIXTURE)
+    assert s["mean_return"] == pytest.approx(0.10)
+    assert s["mean_return_net"] == pytest.approx(0.0675)
+    # Net alpha: gross spy = gross pnl - gross alpha = 0.10 - 0.08 = 0.02
+    # Net alpha = net_pnl - spy = 0.0675 - 0.02 = 0.0475
+    assert s["mean_alpha_vs_spy_net"] == pytest.approx(0.0475)
+
+
+def test_lifetime_summary_unknown_ticker_falls_back_to_small_cap(tmp_path):
+    """A ticker absent from slippage_bps_by_ticker pays the small-cap
+    tier (75 bps) — conservative, matches classify_tier(None) → small."""
+    overlays_missing = {**_OVERLAYS_FIXTURE, "slippage_bps_by_ticker": {}}
+    log = _log_with_rows(tmp_path, [
+        _closed_row(pnl_pct="0.100000", alpha_vs_spy="0.080000"),
+    ])
+    s = lifetime_summary(log, overlays=overlays_missing)
+    # small-cap 75 bps → 0.10 - 0.0075 = 0.0925 gross post-slip
+    # tax 25% on gain → 0.0925 * 0.75 = 0.069375
+    assert s["mean_return_net"] == pytest.approx(0.069375)
+
+
+def test_build_summary_card_emits_gross_and_net_labels(tmp_path):
+    log = _log_with_rows(tmp_path, [
+        _closed_row(pnl_pct="0.100000", alpha_vs_spy="0.080000"),
+    ])
+    html = build_summary_card(log, overlays=_OVERLAYS_FIXTURE)
+    # Every per-trade metric line now exposes both views.
+    assert html.count("Gross") >= 3
+    assert html.count("Net") >= 3
+    # Concrete net values surface (approximate string match on the
+    # formatter's output).
+    assert "+6.75%" in html       # mean_return_net
+    assert "+4.75%" in html       # mean_alpha_vs_spy_net
+    # Overlay footer references the config.
+    assert "slippage" in html and "flat_bps:100" in html
+    assert "sizing" in html and "equal" in html
+
+
+def test_build_summary_card_without_overlays_shows_em_dash_for_net(tmp_path):
+    log = _log_with_rows(tmp_path, [
+        _closed_row(pnl_pct="0.100000", alpha_vs_spy="0.080000"),
+    ])
+    html = build_summary_card(log)
+    # Gross values still present.
+    assert "+10.00%" in html
+    # Net values are em-dash; no overlay footer.
+    assert "Net —" in html
+    assert "slippage " not in html  # no overlay config line
+
+
+def test_render_page_passes_overlays_through(tmp_path):
+    log = _log_with_rows(tmp_path, [_closed_row()])
+    html = render_page(log, _TODAY, _NAME_LOOKUP, overlays=_OVERLAYS_FIXTURE)
+    assert "Gross" in html
+    assert "Net" in html
+    assert "flat_bps:100" in html

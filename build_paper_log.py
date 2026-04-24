@@ -19,6 +19,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -30,7 +31,12 @@ if str(PROJ) not in sys.path:
     sys.path.insert(0, str(PROJ))
 
 from fetch_trades import load_bioguide_directory
-from scoring.paper_log import LOG_PATH, PaperLog
+from scoring.paper_log import LOG_PATH, OVERLAYS_PATH, PaperLog
+from scoring.costs import (
+    SLIPPAGE_BPS_TIERS,
+    apply_slippage,
+    apply_tax,
+)
 
 
 DISPLAY_TZ = ZoneInfo("America/New_York")
@@ -190,29 +196,92 @@ def build_retracted_rows(log: PaperLog, name_lookup: dict[str, str]) -> str:
 # ── Lifetime summary ───────────────────────────────────────
 
 
-def lifetime_summary(log: PaperLog) -> dict:
+def _net_pnl_for_row(row: dict, overlays: dict) -> float | None:
+    """Apply the overlays' slippage + tax haircut to a single closed
+    row's gross pnl_pct. Returns None on a malformed row (non-numeric
+    pnl_pct)."""
+    try:
+        gross = float(row["pnl_pct"])
+    except (ValueError, TypeError, KeyError):
+        return None
+    ticker = row.get("ticker", "")
+    # Fallback to the small-cap tier bps when the ticker isn't in the
+    # sidecar — matches classify_tier(None) → 'small', conservative.
+    bps = overlays.get("slippage_bps_by_ticker", {}).get(ticker, SLIPPAGE_BPS_TIERS["small"])
+    return apply_tax(apply_slippage(gross, bps), overlays.get("tax_rate", 0.0))
+
+
+def lifetime_summary(log: PaperLog, overlays: dict | None = None) -> dict:
     closed = log.closed_rows()
+    base = {
+        "n_open":            len(log.open_rows()),
+        "n_retracted":       sum(1 for r in log.rows if r.get("status") == "retracted"),
+        "overlays":          overlays,
+    }
     if not closed:
         return {
+            **base,
             "n_closed": 0, "mean_return": None, "mean_alpha_vs_spy": None,
-            "hit_rate": None, "n_open": len(log.open_rows()),
-            "n_retracted": sum(1 for r in log.rows if r.get("status") == "retracted"),
+            "hit_rate": None,
+            "mean_return_net": None, "mean_alpha_vs_spy_net": None,
+            "hit_rate_net": None,
         }
     returns = [float(r["pnl_pct"]) for r in closed if r.get("pnl_pct") not in (None, "", "nan")]
     alphas = [float(r["alpha_vs_spy"]) for r in closed if r.get("alpha_vs_spy") not in (None, "", "nan")]
     hit = sum(1 for a in alphas if a > 0) / len(alphas) if alphas else None
+
+    # Net-of-overlay aggregates. When overlays is None, net fields are
+    # None — the render shows em-dash. When present, apply per-ticker
+    # slippage + gain-only tax to each row's pnl_pct (and to the same
+    # row's alpha by subtracting the implied SPY return: spy_return =
+    # gross_pnl - gross_alpha, so net_alpha = net_pnl - spy_return).
+    mean_return_net: float | None = None
+    mean_alpha_vs_spy_net: float | None = None
+    hit_rate_net: float | None = None
+    if overlays is not None:
+        net_returns: list[float] = []
+        net_alphas: list[float] = []
+        for r in closed:
+            net_pnl = _net_pnl_for_row(r, overlays)
+            if net_pnl is None:
+                continue
+            net_returns.append(net_pnl)
+            try:
+                gross_pnl = float(r["pnl_pct"])
+                gross_alpha = float(r["alpha_vs_spy"])
+            except (ValueError, TypeError, KeyError):
+                continue
+            spy_return = gross_pnl - gross_alpha  # benchmark stays gross
+            net_alphas.append(net_pnl - spy_return)
+        if net_returns:
+            mean_return_net = sum(net_returns) / len(net_returns)
+        if net_alphas:
+            mean_alpha_vs_spy_net = sum(net_alphas) / len(net_alphas)
+            hit_rate_net = sum(1 for a in net_alphas if a > 0) / len(net_alphas)
+
     return {
-        "n_closed":          len(closed),
-        "n_open":            len(log.open_rows()),
-        "n_retracted":       sum(1 for r in log.rows if r.get("status") == "retracted"),
-        "mean_return":       sum(returns) / len(returns) if returns else None,
-        "mean_alpha_vs_spy": sum(alphas) / len(alphas) if alphas else None,
-        "hit_rate":          hit,
+        **base,
+        "n_closed":              len(closed),
+        "mean_return":           sum(returns) / len(returns) if returns else None,
+        "mean_alpha_vs_spy":     sum(alphas) / len(alphas) if alphas else None,
+        "hit_rate":              hit,
+        "mean_return_net":       mean_return_net,
+        "mean_alpha_vs_spy_net": mean_alpha_vs_spy_net,
+        "hit_rate_net":          hit_rate_net,
     }
 
 
-def build_summary_card(log: PaperLog) -> str:
-    s = lifetime_summary(log)
+def build_summary_card(log: PaperLog, overlays: dict | None = None) -> str:
+    s = lifetime_summary(log, overlays=overlays)
+    overlay_footer = ""
+    if overlays is not None:
+        overlay_footer = (
+            '<p class="overlay-config">'
+            f'Net applies: slippage <code>{overlays.get("slippage_mode", "?")}</code>, '
+            f'tax <code>{overlays.get("tax_rate", 0.0):.4f}</code>, '
+            f'sizing <code>{overlays.get("sizing_mode", "?")}</code>.'
+            '</p>'
+        )
     return (
         '<div class="weights-card">'
         '<h3>Lifetime Summary</h3>'
@@ -220,10 +289,17 @@ def build_summary_card(log: PaperLog) -> str:
         f'<li><strong>Open positions:</strong> {s["n_open"]}</li>'
         f'<li><strong>Closed positions:</strong> {s["n_closed"]}</li>'
         f'<li><strong>Retracted:</strong> {s["n_retracted"]}</li>'
-        f'<li><strong>Mean per-trade return:</strong> {fmt_signed_pct(s["mean_return"])}</li>'
-        f'<li><strong>Mean per-trade &alpha; vs SPY:</strong> {fmt_signed_pct(s["mean_alpha_vs_spy"])}</li>'
-        f'<li><strong>Hit rate (&alpha; &gt; 0):</strong> {fmt_pct(s["hit_rate"])}</li>'
+        f'<li><strong>Mean per-trade return:</strong> '
+        f'Gross {fmt_signed_pct(s["mean_return"])} '
+        f'&middot; Net {fmt_signed_pct(s["mean_return_net"])}</li>'
+        f'<li><strong>Mean per-trade &alpha; vs SPY:</strong> '
+        f'Gross {fmt_signed_pct(s["mean_alpha_vs_spy"])} '
+        f'&middot; Net {fmt_signed_pct(s["mean_alpha_vs_spy_net"])}</li>'
+        f'<li><strong>Hit rate (&alpha; &gt; 0):</strong> '
+        f'Gross {fmt_pct(s["hit_rate"])} '
+        f'&middot; Net {fmt_pct(s["hit_rate_net"])}</li>'
         '</ul>'
+        f'{overlay_footer}'
         '</div>'
     )
 
@@ -285,6 +361,8 @@ PAGE_TEMPLATE = """\
   .weights-card ul {{ list-style: none; display: flex; flex-wrap: wrap; gap: 12px 24px; }}
   .weights-card li {{ color: var(--text); }}
   .weights-card strong {{ color: var(--accent); }}
+  .overlay-config {{ font-size: 0.75rem; color: var(--muted); margin-top: 10px; }}
+  .overlay-config code {{ color: var(--text); background: var(--surface2); padding: 1px 5px; border-radius: 3px; }}
   .footer {{
     font-size: 0.75rem; color: var(--muted); margin-top: 32px;
     padding: 14px; background: var(--surface); border-radius: 8px; line-height: 1.6;
@@ -331,9 +409,9 @@ PAGE_TEMPLATE = """\
 
 <div class="footer">
   Paper-trading log is prospective-only — it accumulates from the first pipeline run after the
-  feature landed, not backfilled from historical signals. PnL is gross of transaction costs and
-  taxes; a cost overlay is tracked as ROADMAP #7. This is for informational purposes only and
-  does not constitute investment advice.
+  feature landed, not backfilled from historical signals. Per-row PnL is gross; the lifetime
+  summary above shows Gross and Net (after slippage + gain-only short-term tax) side by side.
+  This is for informational purposes only and does not constitute investment advice.
   <br>Last built: {build_time}
 </div>
 
@@ -365,12 +443,15 @@ def build_retracted_section(log: PaperLog, name_lookup: dict[str, str]) -> str:
 # ── Main ───────────────────────────────────────────────────
 
 
-def render_page(log: PaperLog, today: date, name_lookup: dict[str, str]) -> str:
+def render_page(
+    log: PaperLog, today: date, name_lookup: dict[str, str],
+    *, overlays: dict | None = None,
+) -> str:
     """Render the full HTML page. Separated from `main()` so tests can
     call it directly with a constructed PaperLog and a fixed today."""
     return PAGE_TEMPLATE.format(
         data_date=today.strftime("%b %d, %Y"),
-        summary_card=build_summary_card(log),
+        summary_card=build_summary_card(log, overlays=overlays),
         open_rows=build_open_rows(log, today, name_lookup),
         closed_rows=build_closed_rows(log, today, name_lookup),
         retracted_section=build_retracted_section(log, name_lookup),
@@ -382,6 +463,17 @@ def render_page(log: PaperLog, today: date, name_lookup: dict[str, str]) -> str:
     )
 
 
+def load_overlays(log_path: Path) -> dict | None:
+    """Read scoring/paper_log/overlays.json alongside the ledger.
+    Returns None when absent — the renderer falls back to gross-only
+    output so the page builds cleanly before the first `paper_log.py`
+    run writes a sidecar."""
+    sidecar = log_path.parent / OVERLAYS_PATH.name
+    if not sidecar.exists():
+        return None
+    return json.loads(sidecar.read_text(encoding="utf-8"))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="site", help="Output directory")
@@ -389,11 +481,13 @@ def main():
                     help="Path to positions.csv ledger")
     args = ap.parse_args()
 
-    log = PaperLog(Path(args.log_path))
+    log_path = Path(args.log_path)
+    log = PaperLog(log_path)
+    overlays = load_overlays(log_path)
     name_lookup = build_name_lookup()
     today = date.today()
 
-    html = render_page(log, today, name_lookup)
+    html = render_page(log, today, name_lookup, overlays=overlays)
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
